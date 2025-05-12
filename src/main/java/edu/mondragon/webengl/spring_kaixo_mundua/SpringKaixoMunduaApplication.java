@@ -8,9 +8,6 @@ public class SpringKaixoMunduaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringKaixoMunduaApplication.class, args);
-		SpringApplication.run(SpringKaixoMunduaApplication.class, args);
-		SpringApplication.run(SpringKaixoMunduaApplication.class, args);
-		SpringApplication.run(SpringKaixoMunduaApplication.class, args);
 	}
 
 }
