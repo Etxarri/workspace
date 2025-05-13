@@ -1,1 +1,2 @@
-/workspace/src/main/java/edu/mondragon/webengl/spring_kaixo_mundua/SpringKaixoMunduaApplication.java
+/workspace/src/main/java/edu/mondragon/webengl/MainApplication.java
+/workspace/src/main/java/edu/mondragon/webengl/controller/HelloController.java
