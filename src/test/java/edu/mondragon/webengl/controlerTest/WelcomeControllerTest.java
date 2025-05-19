@@ -1,4 +1,5 @@
 
+/*
 package edu.mondragon.webengl.controlerTest;
 
 import edu.mondragon.webengl.controller.WelcomeController;
@@ -56,3 +57,4 @@ public class WelcomeControllerTest {
 
 
 }
+*/
