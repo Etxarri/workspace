@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+    <div th:if="${session.user != null}">
+        <h1>Hola <span th:text="${session.user.username}"></span></h1>
+    </div>
+    <div th:unless="${session.user != null}">
+        <h1>-_-</h1>
+    </div>
+</body>
+</html>

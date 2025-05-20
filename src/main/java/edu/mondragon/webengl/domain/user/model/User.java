@@ -1,5 +1,7 @@
 package edu.mondragon.webengl.domain.user.model;
 
+import java.util.Locale;
+
 /*
  * This is a Java Bean.
  * These are the unique characteristics they must have:
@@ -18,8 +20,7 @@ public class User implements java.io.Serializable /* 2nd characteristic */ {
     private String firstName = null;
     private String secondName = null;
     private String email = null;
-    private String idioma_principal = null;
-    
+    private String tipo = null;
 
     public User() {
     }// 1st characteristic
@@ -72,5 +73,20 @@ public class User implements java.io.Serializable /* 2nd characteristic */ {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+
+    
 }
 

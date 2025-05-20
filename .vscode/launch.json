@@ -15,7 +15,7 @@
             "type": "java",
             "name": "SpringKaixoMunduaApplication",
             "request": "launch",
-            "mainClass": "edu.mondragon.webengl.spring_kaixo_mundua.SpringKaixoMunduaApplication",
+            "mainClass": "edu.mondragon.webengl.StartWebApplication",
             "projectName": "spring-kaixo-mundua"
         }
     ]

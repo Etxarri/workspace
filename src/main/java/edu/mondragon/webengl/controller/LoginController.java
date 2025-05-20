@@ -37,7 +37,7 @@ public class LoginController {
         if (user != null) {
             session.setAttribute("user", user);
             redirectAttributes.addFlashAttribute("message", "message.login");
-            return "redirect:/"; // redirige a home
+            return "logged"; // redirige a logged.html
         } else {
             redirectAttributes.addFlashAttribute("error", "error.login");
             return "redirect:/login";
