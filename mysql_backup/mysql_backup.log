@@ -1,8 +1,0 @@
-/workspace/mysql_backup/mysql_backup.sh: line 12: mysql_backup/backups/backup_2025-05-19.sql: No such file or directory
-/workspace/mysql_backup/mysql_backup.sh: line 12: mysql_backup/backups/backup_2025-05-19.sql: No such file or directory
-/workspace/mysql_backup/mysql_backup.sh: line 12: mysql_backup/backups/backup_2025-05-19.sql: No such file or directory
-/workspace/mysql_backup/mysql_backup.sh: line 12: mysql_backup/backups/backup_2025-05-19.sql: No such file or directory
-mysqldump: [Warning] Using a password on the command line interface can be insecure.
-mysqldump: [Warning] Using a password on the command line interface can be insecure.
-mysqldump: [Warning] Using a password on the command line interface can be insecure.
-mysqldump: [Warning] Using a password on the command line interface can be insecure.
