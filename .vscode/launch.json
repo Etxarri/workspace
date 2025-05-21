@@ -13,9 +13,13 @@
         },
         {
             "type": "java",
-            "name": "SpringKaixoMunduaApplication",
+            "name": "MainApplication",
             "request": "launch",
+<<<<<<< HEAD
             "mainClass": "edu.mondragon.webengl.StartWebApplication",
+=======
+            "mainClass": "edu.mondragon.webengl.MainApplication",
+>>>>>>> BackEnd
             "projectName": "spring-kaixo-mundua"
         }
     ]

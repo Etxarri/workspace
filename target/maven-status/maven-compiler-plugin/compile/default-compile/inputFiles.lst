@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /workspace/src/main/java/edu/mondragon/webengl/StartWebApplication.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/User.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/UserRepositorySQL.java
@@ -8,3 +9,7 @@
 /workspace/src/main/java/edu/mondragon/webengl/controller/UserController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/RecienLLegado.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/UserRepository.java
+=======
+/workspace/src/main/java/edu/mondragon/webengl/MainApplication.java
+/workspace/src/main/java/edu/mondragon/webengl/controller/HelloController.java
+>>>>>>> BackEnd
