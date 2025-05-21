@@ -4,7 +4,13 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "type": "java",
+            "name": "MainApplication",
+            "request": "launch",
+            "mainClass": "edu.mondragon.webengl.MainApplication",
+            "projectName": "spring-kaixo-mundua"
+        },
         {
             "type": "java",
             "name": "Current File",
@@ -15,11 +21,7 @@
             "type": "java",
             "name": "MainApplication",
             "request": "launch",
-<<<<<<< HEAD
             "mainClass": "edu.mondragon.webengl.StartWebApplication",
-=======
-            "mainClass": "edu.mondragon.webengl.MainApplication",
->>>>>>> BackEnd
             "projectName": "spring-kaixo-mundua"
         }
     ]
