@@ -43,17 +43,17 @@
             <h4 class="text-center">Inicio de Sesión</h4>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nombre Usuario</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
             </div>
             <div class="mb-3 mt-5">
                 <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-                <div id="emailHelp" class="form-text mt-3">Has olvidado la Contraseña?</div>
+                <input type="password" class="form-control" id="exampleInputPassword1" required>
+                <div id="emailHelp" class="form-text mt-3">Has olvidado la Contraseña?  <a th:href="@{/forgot-password}">click aqui</a></div>
             
             </div>
 
-            <button type="submit" class="btn btn-primary mt-4">Login</button>
-            <div id="emailHelp" class="form-text mt-3">Si no tienes cuenta haz click <span>aqui</span></div>
+            <button type="submit" class="btn btn-primary mt-4" th:href="@{/logged}">Login</button>
+            <div id="emailHelp" class="form-text mt-3">Si no tienes cuenta haz <a th:href="@{/user}">click aqui</a></div>
 </form>
     </div>
 
