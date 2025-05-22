@@ -37,8 +37,10 @@ public class LoginController {
         if (user != null) {
             session.setAttribute("user", user);
             redirectAttributes.addFlashAttribute("message", "message.login");
-            return "logged"; // redirige a logged.html
+            System.out.println("Ha entrado el usuario: " + user.getUsername() + " con la contraseña: " + user.getPassword());
+            return "logged.html"; // redirige a logged.html
         } else {
+            System.out.println("Error al entrar el usuario: " + username + " con la contraseña: " + password);
             redirectAttributes.addFlashAttribute("error", "error.login");
             return "redirect:/login";
 
