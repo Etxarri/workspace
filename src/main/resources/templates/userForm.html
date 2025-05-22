@@ -1,48 +1,95 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Iniciar sesión</title>
-    <link rel="stylesheet" href="/css/styles.css" />
-    <script src="/js/javaScript.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/userForm.css" />
+
+    <script src="/js/javaScript.js" defer></script><!--EJECUTAR EL ARCHIVO CUANDO TODO SE HAYA CARGADO-->
+
+    <title>Crear Usuario</title>
 </head>
 <body>
-    <h2>Crear User</h2>
+    <div class="container-fluid">
+        <form th:action="@{/user/create}" method="post" class="mx-auto">
+        <h4 class="text-center">Crear User</h4>
+
+        <div class="mb-3">
+            <label for="first_name" class="form-label">Nombre:</label>
+            <input type="text" id="first_name" class="form-control" name="first_name" required>
+        </div>
+
+        <div class="mb-3 mt-5">
+            <label for="second_name" class="form-label">Apellido:</label>
+            <input type="text" id="second_name" name="second_name" class="form-control" required>
+        </div>
+
+        <div class="mb-3 mt-5">
+            <label for="username" class="form-label">Nombre de Usuario:</label>
+            <input type="text" id="username" name="username" class="form-control" required>
+        </div>
+
+        <div class="mb-3 mt-5">
+            <label for="password" class="form-label">Contraseña:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+
+        <div class="mb-3 mt-5">
+            <label for="email" class="form-label">Email:</label>
+            <input type="text" id="email" name="email" class="form-control">
+        </div>
+
+        <div class="mt-5">
+            <label for="tipo" class="form-label">Tipo de Usuario:</label>
+            <select name="tipo" id="tipo" class="form-select" required>
+                <option value="">Selecciona...</option>
+                <option value="voluntario">Voluntario</option>
+                <option value="recienllegado">Recién Llegado</option>
+            </select>
+        </div>
 
 
-
-    <form th:action="@{/user}" method="post">
-        <label for="first_name">Nombre:</label>
-        <input type="text" id="first_name" name="first_name" required>
         <br><br>
+        <!--RECIEN-LLEGADO-->
+        <div class="recienllegado borrar" >
 
-        <label for="second_name">Apellido:</label>
-        <input type="text" id="second_name" name="second_name" required>
-        <br><br>
+            <div class="mb-3 mt-5">
+                <label for="ciudad" class="form-label">Ciudad (¿Donde te estas alojando?):</label>
+                <input type="text" id="ciudad" name="ciudad" class="form-control">
+            </div>
 
-        <label for="username">Nombre de Usuario:</label>
-        <input type="text" id="username" name="username"
-               required>
-        <br><br>
+            <div class="mb-3 mt-5">
+                <label for="pais" class="form-label">Pais (¿De donde vienes?):</label>
+                <input type="text" id="pais" name="pais" class="form-control">
+            </div>
+            
+            <div class="mb-3 mt-5">
+                <label for="idioma_principal" class="form-label">Idioma Principal:</label>
+                <input type="text" id="idioma_principal" name="idioma_principal" class="form-control">
+            </div>
+        </div>
 
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required>
-        <br><br>
 
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email">
-        <br><br>
+        <!--VOLUNTARIO-->
+        <div class="voluntario borrar" >
+            <div class="mb-3 mt-5">
+                <label for="comunidad_autonoma" class="form-label">Comunidad Autonoma:</label>
+                <input type="text" id="comunidad_autonoma" name="comunidad_autonoma" class="form-control">
+            </div>
+        </div>
+ 
 
-        <label for="tipo">Tipo de Usuario:</label>
-        <select name="tipo" id="tipo" required>
-            <option value="">Selecciona...</option>
-            <option value="voluntario">Voluntario</option>
-            <option value="recienllegado">Recien Llegado</option>
-        </select>
-        <br><br>
-
-        <button type="submit">Entrar</button>
+        
+        <button type="submit" class="btn btn-primary mt-4">Entrar</button>
     </form>
+    </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </body>
 </html>
