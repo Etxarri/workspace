@@ -1,15 +1,14 @@
-<<<<<<< HEAD
 /workspace/src/main/java/edu/mondragon/webengl/StartWebApplication.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/User.java
+/workspace/src/main/java/edu/mondragon/webengl/controller/ForgotPasswordController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/UserRepositorySQL.java
+/workspace/src/main/java/edu/mondragon/webengl/domain/user/service/EmailService.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/WelcomeController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/service/UserService.java
+/workspace/src/main/java/edu/mondragon/webengl/controller/HelloController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/Voluntario.java
+/workspace/src/main/java/edu/mondragon/webengl/domain/user/model/RecienLLegado.java
+/workspace/src/main/java/edu/mondragon/webengl/domain/user/model/PasswordResetTokenStore.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/LoginController.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/UserController.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/user/model/RecienLLegado.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/UserRepository.java
-=======
-/workspace/src/main/java/edu/mondragon/webengl/MainApplication.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/HelloController.java
->>>>>>> BackEnd
