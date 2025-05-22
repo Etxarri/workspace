@@ -24,12 +24,12 @@ public class UserController {
         this.userService = userService;
     }
     
-    @GetMapping
+    @GetMapping("/create")
     public String showUserForm() {
         return "userForm"; // muestra el form.html
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public String createUser(
         @RequestParam String username,
         @RequestParam String password,
@@ -47,16 +47,17 @@ public class UserController {
         User user;
         if ("voluntario".equalsIgnoreCase(tipo)) {
             Voluntario vol = new Voluntario();
-            vol.setComunidad_autonoma("a");
+            vol.setComunidad_autonoma(comunidad_autonoma);
             user = vol;
         } else if ("recienllegado".equalsIgnoreCase(tipo)) {
             RecienLLegado rec = new RecienLLegado();
-            rec.setCiudad("ciudad");
-            rec.setPais("pais");
+            rec.setCiudad(ciudad);
+            rec.setPais(pais);
             rec.setLang(idioma_principal != null ? java.util.Locale.forLanguageTag(idioma_principal) : null);
             user = rec;
         } else {
             user = new User();
+            
         }
         user.setUsername(username);
         user.setPassword(password);

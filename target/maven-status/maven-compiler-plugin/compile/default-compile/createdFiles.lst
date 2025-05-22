@@ -1,3 +1,5 @@
+edu/mondragon/webengl/domain/user/model/RecienLLegado.class
+edu/mondragon/webengl/controller/UserController.class
 edu/mondragon/webengl/domain/user/repository/UserRepositorySQL.class
 edu/mondragon/webengl/domain/user/repository/UserRepository.class
 edu/mondragon/webengl/domain/user/service/UserService.class
@@ -6,3 +8,5 @@ edu/mondragon/webengl/controller/UserController.class
 edu/mondragon/webengl/StartWebApplication.class
 edu/mondragon/webengl/controller/LoginController.class
 edu/mondragon/webengl/controller/WelcomeController.class
+edu/mondragon/webengl/domain/user/model/User.class
+edu/mondragon/webengl/domain/user/model/Voluntario.class
