@@ -160,5 +160,13 @@ public User insertUser(User user) {
         String sql = "DELETE FROM user WHERE userId=?";
         return jdbcTemplate.update(sql, userId) > 0;
     }
+
+
+    @Override
+    public boolean existsByUsername(String username) {
+        String sql = "SELECT COUNT(*) FROM user WHERE username = ?";
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, username);
+        return count != null && count > 0;
+    }
 }
 

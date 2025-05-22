@@ -10,5 +10,7 @@ public interface UserRepository {
     List<User> loadUsers();
     User updateUser(User user);
     boolean deleteUser(int userId);
+    boolean existsByUsername(String username);
+
 }
 

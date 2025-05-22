@@ -44,6 +44,12 @@ public class UserController {
         HttpSession session,
         RedirectAttributes redirectAttributes
     ) {
+
+        if (userService.existsByUsername(username)) {
+            redirectAttributes.addFlashAttribute("error", "El usuario ya existe.");
+            return "redirect:/user/create";
+        }
+
         User user;
         if ("voluntario".equalsIgnoreCase(tipo)) {
             Voluntario vol = new Voluntario();
