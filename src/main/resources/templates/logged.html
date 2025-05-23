@@ -1,19 +1,14 @@
+<!-- filepath: /workspace/src/main/resources/templates/logged.html -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/main.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <div th:if="${session.user != null}">
-        <h1>Hola <span th:text="${session.user.username}"></span></h1>
-    </div>
-    <div th:unless="${session.user != null}">
-        <h1>-_-</h1>
-    </div>
-<!-- BOTON QUE DESLOGEA - LOGUT-->
-    <form th:action="@{/login/logout}" method="get">
-        <button type="submit" class="btn btn-primary mt-4">Cerrar sesión</button>
-    </form>
+    <div th:replace="headerInmigrante :: header"></div>
+    <!-- El resto de tu contenido -->
 </body>
 </html>
