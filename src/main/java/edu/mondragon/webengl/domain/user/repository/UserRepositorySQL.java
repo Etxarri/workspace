@@ -136,7 +136,6 @@ public User insertUser(User user) {
     }
 
     public User updateUser(User user) {
-        // Construir SQL dinámicamente según los datos proporcionados
         StringBuilder sqlBuilder = new StringBuilder("UPDATE user SET ");
         Map<String, Object> params = new HashMap<>();
 
@@ -161,7 +160,6 @@ public User insertUser(User user) {
             params.put("password", user.getPassword());
         }
 
-        // Remover la última coma y espacio
         sqlBuilder.setLength(sqlBuilder.length() - 2);
 
         sqlBuilder.append(" WHERE userId=:userId");
@@ -214,6 +212,13 @@ public User insertUser(User user) {
             // Agrega más campos según tu tabla
             return user;
         }
+    }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        String sql = "SELECT COUNT(*) FROM user WHERE username = ?";
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, username);
+        return count != null && count > 0;
     }
 }
 

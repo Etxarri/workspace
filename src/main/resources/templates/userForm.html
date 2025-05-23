@@ -83,6 +83,8 @@
             </div>
         </div>
  
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+        <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
 
         
         <button type="submit" class="btn btn-primary mt-4">Entrar</button>
