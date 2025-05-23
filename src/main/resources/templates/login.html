@@ -25,6 +25,8 @@
                 <div id="emailHelp" class="form-text mt-3">Has olvidado la Contraseña?</div>
             
             </div>
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+            <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
 
             <button type="submit" class="btn btn-primary mt-4">Login</button>
             <div class="form-text mt-3">Crear cuenta haciendo <a th:href="@{/user/create}">Clic Aqui</a></div>

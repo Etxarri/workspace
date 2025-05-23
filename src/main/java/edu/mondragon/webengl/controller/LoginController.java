@@ -31,18 +31,19 @@ public class LoginController {
     public String login(@RequestParam String username, 
                         @RequestParam String password,
                         HttpSession session, 
-                        RedirectAttributes redirectAttributes) {
+                        RedirectAttributes redirectAttributes,org.springframework.ui.Model model ) {
         User user = userService.login(username, password);
 
         if (user != null) {
             session.setAttribute("user", user);
             redirectAttributes.addFlashAttribute("message", "message.login");
-            System.out.println("Ha entrado el usuario: " + user.getUsername() + " con la contraseña: " + user.getPassword());
-            return "logged.html"; // redirige a logged.html
+            //System.out.println("Ha entrado el usuario: " + user.getUsername() + " con la contraseña: " + user.getPassword());
+            return "logged"; // redirige a logged.html
         } else {
-            System.out.println("Error al entrar el usuario: " + username + " con la contraseña: " + password);
-            redirectAttributes.addFlashAttribute("error", "error.login");
-            return "redirect:/login";
+            //System.out.println("Error al entrar el usuario: " + username + " con la contraseña: " + password);
+            model.addAttribute("error", "Error al iniciar sesión. Usuario o contraseña incorrectos.");
+           // redirectAttributes.addFlashAttribute("error", "Error al iniciar sesión. Usuario o contraseña incorrectos.");
+            return "login";
 
         }
     }

@@ -42,12 +42,16 @@ public class UserController {
         @RequestParam(required = false) String pais,
         @RequestParam(required = false) String idioma_principal,
         HttpSession session,
-        RedirectAttributes redirectAttributes
+        RedirectAttributes redirectAttributes,
+            org.springframework.ui.Model model // <-- Añade Model aquí
+
     ) {
 
         if (userService.existsByUsername(username)) {
-            redirectAttributes.addFlashAttribute("error", "El usuario ya existe.");
-            return "redirect:/user/create";
+           // redirectAttributes.addFlashAttribute("error", "El usuario ya existe.");
+                   model.addAttribute("error", "El usuario ya existe.");
+            return "userForm"; // redirige a userForm.html
+            //return "redirect:/error?vista=userForm&mensaje=El+usuario+ya+existe";
         }
 
         User user;

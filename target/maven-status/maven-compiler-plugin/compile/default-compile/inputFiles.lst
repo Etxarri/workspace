@@ -1,5 +1,6 @@
 /workspace/src/main/java/edu/mondragon/webengl/StartWebApplication.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/User.java
+/workspace/src/main/java/edu/mondragon/webengl/controller/ErroresController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/UserRepositorySQL.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/WelcomeController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/service/UserService.java
