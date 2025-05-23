@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import edu.mondragon.webengl.domain.user.model.User;
-import edu.mondragon.webengl.domain.user.service.UserService;
+import edu.mondragon.webengl.domain.user.model.Usuario;
+import edu.mondragon.webengl.domain.user.service.UsuarioService;
 //import edu.mondragon.webengl.helper.ControllerHelper;
 import javax.servlet.http.HttpSession;
 
@@ -16,9 +16,9 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/login")
 public class LoginController {
 
-    private final UserService userService;
+    private final UsuarioService userService;
 
-    public LoginController(UserService userService) {
+    public LoginController(UsuarioService userService) {
         this.userService = userService;
     }
     
@@ -32,12 +32,12 @@ public class LoginController {
                         @RequestParam String password,
                         HttpSession session, 
                         RedirectAttributes redirectAttributes) {
-        User user = userService.login(username, password);
+        Usuario user = userService.login(username, password);
 
         if (user != null) {
             session.setAttribute("user", user);
             redirectAttributes.addFlashAttribute("message", "message.login");
-            System.out.println("Ha entrado el usuario: " + user.getUsername() + " con la contraseña: " + user.getPassword());
+            System.out.println("Ha entrado el usuario: " + user.getUsername() + " con la contraseña: " + password);
             return "logged.html"; // redirige a logged.html
         } else {
             System.out.println("Error al entrar el usuario: " + username + " con la contraseña: " + password);

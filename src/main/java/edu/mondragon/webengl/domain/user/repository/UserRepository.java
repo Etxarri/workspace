@@ -1,3 +1,4 @@
+/*
 package edu.mondragon.webengl.domain.user.repository;
 
 import java.util.List;
@@ -13,4 +14,4 @@ public interface UserRepository {
     boolean existsByUsername(String username);
 
 }
-
+*/

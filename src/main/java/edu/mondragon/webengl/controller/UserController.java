@@ -1,3 +1,4 @@
+/*
 package edu.mondragon.webengl.controller;
 
 
@@ -85,8 +86,9 @@ public class UserController {
         redirectAttributes.addFlashAttribute("message", "message.logout");
         return "redirect:/login";
     }
-        */
+        
 }
+*/
 
 
 
