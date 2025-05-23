@@ -1,7 +1,5 @@
 package edu.mondragon.webengl.domain.user.model;
 
-import java.util.Locale;
-
 /*
  * This is a Java Bean.
  * These are the unique characteristics they must have:

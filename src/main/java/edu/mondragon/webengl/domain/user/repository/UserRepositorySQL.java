@@ -9,13 +9,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.*;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public class UserRepositorySQL implements UserRepository {
@@ -25,6 +29,9 @@ public class UserRepositorySQL implements UserRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    
     private RowMapper<User> userRowMapper = (rs, rowNum) -> {
         String tipo = rs.getString("tipo");
         User user;
@@ -128,23 +135,42 @@ public User insertUser(User user) {
         return jdbcTemplate.query(sql, userRowMapper);
     }
 
-    @Override
     public User updateUser(User user) {
-        String sql = "UPDATE user SET username=?, password=?, first_name=?, second_name=?, email=? WHERE userId=?";
-        int rows = jdbcTemplate.update(sql,
-                user.getUsername(), user.getPassword(),
-                user.getFirstName(), user.getSecondName(),
-                user.getEmail(), user.getUserId());
+        // Construir SQL dinámicamente según los datos proporcionados
+        StringBuilder sqlBuilder = new StringBuilder("UPDATE user SET ");
+        Map<String, Object> params = new HashMap<>();
 
-        // Actualizar tabla hija si corresponde
-        if ("voluntario".equalsIgnoreCase(user.getTipo())) {
-            String sql2 = "UPDATE voluntario SET comunidad_autonoma=? WHERE userId=?";
-            jdbcTemplate.update(sql2, ((Voluntario) user).getComunidad_autonoma(), user.getUserId());
-        } else if ("recienllegado".equalsIgnoreCase(user.getTipo())) {
-            String sql3 = "UPDATE recienllegado SET ciudad=?, pais=?, idioma_principal=? WHERE userId=?";
-            RecienLLegado rec = (RecienLLegado) user;
-            jdbcTemplate.update(sql3, rec.getCiudad(), rec.getPais(), rec.getLang(), user.getUserId());
+        if (user.getFirstName() != null) {
+                        System.out.println("Cambio first name");
+            sqlBuilder.append("first_name=:first_name, ");
+            params.put("first_name", user.getFirstName());
         }
+        if (user.getUsername() != null) {
+                        System.out.println("Cambio username");
+            sqlBuilder.append("username=:username, ");
+            params.put("username", user.getUsername());
+        }
+        if (user.getEmail() != null) {
+            System.out.println("Cambio email");
+            sqlBuilder.append("email=:email, ");
+            params.put("email", user.getEmail());
+        }
+        if (user.getPassword() != null) {
+            System.out.println("Cambio password");
+            sqlBuilder.append("password=:password, ");
+            params.put("password", user.getPassword());
+        }
+
+        // Remover la última coma y espacio
+        sqlBuilder.setLength(sqlBuilder.length() - 2);
+
+        sqlBuilder.append(" WHERE userId=:userId");
+        params.put("userId", user.getUserId());
+                    System.out.println(user.getUserId());
+
+        String sql = sqlBuilder.toString();
+
+        int rows = namedParameterJdbcTemplate.update(sql, params);
 
         return rows > 0 ? user : null;
     }
@@ -159,6 +185,35 @@ public User insertUser(User user) {
 
         String sql = "DELETE FROM user WHERE userId=?";
         return jdbcTemplate.update(sql, userId) > 0;
+    }
+
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        String sql = "SELECT * FROM user WHERE email = ?";
+        
+        try {
+            User user = jdbcTemplate.queryForObject(
+                sql,
+                new Object[]{email},
+                new UserRowMapper()  // Mapeador personalizado
+            );
+            return Optional.ofNullable(user);
+        } catch (Exception e) {
+            return Optional.empty();  // Si no se encuentra el usuario
+        }
+    }
+        // Clase interna para mapear el resultado de la consulta a un objeto User
+    private static class UserRowMapper implements RowMapper<User> {
+        @Override
+        public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+            User user = new User();
+            user.setUserId(rs.getInt("userId"));
+            user.setEmail(rs.getString("email"));
+            user.setPassword(rs.getString("password"));
+            // Agrega más campos según tu tabla
+            return user;
+        }
     }
 }
 

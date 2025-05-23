@@ -1,7 +1,5 @@
 package edu.mondragon.webengl.domain.user.model;
 
-import java.util.Locale;
-
 public class Voluntario extends User{
     String comunidad_autonoma=null;
 

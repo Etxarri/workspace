@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificar Código</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <h2>Introduce el código recibido</h2>
+
+        <div th:if="${error}" class="alert alert-danger" role="alert">
+            <p th:text="${error}"></p>
+        </div>
+
+        <form th:action="@{/verify-code}" method="post">
+            <input type="hidden" name="email" th:value="${email}" />
+            <div class="mb-3">
+                <label for="code">Código:</label>
+                <input type="text" id="code" name="code" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Verificar</button>
+        </form>
+    </div>
+</body>
+</html>

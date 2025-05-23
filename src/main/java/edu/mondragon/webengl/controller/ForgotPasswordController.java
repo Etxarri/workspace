@@ -1,15 +1,17 @@
 package edu.mondragon.webengl.controller;
 
-import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import edu.mondragon.webengl.domain.user.model.PasswordResetTokenStore;
+import edu.mondragon.webengl.domain.user.model.User;
+import edu.mondragon.webengl.domain.user.repository.UserRepository;
 import edu.mondragon.webengl.domain.user.service.EmailService;
-import jakarta.enterprise.inject.Model;
 
 
 @Controller
@@ -21,6 +23,9 @@ public class ForgotPasswordController {
     @Autowired
     private PasswordResetTokenStore tokenStore;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("/forgot-password")
     public String showForgotPasswordForm() {
         return "forgotPassword";
@@ -28,38 +33,68 @@ public class ForgotPasswordController {
 
     @PostMapping("/forgot-password")
     public String processForgotPassword(@RequestParam("email") String email, RedirectAttributes redirectAttributes) {
-        String token = UUID.randomUUID().toString();
-        tokenStore.storeToken(email, token);
+        java.util.Optional<User> user = userRepository.findByEmail(email);
+        if (user.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "No se encontró una cuenta con ese correo.");
+            return "redirect:/forgot-password";
+        }
 
-        emailService.sendPasswordResetEmail(email, token);
+        String code = tokenStore.generateAndStoreCode(email);
+        emailService.sendVerificationCode(email, code);
 
-        redirectAttributes.addFlashAttribute("message", "Se ha enviado un enlace de recuperación a tu correo.");
-        return "redirect:/login";
+        redirectAttributes.addFlashAttribute("email", email);
+        return "redirect:/verify-code";
+    }
+
+    @GetMapping("/verify-code")
+    public String showVerifyCodePage() {
+        return "verifyCode";
+    }
+
+    @PostMapping("/verify-code")
+    public String verifyCode(
+            @RequestParam("email") String email,
+            @RequestParam("code") String code,
+            RedirectAttributes redirectAttributes) {
+
+        if (tokenStore.verifyCode(email, code)) {
+            redirectAttributes.addFlashAttribute("email", email);
+            return "redirect:/reset-password";
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Código inválido o expirado.");
+            return "redirect:/verify-code";
+        }
     }
 
     @GetMapping("/reset-password")
-    public String showResetPasswordForm(@RequestParam("token") String token, Model model) {
-        ((RedirectAttributes) model).addAttribute("token", token);
+    public String showResetPasswordForm(@ModelAttribute("email") String email, Model model) {
+        model.addAttribute("email", email);
         return "resetPassword";
     }
 
     @PostMapping("/reset-password")
     public String handleResetPassword(
-            @RequestParam("token") String token,
+            @RequestParam("email") String email,
             @RequestParam("password") String password,
             RedirectAttributes redirectAttributes) {
 
-        String email = tokenStore.getEmailByToken(token);
-        if (email == null) {
-            redirectAttributes.addFlashAttribute("error", "Token inválido o expirado.");
+        java.util.Optional<User> userOpt = userRepository.findByEmail(email);
+        if (userOpt.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Usuario no encontrado.");
+            System.out.println("Error");
             return "redirect:/forgot-password";
         }
 
-        // Aquí deberías actualizar la contraseña real en tu BD
-        System.out.println("Nueva contraseña para " + email + ": " + password);
+        User user = userOpt.get();
+        user.setPassword(password); 
+        userRepository.updateUser(user);
+        tokenStore.removeCode(email);
 
         redirectAttributes.addFlashAttribute("message", "Tu contraseña ha sido restablecida.");
         return "redirect:/login";
     }
+    
 }
+
+
 

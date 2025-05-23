@@ -11,17 +11,22 @@ public class EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendPasswordResetEmail(String to, String token) {
-        String subject = "Recuperar contraseña";
-        String resetUrl = "http://localhost:8080/reset-password?token=" + token;
-        String body = "Haz clic en el siguiente enlace para restablecer tu contraseña:\n" + resetUrl;
+    public void sendVerificationCode(String to, String code) {
+        try {
+            String subject = "Código de recuperación de contraseña";
+            String body = "Tu código de recuperación es: " + code + "\nEste código expirará en 15 minutos.";
 
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(body);
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(to);
+            message.setSubject(subject);
+            message.setText(body);
 
-        mailSender.send(message);
+            mailSender.send(message);
+            System.out.println("✅ Código enviado a: " + to);
+        } catch (Exception e) {
+            System.err.println("❌ Error al enviar el correo: " + e.getMessage());
+        }
     }
+
 }
 

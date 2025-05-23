@@ -1,6 +1,8 @@
 package edu.mondragon.webengl.domain.user.repository;
 
 import java.util.List;
+import java.util.Optional;
+
 import edu.mondragon.webengl.domain.user.model.User;
 
 public interface UserRepository {
@@ -10,5 +12,6 @@ public interface UserRepository {
     List<User> loadUsers();
     User updateUser(User user);
     boolean deleteUser(int userId);
+    Optional<User> findByEmail(String email);
 }
 
