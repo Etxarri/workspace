@@ -9,7 +9,6 @@ public class WelcomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("message", "¡Hola, Spring Boot!");
         return "login"; // esto busca login.html en templates
     }
 }

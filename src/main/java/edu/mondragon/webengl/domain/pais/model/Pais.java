@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Pais {
     @Id
     @Column(name = "paisID")
-    private Short paisID;
+    private int paisID;
 
     @Column(nullable = false, length = 50)
     private String nombre;
@@ -23,11 +23,11 @@ public class Pais {
     @OneToMany(mappedBy = "pais")
     private List<ComunidadAutonoma> comunidades;
 
-    public Short getPaisID() {
+    public int getPaisID() {
         return paisID;
     }
 
-    public void setPaisID(Short paisID) {
+    public void setPaisID(int paisID) {
         this.paisID = paisID;
     }
 

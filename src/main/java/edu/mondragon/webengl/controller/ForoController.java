@@ -39,7 +39,7 @@ public class ForoController {
     public String listarHilos(@RequestParam(required = false) int temaId, Model model) {
         List<Hiloforo> hilos;
         if (temaId != 0) {
-            Optional<Temaforo> temaOpt = temaRepo.findById((short)temaId);
+            Optional<Temaforo> temaOpt = temaRepo.findById(temaId);
             if (temaOpt.isPresent()) {
                 hilos = hiloRepo.findByIdTema(temaOpt.get().getId());
                 model.addAttribute("temaSeleccionado", temaOpt.get());
@@ -89,7 +89,7 @@ public class ForoController {
             return "redirect:/login";
         }
 
-        Optional<Temaforo> temaOpt = temaRepo.findById((short)temaId);
+        Optional<Temaforo> temaOpt = temaRepo.findById(temaId);
         if (temaOpt.isEmpty()) {
             redirectAttrs.addFlashAttribute("error", "Tema no válido.");
             return "redirect:/foro/nuevo";

@@ -6,6 +6,6 @@ import edu.mondragon.webengl.domain.pais.model.Ciudad;
 
 
 @Repository
-public interface CiudadRepository extends JpaRepository<Ciudad, Short> {
+public interface CiudadRepository extends JpaRepository<Ciudad, Integer> {
 }
 

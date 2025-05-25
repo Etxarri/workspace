@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import edu.mondragon.webengl.domain.preguntafrecuente.model.PreguntaFrecuente;
 
 @Repository
-public interface PreguntaFrecuenteRepository extends JpaRepository<PreguntaFrecuente, Short> {
+public interface PreguntaFrecuenteRepository extends JpaRepository<PreguntaFrecuente, Integer> {
 }
 

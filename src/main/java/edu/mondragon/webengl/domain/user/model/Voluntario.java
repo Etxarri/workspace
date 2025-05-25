@@ -33,9 +33,6 @@ public class Voluntario {
         return usuarioID;
     }
 
-    public void setUsuarioID(int usuarioID) {
-        this.usuarioID = usuarioID;
-    }
 
     public Usuario getUsuario() {
         return usuario;

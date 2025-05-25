@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import edu.mondragon.webengl.domain.foro.model.Temaforo;
 
 @Repository
-public interface TemaforoRepository extends JpaRepository<Temaforo, Short> {
+public interface TemaforoRepository extends JpaRepository<Temaforo, Integer> {
 }
 

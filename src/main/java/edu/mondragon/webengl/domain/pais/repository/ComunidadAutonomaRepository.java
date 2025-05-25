@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import edu.mondragon.webengl.domain.pais.model.ComunidadAutonoma;
 
 @Repository
-public interface ComunidadAutonomaRepository extends JpaRepository<ComunidadAutonoma, Short> {
+public interface ComunidadAutonomaRepository extends JpaRepository<ComunidadAutonoma, Integer> {
 }
 

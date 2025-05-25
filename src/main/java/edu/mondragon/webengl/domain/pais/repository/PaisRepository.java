@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import edu.mondragon.webengl.domain.pais.model.Pais;
 
 @Repository
-public interface PaisRepository extends JpaRepository<Pais, Short> {
+public interface PaisRepository extends JpaRepository<Pais, Integer> {
 }
 

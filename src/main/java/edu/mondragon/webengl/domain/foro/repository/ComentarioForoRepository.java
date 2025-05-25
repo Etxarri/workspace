@@ -7,7 +7,7 @@ import edu.mondragon.webengl.domain.foro.model.ComentarioForo;
 import edu.mondragon.webengl.domain.foro.model.Hiloforo;
 
 @Repository
-public interface ComentarioForoRepository extends JpaRepository<ComentarioForo, Short> {
+public interface ComentarioForoRepository extends JpaRepository<ComentarioForo, Integer> {
 
     List<ComentarioForo> findByHilo(Hiloforo hilo);
 }

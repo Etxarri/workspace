@@ -47,7 +47,7 @@ public class EventoLocalController {
 
     @GetMapping("/{id}")
     public String detalleEvento(@PathVariable int id, Model model) {
-        Optional<EventoLocal> eventoOpt = eventoRepo.findById((short)id);
+        Optional<EventoLocal> eventoOpt = eventoRepo.findById(id);
         if (eventoOpt.isPresent()) {
             model.addAttribute("evento", eventoOpt.get());
             return "eventos/detalle";

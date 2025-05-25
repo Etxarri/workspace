@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import edu.mondragon.webengl.domain.recurso.model.RecursoLocal;
 
 @Repository
-public interface RecursoLocalRepository extends JpaRepository<RecursoLocal, Short> {
+public interface RecursoLocalRepository extends JpaRepository<RecursoLocal, Integer> {
 }
 

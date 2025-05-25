@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Recienllegado {
     @Id
     @Column(name = "usuarioID")
-    private short usuarioID;
+    private int usuarioID;
 
     @OneToOne
     @MapsId
@@ -30,13 +30,10 @@ public class Recienllegado {
     @Column(name = "fecha_llegada")
     private LocalDate fechaLlegada;
 
-    public short getUsuarioID() {
+    public int getUsuarioID() {
         return usuarioID;
     }
 
-    public void setUsuarioID(short usuarioID) {
-        this.usuarioID = usuarioID;
-    }
 
     public Usuario getUsuario() {
         return usuario;

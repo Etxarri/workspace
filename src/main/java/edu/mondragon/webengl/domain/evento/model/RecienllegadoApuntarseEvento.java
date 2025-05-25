@@ -30,21 +30,19 @@ public class RecienllegadoApuntarseEvento {
         this.fechaInscripcion = fechaInscripcion;
     }
 
-    public short getEventoID() {
+    public int getEventoID() {
         return id.getEventoID();
     }
 
-    public void setEventoID(short eventoID) {
+    public void setEventoID(int eventoID) {
         this.id.setEventoID(eventoID);
     }
 
-    public short getUsuarioID() {
+    public int getUsuarioID() {
         return id.getUsuarioID();
     }
 
-    public void setUsuarioID(short usuarioID) {
-        this.id.setUsuarioID(usuarioID);
-    }
+
 
     public EventoLocal getEvento() {
         return evento;

@@ -16,7 +16,7 @@ public class ComentarioForo {
 
     @Id
     @Column(name = "comentarioID")
-    private Short comentarioID;
+    private int comentarioID;
 
     @ManyToOne
     @JoinColumn(name = "hiloID", nullable = false)
@@ -34,11 +34,11 @@ public class ComentarioForo {
 
     // Getters y setters
 
-    public Short getComentarioID() {
+    public int getComentarioID() {
         return comentarioID;
     }
 
-    public void setComentarioID(Short comentarioID) {
+    public void setComentarioID(int comentarioID) {
         this.comentarioID = comentarioID;
     }
 

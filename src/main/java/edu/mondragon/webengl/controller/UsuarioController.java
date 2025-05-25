@@ -38,6 +38,7 @@ public class UsuarioController {
     public String crearUsuario(
             @RequestParam String nombre,
             @RequestParam String apellido,
+            @RequestParam String username,
             @RequestParam String email,
             @RequestParam String contraseña,
             @RequestParam TipoUsuario tipo,
@@ -55,14 +56,15 @@ public class UsuarioController {
             return "redirect:/usuario/crear";
         }
 
-        Pais pais = paisRepository.findById((short)paisID)
+        Pais pais = paisRepository.findById(paisID)
             .orElseThrow(() -> new IllegalArgumentException("País no encontrado"));
-        Ciudad ciudad = ciudadRepository.findById((short)ciudadID)
+        Ciudad ciudad = ciudadRepository.findById(ciudadID)
             .orElseThrow(() -> new IllegalArgumentException("Ciudad no encontrada"));
 
             Usuario usuario = new Usuario();
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
+        usuario.setUsername(username);
         usuario.setEmail(email);
         usuario.setContraseña(usuarioService.encriptarContraseña(contraseña));
         usuario.setTipo(tipo);

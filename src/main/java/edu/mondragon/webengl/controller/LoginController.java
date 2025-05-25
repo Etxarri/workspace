@@ -11,6 +11,7 @@ import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.service.UsuarioService;
 //import edu.mondragon.webengl.helper.ControllerHelper;
 import javax.servlet.http.HttpSession;
+import org.springframework.ui.Model;
 
 @Controller
 @RequestMapping("/login")
@@ -23,10 +24,14 @@ public class LoginController {
     }
     
     @GetMapping
-    public String showLoginForm() {
+    public String showLoginForm(@RequestParam(value = "error", required = false) String error,
+                        Model model) {
+        if (error != null) {
+            model.addAttribute("error", "Usuario o contraseña incorrectos.");
+        }
         return "login"; // muestra el login.html
     }
-
+/*
     @PostMapping
     public String login(@RequestParam String username, 
                         @RequestParam String password,
@@ -46,7 +51,11 @@ public class LoginController {
 
         }
     }
-
+*/
+    @GetMapping("/logged")
+    public String logged() {
+        return "logged"; // Busca logged.html en templates
+    }
     @GetMapping("/logout")
     public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
         session.removeAttribute("user");

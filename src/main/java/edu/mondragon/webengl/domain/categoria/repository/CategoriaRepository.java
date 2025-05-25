@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 import edu.mondragon.webengl.domain.categoria.model.Categoria;
 
 @Repository
-public interface CategoriaRepository extends JpaRepository<Categoria, Short> {
+public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
+    
+    // Aquí puedes agregar métodos personalizados si es necesario
+    // Por ejemplo, para buscar por nombre:
+    // List<Categoria> findByNombre(String nombre);
 }
 

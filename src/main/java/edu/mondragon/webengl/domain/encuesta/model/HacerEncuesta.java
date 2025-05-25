@@ -37,9 +37,7 @@ public class HacerEncuesta {
     public int getUsuarioID() {
         return usuarioID;
     }
-    public void setUsuarioID(int usuarioID) {
-        this.usuarioID = usuarioID;
-    }
+
     public Encuesta getEncuesta() {
         return encuesta;
     }

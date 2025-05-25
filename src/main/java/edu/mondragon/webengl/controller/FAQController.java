@@ -36,7 +36,7 @@ public class FAQController {
     // Mostrar detalle de una pregunta (opcional)
     @GetMapping("/{id}")
     public String detallePregunta(@PathVariable int id, Model model) {
-        PreguntaFrecuente pregunta = faqRepository.findById((short)id).orElse(null);
+        PreguntaFrecuente pregunta = faqRepository.findById(id).orElse(null);
         if (pregunta == null) {
             model.addAttribute("error", "Pregunta no encontrada");
             return "faq/lista";

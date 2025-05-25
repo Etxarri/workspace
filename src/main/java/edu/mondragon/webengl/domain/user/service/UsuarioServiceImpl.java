@@ -2,6 +2,8 @@ package edu.mondragon.webengl.domain.user.service;
 
 
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +19,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final RecienllegadoRepository recienllegadoRepository;
     private final VoluntarioRepository voluntarioRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public UsuarioServiceImpl(
         UsuarioRepository usuarioRepository,
@@ -39,17 +44,32 @@ public class UsuarioServiceImpl implements UsuarioService {
     public Usuario login(String username, String password) {
         Optional<Usuario> usuarioOpt = usuarioRepository.findByUsername(username);
         if (usuarioOpt.isPresent()) {
+            System.out.println("Usuario encontrado: " + usuarioOpt.get().getNombre());
             Usuario usuario = usuarioOpt.get();
             //return passwordEncoder.matches(password, usuario.getPassword());
             return usuario;
         }
+        System.out.println("Usuario no encontrado: " + username);
         return null;
     }
-
+    /*
+     *     @Override
+    public Usuario login(String username, String password) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByUsername(username);
+        if (usuarioOpt.isPresent()) {
+            Usuario usuario = usuarioOpt.get();
+            String hash = new String(usuario.getContraseña());
+            if (passwordEncoder.matches(password, hash)) {
+                return usuario;
+            }
+        }
+        return null;
+    }
+     */
 
     @Override
     public Recienllegado findRecienllegadoById(int id) {
-        return recienllegadoRepository.findById((short)id).orElse(null);
+        return recienllegadoRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -72,18 +92,17 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Voluntario findVoluntarioById(int id) {
-        return voluntarioRepository.findById((short) id).orElse(null);
+        return voluntarioRepository.findById(id).orElse(null);
     }
 
     @Override
     public Usuario findUsuarioByIdUsuario(int id) {
-        return usuarioRepository.findById((short) id).orElse(null);
+        return usuarioRepository.findById(id).orElse(null);
     }
 
     @Override
-    public byte[] encriptarContraseña(String contraseña) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'encriptarContraseña'");
+    public byte[] encriptarContraseña(String rawPassword) {
+        return passwordEncoder.encode(rawPassword).getBytes();
     }
 }
 

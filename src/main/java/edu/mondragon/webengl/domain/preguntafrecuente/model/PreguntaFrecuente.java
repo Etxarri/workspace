@@ -15,7 +15,7 @@ public class PreguntaFrecuente {
 
     @Id
     @Column(name = "preguntaID")
-    private Short preguntaID;
+    private int preguntaID;
 
     @ManyToOne
     @JoinColumn(name = "temaID", nullable = false)
@@ -29,11 +29,11 @@ public class PreguntaFrecuente {
 
     // Getters y setters
 
-    public Short getPreguntaID() {
+    public int getPreguntaID() {
         return preguntaID;
     }
 
-    public void setPreguntaID(Short preguntaID) {
+    public void setPreguntaID(int preguntaID) {
         this.preguntaID = preguntaID;
     }
 

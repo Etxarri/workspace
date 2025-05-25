@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class ComunidadAutonoma {
     @Id
     @Column(name = "comunidadID")
-    private Short comunidadID;
+    private int comunidadID;
 
     @ManyToOne
     @JoinColumn(name = "paisID", nullable = false)

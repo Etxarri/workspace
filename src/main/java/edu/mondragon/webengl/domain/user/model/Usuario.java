@@ -27,7 +27,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usuarioID")
-    private short usuarioID;
+    private int usuarioID;
 
     @ManyToOne
     @JoinColumn(name = "paisID", nullable = false)
@@ -47,7 +47,7 @@ public class Usuario {
     private String email;
 
     @Column(nullable = false, length = 64)
-    private byte[] contraseña;  // En base a VARBINARY(64)
+    private byte[] password;  // En base a VARBINARY(64)
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 12)
@@ -63,11 +63,11 @@ public class Usuario {
         voluntario
     }
 
-    public Short getUsuarioID() {
+    public int getUsuarioID() {
         return usuarioID;
     }
 
-    public void setUsuarioID(short usuarioID) {
+    public void setUsuarioID(int usuarioID) {
         this.usuarioID = usuarioID;
     }
 
@@ -112,11 +112,11 @@ public class Usuario {
     }
 
     public byte[] getContraseña() {
-        return contraseña;
+        return password;
     }
 
     public void setContraseña(byte[] contraseña) {
-        this.contraseña = contraseña;
+        this.password = contraseña;
     }
 
     public TipoUsuario getTipo() {

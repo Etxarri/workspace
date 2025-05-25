@@ -45,7 +45,7 @@ public class EncuestaController {
     // Mostrar formulario para responder encuesta
     @GetMapping("/{id}")
     public String mostrarEncuesta(@PathVariable int id, Model model, HttpSession session, RedirectAttributes redirectAttrs) {
-        Optional<Encuesta> encuestaOpt = encuestaRepo.findById((short)id);
+        Optional<Encuesta> encuestaOpt = encuestaRepo.findById(id);
         if (encuestaOpt.isEmpty()) {
             redirectAttrs.addFlashAttribute("error", "Encuesta no encontrada");
             return "redirect:/encuestas";
@@ -75,7 +75,7 @@ public class EncuestaController {
             return "redirect:/login";
         }
 
-        Optional<Encuesta> encuestaOpt = encuestaRepo.findById((short)id);
+        Optional<Encuesta> encuestaOpt = encuestaRepo.findById(id);
         if (encuestaOpt.isEmpty()) {
             redirectAttrs.addFlashAttribute("error", "Encuesta no encontrada");
             return "redirect:/encuestas";

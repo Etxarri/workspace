@@ -32,7 +32,7 @@ public class RecursoLocalController {
     // Mostrar detalles de un recurso concreto
     @GetMapping("/{id}")
     public String mostrarRecurso(@PathVariable int id, Model model, RedirectAttributes redirectAttributes) {
-        Optional<RecursoLocal> recurso = recursoLocalRepository.findById((short)id);
+        Optional<RecursoLocal> recurso = recursoLocalRepository.findById(id);
         if (recurso.isPresent()) {
             model.addAttribute("recurso", recurso.get());
             return "recursos/detalle";

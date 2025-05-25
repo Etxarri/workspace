@@ -1,10 +1,10 @@
 package edu.mondragon.webengl.domain.evento.model;
 
 public class RecienllegadoEventoId implements java.io.Serializable {
-    private short eventoID;
-    private short usuarioID;
+    private int eventoID;
+    private int usuarioID;
 
-    public RecienllegadoEventoId(short usuarioID2, int id) {
+    public RecienllegadoEventoId(int usuarioID2, int id) {
     }
     // equals() y hashCode() deben ser implementados
     @Override
@@ -24,16 +24,14 @@ public class RecienllegadoEventoId implements java.io.Serializable {
         return result;
     }
     // Getters y setters
-    public short getEventoID() {
+    public int getEventoID() {
         return eventoID;
     }
-    public void setEventoID(short eventoID) {
+    public void setEventoID(int eventoID) {
         this.eventoID = eventoID;
     }
-    public short getUsuarioID() {
+    public int getUsuarioID() {
         return usuarioID;
     }
-    public void setUsuarioID(short usuarioID) {
-        this.usuarioID = usuarioID;
-    }
+
 }

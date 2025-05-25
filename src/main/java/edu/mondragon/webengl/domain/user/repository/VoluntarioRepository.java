@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import edu.mondragon.webengl.domain.user.model.Voluntario;
 
 @Repository
-public interface VoluntarioRepository extends JpaRepository<Voluntario, Short> {
+public interface VoluntarioRepository extends JpaRepository<Voluntario, Integer> {
 }
 

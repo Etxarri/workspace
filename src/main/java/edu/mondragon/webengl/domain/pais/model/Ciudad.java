@@ -15,7 +15,7 @@ import edu.mondragon.webengl.domain.user.model.Usuario;
 public class Ciudad {
     @Id
     @Column(name = "ciudadID")
-    private Short ciudadID;
+    private int ciudadID;
 
     @ManyToOne
     @JoinColumn(name = "comunidadID", nullable = false)
