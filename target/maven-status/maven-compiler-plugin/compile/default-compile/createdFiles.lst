@@ -14,11 +14,16 @@ edu/mondragon/webengl/domain/pais/model/Pais.class
 edu/mondragon/webengl/domain/recurso/model/RecursoLocal.class
 edu/mondragon/webengl/domain/evento/repository/RecienllegadoApuntarseEventoRepository.class
 edu/mondragon/webengl/domain/preguntafrecuente/repository/PreguntaFrecuenteRepository.class
+edu/mondragon/webengl/controller/ForgotPasswordController.class
 edu/mondragon/webengl/domain/categoria/repository/CategoriaRepository.class
 edu/mondragon/webengl/domain/pais/model/ComunidadAutonoma.class
+edu/mondragon/webengl/domain/user/service/UsuarioServiceImpl.class
 edu/mondragon/webengl/domain/foro/model/ComentarioForo.class
 edu/mondragon/webengl/StartWebApplication.class
+edu/mondragon/webengl/domain/user/service/UsuarioService.class
+edu/mondragon/webengl/controller/UsuarioController.class
 edu/mondragon/webengl/domain/encuesta/model/Encuesta.class
+edu/mondragon/webengl/controller/LoginController.class
 edu/mondragon/webengl/domain/encuesta/repository/HacerEncuestaRepository.class
 edu/mondragon/webengl/domain/evento/model/RecienllegadoEventoId.class
 edu/mondragon/webengl/controller/EncuestaController.class
@@ -40,6 +45,7 @@ edu/mondragon/webengl/domain/foro/repository/TemaforoRepository.class
 edu/mondragon/webengl/controller/WelcomeController.class
 edu/mondragon/webengl/domain/encuesta/repository/EncuestaRepository.class
 edu/mondragon/webengl/controller/EventoLocalController.class
+edu/mondragon/webengl/controller/ForoController.class
 edu/mondragon/webengl/domain/user/model/PasswordResetTokenStore$1.class
 edu/mondragon/webengl/controller/FAQController.class
 edu/mondragon/webengl/controller/RecursoLocalController.class
