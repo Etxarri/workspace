@@ -28,7 +28,7 @@ public class LoginController {
     }
 
     @PostMapping
-    public String login(@RequestParam String username, 
+    public String login(@RequestParam String username,
                         @RequestParam String password,
                         HttpSession session, 
                         RedirectAttributes redirectAttributes) {
