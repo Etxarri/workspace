@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <title>Encuesta</title>
+</head>
+<body>
+    <h2>Encuesta de Integración</h2>
+    <div>
+        <form th:action="@{/encuesta}" th:object="${encuesta}" method="post">
+            
+            <h3>Psicológico</h3>
+            <div>
+                <div>
+
+                    
+                </div>
+                <label>¿Qué tan conectado te sientes con España?</label><br>
+                <input type="radio" name="puntuacion" value="5" th:field="*{psicologicoConexion}"> Siento una conexión extremadamente estrecha.<br>
+                <input type="radio" name="puntuacion" value="4" th:field="*{psicologicoConexion}"> Siento una conexión muy estrecha.<br>
+                <input type="radio" name="puntuacion" value="3" th:field="*{psicologicoConexion}"> Siento una conexión moderadamente cercana.<br>
+                <input type="radio" name="puntuacion" value="2" th:field="*{psicologicoConexion}"> Siento una conexión débil.<br>
+                <input type="radio" name="puntuacion" value="1" th:field="*{psicologicoConexion}"> No siento ninguna conexión.<br>
+
+                <label>¿Con qué frecuencia te sientes como un extraño en España?</label><br>
+                <input type="radio" name="puntuacion" value="5" th:field="*{psicologicoExtranjero}"> Nunca.<br>
+                <input type="radio" name="puntuacion" value="4" th:field="*{psicologicoExtranjero}"> Rara vez.<br>
+                <input type="radio" name="puntuacion" value="3" th:field="*{psicologicoExtranjero}"> A veces.<br>
+                <input type="radio" name="puntuacion" value="2" th:field="*{psicologicoExtranjero}"> A menudo.<br>
+                <input type="radio" name="puntuacion" value="1" th:field="*{psicologicoExtranjero}"> Siempre.<br>
+
+                <label>¿Dónde quieres vivir?</label><br>
+                <input type="radio" name="puntuacion" value="5" th:field="*{linguisticoEscucha}"> Definitivamente quiero vivir en España por el resto de mi vida.<br>
+                <input type="radio" name="puntuacion" value="4" th:field="*{linguisticoEscucha}"> Probablemente quiero vivir en España por el resto de mi vida.<br>
+                <input type="radio" name="puntuacion" value="3" th:field="*{linguisticoEscucha}"> No estoy seguro si quiero permanecer en España o si quiero mudarme a otro país.<br>
+                <input type="radio" name="puntuacion" value="2" th:field="*{linguisticoEscucha}"> Probablemente quiera mudarme a otro país.<br>
+                <input type="radio" name="puntuacion" value="1" th:field="*{linguisticoEscucha}"> Definitivamente quiero mudarme a otro país.<br>
+
+                <label>¿Con qué frecuencia te sientes aislado?</label><br>
+                <input type="radio" name="puntuacion" value="5" th:field="*{psicologicoAislamiento}"> Nunca.<br>
+                <input type="radio" name="puntuacion" value="4" th:field="*{psicologicoAislamiento}"> Rara vez.<br>
+                <input type="radio" name="puntuacion" value="3" th:field="*{psicologicoAislamiento}"> A veces.<br>
+                <input type="radio" name="puntuacion" value="2" th:field="*{psicologicoAislamiento}"> A menudo.<br>
+                <input type="radio" name="puntuacion" value="1" th:field="*{psicologicoAislamiento}"> Siempre.<br>
+            </div>
+
+            <h3>Lingüístico</h3>
+            <div>
+                <label>Lectura</label><br>
+                <input type="radio" name="puntuacion" value="5" th:field="*{linguisticoLectura}"> Muy bien.<br>
+                <input type="radio" name="puntuacion" value="4" th:field="*{linguisticoLectura}"> Bien.<br>
+                <input type="radio" name="puntuacion" value="3" th:field="*{linguisticoLectura}"> Moderadamente bien.<br>
+                <input type="radio" name="puntuacion" value="2" th:field="*{linguisticoLectura}"> No muy bien.<br>
+                <input type="radio" name="puntuacion" value="1" th:field="*{linguisticoLectura}">Nada bien.<br>
+
+                <label>Conversación</label><br>
+                <input type="radio" name="puntuacion" value="5" th:field="*{linguisticoConversacion}"> Muy bien.<br>
+                <input type="radio" name="puntuacion" value="4" th:field="*{linguisticoConversacion}"> Bien.<br>
+                <input type="radio" name="puntuacion" value="3" th:field="*{linguisticoConversacion}"> Moderadamente bien.<br>
+                <input type="radio" name="puntuacion" value="2" th:field="*{linguisticoConversacion}"> No muy bien.<br>
+                <input type="radio" name="puntuacion" value="1" th:field="*{linguisticoConversacion}">Nada bien.<br>
+
+                <label>Escritura</label><br>
+                <input type="radio" name="puntuacion" value="5" th:field="*{linguisticoEscritura}"> Muy bien.<br>
+                <input type="radio" name="puntuacion" value="4" th:field="*{linguisticoEscritura}"> Bien.<br>
+                <input type="radio" name="puntuacion" value="3" th:field="*{linguisticoEscritura}"> Moderadamente bien.<br>
+                <input type="radio" name="puntuacion" value="2" th:field="*{linguisticoEscritura}"> No muy bien.<br>
+                <input type="radio" name="puntuacion" value="1" th:field="*{linguisticoEscritura}">Nada bien.<br>
+
+                <label>Escucha</label><br>
+                <input type="radio" name="puntuacion" value="5" th:field="*{linguisticoEscucha}"> Muy bien.<br>
+                <input type="radio" name="puntuacion" value="4" th:field="*{linguisticoEscucha}"> Bien.<br>
+                <input type="radio" name="puntuacion" value="3" th:field="*{linguisticoEscucha}"> Moderadamente bien.<br>
+                <input type="radio" name="puntuacion" value="2" th:field="*{linguisticoEscucha}"> No muy bien.<br>
+                <input type="radio" name="puntuacion" value="1" th:field="*{linguisticoEscucha}">Nada bien.<br>
+            </div>
+            
+            <h3>Económico</h3>
+            <div>
+                <label>
+                    ¿Cuál es el ingreso anual total de su hogar (antes de impuestos y deducciones) de todas las fuentes? 
+                    Si no conoce la cifra exacta, por favor dé una estimación. Su hogar incluye a todas las personas con 
+                    las que comparte un apartamento o casa y con las que también está relacionado nacimiento, matrimonio, 
+                    pareja de hecho o adopción.
+                </label><br>
+                <input type="radio" name="puntuacion" value="1" th:field="*{economicoIngreso}"> [0€, 12.330€]<br>
+                <input type="radio" name="puntuacion" value="2" th:field="*{economicoIngreso}"> [12.330€, 18.500€] <br>
+                <input type="radio" name="puntuacion" value="3" th:field="*{economicoIngreso}"> [18.500€, 37.000€]<br>
+                <input type="radio" name="puntuacion" value="4" th:field="*{economicoIngreso}"> [37.000€, 49.330€]<br>
+                <input type="radio" name="puntuacion" value="5" th:field="*{economicoIngreso}"> [ > 49.330€]<br>
+
+                <label>
+                    ¿Cuál de estas descripciones se aplica mejor a lo que has estado haciendo durante las últimas cuatro semanas?
+                     Por favor, seleccione solo uno.
+                </label><br>
+                <input type="radio" name="puntuacion" value="5" th:field="*{economicoSituacion}"> En un trabajo remunerado, aunque sea temporalmente (por cuenta ajena, autónomo, para su empresa familiar).<br>
+                <input type="radio" name="puntuacion" value="3" th:field="*{economicoSituacion}"> En la escuela, incluso si está de vacaciones.<br>
+                <input type="radio" name="puntuacion" value="1" th:field="*{economicoSituacion}"> Desempleado y en búsqueda activa de empleo.<br>
+                <input type="radio" name="puntuacion" value="1" th:field="*{economicoSituacion}"> Desempleado y no buscan trabajo activamente.<br>
+                <input type="radio" name="puntuacion" value="3" th:field="*{economicoSituacion}"> Enfermo o discapacitado permanente.<br>
+                <input type="radio" name="puntuacion" value="3" th:field="*{economicoSituacion}"> Jubilados.<br>
+                <input type="radio" name="puntuacion" value="5" th:field="*{economicoSituacion}"> En el servicio militar.<br>
+                <input type="radio" name="puntuacion" value="3" th:field="*{economicoSituacion}"> En servicio comunitario.<br>
+                <input type="radio" name="puntuacion" value="3" th:field="*{economicoSituacion}"> Realizando tareas domésticas no remuneradas, cuidar a los niños u otras personas.<br>
+
+                <label>
+                    Indique si su hogar actualmente puede o no puede permitirse pagar un gasto inesperado, pero necesario, de…
+                </label><br>
+                400€ <input type="radio" name="puntuacion" value="1" th:field="*{economicoGasto}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{economicoGasto}"> No.<br>
+                800€ <input type="radio" name="puntuacion" value="1" th:field="*{economicoGasto}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{economicoGasto}"> No.<br>
+                8.000€ <input type="radio" name="puntuacion" value="1" th:field="*{economicoGasto}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{economicoGasto}"> No.<br>
+                40.000€ <input type="radio" name="puntuacion" value="1" th:field="*{economicoGasto}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{economicoGasto}"> No.<br>
+
+                <label>¿Qué tan satisfecho está con su situación laboral actual? Tu situación laboral se refiere a la respuesta que diste en una pregunta anterior 
+                    (ya sea en un trabajo remunerado, en la escuela, desempleado, enfermos o discapacitados permanentes, jubilados, en el ejército, en servicio comunitario, 
+                    haciendo tareas domésticas no remuneradas, cuidando niños u otras personas, u otra condición).
+                </label><br>
+                <input type="radio" name="puntuacion" value="5" th:field="*{economicoSatisfaccion}"> Muy satisfecho.<br>
+                <input type="radio" name="puntuacion" value="4" th:field="*{economicoSatisfaccion}"> Algo satisfecho.<br>
+                <input type="radio" name="puntuacion" value="3" th:field="*{economicoSatisfaccion}"> Ni satisfecho ni insatisfecho.<br>
+                <input type="radio" name="puntuacion" value="2" th:field="*{economicoSatisfaccion}"> Algo insatisfecho.<br>
+                <input type="radio" name="puntuacion" value="1" th:field="*{economicoSatisfaccion}"> Muy insatisfecho.<br>
+            </div>
+
+
+            <button type="submit" class="btn-primary">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>
