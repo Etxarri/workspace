@@ -1,46 +1,72 @@
 package edu.mondragon.webengl.domain.user.model;
 
-import java.util.Locale;
+import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-public class RecienLLegado extends User{
-    String ciudad = null;
-    String pais = null;
-    Locale lang = null;
+@Entity
+@Table(name = "recienllegado")
+public class Recienllegado {
+    @Id
+    @Column(name = "usuarioID")
+    private int usuarioID;
 
-    public RecienLLegado(/*String username, String password, String firstName, String secondName, String email, Locale langu*/) {
-        /*
-        super.setUsername(username);
-        super.setPassword(password);
-        super.setFirstName(firstName);
-        super.setSecondName(secondName);
-        super.setEmail(email);
-        super.setIdioma_principal(idioma_principal);
-        */
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "usuarioID")
+    private Usuario usuario;
+
+    @Column(length = 50)
+    private String necesidades;
+
+    @Column(length = 10)
+    private String lenguaje;
+
+    @Column(name = "fecha_llegada")
+    private LocalDate fechaLlegada;
+
+    public int getUsuarioID() {
+        return usuarioID;
     }
 
-    public String getCiudad() {
-        return ciudad;
+
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public String getPais() {
-        return pais;
+    public String getNecesidades() {
+        return necesidades;
     }
 
-    public void setPais(String pais) {
-        this.pais = pais;
+    public void setNecesidades(String necesidades) {
+        this.necesidades = necesidades;
     }
 
-    public Locale getLang() {
-        return lang;
+    public String getLenguaje() {
+        return lenguaje;
     }
 
-    public void setLang(Locale lang) {
-        this.lang = lang;
+    public void setLenguaje(String lenguaje) {
+        this.lenguaje = lenguaje;
     }
 
+    public LocalDate getFechaLlegada() {
+        return fechaLlegada;
+    }
+
+    public void setFechaLlegada(LocalDate fechaLlegada) {
+        this.fechaLlegada = fechaLlegada;
+    }
+
+    // getters y setters
     
 }

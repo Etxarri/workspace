@@ -1,27 +1,60 @@
 package edu.mondragon.webengl.domain.user.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-public class Voluntario extends User{
-    String comunidad_autonoma=null;
+@Entity
+@Table(name = "voluntario")
+public class Voluntario {
 
-    public Voluntario(/*String username, String password, String firstName, String secondName, String email, Locale lang*/) {
-        /*
-        super.setUsername(username);
-        super.setPassword(password);
-        super.setFirstName(firstName);
-        super.setSecondName(secondName);
-        super.setEmail(email);
-        super.setLang(lang);
-        */
+    @Id
+    @Column(name = "usuarioID")
+    private int usuarioID;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "usuarioID")
+    private Usuario usuario;
+
+    @Column(length = 50)
+    private String habilidades;
+
+    @Column(length = 50)
+    private String motivacion;
+
+    // Getters y setters
+
+    public int getUsuarioID() {
+        return usuarioID;
     }
 
-    public String getComunidad_autonoma() {
-        return comunidad_autonoma;
+
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setComunidad_autonoma(String comunidad_autonoma) {
-        this.comunidad_autonoma = comunidad_autonoma;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    
+    public String getHabilidades() {
+        return habilidades;
+    }
+
+    public void setHabilidades(String habilidades) {
+        this.habilidades = habilidades;
+    }
+
+    public String getMotivacion() {
+        return motivacion;
+    }
+
+    public void setMotivacion(String motivacion) {
+        this.motivacion = motivacion;
+    }
 }
