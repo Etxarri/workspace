@@ -17,119 +17,404 @@
     <div>
         <form th:action="@{/encuesta}" th:object="${encuesta}" method="post">
             
+            <br><br>
             <h3>Psicológico</h3>
-            <div>
+            <section>
                 <div>
-
-                    
+                    <label>¿Qué tan conectado te sientes con España?</label><br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{psicologicoConexion}"> Siento una conexión extremadamente estrecha.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{psicologicoConexion}"> Siento una conexión muy estrecha.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{psicologicoConexion}"> Siento una conexión moderadamente cercana.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{psicologicoConexion}"> Siento una conexión débil.<br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{psicologicoConexion}"> No siento ninguna conexión.<br><br>
                 </div>
-                <label>¿Qué tan conectado te sientes con España?</label><br>
-                <input type="radio" name="puntuacion" value="5" th:field="*{psicologicoConexion}"> Siento una conexión extremadamente estrecha.<br>
-                <input type="radio" name="puntuacion" value="4" th:field="*{psicologicoConexion}"> Siento una conexión muy estrecha.<br>
-                <input type="radio" name="puntuacion" value="3" th:field="*{psicologicoConexion}"> Siento una conexión moderadamente cercana.<br>
-                <input type="radio" name="puntuacion" value="2" th:field="*{psicologicoConexion}"> Siento una conexión débil.<br>
-                <input type="radio" name="puntuacion" value="1" th:field="*{psicologicoConexion}"> No siento ninguna conexión.<br>
+                
+                <div>
+                    <label>¿Con qué frecuencia te sientes como un extraño en España?</label><br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{psicologicoExtranjero}"> Nunca.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{psicologicoExtranjero}"> Rara vez.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{psicologicoExtranjero}"> A veces.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{psicologicoExtranjero}"> A menudo.<br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{psicologicoExtranjero}"> Siempre.<br><br>
+                </div>
 
-                <label>¿Con qué frecuencia te sientes como un extraño en España?</label><br>
-                <input type="radio" name="puntuacion" value="5" th:field="*{psicologicoExtranjero}"> Nunca.<br>
-                <input type="radio" name="puntuacion" value="4" th:field="*{psicologicoExtranjero}"> Rara vez.<br>
-                <input type="radio" name="puntuacion" value="3" th:field="*{psicologicoExtranjero}"> A veces.<br>
-                <input type="radio" name="puntuacion" value="2" th:field="*{psicologicoExtranjero}"> A menudo.<br>
-                <input type="radio" name="puntuacion" value="1" th:field="*{psicologicoExtranjero}"> Siempre.<br>
+                <div>
+                    <label>¿Dónde quieres vivir?</label><br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{linguisticoEscucha}"> Definitivamente quiero vivir en España por el resto de mi vida.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{linguisticoEscucha}"> Probablemente quiero vivir en España por el resto de mi vida.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{linguisticoEscucha}"> No estoy seguro si quiero permanecer en España o si quiero mudarme a otro país.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{linguisticoEscucha}"> Probablemente quiera mudarme a otro país.<br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{linguisticoEscucha}"> Definitivamente quiero mudarme a otro país.<br><br>
+                </div>
 
-                <label>¿Dónde quieres vivir?</label><br>
-                <input type="radio" name="puntuacion" value="5" th:field="*{linguisticoEscucha}"> Definitivamente quiero vivir en España por el resto de mi vida.<br>
-                <input type="radio" name="puntuacion" value="4" th:field="*{linguisticoEscucha}"> Probablemente quiero vivir en España por el resto de mi vida.<br>
-                <input type="radio" name="puntuacion" value="3" th:field="*{linguisticoEscucha}"> No estoy seguro si quiero permanecer en España o si quiero mudarme a otro país.<br>
-                <input type="radio" name="puntuacion" value="2" th:field="*{linguisticoEscucha}"> Probablemente quiera mudarme a otro país.<br>
-                <input type="radio" name="puntuacion" value="1" th:field="*{linguisticoEscucha}"> Definitivamente quiero mudarme a otro país.<br>
+                <div>
+                    <label>¿Con qué frecuencia te sientes aislado?</label><br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{psicologicoAislamiento}"> Nunca.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{psicologicoAislamiento}"> Rara vez.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{psicologicoAislamiento}"> A veces.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{psicologicoAislamiento}"> A menudo.<br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{psicologicoAislamiento}"> Siempre.<br>
+                </div>
+            </section>
 
-                <label>¿Con qué frecuencia te sientes aislado?</label><br>
-                <input type="radio" name="puntuacion" value="5" th:field="*{psicologicoAislamiento}"> Nunca.<br>
-                <input type="radio" name="puntuacion" value="4" th:field="*{psicologicoAislamiento}"> Rara vez.<br>
-                <input type="radio" name="puntuacion" value="3" th:field="*{psicologicoAislamiento}"> A veces.<br>
-                <input type="radio" name="puntuacion" value="2" th:field="*{psicologicoAislamiento}"> A menudo.<br>
-                <input type="radio" name="puntuacion" value="1" th:field="*{psicologicoAislamiento}"> Siempre.<br>
-            </div>
-
+            <br><br>
             <h3>Lingüístico</h3>
-            <div>
-                <label>Lectura</label><br>
-                <input type="radio" name="puntuacion" value="5" th:field="*{linguisticoLectura}"> Muy bien.<br>
-                <input type="radio" name="puntuacion" value="4" th:field="*{linguisticoLectura}"> Bien.<br>
-                <input type="radio" name="puntuacion" value="3" th:field="*{linguisticoLectura}"> Moderadamente bien.<br>
-                <input type="radio" name="puntuacion" value="2" th:field="*{linguisticoLectura}"> No muy bien.<br>
-                <input type="radio" name="puntuacion" value="1" th:field="*{linguisticoLectura}">Nada bien.<br>
+            <section>
+                <div>
+                    <label>Lectura</label><br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{linguisticoLectura}"> Muy bien.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{linguisticoLectura}"> Bien.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{linguisticoLectura}"> Moderadamente bien.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{linguisticoLectura}"> No muy bien.<br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{linguisticoLectura}">Nada bien.<br><br>
+                </div>
 
-                <label>Conversación</label><br>
-                <input type="radio" name="puntuacion" value="5" th:field="*{linguisticoConversacion}"> Muy bien.<br>
-                <input type="radio" name="puntuacion" value="4" th:field="*{linguisticoConversacion}"> Bien.<br>
-                <input type="radio" name="puntuacion" value="3" th:field="*{linguisticoConversacion}"> Moderadamente bien.<br>
-                <input type="radio" name="puntuacion" value="2" th:field="*{linguisticoConversacion}"> No muy bien.<br>
-                <input type="radio" name="puntuacion" value="1" th:field="*{linguisticoConversacion}">Nada bien.<br>
+                <div>
+                    <label>Conversación</label><br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{linguisticoConversacion}"> Muy bien.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{linguisticoConversacion}"> Bien.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{linguisticoConversacion}"> Moderadamente bien.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{linguisticoConversacion}"> No muy bien.<br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{linguisticoConversacion}">Nada bien.<br><br>
+                </div>
 
-                <label>Escritura</label><br>
-                <input type="radio" name="puntuacion" value="5" th:field="*{linguisticoEscritura}"> Muy bien.<br>
-                <input type="radio" name="puntuacion" value="4" th:field="*{linguisticoEscritura}"> Bien.<br>
-                <input type="radio" name="puntuacion" value="3" th:field="*{linguisticoEscritura}"> Moderadamente bien.<br>
-                <input type="radio" name="puntuacion" value="2" th:field="*{linguisticoEscritura}"> No muy bien.<br>
-                <input type="radio" name="puntuacion" value="1" th:field="*{linguisticoEscritura}">Nada bien.<br>
+                <div>
+                    <label>Escritura</label><br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{linguisticoEscritura}"> Muy bien.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{linguisticoEscritura}"> Bien.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{linguisticoEscritura}"> Moderadamente bien.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{linguisticoEscritura}"> No muy bien.<br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{linguisticoEscritura}">Nada bien.<br><br>
+                </div>
 
-                <label>Escucha</label><br>
-                <input type="radio" name="puntuacion" value="5" th:field="*{linguisticoEscucha}"> Muy bien.<br>
-                <input type="radio" name="puntuacion" value="4" th:field="*{linguisticoEscucha}"> Bien.<br>
-                <input type="radio" name="puntuacion" value="3" th:field="*{linguisticoEscucha}"> Moderadamente bien.<br>
-                <input type="radio" name="puntuacion" value="2" th:field="*{linguisticoEscucha}"> No muy bien.<br>
-                <input type="radio" name="puntuacion" value="1" th:field="*{linguisticoEscucha}">Nada bien.<br>
-            </div>
+                <div>
+                    <label>Escucha</label><br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{linguisticoEscucha}"> Muy bien.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{linguisticoEscucha}"> Bien.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{linguisticoEscucha}"> Moderadamente bien.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{linguisticoEscucha}"> No muy bien.<br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{linguisticoEscucha}">Nada bien.<br>
+                </div>
+            </section>
             
+            <br><br>
             <h3>Económico</h3>
-            <div>
-                <label>
-                    ¿Cuál es el ingreso anual total de su hogar (antes de impuestos y deducciones) de todas las fuentes? 
-                    Si no conoce la cifra exacta, por favor dé una estimación. Su hogar incluye a todas las personas con 
-                    las que comparte un apartamento o casa y con las que también está relacionado nacimiento, matrimonio, 
-                    pareja de hecho o adopción.
-                </label><br>
-                <input type="radio" name="puntuacion" value="1" th:field="*{economicoIngreso}"> [0€, 12.330€]<br>
-                <input type="radio" name="puntuacion" value="2" th:field="*{economicoIngreso}"> [12.330€, 18.500€] <br>
-                <input type="radio" name="puntuacion" value="3" th:field="*{economicoIngreso}"> [18.500€, 37.000€]<br>
-                <input type="radio" name="puntuacion" value="4" th:field="*{economicoIngreso}"> [37.000€, 49.330€]<br>
-                <input type="radio" name="puntuacion" value="5" th:field="*{economicoIngreso}"> [ > 49.330€]<br>
+            <section>
+                </div>
+                    <label>
+                        1. ¿Cuál es el ingreso anual total de su hogar (antes de impuestos y deducciones) de todas las fuentes? 
+                        Si no conoce la cifra exacta, por favor dé una estimación. Su hogar incluye a todas las personas con 
+                        las que comparte un apartamento o casa y con las que también está relacionado nacimiento, matrimonio, 
+                        pareja de hecho o adopción.
+                    </label><br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{economicoIngreso}"> [0€, 12.330€]<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{economicoIngreso}"> [12.330€, 18.500€] <br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{economicoIngreso}"> [18.500€, 37.000€]<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{economicoIngreso}"> [37.000€, 49.330€]<br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{economicoIngreso}"> [ > 49.330€]<br><br>
+                </div>
 
-                <label>
-                    ¿Cuál de estas descripciones se aplica mejor a lo que has estado haciendo durante las últimas cuatro semanas?
-                     Por favor, seleccione solo uno.
-                </label><br>
-                <input type="radio" name="puntuacion" value="5" th:field="*{economicoSituacion}"> En un trabajo remunerado, aunque sea temporalmente (por cuenta ajena, autónomo, para su empresa familiar).<br>
-                <input type="radio" name="puntuacion" value="3" th:field="*{economicoSituacion}"> En la escuela, incluso si está de vacaciones.<br>
-                <input type="radio" name="puntuacion" value="1" th:field="*{economicoSituacion}"> Desempleado y en búsqueda activa de empleo.<br>
-                <input type="radio" name="puntuacion" value="1" th:field="*{economicoSituacion}"> Desempleado y no buscan trabajo activamente.<br>
-                <input type="radio" name="puntuacion" value="3" th:field="*{economicoSituacion}"> Enfermo o discapacitado permanente.<br>
-                <input type="radio" name="puntuacion" value="3" th:field="*{economicoSituacion}"> Jubilados.<br>
-                <input type="radio" name="puntuacion" value="5" th:field="*{economicoSituacion}"> En el servicio militar.<br>
-                <input type="radio" name="puntuacion" value="3" th:field="*{economicoSituacion}"> En servicio comunitario.<br>
-                <input type="radio" name="puntuacion" value="3" th:field="*{economicoSituacion}"> Realizando tareas domésticas no remuneradas, cuidar a los niños u otras personas.<br>
+                <div>
+                    <label>
+                        2. ¿Cuál de estas descripciones se aplica mejor a lo que has estado haciendo durante las últimas cuatro semanas?
+                        Por favor, seleccione solo uno.
+                    </label><br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{economicoSituacion}"> En un trabajo remunerado, aunque sea temporalmente (por cuenta ajena, autónomo, para su empresa familiar).<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{economicoSituacion}"> En la escuela, incluso si está de vacaciones.<br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{economicoSituacion}"> Desempleado y en búsqueda activa de empleo.<br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{economicoSituacion}"> Desempleado y no buscan trabajo activamente.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{economicoSituacion}"> Enfermo o discapacitado permanente.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{economicoSituacion}"> Jubilados.<br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{economicoSituacion}"> En el servicio militar.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{economicoSituacion}"> En servicio comunitario.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{economicoSituacion}"> Realizando tareas domésticas no remuneradas, cuidar a los niños u otras personas.<br><br>
+                </div>
 
-                <label>
-                    Indique si su hogar actualmente puede o no puede permitirse pagar un gasto inesperado, pero necesario, de…
-                </label><br>
-                400€ <input type="radio" name="puntuacion" value="1" th:field="*{economicoGasto}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{economicoGasto}"> No.<br>
-                800€ <input type="radio" name="puntuacion" value="1" th:field="*{economicoGasto}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{economicoGasto}"> No.<br>
-                8.000€ <input type="radio" name="puntuacion" value="1" th:field="*{economicoGasto}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{economicoGasto}"> No.<br>
-                40.000€ <input type="radio" name="puntuacion" value="1" th:field="*{economicoGasto}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{economicoGasto}"> No.<br>
+                <div>
+                    <label>
+                        3. Indique si su hogar actualmente puede o no puede permitirse pagar un gasto inesperado, pero necesario, de…
+                    </label><br>
+                    • 400€ <br><input type="radio" name="puntuacion" value="1" th:field="*{economicoGasto}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{economicoGasto}"> No.<br>
+                    • 800€ <br><input type="radio" name="puntuacion" value="1" th:field="*{economicoGasto}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{economicoGasto}"> No.<br>
+                    • 8.000€ <br><input type="radio" name="puntuacion" value="1" th:field="*{economicoGasto}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{economicoGasto}"> No.<br>
+                    • 40.000€ <br><input type="radio" name="puntuacion" value="1" th:field="*{economicoGasto}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{economicoGasto}"> No.<br><br>
+                </div>
 
-                <label>¿Qué tan satisfecho está con su situación laboral actual? Tu situación laboral se refiere a la respuesta que diste en una pregunta anterior 
-                    (ya sea en un trabajo remunerado, en la escuela, desempleado, enfermos o discapacitados permanentes, jubilados, en el ejército, en servicio comunitario, 
-                    haciendo tareas domésticas no remuneradas, cuidando niños u otras personas, u otra condición).
-                </label><br>
-                <input type="radio" name="puntuacion" value="5" th:field="*{economicoSatisfaccion}"> Muy satisfecho.<br>
-                <input type="radio" name="puntuacion" value="4" th:field="*{economicoSatisfaccion}"> Algo satisfecho.<br>
-                <input type="radio" name="puntuacion" value="3" th:field="*{economicoSatisfaccion}"> Ni satisfecho ni insatisfecho.<br>
-                <input type="radio" name="puntuacion" value="2" th:field="*{economicoSatisfaccion}"> Algo insatisfecho.<br>
-                <input type="radio" name="puntuacion" value="1" th:field="*{economicoSatisfaccion}"> Muy insatisfecho.<br>
-            </div>
+                <div>
+                    <label>
+                        4. ¿Qué tan satisfecho está con su situación laboral actual? Tu situación laboral se refiere a la respuesta que diste en una pregunta anterior 
+                        (ya sea en un trabajo remunerado, en la escuela, desempleado, enfermos o discapacitados permanentes, jubilados, en el ejército, en servicio comunitario, 
+                        haciendo tareas domésticas no remuneradas, cuidando niños u otras personas, u otra condición).
+                    </label><br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{economicoSatisfaccion}"> Muy satisfecho.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{economicoSatisfaccion}"> Algo satisfecho.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{economicoSatisfaccion}"> Ni satisfecho ni insatisfecho.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{economicoSatisfaccion}"> Algo insatisfecho.<br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{economicoSatisfaccion}"> Muy insatisfecho.<br>
+                </div>
+            </section>
 
+            <br><br>
+            <h3>Político</h3>
+            <section>
+                <div>
+                    <label>
+                        1. ¿Qué tan bien entiende los importantes problemas políticos que enfrenta España?
+                    </label><br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{}"> Muy bien.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{}"> Bien.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{}"> Moderadamente bien.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{}"> No muy bien.<br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Nada bien.<br><br>
+                </div>
+
+                <div>
+                    <label>
+                        2. En los últimos 12 meses, ¿con qué frecuencia ha discutido con otras personas 
+                        los principales problemas políticos que enfrenta España?
+                    </label><br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Nunca.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{}"> Una vez al año.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{}"> Una vez al mes<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{}"> Una vez a la semana.<br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{}"> Casi todos los días.<br><br>
+                </div>
+
+                <div>
+                    <label>
+                        3. Ahora nos gustaría hacerle algunas preguntas sobre las políticas públicas y la actualidad. 
+                        Por favor, responda a estas preguntas de memoria, sin buscar las respuestas ni preguntar a otra persona. 
+                        No mucha gente puede responder a cada pregunta correctamente, y estaríamos muy agradecidos si respondiera a las preguntas lo mejor que pueda.
+                    </label><br>
+                    
+                    <div>
+                        <label>
+                            a) En política, a menudo se habla de una dimensión izquierda-derecha. ¿Podría decirnos si la siguiente frase es cierta o no? 
+                            La pregunta selecciona aleatoriamente una de las dos oraciones a continuación:
+                        </label><br>
+                        <input type="radio" name="puntuacion" value="1" th:field="*{}"> El PSOE es considerado de izquierdas comparado con el PP.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> El PSOE es considerado de derechas comparado con el PP.<br><br>
+                    </div>
+
+                    <div>
+                        <label>
+                            b) ¿A cuál de los siguientes partidos pertenece el actual presidente de España?
+                        </label><br>
+                        <input type="radio" name="puntuacion" value="1" th:field="*{}"> PSOE.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> PODEMOS.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> Otro.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> No sé.<br><br>
+                    </div>
+
+                    <div>
+                        <label>
+                            c) ¿Cuál de los siguientes partidos ocupa el mayor número de escaños en el Senado de España?
+                        </label><br>
+                        <input type="radio" name="puntuacion" value="1" th:field="*{}"> PSOE.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> PODEMOS.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> Otro.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> No sé.<br><br>
+                    </div>
+
+                    <div>
+                        <label>
+                            d) ¿Cuál es la edad mínima que debe tener una persona para votar en unas elecciones generales en España?
+                        </label><br>
+                        <select class="form-select" required>
+                            <option value="">Selecciona...</option>
+                            <option value="0">15</option>
+                            <option value="0">16</option>
+                            <option value="0">17</option>
+                            <option value="1">18</option>
+                            <option value="0">19</option>
+                            <option value="0">20</option>
+                            <option value="0">21</option>
+                        </select><br>
+                    </div>
+                </div>
+
+                <div>
+                    <label>
+                        4. Hay diferentes maneras de tratar de mejorar las cosas en España o ayudar a evitar que las cosas salgan mal. 
+                        Durante en los últimos 12 meses, ¿ha realizado alguna de las siguientes acciones? ¿Has...
+                    </label><br>
+                    • ... intentado convencer a alguien para que cambiara su opinión política? 
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{}"> No.<br>
+                    • ... tratado de influir en otros sobre cómo votar?
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{}"> No.<br>
+                    • ... hecho una declaración política en un entorno público o en línea con respecto a la política en España?
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{}"> No.<br>
+                    • ... participado en discusiones públicas o en línea sobre política en España?
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{}"> No.<br>
+                    • ... contactado con un político o un funcionario del gobierno?
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{}"> No.<br>
+                    • ... trabajado en un partido político o grupo de acción?
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{}"> No.<br>
+                    • ... llevado o mostrado una insignia, calcomanía o letrero político?
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{}"> No.<br>
+                    • ... firmado una petición?
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{}"> No.<br>
+                    • ... participado en una manifestación pública legal?
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{}"> No.<br>
+                    • ... boicoteado ciertos productos?
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{}"> No.<br>
+                    • ... recogido firmas para una petición?
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{}"> No.<br>
+                </div>
+            </section>
+
+            <br><br>
+            <h3>Social</h3>
+            <section>
+                <div>
+                    <label>
+                        1. En los últimos 12 meses, ¿con qué frecuencia cenó con Españoles que no son parte de su familia?
+                    </label><br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Nunca.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{}"> Una vez al año.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{}"> Una vez al mes.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{}"> Una vez a la semana.<br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{}"> Casi todos los días.<br><br>
+                </div>
+
+                <div>
+                    <label>
+                        2. Piense en los Españoles en su libreta de direcciones o en sus contactos telefónicos. 
+                        ¿Con cuántos de ellos tuviste una conversación, ya sea por teléfono, chat de mensajería o intercambio de mensajes de texto, en las últimas 4 semanas?
+                    </label><br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{}"> 0.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{}"> De 1 a 2.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{}"> De 3 a 6.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{}"> De 7 a 14.<br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> 15 o más.<br><br>
+                </div>
+
+                <div>
+                    <label>
+                        3. Las personas a veces participan en diferentes tipos de grupos o asociaciones. Para cada grupo que se enumera a continuación, 
+                        ¿con qué frecuencia participa en una actividad grupal?<br>
+                        <p>• Un grupo relacionado con su trabajo, como un sindicato, una empresa o una organización profesional.</p>
+                        <p>• Un grupo relacionado con sus creencias religiosas, como una iglesia, mezquita, sinagoga u otra organización religiosa.</p>
+                        <p>• Un grupo relacionado con tus aficiones, como un grupo deportivo, de ocio o cultural.</p>
+                        <p>• Un grupo relacionado con una causa social o política, como una organización voluntaria o un partido político.</p>
+                        <p>• Otra organización voluntaria.</p>
+                    </label><br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{}"> Participo al menos una vez por semana.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{}"> Participo al menos una vez al mes.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{}"> Participo al menos una vez al año.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{}"> Pertenezco, pero no participo activamente.<br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> No pertenezco ni participo.<br><br>
+
+                    <label>
+                        Si piensas en los miembros de los grupos en los que participas, ¿Cuántos de ellos son españoles? Las opciones de respuesta son:
+                    </label>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{}"> Todos ellos.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{}"> La mayoría de ellos.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{}"> Aproximadamente la mitad de ellos.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{}"> Ninguno de ellos.<br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> No pertenezco ni participo.<br><br>
+                </div>
+
+                <div>
+                    <label>
+                        4. Muchas personas se ayudan mutuamente con favores cotidianos, como conseguir que los lleven, pedir prestado un poco de dinero o cuidar niños. 
+                        En los últimos 12 meses, ¿con qué frecuencia ha proporcionado tales favores a los Españoles?
+                    </label><br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Nunca.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{}"> Una vez al año.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{}"> Una vez al mes.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{}"> Una vez a la semana.<br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{}"> Casi todos los días.<br><br>
+                </div>
+            </section>
+
+            <br><br>
+            <h3>Navegacional</h3>
+            <section>
+                <div>
+                    <label>
+                        1. En este país, ¿qué tan difícil o fácil sería para ti realizar una consulta médica?
+                    </label><br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Muy difícil.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{}"> Algo difícil.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{}"> Nidifícil, ni fácil.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{}"> Algo fácil.<br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{}"> Muy fácil.<br><br>
+                </div>
+                <div>
+                    <label>
+                        2. En este país, ¿qué tan difícil o fácil sería para ti buscar un empleo (encontrar ofertas)?
+                    </label><br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Muy difícil.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{}"> Algo difícil.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{}"> Nidifícil, ni fácil.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{}"> Algo fácil.<br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{}"> Muy fácil.<br><br>
+                </div>
+                <div>
+                    <label>
+                        3. En este país, ¿qué tan difícil o fácil sería para ti obtener ayuda con problemas legales?
+                    </label><br>
+                    <input type="radio" name="puntuacion" value="1" th:field="*{}"> Muy difícil.<br>
+                    <input type="radio" name="puntuacion" value="2" th:field="*{}"> Algo difícil.<br>
+                    <input type="radio" name="puntuacion" value="3" th:field="*{}"> Ni difícil, ni fácil.<br>
+                    <input type="radio" name="puntuacion" value="4" th:field="*{}"> Algo fácil.<br>
+                    <input type="radio" name="puntuacion" value="5" th:field="*{}"> Muy fácil.<br><br>
+                </div>
+                <div>
+                    <label>
+                        4. Ahora nos gustaría hacerle algunas preguntas sobre la vida diaria en España. 
+                        Por favor, responda a estas preguntas de memoria, sin buscar las respuestas ni preguntar a otra persona. 
+                        No mucha gente puede responder a cada pregunta correctamente, y estaríamos muy agradecidos si respondiera a las preguntas lo mejor que pueda.
+                    </label><br>
+
+                    <div>
+                        <label>
+                            a) ¿Cuántas bebidas (una lata o vaso de cerveza, un vaso de vino o un trago de licor), en aproximadamente una hora, 
+                            puede ingerir una persona promedio antes de estar demasiado intoxicada para conducir un automóvil legalmente?
+                        </label><br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> Ninguna bebida alcohólica en absoluto. <br>
+                        <input type="radio" name="puntuacion" value="1" th:field="*{}"> La mayoría de las personas pueden conducir legalmente después de una o dos bebidas.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> Un máximo de cinco bebidas, siempre y cuando la persona pueda conducir con seguridad.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> No hay límite, siempre y cuando la persona pueda conducir con seguridad. <br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> No sé.<br><br>
+                    </div>
+
+                    <div>
+                        <label>
+                            b) ¿Cómo suele pagar la mayoría de los habitantes de España sus impuestos sobre la renta?
+                        </label><br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> Los impuestos se deducen automáticamente de los cheques de pago y no es necesaria una presentación especial.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> Los empleadores tienen la responsabilidad de presentar formularios para sus trabajadores.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> Las personas pueden pagar sus impuestos en un banco o en una oficina municipal.<br>
+                        <input type="radio" name="puntuacion" value="1" th:field="*{}"> Los trabajadores deben presentar sus declaraciones de impuestos ante el gobierno federal.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> No sé.<br><br>
+                    </div>
+
+                    <div>
+                        <label>
+                            c) Si enviara una carta a España, ¿Cuál es la manera correcta de escribir la dirección en el sobre? 
+                            Seleccione un formato de la lista a continuación.
+                        </label><br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> Calle Mayor 10, 28013, Madrid, Ana López, España.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> Ana López, 28013, Madrid, Calle Mayor 10, España.<br>
+                        <input type="radio" name="puntuacion" value="1" th:field="*{}"> Ana López, Calle Mayor 10, 28013 Madrid, España.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> Ana López, Madrid, Calle Mayor 10, 28013, España.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> No sé.<br><br>
+                    </div>
+
+                    <div>
+                        <label>
+                            d) En España, ¿Cómo se debe buscar ayuda médica para una afección como el dolor de espalda crónico?
+                        </label><br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> Llamar a una ambulancia.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> Ir a urgencias.<br>
+                        <input type="radio" name="puntuacion" value="1" th:field="*{}"> Consulte a su médico de cabecera.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> Preguntar a un supervisor en el trabajo.<br>
+                        <input type="radio" name="puntuacion" value="0" th:field="*{}"> No sé.<br><br>
+                    </div>
+                </div>
+            </section>
 
             <button type="submit" class="btn-primary">Enviar</button>
         </form>
