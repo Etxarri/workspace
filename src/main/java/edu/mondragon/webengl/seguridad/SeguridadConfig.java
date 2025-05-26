@@ -20,7 +20,7 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/css/**", "/js/**", "/images/**", "/login", "/logout", "/usuario/crear").permitAll() // permite acceso público a recursos estáticos y login
+                .antMatchers("/css/**", "/js/**", "/images/**", "/login", "/logout", "/usuario/crear", "/forgot-password", "/verify-code", "/reset-password").permitAll() // permite acceso público a recursos estáticos y login
                 .anyRequest().authenticated()
             .and()
             .formLogin()

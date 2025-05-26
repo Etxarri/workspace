@@ -37,7 +37,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     public boolean existeUsuarioPorEmail(String email) {
         return usuarioRepository.findByEmail(email).isPresent();
     }
-
+    @Override
+    public Optional<Usuario> findUsuarioByEmail(String email) {
+        return usuarioRepository.findByEmail(email);
+    }
 
 
     @Override
@@ -104,5 +107,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     public byte[] encriptarContraseña(String rawPassword) {
         return passwordEncoder.encode(rawPassword).getBytes();
     }
+
+
 }
 
