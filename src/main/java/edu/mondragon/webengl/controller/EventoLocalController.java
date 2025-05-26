@@ -6,7 +6,7 @@ import edu.mondragon.webengl.domain.evento.model.RecienllegadoApuntarseEvento;
 import edu.mondragon.webengl.domain.evento.model.RecienllegadoEventoId;
 import edu.mondragon.webengl.domain.evento.repository.EventoLocalRepository;
 import edu.mondragon.webengl.domain.evento.repository.RecienllegadoApuntarseEventoRepository;
-import edu.mondragon.webengl.domain.user.model.Recienllegado;
+import edu.mondragon.webengl.domain.user.model.RecienLLegado;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.repository.RecienllegadoRepository;
 import org.springframework.stereotype.Controller;
@@ -64,7 +64,7 @@ public class EventoLocalController {
             redirectAttrs.addFlashAttribute("error", "Solo los recién llegados pueden apuntarse.");
             return "redirect:/eventos";
         }
-        Recienllegado recien = recienllegadoRepo.findById(usuario.getUsuarioID()).orElse(null);
+        RecienLLegado recien = recienllegadoRepo.findById(usuario.getUsuarioID()).orElse(null);
 
         RecienllegadoEventoId compuesta = new RecienllegadoEventoId(recien.getUsuarioID(), id);
 

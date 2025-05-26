@@ -4,7 +4,7 @@ import edu.mondragon.webengl.domain.pais.model.Ciudad;
 import edu.mondragon.webengl.domain.pais.model.Pais;
 import edu.mondragon.webengl.domain.pais.repository.CiudadRepository;
 import edu.mondragon.webengl.domain.pais.repository.PaisRepository;
-import edu.mondragon.webengl.domain.user.model.Recienllegado;
+import edu.mondragon.webengl.domain.user.model.RecienLLegado;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.model.Voluntario;
 import edu.mondragon.webengl.domain.user.model.Usuario.TipoUsuario;
@@ -75,7 +75,7 @@ public class UsuarioController {
 
 
         if (tipo == TipoUsuario.recienllegado) {
-            Recienllegado r = new Recienllegado();
+            RecienLLegado r = new RecienLLegado();
             r.setUsuario(usuario);
             r.setNecesidades(necesidades);
             r.setLenguaje(lenguaje);

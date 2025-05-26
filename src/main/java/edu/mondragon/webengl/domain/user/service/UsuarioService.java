@@ -2,7 +2,7 @@ package edu.mondragon.webengl.domain.user.service;
 
 
 import java.util.Optional;
-import edu.mondragon.webengl.domain.user.model.Recienllegado;
+import edu.mondragon.webengl.domain.user.model.RecienLLegado;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.model.Voluntario;
 
@@ -15,13 +15,13 @@ public interface UsuarioService {
 
     Usuario login(String username, String password);
 
-    Recienllegado findRecienllegadoById(int id);
+    RecienLLegado findRecienllegadoById(int id);
     Voluntario findVoluntarioById(int id);
     Usuario findUsuarioByIdUsuario(int id);
 
     void guardarUsuario(Usuario usuario);
     void guardarVoluntario(Voluntario voluntario);
-    void guardarRecienllegado(Recienllegado recienllegado);
+    void guardarRecienllegado(RecienLLegado recienllegado);
 
     byte[] encriptarContraseña(String contraseña);
 

@@ -5,7 +5,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import edu.mondragon.webengl.domain.user.model.Recienllegado;
+import edu.mondragon.webengl.domain.user.model.RecienLLegado;
 
 @Entity
 public class RecienllegadoApuntarseEvento {
@@ -18,7 +18,7 @@ public class RecienllegadoApuntarseEvento {
 
     @ManyToOne
     @JoinColumn(name = "usuarioID", insertable = false, updatable = false)
-    private Recienllegado recienllegado;
+    private RecienLLegado recienllegado;
 
     private LocalDate fechaInscripcion;
 
@@ -52,11 +52,11 @@ public class RecienllegadoApuntarseEvento {
         this.evento = evento;
     }
 
-    public Recienllegado getRecienllegado() {
+    public RecienLLegado getRecienllegado() {
         return recienllegado;
     }
 
-    public void setRecienllegado(Recienllegado recienllegado) {
+    public void setRecienllegado(RecienLLegado recienllegado) {
         this.recienllegado = recienllegado;
     }
 
