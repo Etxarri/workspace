@@ -45,3 +45,12 @@ edu/mondragon/webengl/controller/FAQController.class
 edu/mondragon/webengl/controller/RecursoLocalController.class
 edu/mondragon/webengl/domain/foro/repository/HiloforoRepository.class
 edu/mondragon/webengl/domain/pais/repository/PaisRepository.class
+edu\mondragon\webengl\domain\user\model\Voluntario.class
+edu\mondragon\webengl\domain\user\service\EmailService.class
+edu\mondragon\webengl\domain\user\model\PasswordResetTokenStore$TokenData.class
+edu\mondragon\webengl\domain\user\model\PasswordResetTokenStore.class
+edu\mondragon\webengl\controller\WelcomeController.class
+edu\mondragon\webengl\domain\user\model\RecienLLegado.class
+edu\mondragon\webengl\domain\user\model\PasswordResetTokenStore$1.class
+edu\mondragon\webengl\domain\user\model\User.class
+edu\mondragon\webengl\StartWebApplication.class

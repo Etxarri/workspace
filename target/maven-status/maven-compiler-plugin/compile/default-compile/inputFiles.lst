@@ -45,3 +45,16 @@
 /workspace/src/main/java/edu/mondragon/webengl/seguridad/SeguridadConfig.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/Usuario.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/service/UsuarioServiceImpl.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\service\UserService.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\model\PasswordResetTokenStore.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\ForgotPasswordController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\repository\UserRepositorySQL.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\repository\UserRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\WelcomeController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\service\EmailService.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\UserController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\StartWebApplication.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\model\RecienLLegado.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\LoginController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\model\User.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\model\Voluntario.java
