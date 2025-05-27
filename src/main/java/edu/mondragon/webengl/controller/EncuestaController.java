@@ -30,14 +30,14 @@ public class EncuestaController
     private final EncuestaRepository encuestaRepo;
     private final HacerEncuestaRepository hacerEncuestaRepo;
 
-    private final EncuestaRespuestas encuestaRespuestas;
+    //private final EncuestaRespuestas encuestaRespuestas;
 
-    public EncuestaController(EncuestaRepository encuestaRepo, HacerEncuestaRepository hacerEncuestaRepo, EncuestaRespuestas encuestaRespuestas)
+    public EncuestaController(EncuestaRepository encuestaRepo, HacerEncuestaRepository hacerEncuestaRepo)
     {
         this.encuestaRepo = encuestaRepo;
         this.hacerEncuestaRepo = hacerEncuestaRepo;
 
-        this.encuestaRespuestas = encuestaRespuestas;
+        //this.encuestaRespuestas = encuestaRespuestas;
     }
 
     // Lista todas las encuestas disponibles
@@ -80,7 +80,7 @@ public class EncuestaController
     // Procesar respuestas de la encuesta
     @PostMapping("/{id}/responder")
     public String guardarRespuesta(@PathVariable int id,
-                                   @RequestParam String respuestas, // ajusta según tus datos, por ejemplo JSON o params separados
+                                   @ModelAttribute EncuestaRespuestas encuestaRespuestas, //@RequestParam String respuestas, // ajusta según tus datos, por ejemplo JSON o params separados
                                    HttpSession session,
                                    RedirectAttributes redirectAttrs) {
         Usuario usuario = (Usuario) session.getAttribute("user");
@@ -182,10 +182,8 @@ public class EncuestaController
                      + 1;
         he.setPuntosNavegacional(puntosNav);
         
-        
-
-        double puntosTotal = ((puntosPsi + puntosLin + puntosEco + puntosPol + puntosSoc + puntosNav) - 24) / (120 - 24) * (1 - 0) + 0;
-        he.setPuntosTotal(puntosTotal);
+        double indiceTotal = ((puntosPsi + puntosLin + puntosEco + puntosPol + puntosSoc + puntosNav) - 24) / (120 - 24) * (1 - 0) + 0;
+        he.setPuntosTotal(indiceTotal);
 
 
         hacerEncuestaRepo.save(he);

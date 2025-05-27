@@ -1,7 +1,6 @@
 package edu.mondragon.webengl.domain.encuesta.model;
 
 
-
 public class EncuestaRespuestas
 {
     // Psicológico

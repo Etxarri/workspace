@@ -13,16 +13,16 @@
     <title>Encuesta</title>
 </head>
 <body>
-    <h2>Encuesta de Integración</h2>
-    <div>
-        <form th:action="@{/encuestas/{id}/responder(id=${encuesta.encuestaID})}" th:object="${encuestaRespuestas}" method="post"></form>
+    <h2 class="text-center">Encuesta de Integración</h2>
+    <div class="container-fluid">
+        <form th:action="@{/encuestas/{id}/responder(id=${encuesta.encuestaID})}" th:object="${encuestaRespuestas}" method="post" class="mx-auto"></form>
         <!-- <form th:action="@{/encuesta}" th:object="${encuesta}" method="post"> -->
             
             <br><br>
             <h3>Psicológico</h3>
             <section>
                 <div>
-                    <label>
+                    <label class="form-label">
                         1. ¿Qué tan conectado te sientes con España?
                     </label><br>
                     <input type="radio" name="PSI_1" value="5" th:field="*{psicologicoConexion}"> Siento una conexión extremadamente estrecha.<br>
@@ -33,7 +33,7 @@
                 </div>
                 
                 <div>
-                    <label>
+                    <label class="form-label">
                         2.¿Con qué frecuencia te sientes como un extraño en España?
                     </label><br>
                     <input type="radio" name="PSI_2" value="5" th:field="*{psicologicoExtranjero}"> Nunca.<br>
@@ -44,7 +44,7 @@
                 </div>
 
                 <div>
-                    <label>
+                    <label class="form-label">
                         3. ¿Dónde quieres vivir?
                     </label><br>
                     <input type="radio" name="PSI_3" value="5" th:field="*{psicologicoDeseoVivir}"> Definitivamente quiero vivir en España por el resto de mi vida.<br>
@@ -55,7 +55,7 @@
                 </div>
 
                 <div>
-                    <label>
+                    <label class="form-label">
                         4. ¿Con qué frecuencia te sientes aislado?
                     </label><br>
                     <input type="radio" name="PSI_4" value="5" th:field="*{psicologicoAislamiento}"> Nunca.<br>
@@ -70,7 +70,7 @@
             <h3>Lingüístico</h3>
             <section>
                 <div>
-                    <label>
+                    <label class="form-label">
                         1. Lectura
                     </label><br>
                     <input type="radio" name="LIN_1" value="5" th:field="*{linguisticoLectura}"> Muy bien.<br>
@@ -81,7 +81,7 @@
                 </div>
 
                 <div>
-                    <label>
+                    <label class="form-label">
                         2. Conversación
                     </label><br>
                     <input type="radio" name="LIN_2" value="5" th:field="*{linguisticoConversacion}"> Muy bien.<br>
@@ -92,7 +92,7 @@
                 </div>
 
                 <div>
-                    <label>
+                    <label class="form-label">
                         3. Escritura
                     </label><br>
                     <input type="radio" name="LIN_3" value="5" th:field="*{linguisticoEscritura}"> Muy bien.<br>
@@ -103,7 +103,7 @@
                 </div>
 
                 <div>
-                    <label>
+                    <label class="form-label">
                         4. Escucha
                     </label><br>
                     <input type="radio" name="LIN_4" value="5" th:field="*{linguisticoEscucha}"> Muy bien.<br>
@@ -117,8 +117,8 @@
             <br><br>
             <h3>Económico</h3>
             <section>
-                </div>
-                    <label>
+                <div>
+                    <label class="form-label">
                         1. ¿Cuál es el ingreso anual total de su hogar (antes de impuestos y deducciones) de todas las fuentes? 
                         Si no conoce la cifra exacta, por favor dé una estimación. Su hogar incluye a todas las personas con 
                         las que comparte un apartamento o casa y con las que también está relacionado nacimiento, matrimonio, 
@@ -132,7 +132,7 @@
                 </div>
 
                 <div>
-                    <label>
+                    <label class="form-label">
                         2. ¿Cuál de estas descripciones se aplica mejor a lo que has estado haciendo durante las últimas cuatro semanas?
                         Por favor, seleccione solo uno.
                     </label><br>
@@ -148,17 +148,17 @@
                 </div>
 
                 <div>
-                    <label>
+                    <label class="form-label">
                         3. Indique si su hogar actualmente puede o no puede permitirse pagar un gasto inesperado, pero necesario, de…
                     </label><br>
-                    • 400€ <br><input type="radio" name="ECO_3" value="1" th:field="*{economicoGasto400}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{economicoGasto}"> No.<br>
-                    • 800€ <br><input type="radio" name="ECO_3" value="1" th:field="*{economicoGasto800}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{economicoGasto}"> No.<br>
-                    • 8.000€ <br><input type="radio" name="ECO_3" value="1" th:field="*{economicoGasto8000}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{economicoGasto}"> No.<br>
-                    • 40.000€ <br><input type="radio" name="ECO_3" value="1" th:field="*{economicoGasto40000}"> Sí. <input type="radio" name="puntuacion" value="0" th:field="*{economicoGasto}"> No.<br><br>
+                    • 400€ <br><input type="radio" name="ECO_3_1" value="1" th:field="*{economicoGasto400}"> Sí. <input type="radio" name="ECO_3_1" value="0" th:field="*{economicoGasto400}"> No.<br>
+                    • 800€ <br><input type="radio" name="ECO_3_2" value="1" th:field="*{economicoGasto800}"> Sí. <input type="radio" name="ECO_3_2" value="0" th:field="*{economicoGasto800}"> No.<br>
+                    • 8.000€ <br><input type="radio" name="ECO_3_3" value="1" th:field="*{economicoGasto8000}"> Sí. <input type="radio" name="ECO_3_3" value="0" th:field="*{economicoGasto8000}"> No.<br>
+                    • 40.000€ <br><input type="radio" name="ECO_3_4" value="1" th:field="*{economicoGasto40000}"> Sí. <input type="radio" name="ECO_3_4" value="0" th:field="*{economicoGasto40000}"> No.<br><br>
                 </div>
 
                 <div>
-                    <label>
+                    <label class="form-label">
                         4. ¿Qué tan satisfecho está con su situación laboral actual? Tu situación laboral se refiere a la respuesta que diste en una pregunta anterior 
                         (ya sea en un trabajo remunerado, en la escuela, desempleado, enfermos o discapacitados permanentes, jubilados, en el ejército, en servicio comunitario, 
                         haciendo tareas domésticas no remuneradas, cuidando niños u otras personas, u otra condición).
@@ -175,7 +175,7 @@
             <h3>Político</h3>
             <section>
                 <div>
-                    <label>
+                    <label class="form-label">
                         1. ¿Qué tan bien entiende los importantes problemas políticos que enfrenta España?
                     </label><br>
                     <input type="radio" name="POL_1" value="5" th:field="*{politicoComprension}"> Muy bien.<br>
@@ -186,7 +186,7 @@
                 </div>
 
                 <div>
-                    <label>
+                    <label class="form-label">
                         2. En los últimos 12 meses, ¿Con qué frecuencia ha discutido con otras personas 
                         los principales problemas políticos que enfrenta España?
                     </label><br>
@@ -198,14 +198,14 @@
                 </div>
 
                 <div>
-                    <label>
+                    <label class="form-label">
                         3. Ahora nos gustaría hacerle algunas preguntas sobre las políticas públicas y la actualidad. 
                         Por favor, responda a estas preguntas de memoria, sin buscar las respuestas ni preguntar a otra persona. 
                         No mucha gente puede responder a cada pregunta correctamente, y estaríamos muy agradecidos si respondiera a las preguntas lo mejor que pueda.
                     </label><br>
                     
                     <div>
-                        <label>
+                        <label class="form-label">
                             a) En política, a menudo se habla de una dimensión izquierda-derecha. ¿Podría decirnos si la siguiente frase es cierta o no? 
                             La pregunta selecciona aleatoriamente una de las dos oraciones a continuación:
                         </label><br>
@@ -214,7 +214,7 @@
                     </div>
 
                     <div>
-                        <label>
+                        <label class="form-label">
                             b) ¿A cuál de los siguientes partidos pertenece el actual presidente de España?
                         </label><br>
                         <input type="radio" name="POL_3_2" value="1" th:field="*{politicoPresidentePartido}"> PSOE.<br>
@@ -224,7 +224,7 @@
                     </div>
 
                     <div>
-                        <label>
+                        <label class="form-label">
                             c) ¿Cuál de los siguientes partidos ocupa el mayor número de escaños en el Senado de España?
                         </label><br>
                         <input type="radio" name="POL_3_3" value="1" th:field="*{politicoSenadoPartido}"> PSOE.<br>
@@ -234,7 +234,7 @@
                     </div>
 
                     <div>
-                        <label>
+                        <label class="form-label">
                             d) ¿Cuál es la edad mínima que debe tener una persona para votar en unas elecciones generales en España?
                         </label><br>
                         <select name="POL_3_4" class="form-select" required>
@@ -251,7 +251,7 @@
                 </div>
 
                 <div>
-                    <label>
+                    <label class="form-label">
                         4. Hay diferentes maneras de tratar de mejorar las cosas en España o ayudar a evitar que las cosas salgan mal. 
                         Durante en los últimos 12 meses, ¿Ha realizado alguna de las siguientes acciones? ¿Has...
                     </label><br>
@@ -284,7 +284,7 @@
             <h3>Social</h3>
             <section>
                 <div>
-                    <label>
+                    <label class="form-label">
                         1. En los últimos 12 meses, ¿Con qué frecuencia cenó con Españoles que no son parte de su familia?
                     </label><br>
                     <input type="radio" name="SOC_1" value="1" th:field="*{socialCenaEspanoles}"> Nunca.<br>
@@ -295,7 +295,7 @@
                 </div>
 
                 <div>
-                    <label>
+                    <label class="form-label">
                         2. Piense en los Españoles en su libreta de direcciones o en sus contactos telefónicos. 
                         ¿Con cuántos de ellos tuviste una conversación, ya sea por teléfono, chat de mensajería o intercambio de mensajes de texto, en las últimas 4 semanas?
                     </label><br>
@@ -307,7 +307,7 @@
                 </div>
 
                 <div>
-                    <label>
+                    <label class="form-label">
                         3. Las personas a veces participan en diferentes tipos de grupos o asociaciones. Para cada grupo que se enumera a continuación, 
                         ¿Con qué frecuencia participa en una actividad grupal?<br>
                     </label>
@@ -341,15 +341,15 @@
                     <input type="radio" name="SOC_3_1D" value="1" th:field="*{socialParticipacionGrupoD}"> No pertenezco ni participo.<br><br>
 
                     <p>• Otra organización voluntaria.</p>
-                    </label><br>
                     <input type="radio" name="SOC_3_1E" value="5" th:field="*{socialParticipacionGrupoE}"> Participo al menos una vez por semana.<br>
                     <input type="radio" name="SOC_3_1E" value="4" th:field="*{socialParticipacionGrupoE}"> Participo al menos una vez al mes.<br>
                     <input type="radio" name="SOC_3_1E" value="3" th:field="*{socialParticipacionGrupoE}"> Participo al menos una vez al año.<br>
                     <input type="radio" name="SOC_3_1E" value="2" th:field="*{socialParticipacionGrupoE}"> Pertenezco, pero no participo activamente.<br>
                     <input type="radio" name="SOC_3_1E" value="1" th:field="*{socialParticipacionGrupoE}"> No pertenezco ni participo.<br><br>
-
+                    </label><br>
+                    
                     <div>
-                        <label>
+                        <label class="form-label">
                             Si piensas en los miembros de los grupos en los que participas, ¿Cuántos de ellos son españoles? Las opciones de respuesta son:
                         </label>
 
@@ -391,7 +391,7 @@
                 </div>
 
                 <div>
-                    <label>
+                    <label class="form-label">
                         4. Muchas personas se ayudan mutuamente con favores cotidianos, como conseguir que los lleven, pedir prestado un poco de dinero o cuidar niños. 
                         En los últimos 12 meses, ¿Con qué frecuencia ha proporcionado tales favores a los Españoles?
                     </label><br>
@@ -407,7 +407,7 @@
             <h3>Navegacional</h3>
             <section>
                 <div>
-                    <label>
+                    <label class="form-label">
                         1. En este país, ¿Qué tan difícil o fácil sería para ti realizar una consulta médica?
                     </label><br>
                     <input type="radio" name="NAV_1" value="1" th:field="*{navegacionalConsultaMedica}"> Muy difícil.<br>
@@ -417,7 +417,7 @@
                     <input type="radio" name="NAV_1" value="5" th:field="*{navegacionalConsultaMedica}"> Muy fácil.<br><br>
                 </div>
                 <div>
-                    <label>
+                    <label class="form-label">
                         2. En este país, ¿Qué tan difícil o fácil sería para ti buscar un empleo (encontrar ofertas)?
                     </label><br>
                     <input type="radio" name="NAV_2" value="1" th:field="*{navegacionalBuscarEmpleo}"> Muy difícil.<br>
@@ -427,7 +427,7 @@
                     <input type="radio" name="NAV_2" value="5" th:field="*{navegacionalBuscarEmpleo}"> Muy fácil.<br><br>
                 </div>
                 <div>
-                    <label>
+                    <label class="form-label">
                         3. En este país, ¿Qué tan difícil o fácil sería para ti obtener ayuda con problemas legales?
                     </label><br>
                     <input type="radio" name="NAV_3" value="1" th:field="*{navegacionalAyudaLegal}"> Muy difícil.<br>
@@ -437,14 +437,14 @@
                     <input type="radio" name="NAV_3" value="5" th:field="*{navegacionalAyudaLegal}"> Muy fácil.<br><br>
                 </div>
                 <div>
-                    <label>
+                    <label class="form-label">
                         4. Ahora nos gustaría hacerle algunas preguntas sobre la vida diaria en España. 
                         Por favor, responda a estas preguntas de memoria, sin buscar las respuestas ni preguntar a otra persona. 
                         No mucha gente puede responder a cada pregunta correctamente, y estaríamos muy agradecidos si respondiera a las preguntas lo mejor que pueda.
                     </label><br>
 
                     <div>
-                        <label>
+                        <label class="form-label">
                             a) ¿Cuántas bebidas (una lata o vaso de cerveza, un vaso de vino o un trago de licor), en aproximadamente una hora, 
                             puede ingerir una persona promedio antes de estar demasiado intoxicada para conducir un automóvil legalmente?
                         </label><br>
@@ -456,7 +456,7 @@
                     </div>
 
                     <div>
-                        <label>
+                        <label class="form-label">
                             b) ¿Cómo suele pagar la mayoría de los habitantes de España sus impuestos sobre la renta?
                         </label><br>
                         <input type="radio" name="NAV_4_2" value="0" th:field="*{navegacionalPagoImpuestos}"> Los impuestos se deducen automáticamente de los cheques de pago y no es necesaria una presentación especial.<br>
@@ -467,7 +467,7 @@
                     </div>
 
                     <div>
-                        <label>
+                        <label class="form-label">
                             c) Si enviara una carta a España, ¿Cuál es la manera correcta de escribir la dirección en el sobre? 
                             Seleccione un formato de la lista a continuación.
                         </label><br>
@@ -479,7 +479,7 @@
                     </div>
 
                     <div>
-                        <label>
+                        <label class="form-label">
                             d) En España, ¿Cómo se debe buscar ayuda médica para una afección como el dolor de espalda crónico?
                         </label><br>
                         <input type="radio" name="NAV_4_4" value="0" th:field="*{navegacionalAyudaMedicaCronica}"> Llamar a una ambulancia.<br>
@@ -491,7 +491,7 @@
                 </div>
             </section>
 
-            <button type="submit" class="btn-primary">Enviar</button>
+            <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
     </div>
 </body>
