@@ -36,7 +36,7 @@ public class ForgotPasswordController {
 
     @GetMapping("/forgot-password")
     public String showForgotPasswordForm() {
-        return "forgotPassword";
+        return "forgotpassword/forgotPassword";
     }
 
     @PostMapping("/forgot-password")
@@ -59,7 +59,7 @@ public class ForgotPasswordController {
 
     @GetMapping("/verify-code")
     public String showVerifyCodePage() {
-        return "verifyCode";
+        return "forgotpassword/verifyCode";
     }
 
     @PostMapping("/verify-code")
@@ -80,7 +80,7 @@ public class ForgotPasswordController {
     @GetMapping("/reset-password")
     public String showResetPasswordForm(@ModelAttribute("email") String email, Model model) {
         model.addAttribute("email", email);
-        return "resetPassword";
+        return "forgotpassword/resetPassword";
     }
 
     @PostMapping("/reset-password")

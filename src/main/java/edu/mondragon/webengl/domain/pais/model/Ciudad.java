@@ -39,5 +39,35 @@ public class Ciudad {
         this.ciudadID = ciudadID;
     }
 
-    
+    public int getComunidadAutonoma() {
+        return comunidadAutonoma.getComunidadID();
+    }
+
+    public void setComunidadAutonoma(ComunidadAutonoma comunidadAutonoma) {
+        this.comunidadAutonoma = comunidadAutonoma;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
 }

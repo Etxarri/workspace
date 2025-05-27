@@ -1,6 +1,7 @@
 package edu.mondragon.webengl.controller;
 
 
+import edu.mondragon.webengl.domain.categoria.repository.CategoriaRepository;
 import edu.mondragon.webengl.domain.evento.repository.EventoLocalRepository;
 import edu.mondragon.webengl.domain.recurso.model.RecursoLocal;
 import edu.mondragon.webengl.domain.recurso.repository.RecursoLocalRepository;
@@ -22,29 +23,40 @@ public class RecursoLocalController {
 
     private final RecursoLocalRepository recursoLocalRepository;
     private final UsuarioRepository usuarioRepository;
+    private final CategoriaRepository categoriaRepository;
 
     public RecursoLocalController(RecursoLocalRepository recursoLocalRepository,
                                 EventoLocalRepository eventoLocalRepository,
-                                UsuarioRepository usuarioRepository) {
+                                UsuarioRepository usuarioRepository,
+                                CategoriaRepository categoriaRepository) {
         this.recursoLocalRepository = recursoLocalRepository;
         this.usuarioRepository = usuarioRepository;
+        this.categoriaRepository = categoriaRepository;
+
     }
 
     @GetMapping("/ciudadInfo")
-    public String mostrarInformacionCiudad(Model model, Principal principal, @RequestParam(value = "categoria", required = false) String categoria) {
+    public String mostrarInformacionCiudad(Model model, Principal principal, @RequestParam(value = "categoria", required = false) Integer categoriaId) {
         String username = principal.getName();
         Usuario usuario = usuarioRepository.findByUsername(username).orElse(null);
         if (usuario == null) {
             return "redirect:/login/logged";
         }
-        System.out.println("not null");
-        int ciudadId = usuario.getCiudad().getCiudadID();
+        int comunidadId = usuario.getCiudad().getComunidadAutonoma();
 
-        List<RecursoLocal> recursos = recursoLocalRepository.findByCiudad_CiudadID(ciudadId);
+        List<RecursoLocal> recursos;
+        System.out.println("comunidadId:" + comunidadId + " " +  "categoriaId:" + categoriaId);
+        if (categoriaId != null && categoriaId != 0) {
+            recursos = recursoLocalRepository.findByCiudad_ComunidadAutonoma_ComunidadIDAndCategoria_CategoriaID(comunidadId, categoriaId);
+        } else {
+            recursos = recursoLocalRepository.findByCiudad_ComunidadAutonoma_ComunidadID(comunidadId);
+        }
 
         model.addAttribute("usuario", usuario);
         model.addAttribute("recursos", recursos);
-        return "ciudadInfo";
+        model.addAttribute("categorias", categoriaRepository.findAll());
+        model.addAttribute("categoriaSeleccionada", categoriaId);
+        return "recursolocal/ciudadInfo";
     }
 
     // Mostrar todos los recursos

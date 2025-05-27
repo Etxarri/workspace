@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class ForosController {
     @GetMapping("/forosPrincipal")
     public String mostrarForosPrincipal() {
-        return "forosPrincipal";
+        return "foros/forosPrincipal";
     }
 
     @GetMapping("/foros/{foro}")
     public String mostrarForoSecundario(@PathVariable String foro, Model model) {
         model.addAttribute("foro", foro);
         // Puedes añadir más atributos según el foro si quieres
-        return "forosSecundario";
+        return "foros/forosSecundario";
     }
     
 }

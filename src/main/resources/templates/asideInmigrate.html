@@ -1,0 +1,15 @@
+<head>
+    <link rel="stylesheet" href="/css/main.css">
+    <!--script src="/js/asideScript.js"></script-->
+</head>
+
+<div th:fragment="aside">
+    <div class="list-group">
+        <!--a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+            The current link item
+        </a-->
+        <a class="list-group-item list-group-item-action"th:href="@{/login/logout}">Logout</a>
+        <a href="#" class="list-group-item list-group-item-action">Encuestas</a>
+        <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1">Perfil</a>
+    </div>
+</div>

@@ -27,7 +27,7 @@ public class LoginController {
         if (error != null) {
             model.addAttribute("error", "Usuario o contraseña incorrectos.");
         }
-        return "login"; // muestra el login.html
+        return "login/login"; // muestra el login.html
     }
 /*
     @PostMapping
@@ -51,7 +51,7 @@ public class LoginController {
 */
     @GetMapping("/logged")
     public String logged() {
-        return "logged"; // Busca logged.html en templates
+        return "login/logged"; // Busca logged.html en templates
     }
     @GetMapping("/logout")
     public String logout(HttpSession session, RedirectAttributes redirectAttributes) {

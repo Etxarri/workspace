@@ -9,6 +9,6 @@ public class WelcomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        return "login"; // esto busca login.html en templates
+        return "/login/login"; // esto busca login.html en templates
     }
 }
