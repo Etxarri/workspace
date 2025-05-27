@@ -3,8 +3,10 @@ package edu.mondragon.webengl.domain.encuesta.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "encuesta")
 public class Encuesta {
     @Id
     private int encuestaID;
