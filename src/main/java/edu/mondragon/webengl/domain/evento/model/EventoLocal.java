@@ -6,25 +6,28 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import edu.mondragon.webengl.domain.categoria.model.Categoria;
 import edu.mondragon.webengl.domain.pais.model.Ciudad;
 import edu.mondragon.webengl.domain.user.model.Voluntario;
 
 @Entity
+@Table(name = "eventolocal")
 public class EventoLocal {
     @Id
     private int eventoID;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "ciudadID", nullable = false)
     private Ciudad ciudad;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "categoriaID", nullable = false)
     private Categoria categoria;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "usuarioID", nullable = false)
     private Voluntario usuario;
 
     @Column(nullable = false)

@@ -29,6 +29,15 @@ public class Ciudad {
 
     @OneToMany(mappedBy = "ciudad")
     private List<Usuario> usuarios;
-
     // getters y setters
+
+    public int getCiudadID() {
+        return ciudadID;
+    }
+
+    public void setCiudadID(int ciudadID) {
+        this.ciudadID = ciudadID;
+    }
+
+    
 }
