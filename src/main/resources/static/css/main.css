@@ -8,7 +8,7 @@
 
 body{
   background-color:rgb(140, 207, 240);
-  font-family: 'Poppings', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 form{
@@ -74,13 +74,56 @@ a {
    color: #343a40 !important;
 }
 
+<<<<<<< HEAD
 .card-temas{
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.15); 
     border-radius: 1rem;
+=======
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+>>>>>>> acf4954429cb706265e8c2c198361e072c123967
 }
 
 .card:hover {
   transform: translateY(-5px);
+<<<<<<< HEAD
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
 }
+=======
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.custom-card {
+  max-width: 1400px !important;
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  padding: 16px; /* Añade margen interno a la carta */
+  background: #fff;
+}
+
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: #fff;
+}
+
+.custom-img {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin: 16px 0 16px 16px; /* margen: arriba, derecha, abajo, izquierda */
+}
+
+.object-fit-cover {
+  object-fit: cover;
+}
+
+>>>>>>> acf4954429cb706265e8c2c198361e072c123967
