@@ -9,14 +9,6 @@
 <body>
     <div th:replace="headerInmigrante :: header"></div>
 
-    <form method="get" th:action="@{/ciudadInfo}">
-        <label for="categoria">Elige una categoría:</label>
-        <select name="categoria" id="categoria">
-            <option th:each="cat : ${categorias}" th:value="${cat}" th:text="${cat}"></option>
-        </select>
-        <button type="submit">Buscar</button>
-    </form>
-
     <h3>📚 Recursos Locales</h3>
     <ul>
         <li th:each="recurso : ${recursos}">
