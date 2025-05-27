@@ -41,9 +41,8 @@ public class LoginController {
             return "logged.html"; // redirige a logged.html
         } else {
             System.out.println("Error al entrar el usuario: " + username + " con la contraseña: " + password);
-            redirectAttributes.addFlashAttribute("error", "error.login");
+            redirectAttributes.addFlashAttribute("error", "Error al iniciar sesión. Verifica tus credenciales.");
             return "redirect:/login";
-
         }
     }
 
