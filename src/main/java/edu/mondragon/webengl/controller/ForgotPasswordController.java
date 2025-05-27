@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import edu.mondragon.webengl.domain.pais.repository.CiudadRepository;
-import edu.mondragon.webengl.domain.pais.repository.PaisRepository;
 import edu.mondragon.webengl.domain.user.model.PasswordResetTokenStore;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 
-import edu.mondragon.webengl.domain.user.repository.UsuarioRepository;
 import edu.mondragon.webengl.domain.user.service.EmailService;
 import edu.mondragon.webengl.domain.user.service.UsuarioService;
 
