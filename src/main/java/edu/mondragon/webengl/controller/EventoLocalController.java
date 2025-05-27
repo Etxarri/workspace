@@ -45,7 +45,7 @@ public class EventoLocalController {
         return "eventos/lista"; // Vista Thymeleaf con el listado
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{eventoId}")
     public String detalleEvento(@PathVariable int id, Model model) {
         Optional<EventoLocal> eventoOpt = eventoRepo.findById(id);
         if (eventoOpt.isPresent()) {
@@ -56,11 +56,11 @@ public class EventoLocalController {
         }
     }
 
-    @PostMapping("/{id}/apuntarse")
+    @PostMapping("/{eventoId}/apuntarse")
     public String apuntarseEvento(@PathVariable int id, HttpSession session, RedirectAttributes redirectAttrs) {
         Usuario usuario = (Usuario) session.getAttribute("user");
 
-        if (usuario.getTipo().equals("recienllegado")) {
+        if (!usuario.getTipo().equals("recienllegado")) {
             redirectAttrs.addFlashAttribute("error", "Solo los recién llegados pueden apuntarse.");
             return "redirect:/eventos";
         }

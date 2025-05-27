@@ -89,29 +89,33 @@ a {
   border-radius: 1rem;
   overflow: hidden;
   padding: 16px; /* Añade margen interno a la carta */
-  background: #fff;
 }
 
 .image-container {
   display: flex;
-  align-items: center;
+  align-items: stretch; /* Cambia a stretch para que la imagen ocupe toda la altura */
   justify-content: center;
   height: 100%;
-  background: #fff;
 }
 
 .custom-img {
   max-width: 300px;
+  min-width: 200px;
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 0.75rem;
   object-fit: cover;
   display: block;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  margin: 16px 0 16px 16px; /* margen: arriba, derecha, abajo, izquierda */
+  margin: 16px 16px 16px 0px;
+  min-height: 150px;
 }
 
 .object-fit-cover {
   object-fit: cover;
 }
+
+.card-title {
+  font-weight: bolder;
+}
+
 
