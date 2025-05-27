@@ -5,9 +5,12 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import edu.mondragon.webengl.domain.user.model.Recienllegado;
 
 @Entity
+@Table(name = "recienllegado_apuntarse_evento")
 public class RecienllegadoApuntarseEvento {
     @EmbeddedId
     private RecienllegadoEventoId id;

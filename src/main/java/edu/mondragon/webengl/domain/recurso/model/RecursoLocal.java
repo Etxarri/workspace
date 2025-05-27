@@ -5,20 +5,23 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import edu.mondragon.webengl.domain.categoria.model.Categoria;
 import edu.mondragon.webengl.domain.pais.model.Ciudad;
 
 @Entity
+@Table(name = "recursolocal")
 public class RecursoLocal {
     @Id
     private int recursoID;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "categoriaID", nullable = false)
     private Categoria categoria;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "ciudadID", nullable = false)
     private Ciudad ciudad;
 
     @Column(nullable = false)

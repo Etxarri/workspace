@@ -3,11 +3,9 @@ package edu.mondragon.webengl.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.service.UsuarioService;
 //import edu.mondragon.webengl.helper.ControllerHelper;
 import javax.servlet.http.HttpSession;
@@ -33,7 +31,7 @@ public class LoginController {
     }
 /*
     @PostMapping
-    public String login(@RequestParam String username, 
+    public String login(@RequestParam String username,
                         @RequestParam String password,
                         HttpSession session, 
                         RedirectAttributes redirectAttributes) {
@@ -46,9 +44,8 @@ public class LoginController {
             return "logged.html"; // redirige a logged.html
         } else {
             System.out.println("Error al entrar el usuario: " + username + " con la contraseña: " + password);
-            redirectAttributes.addFlashAttribute("error", "error.login");
+            redirectAttributes.addFlashAttribute("error", "Error al iniciar sesión. Verifica tus credenciales.");
             return "redirect:/login";
-
         }
     }
 */

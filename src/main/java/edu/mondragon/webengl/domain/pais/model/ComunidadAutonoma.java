@@ -26,5 +26,39 @@ public class ComunidadAutonoma {
     @OneToMany(mappedBy = "comunidadAutonoma")
     private List<Ciudad> ciudades;
 
+    public int getComunidadID() {
+        return comunidadID;
+    }
+
+    public void setComunidadID(int comunidadID) {
+        this.comunidadID = comunidadID;
+    }
+
+    public Pais getPais() {
+        return pais;
+    }
+
+    public void setPais(Pais pais) {
+        this.pais = pais;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public List<Ciudad> getCiudades() {
+        return ciudades;
+    }
+
+    public void setCiudades(List<Ciudad> ciudades) {
+        this.ciudades = ciudades;
+    }
+
     // getters y setters
+
+    
 }
