@@ -56,7 +56,7 @@ public class RecursoLocalController {
         model.addAttribute("recursos", recursos);
         model.addAttribute("categorias", categoriaRepository.findAll());
         model.addAttribute("categoriaSeleccionada", categoriaId);
-        return "ciudadInfo";
+        return "recursolocal/ciudadInfo";
     }
 
     // Mostrar todos los recursos

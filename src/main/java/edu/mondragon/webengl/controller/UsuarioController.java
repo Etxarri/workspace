@@ -31,7 +31,7 @@ public class UsuarioController {
 
     @GetMapping("/crear")
     public String showForm() {
-        return "userForm"; // Nombre del archivo Thymeleaf para el formulario
+        return "user/userForm"; // Nombre del archivo Thymeleaf para el formulario
     }
 
     @PostMapping("/crear")
