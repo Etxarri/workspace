@@ -74,23 +74,14 @@ a {
    color: #343a40 !important;
 }
 
-<<<<<<< HEAD
 .card-temas{
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.15); 
     border-radius: 1rem;
-=======
-.card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
->>>>>>> acf4954429cb706265e8c2c198361e072c123967
 }
 
 .card:hover {
   transform: translateY(-5px);
-<<<<<<< HEAD
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
-}
-=======
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
@@ -126,4 +117,3 @@ a {
   object-fit: cover;
 }
 
->>>>>>> acf4954429cb706265e8c2c198361e072c123967

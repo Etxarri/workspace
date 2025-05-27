@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-edu/mondragon/webengl/domain/user/repository/UserRepositorySQL.class
-edu/mondragon/webengl/domain/user/repository/UserRepository.class
-edu/mondragon/webengl/domain/user/service/UserService.class
-edu/mondragon/webengl/domain/user/model/User.class
-edu/mondragon/webengl/domain/user/model/Voluntario.class
-edu/mondragon/webengl/domain/user/model/RecienLLegado.class
-edu/mondragon/webengl/controller/UserController.class
-edu/mondragon/webengl/StartWebApplication.class
-edu/mondragon/webengl/controller/LoginController.class
-edu/mondragon/webengl/controller/WelcomeController.class
-=======
 edu/mondragon/webengl/domain/evento/model/EventoLocal.class
 edu/mondragon/webengl/domain/user/model/Usuario.class
 edu/mondragon/webengl/domain/encuesta/model/HacerEncuestaId.class
@@ -63,4 +51,3 @@ edu/mondragon/webengl/controller/FAQController.class
 edu/mondragon/webengl/controller/RecursoLocalController.class
 edu/mondragon/webengl/domain/foro/repository/HiloforoRepository.class
 edu/mondragon/webengl/domain/pais/repository/PaisRepository.class
->>>>>>> acf4954429cb706265e8c2c198361e072c123967

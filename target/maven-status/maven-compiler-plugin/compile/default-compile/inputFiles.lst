@@ -2,6 +2,7 @@
 /workspace/src/main/java/edu/mondragon/webengl/controller/UsuarioController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/RecienllegadoRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/evento/model/EventoLocal.java
+/workspace/src/main/java/edu/mondragon/webengl/controller/ForosController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/repository/CiudadRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/repository/ComunidadAutonomaRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/preguntafrecuente/model/PreguntaFrecuente.java
@@ -30,14 +31,9 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/Recienllegado.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/UsuarioRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/WelcomeController.java
-<<<<<<< HEAD
-/workspace/src/main/java/edu/mondragon/webengl/domain/user/service/UserService.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/ForosController.java
-=======
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/Encuesta.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/FAQController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/repository/HacerEncuestaRepository.java
->>>>>>> acf4954429cb706265e8c2c198361e072c123967
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/Voluntario.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/model/Ciudad.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/EncuestaController.java
