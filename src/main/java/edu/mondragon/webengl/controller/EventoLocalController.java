@@ -6,7 +6,6 @@ import edu.mondragon.webengl.domain.evento.model.RecienllegadoApuntarseEvento;
 import edu.mondragon.webengl.domain.evento.model.RecienllegadoEventoId;
 import edu.mondragon.webengl.domain.evento.repository.EventoLocalRepository;
 import edu.mondragon.webengl.domain.evento.repository.RecienllegadoApuntarseEventoRepository;
-import edu.mondragon.webengl.domain.user.model.RecienLLegado;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.repository.RecienllegadoRepository;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -65,9 +64,8 @@ public class EventoLocalController {
             System.out.println("Usuario no es recienllegado: " + user.getTipo());
             return "redirect:/eventos";
         }
-        Recienllegado recien = recienllegadoRepo.findById(user.getUsuarioID()).orElse(null);
 
-        RecienllegadoEventoId compuesta = new RecienllegadoEventoId(recien.getUsuarioID(), eventoID);
+        RecienllegadoEventoId compuesta = new RecienllegadoEventoId(user.getUsuarioID(), eventoID);
 
         if (inscripcionRepo.existsById(compuesta)) {
             redirectAttrs.addFlashAttribute("info", "Ya estás apuntado a este evento.");

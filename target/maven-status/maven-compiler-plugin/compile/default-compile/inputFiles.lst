@@ -37,6 +37,7 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/repository/HacerEncuestaRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/Voluntario.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/model/Ciudad.java
+/workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/EncuestaRespuestas.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/EncuestaController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/model/Pais.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/recurso/model/RecursoLocal.java
