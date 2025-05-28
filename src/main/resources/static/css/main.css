@@ -13,12 +13,15 @@ body{
 
 }
 
+.borrar {
+    display: none !important;
+}
+
 form{
   width: 24%;
   background-color: whitesmoke;
   padding: 50px;
   border-radius: 20px;
-  margin-top: 150px;
 }
 
 .btn-primary{
@@ -76,8 +79,6 @@ a {
    color: #343a40 !important;
 }
 
-
-
 #toggleAside {/* PARA LOS ICONOS BOOTSTRAP*/
     font-size: 1.5rem; /* o 2rem o el tamaño que necesites */
     cursor: pointer;
@@ -101,6 +102,13 @@ a {
   overflow: hidden;
   padding: 16px; /* Añade margen interno a la carta */
   background: #fff;
+}
+
+.container-fluid {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .image-container {

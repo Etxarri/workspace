@@ -30,7 +30,8 @@ public class RecursoLocal {
     private String descripcion;
     private String direccion;
     private String telefono;
-    private java.sql.Time horario;
+    private java.sql.Time hora_abierto;
+    private java.sql.Time hora_cerrado;
     public int getRecursoID() {
         return recursoID;
     }
@@ -73,12 +74,19 @@ public class RecursoLocal {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    public java.sql.Time getHorario() {
-        return horario;
+    public java.sql.Time getHora_abierto() {
+        return hora_abierto;
     }
-    public void setHorario(java.sql.Time horario) {
-        this.horario = horario;
+    public void setHora_abierto(java.sql.Time hora_abierto) {
+        this.hora_abierto = hora_abierto;
     }
+    public java.sql.Time getHora_cerrado() {
+        return hora_cerrado;
+    }
+    public void setHora_cerrado(java.sql.Time hora_cerrado) {
+        this.hora_cerrado = hora_cerrado;
+    }
+    
 
     
 }
