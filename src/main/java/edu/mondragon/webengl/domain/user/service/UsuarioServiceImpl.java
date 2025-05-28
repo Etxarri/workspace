@@ -71,7 +71,7 @@ public class UsuarioServiceImpl implements UsuarioService {
      */
 
     @Override
-    public RecienLLegado findRecienllegadoById(int id) {
+    public Recienllegado findRecienllegadoById(int id) {
         return recienllegadoRepository.findById(id).orElse(null);
     }
 
@@ -89,7 +89,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public void guardarRecienllegado(RecienLLegado recien) {
+    public void guardarRecienllegado(Recienllegado recien) {
         recienllegadoRepository.save(recien);
     }
 

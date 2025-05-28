@@ -9,7 +9,7 @@
             "name": "StartWebApplication",
             "request": "launch",
             "mainClass": "edu.mondragon.webengl.StartWebApplication",
-            "projectName": "spring-kaixo-mundua"
+            "projectName": "web-thymeleaf" //spring-kaixo-mundua
         },
         {
             "type": "chrome",
