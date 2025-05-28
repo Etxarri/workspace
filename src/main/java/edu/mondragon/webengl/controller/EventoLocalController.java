@@ -6,7 +6,7 @@ import edu.mondragon.webengl.domain.evento.model.RecienllegadoApuntarseEvento;
 import edu.mondragon.webengl.domain.evento.model.RecienllegadoEventoId;
 import edu.mondragon.webengl.domain.evento.repository.EventoLocalRepository;
 import edu.mondragon.webengl.domain.evento.repository.RecienllegadoApuntarseEventoRepository;
-import edu.mondragon.webengl.domain.user.model.Recienllegado;
+import edu.mondragon.webengl.domain.user.model.RecienLLegado;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.repository.RecienllegadoRepository;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

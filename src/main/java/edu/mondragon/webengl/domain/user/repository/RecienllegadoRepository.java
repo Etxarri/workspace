@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import edu.mondragon.webengl.domain.user.model.Recienllegado;
 
 @Repository
-public interface RecienllegadoRepository extends JpaRepository<Recienllegado, Integer> {
+public interface RecienllegadoRepository extends JpaRepository<Recienllegado, Integer>
+{
 }
-
