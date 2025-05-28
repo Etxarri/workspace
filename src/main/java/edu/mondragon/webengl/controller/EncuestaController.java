@@ -185,11 +185,25 @@ public class EncuestaController
         double indiceTotal = ((puntosPsi + puntosLin + puntosEco + puntosPol + puntosSoc + puntosNav) - 24) / (120 - 24) * (1 - 0) + 0;
         he.setPuntosTotal(indiceTotal);
 
+        puntosPsi = (puntosPsi - 4) / (20 - 4) * (1 - 0) + 0;
+        puntosLin = (puntosLin - 4) / (20 - 4) * (1 - 0) + 0;
+        puntosEco = (puntosEco - 4) / (20 - 4) * (1 - 0) + 0;
+        puntosPol = (puntosPol - 4) / (20 - 4) * (1 - 0) + 0;
+        puntosSoc = (puntosSoc - 4) / (20 - 4) * (1 - 0) + 0;
+        puntosNav = (puntosNav - 4) / (20 - 4) * (1 - 0) + 0;
+
+        redirectAttrs.addFlashAttribute("puntosPsi", puntosPsi);
+        redirectAttrs.addFlashAttribute("puntosLin", puntosLin);
+        redirectAttrs.addFlashAttribute("puntosEco", puntosEco);
+        redirectAttrs.addFlashAttribute("puntosPol", puntosPol);
+        redirectAttrs.addFlashAttribute("puntosSoc", puntosSoc);
+        redirectAttrs.addFlashAttribute("puntosNav", puntosNav);
+
 
         hacerEncuestaRepo.save(he);
 
-        redirectAttrs.addFlashAttribute("mensaje", "Gracias por responder la encuesta");
-        return "redirect:/encuestas";
+        redirectAttrs.addFlashAttribute("mensaje", "¡Gracias por responder la encuesta!");
+        return "redirect:/encuestas/graficoEncuesta";  // o la vista que quieras
+        //return "redirect:/encuestas";
     }
 }
-
