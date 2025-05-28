@@ -24,23 +24,25 @@
         </select>
     </div>
     
-    <div class="container d-flex flex-column align-items-center mt-5" th:each="evento : ${eventos}">
-        <a th:href="@{/eventos/{id}(id=${evento.eventoId})}" class="text-decoration-none w-100 d-flex justify-content-center">
-            <div class="card custom-card shadow mb-4">
-                <div class="d-flex flex-row">
-                    <div class="d-flex align-items-center image-container">
-                        <img th:src="https://picsum.photos/600/400" alt="Imagen evento" class="img-fluid custom-img">
-                    </div>
-                    <div class="card-body d-flex flex-column justify-content-center">
-                        <h5 class="card-title" th:text="${evento.titulo}">Título del evento</h5>
-                        <p class="card-text" th:text="${evento.descripcion}">Descripción del evento</p>
-                        <p class="card-text">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </p>
-                    </div>
+    
+<div class="container d-flex flex-column align-items-center my-5" th:each="evento : ${eventos}">
+    <a th:href="@{/eventos/{eventoID}(eventoID=${evento.eventoID})}" style="text-decoration: none; color: inherit;">
+
+        <div class="card custom-card shadow mb-4 w-100" style="max-width: 900px;">
+            <div class="d-flex flex-row">
+                <div class="d-flex align-items-center image-container">
+                    <img src="https://picsum.photos/600/400" alt="Imagen" class="img-fluid custom-img">
+                </div>
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h5 class="card-title" th:text="${evento.titulo}">Título del evento</h5>
+                    <p class="card-text" th:text="${evento.descripcion}">Descripción</p>
+                    <p class="card-text">
+                        <small class="text-muted" th:text="'Lugar: ' + ${evento.lugar} + ' - Fecha: ' + ${evento.fechaHora}">Fecha y lugar</small>
+                    </p>
                 </div>
             </div>
-        </a>
+        </div>
+    </a>
 </div>
 
     <div class="container d-flex flex-column align-items-center mt-5" th:each="evento : ${eventos}">
@@ -65,40 +67,6 @@
         </a>
     </div>
 
-    <div class="container d-flex justify-content-center my-5">
-        <div class="card custom-card shadow">
-            <div class="d-flex flex-row">
-                <div class="d-flex align-items-center image-container">
-                    <img src="https://picsum.photos/600/400" alt="Imagen" class="img-fluid custom-img">
-                </div>
-                <div class="card-body d-flex flex-column justify-content-center">
-                    <h5 class="card-title">Card title 3</h5>
-                    <p class="card-text">
-                        This is a wider card with supporting text below as a natural lead-in to additional content. 
-                        This content is a little bit longer to demonstrate how the image adjusts to the height of the text.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, voluptatibus. Ab cum inventore eum tempora facilis recusandae debitis. At, aliquid similique! Error hic nulla fuga nobis sequi facere molestias maxime cumque enim quisquam. Impedit blanditiis, officiis error illo id recusandae repellendus adipisci? Voluptas iure molestiae eveniet. Iste dignissimos ex repudiandae dolorum ea? Culpa laboriosam mollitia maiores ipsam consequuntur amet at deleniti? Vitae odio iusto mollitia exercitationem tempora. Explicabo numquam obcaecati nemo quos laudantium minima adipisci neque. Saepe debitis dolore a vero rem adipisci optio, aut molestias odio tenetur amet. Culpa deserunt iusto facere non. Commodi rerum exercitationem aliquid hic reprehenderit.
-                    </p>
-                    <p class="card-text">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-
-    <div class="container mt-5 d-flex justify-content-center">
-        <div class="card custom-card shadow p-3">
-            <img src="https://picsum.photos/800/300" class="card-img-top rounded-top" alt="Sample image">
-            <div class="card-body">
-                <h5 class="card-title">Card title 3</h5>
-                <p class="card-text">
-                    This is a wider card with supporting text below as a natural lead-in to additional content.
-                </p>
-            </div>
-        </div>
-    </div>
-    <div style="height: 80px;"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
