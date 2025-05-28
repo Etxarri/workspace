@@ -15,7 +15,7 @@
       <div class="row g-4">
         <!-- Imagen -->
         <div class="col-md-6 d-flex align-items-center">
-          <img th:src="https://picsum.photos/600/400" class="img-fluid rounded" alt="Imagen del evento">
+          <img th:src="'https://picsum.photos/600/400'" class="img-fluid rounded" alt="Imagen del evento">
         </div>
 
         <!-- Texto -->
@@ -26,7 +26,7 @@
           <!-- Aquí puedes meter más atributos si quieres -->
           <!-- <p><strong>Fecha:</strong> <span th:text="${evento.fecha}"></span></p> -->
 
-          <form th:action="@{/eventos/{id}/apuntarse(id=${evento.eventoId})}" method="post" class="mt-4">
+          <form th:action="@{/eventos/{eventoID}/apuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
             <button class="btn btn-success">Apuntarse</button>
           </form>
         </div>

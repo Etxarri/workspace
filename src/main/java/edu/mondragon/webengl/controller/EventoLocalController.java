@@ -9,6 +9,7 @@ import edu.mondragon.webengl.domain.evento.repository.RecienllegadoApuntarseEven
 import edu.mondragon.webengl.domain.user.model.Recienllegado;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.repository.RecienllegadoRepository;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,40 +46,42 @@ public class EventoLocalController {
         return "eventos/lista"; // Vista Thymeleaf con el listado
     }
 
-    @GetMapping("/{eventoId}")
-    public String detalleEvento(@PathVariable int id, Model model) {
-        Optional<EventoLocal> eventoOpt = eventoRepo.findById(id);
+    @GetMapping("/{eventoID}")
+    public String detalleEvento(@PathVariable("eventoID") int eventoID, Model model) {
+        Optional<EventoLocal> eventoOpt = eventoRepo.findById(eventoID);
         if (eventoOpt.isPresent()) {
             model.addAttribute("evento", eventoOpt.get());
-            return "eventos/detalle";
+            return "evento/evento";
         } else {
             return "redirect:/eventos";
         }
     }
 
-    @PostMapping("/{eventoId}/apuntarse")
-    public String apuntarseEvento(@PathVariable int id, HttpSession session, RedirectAttributes redirectAttrs) {
-        Usuario usuario = (Usuario) session.getAttribute("user");
+    @PostMapping("/{eventoID}/apuntarse")
+    public String apuntarseEvento(@PathVariable("eventoID") int eventoID, @AuthenticationPrincipal Usuario user, HttpSession session, RedirectAttributes redirectAttrs) {
 
-        if (!usuario.getTipo().equals("recienllegado")) {
+        if (!user.getTipo().equals("recienllegado")) {
             redirectAttrs.addFlashAttribute("error", "Solo los recién llegados pueden apuntarse.");
+            System.out.println("Usuario no es recienllegado: " + user.getTipo());
             return "redirect:/eventos";
         }
-        Recienllegado recien = recienllegadoRepo.findById(usuario.getUsuarioID()).orElse(null);
+        Recienllegado recien = recienllegadoRepo.findById(user.getUsuarioID()).orElse(null);
 
-        RecienllegadoEventoId compuesta = new RecienllegadoEventoId(recien.getUsuarioID(), id);
+        RecienllegadoEventoId compuesta = new RecienllegadoEventoId(recien.getUsuarioID(), eventoID);
 
         if (inscripcionRepo.existsById(compuesta)) {
             redirectAttrs.addFlashAttribute("info", "Ya estás apuntado a este evento.");
+            System.out.println("Ya está apuntado al evento: " + eventoID);
         } else {
             RecienllegadoApuntarseEvento inscripcion = new RecienllegadoApuntarseEvento();
             inscripcion.setId(compuesta);
             inscripcion.setFechaInscripcion(LocalDate.now());
             inscripcionRepo.save(inscripcion);
             redirectAttrs.addFlashAttribute("mensaje", "Te has apuntado correctamente.");
+            System.out.println("Apuntado al evento: " + eventoID);
         }
 
-        return "redirect:/eventos/" + id;
+        return "redirect:/eventos/" + eventoID;
     }
 }
 

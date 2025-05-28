@@ -8,6 +8,7 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/preguntafrecuente/model/PreguntaFrecuente.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/PasswordResetTokenStore.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/EventoLocalController.java
+/workspace/src/main/java/edu/mondragon/webengl/internationalization/InternationalizationConfig.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/Hiloforo.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/repository/HiloforoRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/evento/model/RecienllegadoApuntarseEvento.java
