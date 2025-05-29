@@ -8,6 +8,7 @@ import edu.mondragon.webengl.domain.evento.repository.EventoLocalRepository;
 import edu.mondragon.webengl.domain.evento.repository.RecienllegadoApuntarseEventoRepository;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.repository.RecienllegadoRepository;
+import edu.mondragon.webengl.seguridad.UsuarioDetails;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +43,7 @@ public class EventoLocalController {
     public String listarEventos(Model model) {
         List<EventoLocal> eventos = eventoRepo.findAll();
         model.addAttribute("eventos", eventos);
-        return "eventos/lista"; // Vista Thymeleaf con el listado
+        return "login/logged"; // Vista Thymeleaf con el listado
     }
 
     @GetMapping("/{eventoID}")
@@ -57,15 +58,15 @@ public class EventoLocalController {
     }
 
     @PostMapping("/{eventoID}/apuntarse")
-    public String apuntarseEvento(@PathVariable("eventoID") int eventoID, @AuthenticationPrincipal Usuario user, HttpSession session, RedirectAttributes redirectAttrs) {
+    public String apuntarseEvento(@PathVariable("eventoID") int eventoID, @AuthenticationPrincipal UsuarioDetails user, HttpSession session, RedirectAttributes redirectAttrs) {
 
-        if (!user.getTipo().equals("recienllegado")) {
+        if (!user.getUsuario().getTipo().equals("recienllegado")) {
             redirectAttrs.addFlashAttribute("error", "Solo los recién llegados pueden apuntarse.");
-            System.out.println("Usuario no es recienllegado: " + user.getTipo());
+            System.out.println("Usuario no es recienllegado: " + user.getUsuario().getTipo());
             return "redirect:/eventos";
         }
 
-        RecienllegadoEventoId compuesta = new RecienllegadoEventoId(user.getUsuarioID(), eventoID);
+        RecienllegadoEventoId compuesta = new RecienllegadoEventoId(user.getUsuario().getUsuarioID(), eventoID);
 
         if (inscripcionRepo.existsById(compuesta)) {
             redirectAttrs.addFlashAttribute("info", "Ya estás apuntado a este evento.");

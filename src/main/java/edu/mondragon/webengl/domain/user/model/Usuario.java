@@ -47,7 +47,7 @@ public class Usuario {
     private String email;
 
     @Column(nullable = false, length = 64)
-    private byte[] password;  // En base a VARBINARY(64)
+    private String password;  // En base a VARBINARY(64)
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 12)
@@ -111,11 +111,11 @@ public class Usuario {
         this.email = email;
     }
 
-    public byte[] getContraseña() {
+    public String getContraseña() {
         return password;
     }
 
-    public void setContraseña(byte[] contraseña) {
+    public void setContraseña(String contraseña) {
         this.password = contraseña;
     }
 
