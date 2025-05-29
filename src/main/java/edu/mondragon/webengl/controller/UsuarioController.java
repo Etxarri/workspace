@@ -10,6 +10,7 @@ import edu.mondragon.webengl.domain.user.model.Voluntario;
 import edu.mondragon.webengl.domain.user.model.Usuario.TipoUsuario;
 import edu.mondragon.webengl.domain.user.service.UsuarioService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -30,7 +31,9 @@ public class UsuarioController {
     }
 
     @GetMapping("/crear")
-    public String showForm() {
+    public String showForm(Model model) {
+        model.addAttribute("ciudades", ciudadRepository.findAll());
+        model.addAttribute("paises", paisRepository.findAll());
         return "user/userForm"; // Nombre del archivo Thymeleaf para el formulario
     }
 

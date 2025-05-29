@@ -55,13 +55,24 @@
 
             <div class="mb-3 mt-5">
                 <label for="ciudadID" class="form-label">Ciudad:</label>
-                <input type="number" id="ciudadID" name="ciudadID" class="form-control" placeholder="¿Donde te estas alojando?"><!--HAY QUE CAMBIAR (tenemos que poner una lista de las ciudades o mejor aun un buscador)-->
+                <select id="ciudadID" name="ciudadID" class="form-select" required>
+                    <option value="">Selecciona una ciudad...</option>
+                    <th:block th:each="ciudad : ${ciudades}">
+                        <option th:value="${ciudad.ciudadID}" th:text="${ciudad.nombre}"></option>
+                    </th:block>
+                </select>
             </div>
 
             <div class="mb-3 mt-5">
                 <label for="paisID" class="form-label">Pais:</label>
-                <input type="number" id="paisID" name="paisID" class="form-control" placeholder="¿De donde vienes?"><!--AQUI TAMBIÉN HAY QUE HACER ALGO-->
+                <select id="paisID" name="paisID" class="form-select" required>
+                    <option value="">Selecciona un pais...</option>
+                    <th:block th:each="pais : ${paises}">
+                        <option th:value="${pais.paisID}" th:text="${pais.nombre}"></option>
+                    </th:block>
+                </select>
             </div>
+
             <!--RECIEN-LLEGADO-->
             <div class="recienllegado borrar" >
 

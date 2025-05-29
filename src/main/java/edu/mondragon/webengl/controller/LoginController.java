@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import edu.mondragon.webengl.domain.evento.model.EventoLocal;
 import edu.mondragon.webengl.domain.evento.repository.EventoLocalRepository;
-import edu.mondragon.webengl.domain.user.service.UsuarioService;
 import java.util.List;
 //import edu.mondragon.webengl.helper.ControllerHelper;
 import javax.servlet.http.HttpSession;
