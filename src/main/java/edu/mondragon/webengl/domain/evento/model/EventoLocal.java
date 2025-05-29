@@ -41,5 +41,71 @@ public class EventoLocal {
 
     @Column(nullable = false)
     private String lugar;
+
+    public int getEventoID() {
+        return eventoID;
+    }
+
+    public void setEventoID(int eventoID) {
+        this.eventoID = eventoID;
+    }
+
+    public Ciudad getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public Voluntario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Voluntario usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Timestamp getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(Timestamp fechaHora) {
+        this.fechaHora = fechaHora;
+    }
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+
+    
 }
 

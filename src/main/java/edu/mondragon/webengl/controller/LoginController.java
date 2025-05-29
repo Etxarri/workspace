@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import edu.mondragon.webengl.domain.evento.model.EventoLocal;
+import edu.mondragon.webengl.domain.evento.repository.EventoLocalRepository;
 import edu.mondragon.webengl.domain.user.service.UsuarioService;
+import java.util.List;
 //import edu.mondragon.webengl.helper.ControllerHelper;
 import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
@@ -15,10 +18,10 @@ import org.springframework.ui.Model;
 @RequestMapping("/login")
 public class LoginController {
 
-    private final UsuarioService userService;
+    private final EventoLocalRepository eventoRepo;
 
-    public LoginController(UsuarioService userService) {
-        this.userService = userService;
+    public LoginController(EventoLocalRepository eventoRepo) {
+        this.eventoRepo = eventoRepo;
     }
     
     @GetMapping
@@ -29,28 +32,11 @@ public class LoginController {
         }
         return "login/login"; // muestra el login.html
     }
-/*
-    @PostMapping
-    public String login(@RequestParam String username,
-                        @RequestParam String password,
-                        HttpSession session, 
-                        RedirectAttributes redirectAttributes) {
-        Usuario user = userService.login(username, password);
 
-        if (user != null) {
-            session.setAttribute("user", user);
-            redirectAttributes.addFlashAttribute("message", "message.login");
-            System.out.println("Ha entrado el usuario: " + user.getUsername() + " con la contraseña: " + password);
-            return "logged.html"; // redirige a logged.html
-        } else {
-            System.out.println("Error al entrar el usuario: " + username + " con la contraseña: " + password);
-            redirectAttributes.addFlashAttribute("error", "Error al iniciar sesión. Verifica tus credenciales.");
-            return "redirect:/login";
-        }
-    }
-*/
     @GetMapping("/logged")
-    public String logged() {
+    public String logged(Model model) {
+        List<EventoLocal> eventos = eventoRepo.findAll();
+        model.addAttribute("eventos", eventos);
         return "login/logged"; // Busca logged.html en templates
     }
     @GetMapping("/logout")

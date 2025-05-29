@@ -23,7 +23,7 @@ public interface UsuarioService {
     void guardarVoluntario(Voluntario voluntario);
     void guardarRecienllegado(Recienllegado recienllegado);
 
-    byte[] encriptarContraseña(String contraseña);
+    String encriptarContraseña(String contraseña);
 
     Optional<Usuario> findUsuarioByEmail(String email);
 }

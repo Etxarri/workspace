@@ -8,9 +8,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+
 @Configuration
 @EnableWebSecurity
 public class SeguridadConfig extends WebSecurityConfigurerAdapter {
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -20,12 +22,17 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/css/**", "/js/**", "/images/**", "/login", "/logout", "/usuario/crear", "/forgot-password", "/verify-code", "/reset-password").permitAll() // permite acceso público a recursos estáticos y login
+                .antMatchers("/login", "/css/**", "/js/**", "/usuario/crear").permitAll()
                 .anyRequest().authenticated()
             .and()
             .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/login/logged", true) // Redirige aquí tras login exitoso
+                .defaultSuccessUrl("/login/logged", true)
+                .permitAll()
+            .and()
+            .logout()
+                .logoutUrl("/login/logout")
+                .logoutSuccessUrl("/login")
                 .permitAll();
     }
 }

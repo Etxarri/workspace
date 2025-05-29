@@ -104,8 +104,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public byte[] encriptarContraseña(String rawPassword) {
-        return passwordEncoder.encode(rawPassword).getBytes();
+    public String encriptarContraseña(String rawPassword) {
+        return passwordEncoder.encode(rawPassword);
     }
 
 
