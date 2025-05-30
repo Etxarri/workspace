@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalle del evento</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/main.css">
-  <script src="/js/asideScript.js"></script>
-  <script src="/js/filtroCategoria.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/asideScript.js"></script>
+    <script src="/js/filtroCategoria.js"></script>
 </head>
 <body>
     <div th:replace="headerInmigrante :: header"></div>
@@ -33,11 +34,12 @@
                 <!-- <p><strong>Fecha:</strong> <span th:text="${evento.fecha}"></span></p> -->
 
                 <form th:action="@{/eventos/{eventoID}/desapuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
-                    <button class="btn btn-success">Desapuntarse</button>
+                    <button class="btn btn-danger">Desapuntarse</button>
                 </form>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

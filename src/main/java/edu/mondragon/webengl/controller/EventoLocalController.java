@@ -163,17 +163,21 @@ public class EventoLocalController {
     public String desapuntarseEvento(
             @PathVariable("eventoID") int eventoID,
             @AuthenticationPrincipal UsuarioDetails user,
-            RedirectAttributes redirectAttrs) {
+            RedirectAttributes redirectAttrs,
+            Model model) { // Añade Model aquí
         int usuarioId = user.getUsuario().getUsuarioID();
         RecienllegadoEventoId compuesta = new RecienllegadoEventoId(usuarioId, eventoID);
 
         if (inscripcionRepo.existsById(compuesta)) {
             inscripcionRepo.deleteById(compuesta);
-            redirectAttrs.addFlashAttribute("success", "Te has desapuntado del evento.");
+            // Cargar el evento y pasarlo al modelo
+            Optional<EventoLocal> eventoOpt = eventoRepo.findById(eventoID);
+            eventoOpt.ifPresent(evento -> model.addAttribute("evento", evento));
+            return "evento/desapuntado";
         } else {
             redirectAttrs.addFlashAttribute("error", "No estabas apuntado a este evento.");
+            return "redirect:/eventos/misEventos";
         }
-        return "redirect:/eventos/misEventos";
     }
 }
 
