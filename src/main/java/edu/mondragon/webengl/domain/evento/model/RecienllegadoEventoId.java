@@ -4,7 +4,13 @@ public class RecienllegadoEventoId implements java.io.Serializable {
     private int eventoID;
     private int usuarioID;
 
-    public RecienllegadoEventoId(int usuarioID2, int id) {
+    // Constructor vacío requerido por JPA/Hibernate
+    public RecienllegadoEventoId() {
+    }
+
+    public RecienllegadoEventoId(int usuarioID, int eventoID) {
+        this.eventoID = eventoID;
+        this.usuarioID = usuarioID;
     }
     // equals() y hashCode() deben ser implementados
     @Override

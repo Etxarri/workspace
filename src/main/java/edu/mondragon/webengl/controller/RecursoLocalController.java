@@ -7,14 +7,15 @@ import edu.mondragon.webengl.domain.recurso.model.RecursoLocal;
 import edu.mondragon.webengl.domain.recurso.repository.RecursoLocalRepository;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.repository.UsuarioRepository;
+import edu.mondragon.webengl.seguridad.UsuarioDetails;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
-import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -36,16 +37,14 @@ public class RecursoLocalController {
     }
 
     @GetMapping("/ciudadInfo")
-    public String mostrarInformacionCiudad(Model model, Principal principal, @RequestParam(value = "categoria", required = false) Integer categoriaId) {
-        String username = principal.getName();
-        Usuario usuario = usuarioRepository.findByUsername(username).orElse(null);
-        if (usuario == null) {
-            return "redirect:/login/logged";
-        }
-        int comunidadId = usuario.getCiudad().getComunidadAutonoma();
+    public String mostrarInformacionCiudad(
+        Model model, 
+        @AuthenticationPrincipal UsuarioDetails usuario, 
+        @RequestParam(value = "categoria", required = false) Integer categoriaId) {
+
+        int comunidadId = usuario.getUsuario().getCiudad().getComunidadAutonoma();
 
         List<RecursoLocal> recursos;
-        System.out.println("comunidadId:" + comunidadId + " " +  "categoriaId:" + categoriaId);
         if (categoriaId != null && categoriaId != 0) {
             recursos = recursoLocalRepository.findByCiudad_ComunidadAutonoma_ComunidadIDAndCategoria_CategoriaID(comunidadId, categoriaId);
         } else {

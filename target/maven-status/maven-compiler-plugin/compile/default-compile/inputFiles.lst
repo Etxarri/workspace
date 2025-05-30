@@ -2,7 +2,6 @@
 /workspace/src/main/java/edu/mondragon/webengl/controller/UsuarioController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/RecienllegadoRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/evento/model/EventoLocal.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/ForosController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/repository/CiudadRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/repository/ComunidadAutonomaRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/preguntafrecuente/model/PreguntaFrecuente.java

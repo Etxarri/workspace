@@ -4,7 +4,6 @@ edu/mondragon/webengl/domain/encuesta/model/HacerEncuestaId.class
 edu/mondragon/webengl/domain/foro/model/Hiloforo.class
 edu/mondragon/webengl/domain/recurso/repository/RecursoLocalRepository.class
 edu/mondragon/webengl/domain/user/model/PasswordResetTokenStore$TokenData.class
-edu/mondragon/webengl/controller/ForosController.class
 edu/mondragon/webengl/domain/pais/repository/CiudadRepository.class
 edu/mondragon/webengl/domain/user/repository/UsuarioRepository.class
 edu/mondragon/webengl/seguridad/UsuarioDetails.class

@@ -36,13 +36,17 @@ public class LoginController {
     public String logged(Model model) {
         List<EventoLocal> eventos = eventoRepo.findAll();
         model.addAttribute("eventos", eventos);
-        return "login/logged"; // Busca logged.html en templates
+        return "evento/listaEventos"; // Busca logged.html en templates
     }
     @GetMapping("/logout")
     public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
         session.removeAttribute("user");
         redirectAttributes.addFlashAttribute("message", "message.logout");
         return "redirect:/login";
+    }
+    @GetMapping("/login/logged")
+    public String redirigirEventos() {
+        return "redirect:/eventos";
     }
 }
 
