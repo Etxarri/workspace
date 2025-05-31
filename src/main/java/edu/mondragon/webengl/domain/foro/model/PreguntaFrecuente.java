@@ -1,19 +1,21 @@
-package edu.mondragon.webengl.domain.preguntafrecuente.model;
+package edu.mondragon.webengl.domain.foro.model;
 
 import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import edu.mondragon.webengl.domain.foro.model.Temaforo;
 
 @Entity
 @Table(name = "preguntafrecuente")
 public class PreguntaFrecuente {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//Esto le dice a JPA:"No te preocupes de darle un valor manualmente, se generará automáticament"
     @Column(name = "preguntaID")
     private int preguntaID;
 

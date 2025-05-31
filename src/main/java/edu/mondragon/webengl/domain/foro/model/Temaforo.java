@@ -1,6 +1,4 @@
 package edu.mondragon.webengl.domain.foro.model;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,29 +11,33 @@ public class Temaforo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int temaID;
 
-    private String titulo;
+    private String nombre;
 
     private String descripcion;
 
-    @Column(name = "id_usuario")
-    private int idUsuario;
+    private String logo;
 
-    public int getId() {
-        return id;
+
+    public int getTemaID() {
+        return temaID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getLogo() {
+        return logo;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDescripcion() {
@@ -46,14 +48,6 @@ public class Temaforo {
         this.descripcion = descripcion;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
-    }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    // Getters y setters
     
 }

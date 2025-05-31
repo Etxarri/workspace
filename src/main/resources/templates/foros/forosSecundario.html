@@ -11,8 +11,8 @@
 <body>
   <header th:replace="headerInmigrante :: header"></header>
     <main class="container py-5">
-        <div th:switch="${foro}">
-            <div th:case="'Tramites'">
+        <div th:switch="${tema.nombre}">
+            <div th:case="'Trámites-Documentación'">
                 <div th:replace="foros/tramites :: contenidoForo"></div>
             </div>
             <!--////////////////////////////////////////////////////////////////////////////////////-->

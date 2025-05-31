@@ -48,13 +48,10 @@
   <div class="collapse" id="nuevaPreguntaEmpleo">
     <div class="card my-3">
       <div class="card-body">
-        <form th:action="@{/foros/{foro}/nuevaPregunta(foro=${foro})}" method="post">
+        <form th:action="@{/foro/preguntasFrecuentes}" method="post">
+          <input type="hidden" name="temaId" th:value="${tema.temaID}" />
           <div class="mb-3">
-            <label for="preguntaTituloEmpleo" class="form-label">Título</label>
-            <input type="text" class="form-control" id="preguntaTituloEmpleo" name="titulo" required>
-          </div>
-          <div class="mb-3">
-            <label for="preguntaContenidoEmpleo" class="form-label">Descripción detallada</label>
+            <label for="preguntaContenidoEmpleo" class="form-label">Pregunta</label>
             <textarea class="form-control" id="preguntaContenidoEmpleo" name="contenido" rows="3" required></textarea>
           </div>
           <button type="submit" class="btn btn-info">Publicar</button>
@@ -119,19 +116,20 @@
   </div>
 
     <!-- Preguntas de usuarios -->
-  <div class="mt-5">
-    <h4><i class="bi bi-people"></i> Preguntas de usuarios</h4>
-    <div th:if="${preguntasUsuarios != null and #lists.isEmpty(preguntasUsuarios)}" class="text-muted">
-      No hay preguntas publicadas aún. ¡Sé el primero en preguntar!
-    </div>
-    <div class="list-group">
-      <div th:each="pregunta : ${preguntasUsuarios}" class="list-group-item mb-2">
-        <h6 class="mb-1"><i class="bi bi-question-circle"></i> <span th:text="${pregunta.titulo}">Título de la pregunta</span></h6>
-        <p class="mb-1" th:text="${pregunta.contenido}">Contenido de la pregunta</p>
-        <small class="text-muted" th:text="${#dates.format(pregunta.fechaCreacion, 'dd/MM/yyyy HH:mm')}">Fecha</small>
-      </div>
+<div class="mt-5">
+  <h4><i class="bi bi-people"></i> Preguntas de usuarios</h4>
+  <div th:if="${preguntasUsuarios != null and #lists.isEmpty(preguntasUsuarios)}" class="text-muted">
+    No hay preguntas publicadas aún. ¡Sé el primero en preguntar!
+  </div>
+  <div class="list-group">
+    <div th:each="pregunta : ${preguntasUsuarios}" class="list-group-item mb-2">
+      <a th:href="@{/foro/preguntaUsuario/{preguntaID}(preguntaID=${pregunta.preguntaID})}" style="text-decoration: none; color: inherit;">
+        <h6 class="mb-1"><i class="bi bi-question-circle"></i> <span th:text="${pregunta.pregunta}">Título de la pregunta</span></h6>
+      </a>
+      <small class="text-muted" th:text="${#dates.format(pregunta.fechaCreacion, 'dd/MM/yyyy')}">Fecha</small>
     </div>
   </div>
+</div>
 
 </div>
 
