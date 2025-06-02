@@ -8,8 +8,8 @@
         <!--a href="#" class="list-group-item list-group-item-action active" aria-current="true">
             The current link item
         </a-->
-        <a class="list-group-item list-group-item-action"th:href="@{/login/logout}">Logout</a>
-        <a href="#" class="list-group-item list-group-item-action">Encuestas</a>
-        <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1">Perfil</a>
+        <a class="list-group-item list-group-item-action"th:href="@{/login/logout}" th:text="#{logout}">Logout</a>
+        <a href="#" class="list-group-item list-group-item-action" th:text="#{survey}">Encuestas</a>
+        <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" th:text="#{profile}">Perfil</a>
     </div>
 </div>

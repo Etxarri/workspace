@@ -7,6 +7,7 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/PasswordResetTokenStore.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/EventoLocalController.java
 /workspace/src/main/java/edu/mondragon/webengl/internationalization/InternationalizationConfig.java
+/workspace/src/main/java/edu/mondragon/webengl/internationalization/service/DeepLService.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/Hiloforo.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/repository/HiloforoRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/evento/model/RecienllegadoApuntarseEvento.java
@@ -27,6 +28,7 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/categoria/model/Categoria.java
 /workspace/src/main/java/edu/mondragon/webengl/seguridad/UsuarioDetailsService.java
 /workspace/src/main/java/edu/mondragon/webengl/seguridad/SeguridadConfig.java
+/workspace/src/main/java/edu/mondragon/webengl/controller/GlobalControllerIdiomas.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/Usuario.java
 /workspace/src/main/java/edu/mondragon/webengl/StartWebApplication.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/Recienllegado.java

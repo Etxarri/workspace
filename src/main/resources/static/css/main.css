@@ -138,3 +138,11 @@ a {
 }
 
 
+a img:focus, a img:active {
+    outline: none;
+    box-shadow: none;
+}
+a:focus {
+    outline: none;
+    box-shadow: none;
+}
