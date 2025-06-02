@@ -5,7 +5,6 @@ import edu.mondragon.webengl.domain.categoria.repository.CategoriaRepository;
 import edu.mondragon.webengl.domain.evento.repository.EventoLocalRepository;
 import edu.mondragon.webengl.domain.recurso.model.RecursoLocal;
 import edu.mondragon.webengl.domain.recurso.repository.RecursoLocalRepository;
-import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.repository.UsuarioRepository;
 import edu.mondragon.webengl.seguridad.UsuarioDetails;
 
