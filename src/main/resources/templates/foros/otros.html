@@ -1,59 +1,48 @@
 <div th:fragment="contenidoForo">
-  <!-- Cabecera tipo banner con fondo -->
-  <div class="py-4 px-3 mb-4 text-white" style="background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%); border-radius: 1rem;">
-    <h2 class="mb-1"><i class="bi bi-stars"></i> Foro: Otros Temas</h2>
-    <p class="mb-0">Un espacio abierto para cualquier consulta, experiencia o tema que no encaje en los foros anteriores.</p>
-  </div>
-
-  <!-- Muro de mensajes recientes tipo "chat" -->
-  <div class="mb-4">
-    <h5 class="mb-3"><i class="bi bi-chat-dots"></i> Últimos mensajes de la comunidad</h5>
-    <ul class="list-unstyled" style="max-height: 220px; overflow-y: auto;">
-      <li class="mb-3 p-3 bg-light rounded shadow-sm">
-        <div class="d-flex align-items-center mb-1">
-          <i class="bi bi-person-circle text-primary me-2"></i>
-          <strong>Usuario123</strong>
-          <span class="ms-2 badge bg-secondary">Duda general</span>
+<div class="mb-4">
+    <h2 class="mb-3"><i class="bi bi-journal-text"></i> Otros Temas</h2>
+    <p class="text-muted">Comparte tus dudas y ayuda a otros sobre otros temas no especificadas en la sección de temas.</p>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="card border-primary h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-person-vcard"></i>Título 1</h5>
+            <p class="card-text">Info 1</p>
+          </div>
         </div>
-        <div class="ms-4 text-muted small">¿Alguien sabe cómo conseguir descuentos para el transporte público?</div>
-      </li>
-      <li class="mb-3 p-3 bg-light rounded shadow-sm">
-        <div class="d-flex align-items-center mb-1">
-          <i class="bi bi-person-circle text-success me-2"></i>
-          <strong>MariaG</strong>
-          <span class="ms-2 badge bg-info text-dark">Consejo</span>
-        </div>
-        <div class="ms-4 text-muted small">Recomiendo la app "MiConsulado" para pedir citas en consulados.</div>
-      </li>
-      <li class="mb-3 p-3 bg-light rounded shadow-sm">
-        <div class="d-flex align-items-center mb-1">
-          <i class="bi bi-person-circle text-warning me-2"></i>
-          <strong>Pepe89</strong>
-          <span class="ms-2 badge bg-warning text-dark">Experiencia</span>
-        </div>
-        <div class="ms-4 text-muted small">Hoy fui a un evento de integración y fue muy útil para conocer gente.</div>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Pregunta rápida en formato barra horizontal -->
-  <div class="bg-white rounded shadow-sm p-3 mb-5">
-    <form class="row g-2 align-items-center" th:action="@{/foros/{foro}/nuevaPregunta(foro=${foro})}" method="post">
-      <div class="col-md-4">
-        <input type="text" class="form-control" name="titulo" placeholder="Título de tu pregunta o tema" required>
       </div>
       <div class="col-md-6">
-        <input type="text" class="form-control" name="contenido" placeholder="Describe tu duda, consejo o experiencia" required>
+        <div class="card border-success h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-house"></i>Título 2</h5>
+            <p class="card-text">Info 2</p>
+          </div>
+        </div>
       </div>
-      <div class="col-md-2 d-grid">
-        <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Publicar</button>
+      <div class="col-md-6">
+        <div class="card border-warning h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-file-earmark-person"></i> Título 3</h5>
+            <p class="card-text">Info 3</p>
+          </div>
+        </div>
       </div>
-    </form>
+      <div class="col-md-6">
+        <div class="card border-danger h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-people-fill"></i> Título 4</h5>
+            <p class="card-text">Info 4</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- FAQ en formato acordeón vertical colorido -->
+
+
+  <!-- Preguntas Frecuentes -->
   <div class="mt-4">
-    <h5 class="mb-3"><i class="bi bi-lightbulb"></i> Preguntas frecuentes y curiosidades</h5>
+    <h5 class="mb-3"><i class="bi bi-lightbulb"></i> Preguntas frecuentes</h5>
     <div class="accordion" id="faqAccordionOtros">
       <div class="accordion-item">
         <h2 class="accordion-header" id="faqO1">
@@ -102,6 +91,42 @@
             Sí: "MiConsulado", "Renfe", "BiciMAD", "Glovo", "Bizum" y muchas más según tu ciudad y necesidades.
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+    <!-- Botón para añadir pregunta -->
+<div class="alert alert-info mt-4 mb-2 d-flex align-items-center justify-content-between">
+    <span><i class="bi bi-question-circle"></i> ¿Tienes una nueva duda sobre otros temas?</span>
+    <a class="btn btn-outline-info btn-sm" data-bs-toggle="collapse" href="#nuevaPreguntaOtros" role="button" aria-expanded="false" aria-controls="nuevaPreguntaOtros">
+      <i class="bi bi-plus-circle"></i> Añadir pregunta
+    </a>
+  </div>
+  <div class="collapse" id="nuevaPreguntaOtros">
+    <div class="card my-3">
+      <div class="card-body">
+        <form th:action="@{/foro/preguntasFrecuentes}" method="post">
+          <input type="hidden" name="temaId" th:value="${tema.temaID}" />
+          <div class="mb-3">
+            <label for="preguntaContenidoOtros" class="form-label">Pregunta</label>
+            <textarea class="form-control" id="preguntaContenidoOtros" name="contenido" rows="3" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-info">Publicar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+        <!-- Preguntas de usuarios -->
+  <div class="mt-5">
+    <h4><i class="bi bi-people"></i> Preguntas de usuarios</h4>
+    <div th:if="${preguntasUsuarios != null and #lists.isEmpty(preguntasUsuarios)}" class="text-muted">
+      No hay preguntas publicadas aún. ¡Sé el primero en preguntar!
+    </div>
+    <div class="list-group">
+      <div th:each="pregunta : ${preguntasUsuarios}" class="list-group-item mb-2">
+        <a th:href="@{/foro/preguntaUsuario/{preguntaID}(preguntaID=${pregunta.preguntaID})}" style="text-decoration: none; color: inherit;">
+          <h6 class="mb-1"><i class="bi bi-question-circle"></i> <span th:text="${pregunta.pregunta}">Título de la pregunta</span></h6>
+        </a>
+        <small class="text-muted" th:text="${#dates.format(pregunta.fechaCreacion, 'dd/MM/yyyy')}">Fecha</small>
       </div>
     </div>
   </div>

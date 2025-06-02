@@ -14,7 +14,6 @@ edu/mondragon/webengl/domain/evento/repository/EventoLocalRepository.class
 edu/mondragon/webengl/domain/pais/model/Pais.class
 edu/mondragon/webengl/domain/recurso/model/RecursoLocal.class
 edu/mondragon/webengl/domain/evento/repository/RecienllegadoApuntarseEventoRepository.class
-edu/mondragon/webengl/domain/preguntafrecuente/repository/PreguntaFrecuenteRepository.class
 edu/mondragon/webengl/controller/ForgotPasswordController.class
 edu/mondragon/webengl/domain/categoria/repository/CategoriaRepository.class
 edu/mondragon/webengl/domain/pais/model/ComunidadAutonoma.class
@@ -29,7 +28,6 @@ edu/mondragon/webengl/domain/encuesta/repository/HacerEncuestaRepository.class
 edu/mondragon/webengl/domain/evento/model/RecienllegadoEventoId.class
 edu/mondragon/webengl/controller/EncuestaController.class
 edu/mondragon/webengl/domain/user/model/Recienllegado.class
-edu/mondragon/webengl/domain/preguntafrecuente/model/PreguntaFrecuente.class
 edu/mondragon/webengl/domain/user/service/EmailService.class
 edu/mondragon/webengl/internationalization/InternationalizationConfig.class
 edu/mondragon/webengl/domain/user/model/Usuario$TipoUsuario.class

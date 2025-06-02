@@ -1,8 +1,8 @@
 package edu.mondragon.webengl.controller;
 
 
-import edu.mondragon.webengl.domain.preguntafrecuente.model.PreguntaFrecuente;
-import edu.mondragon.webengl.domain.preguntafrecuente.repository.PreguntaFrecuenteRepository;
+import edu.mondragon.webengl.domain.foro.model.PreguntaFrecuente;
+import edu.mondragon.webengl.domain.foro.repository.PreguntaFrecuenteRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

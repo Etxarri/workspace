@@ -4,7 +4,6 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/evento/model/EventoLocal.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/repository/CiudadRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/repository/ComunidadAutonomaRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/preguntafrecuente/model/PreguntaFrecuente.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/PasswordResetTokenStore.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/EventoLocalController.java
 /workspace/src/main/java/edu/mondragon/webengl/internationalization/InternationalizationConfig.java
@@ -36,15 +35,16 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/Encuesta.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/FAQController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/repository/HacerEncuestaRepository.java
+/workspace/src/main/java/edu/mondragon/webengl/domain/foro/repository/PreguntaFrecuenteRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/Voluntario.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/model/Ciudad.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/EncuestaRespuestas.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/EncuestaController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/model/Pais.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/recurso/model/RecursoLocal.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/preguntafrecuente/repository/PreguntaFrecuenteRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/VoluntarioRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/LoginController.java
+/workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/PreguntaFrecuente.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/ComentarioForo.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/evento/repository/RecienllegadoApuntarseEventoRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/repository/PaisRepository.java
