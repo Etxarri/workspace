@@ -7,6 +7,7 @@ import edu.mondragon.webengl.domain.recurso.model.RecursoLocal;
 import edu.mondragon.webengl.domain.recurso.repository.RecursoLocalRepository;
 import edu.mondragon.webengl.domain.user.repository.UsuarioRepository;
 import edu.mondragon.webengl.seguridad.UsuarioDetails;
+import edu.mondragon.webengl.domain.pais.model.RecursoMapaDTO;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/recursos")
@@ -50,10 +52,26 @@ public class RecursoLocalController {
             recursos = recursoLocalRepository.findByCiudad_ComunidadAutonoma_ComunidadID(comunidadId);
         }
 
+        // Transformar a DTO para el mapa
+        List<RecursoMapaDTO> recursosMapa = recursos.stream().map(r -> {
+            RecursoMapaDTO dto = new RecursoMapaDTO();
+            dto.setNombre(r.getNombre());
+            dto.setLatitud(r.getLatitud());
+            dto.setLongitud(r.getLongitud());
+            dto.setDireccion(r.getDireccion());
+            dto.setTelefono(r.getTelefono());
+            dto.setHoraAbierto(r.getHora_abierto());
+            dto.setHoraCerrado(r.getHora_cerrado());
+            dto.setDescripcion(r.getDescripcion());
+            return dto;
+        }).collect(Collectors.toList());
+
         model.addAttribute("usuario", usuario);
         model.addAttribute("recursos", recursos);
         model.addAttribute("categorias", categoriaRepository.findAll());
         model.addAttribute("categoriaSeleccionada", categoriaId);
+        model.addAttribute("recursosMapa", recursosMapa); // <-- Añade esto
+
         return "recursolocal/ciudadInfo";
     }
 
