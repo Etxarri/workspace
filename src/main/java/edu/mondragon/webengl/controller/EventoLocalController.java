@@ -34,13 +34,11 @@ public class EventoLocalController {
 
     private final EventoLocalRepository eventoRepo;
     private final RecienllegadoApuntarseEventoRepository inscripcionRepo;
-    private final RecienllegadoRepository recienllegadoRepo;
     private final CategoriaRepository categoriaRepository;
 
     public EventoLocalController(EventoLocalRepository eventoRepo, RecienllegadoApuntarseEventoRepository inscripcionRepo, RecienllegadoRepository recienllegadoRepo, CategoriaRepository categoriaRepository) {
         this.eventoRepo = eventoRepo;
         this.inscripcionRepo = inscripcionRepo;
-        this.recienllegadoRepo = recienllegadoRepo;
         this.categoriaRepository = categoriaRepository;
     }
 
