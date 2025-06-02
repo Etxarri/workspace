@@ -15,7 +15,7 @@
 <body>
     <h2 class="text-center">Encuesta de Integración</h2>
     <div class="container-fluid">
-        <form th:action="@{/encuestas/{id}/responder(id=${encuesta.encuestaID})}" th:object="${encuestaRespuestas}" method="post" class="mx-auto"></form>
+        <form th:action="@{/encuestas/{encuestaID}/responder(encuestaID=${encuesta.encuestaID})}" th:object="${encuestaRespuestas}" method="post" class="mx-auto"></form>
         <!-- <form th:action="@{/encuesta}" th:object="${encuesta}" method="post"> -->
             
             <br><br>

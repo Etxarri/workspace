@@ -30,18 +30,15 @@ public class EncuestaController
     private final EncuestaRepository encuestaRepo;
     private final HacerEncuestaRepository hacerEncuestaRepo;
 
-    //private final EncuestaRespuestas encuestaRespuestas;
 
     public EncuestaController(EncuestaRepository encuestaRepo, HacerEncuestaRepository hacerEncuestaRepo)
     {
         this.encuestaRepo = encuestaRepo;
         this.hacerEncuestaRepo = hacerEncuestaRepo;
-
-        //this.encuestaRespuestas = encuestaRespuestas;
     }
 
     // Lista todas las encuestas disponibles
-    @GetMapping
+    @GetMapping()
     public String listarEncuestas(Model model)
     {
         List<Encuesta> encuestas = encuestaRepo.findAll();
@@ -50,10 +47,10 @@ public class EncuestaController
     }
 
     // Mostrar formulario para responder encuesta
-    @GetMapping("/{id}")
-    public String mostrarEncuesta(@PathVariable int id, Model model, HttpSession session, RedirectAttributes redirectAttrs)
+    @GetMapping("/{encuestaID}")
+    public String mostrarEncuesta(@PathVariable("encuestaID") int encuestaID, Model model, HttpSession session, RedirectAttributes redirectAttrs)
     {
-        Optional<Encuesta> encuestaOpt = encuestaRepo.findById(id);
+        Optional<Encuesta> encuestaOpt = encuestaRepo.findById(encuestaID);
         if (encuestaOpt.isEmpty())
         {
             redirectAttrs.addFlashAttribute("error", "Encuesta no encontrada");
@@ -69,17 +66,18 @@ public class EncuestaController
 
         // Aquí podrías añadir lógica para evitar que un usuario conteste dos veces la misma encuesta si quieres
 
+        // Añadir la encuesta al modelo
         model.addAttribute("encuesta", encuestaOpt.get());
 
         // Añadir el DTO vacío al modelo para el binding del formulario
         model.addAttribute("encuestaRespuestas", new EncuestaRespuestas());
 
-        return "encuestas/responder";
+        return "encuestas/encuesta";
     }
 
     // Procesar respuestas de la encuesta
-    @PostMapping("/{id}/responder")
-    public String guardarRespuesta(@PathVariable int id,
+    @PostMapping("/{encuestaID}/responder")
+    public String guardarRespuesta(@PathVariable("encuestaID") int encuestaID,
                                    @ModelAttribute EncuestaRespuestas encuestaRespuestas, //@RequestParam String respuestas, // ajusta según tus datos, por ejemplo JSON o params separados
                                    HttpSession session,
                                    RedirectAttributes redirectAttrs) {
@@ -90,7 +88,7 @@ public class EncuestaController
             return "redirect:/login";
         }
 
-        Optional<Encuesta> encuestaOpt = encuestaRepo.findById(id);
+        Optional<Encuesta> encuestaOpt = encuestaRepo.findById(encuestaID);
         if (encuestaOpt.isEmpty())
         {
             redirectAttrs.addFlashAttribute("error", "Encuesta no encontrada");
