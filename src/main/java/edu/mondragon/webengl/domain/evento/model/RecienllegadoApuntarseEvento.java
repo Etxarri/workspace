@@ -1,6 +1,8 @@
 package edu.mondragon.webengl.domain.evento.model;
 
 import java.time.LocalDate;
+
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -23,6 +25,7 @@ public class RecienllegadoApuntarseEvento {
     @JoinColumn(name = "usuarioID", insertable = false, updatable = false)
     private Recienllegado recienllegado;
 
+    @Column(name = "fecha_inscripcion")
     private LocalDate fechaInscripcion;
 
     public LocalDate getFechaInscripcion() {
