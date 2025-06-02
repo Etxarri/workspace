@@ -93,6 +93,8 @@ public class ForoController {
         return "redirect:/foro";
     }
 
+    @GetMapping("/preguntaPricipal")
+
     @PostMapping("/preguntasFrecuentes")
     public String crearPreguntaFrecuente(@RequestParam String contenido,
                                  RedirectAttributes redirectAttrs, HttpSession session, Model model) {
