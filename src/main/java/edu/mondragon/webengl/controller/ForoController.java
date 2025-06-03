@@ -1,7 +1,6 @@
 package edu.mondragon.webengl.controller;
 
 
-import edu.mondragon.webengl.domain.evento.model.EventoLocal;
 import edu.mondragon.webengl.domain.foro.model.ComentarioForo;
 import edu.mondragon.webengl.domain.foro.model.Hiloforo;
 import edu.mondragon.webengl.domain.foro.model.PreguntaFrecuente;
@@ -75,7 +74,7 @@ public class ForoController {
     }
 
     @GetMapping("/preguntaUsuario/{preguntaID}")
-    public String accederPreguntaUsuario(@PathVariable int preguntaID, Model model) {
+    public String accederPreguntaUsuario(@PathVariable int preguntaID,@AuthenticationPrincipal UsuarioDetails usuario, Model model) {
         
         Optional<PreguntaFrecuente> preguntaOpt = preguntaFrecuenteRepo.findById(preguntaID);
         logger.info("\n\nAccediendo a la pregunta frecuente: {}\n\n", preguntaID);
@@ -86,14 +85,15 @@ public class ForoController {
                 List<ComentarioForo> comentarios = comentarioRepo.findByHilo(hilo);
                 model.addAttribute("hilo", hilo);
                 model.addAttribute("comentarios", comentarios);
-                model.addAttribute("pregunta", preguntaOpt.get()); // Añade la pregunta si existe
+                model.addAttribute("pregunta", preguntaOpt.get()); 
+                model.addAttribute("usuarioLogueado", usuario.getUsuario()); 
+
             }
             return "foros/pregunta";
         }
         return "redirect:/foro";
     }
 
-    @GetMapping("/preguntaPricipal")
 
     @PostMapping("/preguntasFrecuentes")
     public String crearPreguntaFrecuente(@RequestParam String contenido,
@@ -127,10 +127,11 @@ public class ForoController {
 
         @PostMapping("/{hiloID}/{preguntaID}/comentario")
     public String agregarComentario(@PathVariable int hiloID,
+                                    
                                     @PathVariable int preguntaID,
                                     @RequestParam String contenido,
                                     HttpSession session,
-                                    @AuthenticationPrincipal UsuarioDetails user,
+                                    @AuthenticationPrincipal UsuarioDetails usuario,
                                     RedirectAttributes redirectAttrs,
                                     Model model) {
 
@@ -143,7 +144,7 @@ public class ForoController {
 
         ComentarioForo comentario = new ComentarioForo();
         comentario.setHilo(hiloOpt.get());
-        comentario.setUsuario(usuarioService.findUsuarioByIdUsuario(user.getUsuario().getUsuarioID()));
+        comentario.setUsuario(usuarioService.findUsuarioByIdUsuario(usuario.getUsuario().getUsuarioID()));
         comentario.setContenido(contenido);
         comentario.setFechaHora(LocalDateTime.now());
         comentarioRepo.save(comentario);
@@ -153,6 +154,8 @@ public class ForoController {
 
         model.addAttribute("pregunta", preguntaFrecuenteRepo.findById(preguntaID).orElse(null));
         model.addAttribute("hilo", hiloOpt.get());
+        model.addAttribute("usuarioLogueado", usuario.getUsuario()); 
+
         return "/foros/pregunta";
     }
 
