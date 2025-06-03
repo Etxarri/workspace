@@ -1,12 +1,8 @@
 package edu.mondragon.webengl.controller;
 
-import edu.mondragon.webengl.domain.pais.model.Ciudad;
-import edu.mondragon.webengl.domain.pais.model.Pais;
 import edu.mondragon.webengl.domain.pais.repository.CiudadRepository;
 import edu.mondragon.webengl.domain.pais.repository.PaisRepository;
-import edu.mondragon.webengl.domain.user.model.Recienllegado;
 import edu.mondragon.webengl.domain.user.model.Usuario;
-import edu.mondragon.webengl.domain.user.model.Voluntario;
 import edu.mondragon.webengl.domain.user.model.Usuario.TipoUsuario;
 import edu.mondragon.webengl.domain.user.service.UsuarioService;
 import org.springframework.stereotype.Controller;
@@ -59,40 +55,28 @@ public class UsuarioController {
             return "redirect:/usuario/crear";
         }
 
-        Pais pais = paisRepository.findById(paisID)
-            .orElseThrow(() -> new IllegalArgumentException("País no encontrado"));
-        Ciudad ciudad = ciudadRepository.findById(ciudadID)
-            .orElseThrow(() -> new IllegalArgumentException("Ciudad no encontrada"));
+        usuarioService.crearUsuario(
+            nombre,
+            apellido,
+            username,
+            email,
+            usuarioService.encriptarContraseña(contraseña),
+            tipo.name(),
+            paisID,
+            ciudadID
+        );
 
-            Usuario usuario = new Usuario();
-        usuario.setNombre(nombre);
-        usuario.setApellido(apellido);
-        usuario.setUsername(username);
-        usuario.setEmail(email);
-        usuario.setContraseña(usuarioService.encriptarContraseña(contraseña));
-        usuario.setTipo(tipo);
-        usuario.setPais(pais);
-        usuario.setCiudad(ciudad);
-
-        usuarioService.guardarUsuario(usuario); // Guardamos primero el usuario base
-
-
-        if (tipo == TipoUsuario.recienllegado) {
-            Recienllegado r = new Recienllegado();
-            r.setUsuario(usuario);
-            r.setNecesidades(necesidades);
-            r.setLenguaje(lenguaje);
-            r.setFechaLlegada(java.time.LocalDate.now());
-            usuarioService.guardarRecienllegado(r);
-        } else if (tipo == TipoUsuario.voluntario) {
-            Voluntario v = new Voluntario();
-            v.setUsuario(usuario);
-            v.setHabilidades(habilidades);
-            v.setMotivacion(motivacion);
-            usuarioService.guardarVoluntario(v);
+        Usuario usuarioCreado = usuarioService.findUsuarioByEmail(email).orElse(null);
+        if (usuarioCreado != null) {
+            if (tipo == TipoUsuario.recienllegado) {
+                usuarioService.crearRecienllegado(
+                    usuarioCreado.getUsuarioID(), necesidades, lenguaje, java.time.LocalDate.now());
+            } else if (tipo == TipoUsuario.voluntario) {
+                usuarioService.crearVoluntario(
+                    usuarioCreado.getUsuarioID(), habilidades, motivacion);
+            }
         }
 
-        session.setAttribute("usuario", usuario);
         redirectAttributes.addFlashAttribute("mensaje", "Usuario creado correctamente.");
         return "redirect:/login";
     }

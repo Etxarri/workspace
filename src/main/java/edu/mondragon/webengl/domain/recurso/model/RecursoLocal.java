@@ -32,6 +32,9 @@ public class RecursoLocal {
     private String telefono;
     private java.sql.Time hora_abierto;
     private java.sql.Time hora_cerrado;
+    private Double latitud;
+    private Double longitud;
+
     public int getRecursoID() {
         return recursoID;
     }
@@ -40,6 +43,18 @@ public class RecursoLocal {
     }
     public Categoria getCategoria() {
         return categoria;
+    }
+    public Double getLatitud() {
+        return latitud;
+    }
+    public void setLatitud(Double latitud) {
+        this.latitud = latitud;
+    }
+    public Double getLongitud() {
+        return longitud;
+    }
+    public void setLongitud(Double longitud) {
+        this.longitud = longitud;
     }
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;

@@ -19,6 +19,7 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/service/EmailService.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/ForoController.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/RecursoLocalController.java
+/workspace/src/main/java/edu/mondragon/webengl/domain/pais/model/RecursoMapaDTO.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/repository/EncuestaRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/repository/TemaforoRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/HacerEncuesta.java
