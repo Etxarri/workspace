@@ -17,9 +17,6 @@ function initMap() {
         var content = `
             <strong>${recurso.nombre}</strong><br>
             <b>Dirección:</b> ${recurso.direccion}<br>
-            <b>Teléfono:</b> ${recurso.telefono}<br>
-            <b>Horario:</b> ${recurso.horaAbierto} - ${recurso.horaCerrado}<br>
-            <b>Descripción:</b> ${recurso.descripcion}
         `;
 
         marker.addListener('click', function() {
