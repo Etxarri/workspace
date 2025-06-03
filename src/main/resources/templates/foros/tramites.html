@@ -1,3 +1,4 @@
+<!--
 <div th:fragment="contenidoForo">
   <div class="mb-4">
     <h2 class="mb-3"><i class="bi bi-journal-text"></i> Trámites y Documentación</h2>
@@ -135,4 +136,135 @@
   </div>
 
 </div>
+-->
 
+
+<div th:fragment="contenidoForo">
+  <div class="mb-4">
+    <h2 class="mb-3"><i class="bi bi-journal-text"></i> <span th:text="#{tramites.titulo}">Trámites y Documentación</span></h2>
+    <p class="text-muted" th:text="#{tramites.descripcion}">Comparte tus dudas y ayuda a otros sobre gestiones administrativas en España.</p>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="card border-primary h-100">
+            <div class="card-body">
+              <h5 class="card-title"><i class="bi bi-person-vcard"></i> <span th:text="#{tramites.nie_tie.titulo}">NIE y TIE</span></h5>
+              <p class="card-text" th:text="#{tramites.nie_tie.descripcion}">Información y experiencias sobre la obtención y renovación del NIE/TIE.</p>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card border-success h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-house"></i> <span th:text="#{tramites.empadronamiento.titulo}">Certificado de empadronamiento</span></h5>
+            <p class="card-text" th:text="#{tramites.empadronamiento.descripcion}">Pasos y consejos para empadronarte en tu municipio.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card border-warning h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-file-earmark-person"></i> <span th:text="#{tramites.nacionalidad.titulo}">Solicitud de nacionalidad</span></h5>
+            <p class="card-text" th:text="#{tramites.nacionalidad.descripcion}">Comparte tu experiencia y resuelve dudas sobre el proceso de nacionalidad.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card border-danger h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-people-fill"></i> <span th:text="#{tramites.reagrupacion.titulo}">Reagrupación familiar</span></h5>
+            <p class="card-text" th:text="#{tramites.reagrupacion.descripcion}">Trámites y requisitos para traer a tus familiares a España.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Preguntas Frecuentes -->
+  <div class="mt-5">
+    <h4><i class="bi bi-lightbulb"></i> <span th:text="#{tramites.faq.titulo}">Preguntas frecuentes</span></h4>
+    <div class="accordion" id="faqAccordionTramites">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faqA1">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA1" aria-expanded="false" aria-controls="faqCollapseA1"
+            th:text="#{tramites.faq.p1.titulo}">¿Puedo trabajar mientras tramito mi residencia?</button>
+        </h2>
+        <div id="faqCollapseA1" class="accordion-collapse collapse" aria-labelledby="faqA1" data-bs-parent="#faqAccordionTramites">
+          <div class="accordion-body" th:text="#{tramites.faq.p1.respuesta}">
+            Depende del tipo de permiso solicitado. Consulta las condiciones de tu trámite o pregunta a otros usuarios por su experiencia.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faqA2">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA2" aria-expanded="false" aria-controls="faqCollapseA2"
+            th:text="#{tramites.faq.p2.titulo}">¿Cuánto cuesta legalizar un documento extranjero?</button>
+        </h2>
+        <div id="faqCollapseA2" class="accordion-collapse collapse" aria-labelledby="faqA2" data-bs-parent="#faqAccordionTramites">
+          <div class="accordion-body" th:text="#{tramites.faq.p2.respuesta}">
+            El precio varía según el país y el tipo de documento. Consulta en el consulado o embajada correspondiente.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faqA3">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA3" aria-expanded="false" aria-controls="faqCollapseA3"
+            th:text="#{tramites.faq.p3.titulo}">¿Qué hago si pierdo mi TIE/NIE?</button>
+        </h2>
+        <div id="faqCollapseA3" class="accordion-collapse collapse" aria-labelledby="faqA3" data-bs-parent="#faqAccordionTramites">
+          <div class="accordion-body" th:text="#{tramites.faq.p3.respuesta}">
+            Debes denunciar la pérdida y solicitar un duplicado en la comisaría de policía o extranjería.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faqA4">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA4" aria-expanded="false" aria-controls="faqCollapseA4"
+            th:text="#{tramites.faq.p4.titulo}">¿Dónde puedo encontrar modelos de formularios oficiales?</button>
+        </h2>
+        <div id="faqCollapseA4" class="accordion-collapse collapse" aria-labelledby="faqA4" data-bs-parent="#faqAccordionTramites">
+          <div class="accordion-body" th:text="#{tramites.faq.p4.respuesta}">
+            Puedes descargarlos en la web del Ministerio de Inclusión, Seguridad Social y Migraciones o preguntar en este foro por enlaces directos.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón para añadir pregunta -->
+  <div class="alert alert-info mt-4 mb-2 d-flex align-items-center justify-content-between">
+    <span><i class="bi bi-question-circle"></i> <span th:text="#{tramites.nueva_pregunta.texto}">¿Tienes una nueva duda sobre trámites?</span></span>
+    <a class="btn btn-outline-info btn-sm" data-bs-toggle="collapse" href="#nuevaPreguntaTramites" role="button" aria-expanded="false" aria-controls="nuevaPreguntaTramites">
+      <i class="bi bi-plus-circle"></i> <span th:text="#{tramites.nueva_pregunta.boton}">Añadir pregunta</span>
+    </a>
+  </div>
+  <div class="collapse" id="nuevaPreguntaTramites">
+    <div class="card my-3">
+      <div class="card-body">
+        <form th:action="@{/foro/preguntasFrecuentes}" method="post">
+          <input type="hidden" name="temaId" th:value="${tema.temaID}" />
+          <div class="mb-3">
+            <label for="preguntaContenidoTramites" class="form-label" th:text="#{tramites.nueva_pregunta.label}">Pregunta</label>
+            <textarea class="form-control" id="preguntaContenidoTramites" name="contenido" rows="3" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-info" th:text="#{tramites.nueva_pregunta.publicar}">Publicar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Preguntas de usuarios -->
+  <div class="mt-5">
+    <h4><i class="bi bi-people"></i> <span th:text="#{tramites.preguntas_usuarios.titulo}">Preguntas de usuarios</span></h4>
+    <div th:if="${preguntasUsuarios != null and #lists.isEmpty(preguntasUsuarios)}" class="text-muted" th:text="#{tramites.preguntas_usuarios.vacio}">
+      No hay preguntas publicadas aún. ¡Sé el primero en preguntar!
+    </div>
+    <div class="list-group">
+      <div th:each="pregunta : ${preguntasUsuarios}" class="list-group-item mb-2">
+        <a th:href="@{/foro/preguntaUsuario/{preguntaID}(preguntaID=${pregunta.preguntaID})}" style="text-decoration: none; color: inherit;">
+          <h6 class="mb-1"><i class="bi bi-question-circle"></i> <span th:text="${pregunta.pregunta}"></span></h6>
+        </a>
+        <small class="text-muted" th:text="${#dates.format(pregunta.fechaCreacion, 'dd/MM/yyyy')}">Fecha</small>
+      </div>
+    </div>
+  </div>
+</div>
