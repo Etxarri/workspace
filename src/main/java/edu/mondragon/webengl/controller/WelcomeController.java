@@ -5,10 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class WelcomeController {
-
+public class WelcomeController
+{
     @GetMapping("/")
-    public String home(Model model) {
+    public String home(Model model)
+    {
         return "/login/login"; // esto busca login.html en templates
     }
 }

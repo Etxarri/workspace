@@ -11,8 +11,8 @@ import edu.mondragon.webengl.domain.user.model.*;
 import edu.mondragon.webengl.domain.user.repository.*;
 
 @Service
-public class UsuarioServiceImpl implements UsuarioService {
-
+public class UsuarioServiceImpl implements UsuarioService
+{
     // UsuarioService es la clase que DICE QUÉ va a HACER.
     // UsuarioServiceImpl es la clase que HACE el TRABAJO de la interfaz UsuarioService.
 
@@ -37,16 +37,19 @@ public class UsuarioServiceImpl implements UsuarioService {
     public boolean existeUsuarioPorEmail(String email) {
         return usuarioRepository.findByEmail(email).isPresent();
     }
+
     @Override
-    public Optional<Usuario> findUsuarioByEmail(String email) {
+    public Optional<Usuario> findUsuarioByEmail(String email)
+    {
         return usuarioRepository.findByEmail(email);
     }
 
-
     @Override
-    public Usuario login(String username, String password) {
+    public Usuario login(String username, String password)
+    {
         Optional<Usuario> usuarioOpt = usuarioRepository.findByUsername(username);
-        if (usuarioOpt.isPresent()) {
+        if (usuarioOpt.isPresent())
+        {
             System.out.println("Usuario encontrado: " + usuarioOpt.get().getNombre());
             Usuario usuario = usuarioOpt.get();
             //return passwordEncoder.matches(password, usuario.getPassword());

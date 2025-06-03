@@ -1,5 +1,6 @@
 package edu.mondragon.webengl.controller;
 
+
 import edu.mondragon.webengl.domain.pais.model.Ciudad;
 import edu.mondragon.webengl.domain.pais.model.Pais;
 import edu.mondragon.webengl.domain.pais.repository.CiudadRepository;
@@ -18,20 +19,22 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/usuario")
-public class UsuarioController {
-
+public class UsuarioController
+{
     private final UsuarioService usuarioService;
     private final CiudadRepository ciudadRepository;
     private final PaisRepository paisRepository;   
 
-    public UsuarioController(UsuarioService usuarioService, CiudadRepository ciudadRepository, PaisRepository paisRepository) {
+    public UsuarioController(UsuarioService usuarioService, CiudadRepository ciudadRepository, PaisRepository paisRepository)
+    {
         this.usuarioService = usuarioService;
         this.ciudadRepository = ciudadRepository;
         this.paisRepository = paisRepository;
     }
 
     @GetMapping("/crear")
-    public String showForm(Model model) {
+    public String showForm(Model model)
+    {
         model.addAttribute("ciudades", ciudadRepository.findAll());
         model.addAttribute("paises", paisRepository.findAll());
         return "user/userForm"; // Nombre del archivo Thymeleaf para el formulario
@@ -54,7 +57,8 @@ public class UsuarioController {
             HttpSession session,
             RedirectAttributes redirectAttributes
     ) {
-        if (usuarioService.existeUsuarioPorEmail(email)) {
+        if (usuarioService.existeUsuarioPorEmail(email))
+        {
             redirectAttributes.addFlashAttribute("error", "El email ya está registrado.");
             return "redirect:/usuario/crear";
         }
@@ -64,7 +68,7 @@ public class UsuarioController {
         Ciudad ciudad = ciudadRepository.findById(ciudadID)
             .orElseThrow(() -> new IllegalArgumentException("Ciudad no encontrada"));
 
-            Usuario usuario = new Usuario();
+        Usuario usuario = new Usuario();
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setUsername(username);
@@ -77,14 +81,17 @@ public class UsuarioController {
         usuarioService.guardarUsuario(usuario); // Guardamos primero el usuario base
 
 
-        if (tipo == TipoUsuario.recienllegado) {
+        if (tipo == TipoUsuario.recienllegado)
+        {
             Recienllegado r = new Recienllegado();
             r.setUsuario(usuario);
             r.setNecesidades(necesidades);
             r.setLenguaje(lenguaje);
             r.setFechaLlegada(java.time.LocalDate.now());
             usuarioService.guardarRecienllegado(r);
-        } else if (tipo == TipoUsuario.voluntario) {
+        }
+        else if (tipo == TipoUsuario.voluntario)
+        {
             Voluntario v = new Voluntario();
             v.setUsuario(usuario);
             v.setHabilidades(habilidades);

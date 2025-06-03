@@ -6,13 +6,15 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EmailService {
-
+public class EmailService
+{
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendVerificationCode(String to, String code) {
-        try {
+    public void sendVerificationCode(String to, String code)
+    {
+        try
+        {
             String subject = "Código de recuperación de contraseña";
             String body = "Tu código de recuperación es: " + code + "\nEste código expirará en 15 minutos.";
 
@@ -23,10 +25,10 @@ public class EmailService {
 
             mailSender.send(message);
             System.out.println("✅ Código enviado a: " + to);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             System.err.println("❌ Error al enviar el correo: " + e.getMessage());
         }
     }
-
 }
-

@@ -21,8 +21,8 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/eventos")
-public class EventoLocalController {
-
+public class EventoLocalController
+{
     /* FALTA POR HACER:
         Vistas eventos/lista.html y eventos/detalle.html (si quieres te ayudo con eso)
         Control de acceso para que solo se apunten Recienllegado
@@ -32,26 +32,33 @@ public class EventoLocalController {
     private final EventoLocalRepository eventoRepo;
     private final RecienllegadoApuntarseEventoRepository inscripcionRepo;
     private final RecienllegadoRepository recienllegadoRepo;
-    public EventoLocalController(EventoLocalRepository eventoRepo, RecienllegadoApuntarseEventoRepository inscripcionRepo, RecienllegadoRepository recienllegadoRepo) {
+    public EventoLocalController(EventoLocalRepository eventoRepo, RecienllegadoApuntarseEventoRepository inscripcionRepo, RecienllegadoRepository recienllegadoRepo)
+    {
         this.eventoRepo = eventoRepo;
         this.inscripcionRepo = inscripcionRepo;
         this.recienllegadoRepo = recienllegadoRepo;
     }
 
     @GetMapping
-    public String listarEventos(Model model) {
+    public String listarEventos(Model model)
+    {
         List<EventoLocal> eventos = eventoRepo.findAll();
         model.addAttribute("eventos", eventos);
+
         return "login/logged"; // Vista Thymeleaf con el listado
     }
 
     @GetMapping("/{eventoID}")
-    public String detalleEvento(@PathVariable("eventoID") int eventoID, Model model) {
+    public String detalleEvento(@PathVariable("eventoID") int eventoID, Model model)
+    {
         Optional<EventoLocal> eventoOpt = eventoRepo.findById(eventoID);
-        if (eventoOpt.isPresent()) {
+        if (eventoOpt.isPresent())
+        {
             model.addAttribute("evento", eventoOpt.get());
             return "evento/evento";
-        } else {
+        }
+        else
+        {
             return "redirect:/eventos";
         }
     }
@@ -59,7 +66,8 @@ public class EventoLocalController {
     @PostMapping("/{eventoID}/apuntarse")
     public String apuntarseEvento(@PathVariable("eventoID") int eventoID, @AuthenticationPrincipal UsuarioDetails user, HttpSession session, RedirectAttributes redirectAttrs) {
 
-        if (!user.getUsuario().getTipo().equals("recienllegado")) {
+        if (!user.getUsuario().getTipo().equals("recienllegado"))
+        {
             redirectAttrs.addFlashAttribute("error", "Solo los recién llegados pueden apuntarse.");
             System.out.println("Usuario no es recienllegado: " + user.getUsuario().getTipo());
             return "redirect:/eventos";
@@ -67,10 +75,13 @@ public class EventoLocalController {
 
         RecienllegadoEventoId compuesta = new RecienllegadoEventoId(user.getUsuario().getUsuarioID(), eventoID);
 
-        if (inscripcionRepo.existsById(compuesta)) {
+        if (inscripcionRepo.existsById(compuesta))
+        {
             redirectAttrs.addFlashAttribute("info", "Ya estás apuntado a este evento.");
             System.out.println("Ya está apuntado al evento: " + eventoID);
-        } else {
+        }
+        else
+        {
             RecienllegadoApuntarseEvento inscripcion = new RecienllegadoApuntarseEvento();
             inscripcion.setId(compuesta);
             inscripcion.setFechaInscripcion(LocalDate.now());
@@ -82,4 +93,3 @@ public class EventoLocalController {
         return "redirect:/eventos/" + eventoID;
     }
 }
-

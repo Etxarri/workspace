@@ -6,8 +6,8 @@ import edu.mondragon.webengl.domain.user.model.Recienllegado;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.model.Voluntario;
 
-public interface UsuarioService {
-
+public interface UsuarioService
+{
     // UsuarioService es la clase que DICE QUÉ va a HACER.
     // UsuarioServiceImpl es la clase que HACE el TRABAJO de la interfaz UsuarioService.
     
@@ -27,4 +27,3 @@ public interface UsuarioService {
 
     Optional<Usuario> findUsuarioByEmail(String email);
 }
-

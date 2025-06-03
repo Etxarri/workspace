@@ -7,12 +7,13 @@ import edu.mondragon.webengl.domain.encuesta.model.HacerEncuesta;
 import edu.mondragon.webengl.domain.encuesta.repository.EncuestaRepository;
 import edu.mondragon.webengl.domain.encuesta.repository.HacerEncuestaRepository;
 import edu.mondragon.webengl.domain.user.model.Usuario;
-
+import edu.mondragon.webengl.seguridad.UsuarioDetails;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
@@ -48,8 +49,13 @@ public class EncuestaController
 
     // Mostrar formulario para responder encuesta
     @GetMapping("/{encuestaID}")
-    public String mostrarEncuesta(@PathVariable("encuestaID") int encuestaID, Model model, HttpSession session, RedirectAttributes redirectAttrs)
-    {
+    public String mostrarEncuesta(@PathVariable("encuestaID") int encuestaID,
+                                Model model,
+                                HttpSession session,
+                                HttpServletRequest request,
+                                RedirectAttributes redirectAttrs,
+                                @AuthenticationPrincipal UsuarioDetails user) {
+        // Buscar la encuesta específica
         Optional<Encuesta> encuestaOpt = encuestaRepo.findById(encuestaID);
         if (encuestaOpt.isEmpty())
         {
@@ -57,18 +63,22 @@ public class EncuestaController
             return "redirect:/encuestas";
         }
 
-        Usuario usuario = (Usuario) session.getAttribute("user");
+        // Verificar si el usuario está autenticado
+        Usuario usuario = user.getUsuario();
         if (usuario == null)
         {
+            // Guardar la URL original
+            String originalUrl = request.getRequestURL().toString();
+            session.setAttribute("urlAnterior", originalUrl);
             redirectAttrs.addFlashAttribute("error", "Debes iniciar sesión para responder la encuesta");
             return "redirect:/login";
         }
 
         // Aquí podrías añadir lógica para evitar que un usuario conteste dos veces la misma encuesta si quieres
 
+        // Añadir la encuesta y el objeto para respuestas al modelo
         // Añadir la encuesta al modelo
         model.addAttribute("encuesta", encuestaOpt.get());
-
         // Añadir el DTO vacío al modelo para el binding del formulario
         model.addAttribute("encuestaRespuestas", new EncuestaRespuestas());
 
@@ -81,7 +91,7 @@ public class EncuestaController
                                    @ModelAttribute EncuestaRespuestas encuestaRespuestas, //@RequestParam String respuestas, // ajusta según tus datos, por ejemplo JSON o params separados
                                    HttpSession session,
                                    RedirectAttributes redirectAttrs) {
-        Usuario usuario = (Usuario) session.getAttribute("user");
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
         if (usuario == null)
         {
             redirectAttrs.addFlashAttribute("error", "Debes iniciar sesión para responder la encuesta");

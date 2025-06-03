@@ -1,5 +1,6 @@
 package edu.mondragon.webengl.domain.user.model;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -21,9 +22,11 @@ import edu.mondragon.webengl.domain.pais.model.Pais;
  *     -It may have a number of properties which can be read or written.
  *     -"getters" and "setters" for those properties.
  */
+
 @Entity
 @Table(name = "usuario")
-public class Usuario {
+public class Usuario
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usuarioID")
@@ -56,9 +59,9 @@ public class Usuario {
     @Column(nullable = false, length = 50)
     private String username;
 
-    // getters y setters
-
-    public enum TipoUsuario {
+    // Getters y setters
+    public enum TipoUsuario
+    {
         recienllegado,
         voluntario
     }

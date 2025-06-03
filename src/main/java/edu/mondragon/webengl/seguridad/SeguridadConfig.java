@@ -11,8 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-public class SeguridadConfig extends WebSecurityConfigurerAdapter {
-
+public class SeguridadConfig extends WebSecurityConfigurerAdapter
+{
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
