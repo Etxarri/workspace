@@ -136,7 +136,7 @@ public class EventoLocalController {
                     .filter(e -> e.getCategoria().getCategoriaID() == categoriaID)
                     .toList();
         }
-
+        
         model.addAttribute("eventos", eventos);
         model.addAttribute("categorias", categoriaRepository.findAll());
         model.addAttribute("categoriaSeleccionada", categoriaID); // Para que la vista sepa cuál está seleccionada
