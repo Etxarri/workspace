@@ -2,6 +2,10 @@ package edu.mondragon.webengl.domain.user.service;
 
 
 import java.util.Optional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,6 +27,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @PersistenceContext
+    public EntityManager entityManager;
+
     public UsuarioServiceImpl(
         UsuarioRepository usuarioRepository,
         RecienllegadoRepository recienllegadoRepository,
@@ -42,19 +49,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioRepository.findByEmail(email);
     }
 
-
-    @Override
-    public Usuario login(String username, String password) {
-        Optional<Usuario> usuarioOpt = usuarioRepository.findByUsername(username);
-        if (usuarioOpt.isPresent()) {
-            System.out.println("Usuario encontrado: " + usuarioOpt.get().getNombre());
-            Usuario usuario = usuarioOpt.get();
-            //return passwordEncoder.matches(password, usuario.getPassword());
-            return usuario;
-        }
-        System.out.println("Usuario no encontrado: " + username);
-        return null;
-    }
     /*
      *     @Override
     public Usuario login(String username, String password) {
@@ -106,6 +100,42 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public String encriptarContraseña(String rawPassword) {
         return passwordEncoder.encode(rawPassword);
+    }
+
+    @Override
+    @Transactional
+    public void crearUsuario(String nombre, String apellido, String username, String email, String password, String tipo, int paisID, int ciudadID) {
+        entityManager.createNativeQuery("CALL crear_usuario(?, ?, ?, ?, ?, ?, ?, ?)")
+            .setParameter(1, nombre)
+            .setParameter(2, apellido)
+            .setParameter(3, username)
+            .setParameter(4, email)
+            .setParameter(5, password)
+            .setParameter(6, tipo)
+            .setParameter(7, paisID)
+            .setParameter(8, ciudadID)
+            .executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public void crearRecienllegado(int usuarioID, String necesidades, String lenguaje, java.time.LocalDate fechaLlegada) {
+        entityManager.createNativeQuery("CALL crear_recienllegado(?, ?, ?, ?)")
+            .setParameter(1, usuarioID)
+            .setParameter(2, necesidades)
+            .setParameter(3, lenguaje)
+            .setParameter(4, java.sql.Date.valueOf(fechaLlegada))
+            .executeUpdate();
+    }
+
+    @Override
+    @Transactional
+    public void crearVoluntario(int usuarioID, String habilidades, String motivacion) {
+        entityManager.createNativeQuery("CALL crear_voluntario(?, ?, ?)")
+            .setParameter(1, usuarioID)
+            .setParameter(2, habilidades)
+            .setParameter(3, motivacion)
+            .executeUpdate();
     }
 
 

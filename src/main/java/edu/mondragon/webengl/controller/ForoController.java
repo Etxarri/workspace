@@ -1,7 +1,6 @@
 package edu.mondragon.webengl.controller;
 
 
-import edu.mondragon.webengl.domain.evento.model.EventoLocal;
 import edu.mondragon.webengl.domain.foro.model.ComentarioForo;
 import edu.mondragon.webengl.domain.foro.model.Hiloforo;
 import edu.mondragon.webengl.domain.foro.model.PreguntaFrecuente;

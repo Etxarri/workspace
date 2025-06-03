@@ -1,7 +1,5 @@
 package edu.mondragon.webengl.domain.recurso.model;
 
-import java.text.DecimalFormat;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
