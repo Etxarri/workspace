@@ -1,93 +1,87 @@
 <div th:fragment="contenidoForo">
   <div class="mb-4">
-    <h2 class="mb-3"><i class="bi bi-briefcase"></i> Empleo</h2>
-    <p class="text-muted">Comparte ofertas, consejos y experiencias sobre el mundo laboral en España.</p>
+    <h2 class="mb-3"><i class="bi bi-briefcase"></i> <span th:text="#{empleo.titulo}">Empleo</span></h2>
+    <p class="text-muted" th:text="#{empleo.descripcion}">Comparte ofertas, consejos y experiencias sobre el mundo laboral en España.</p>
     <div class="row g-3">
       <div class="col-md-6">
         <div class="card border-primary h-100">
           <div class="card-body">
-            <h5 class="card-title"><i class="bi bi-search"></i> Buscar trabajo</h5>
-            <p class="card-text">Recursos y portales para encontrar empleo, consejos para entrevistas y elaboración de CV.</p>
+            <h5 class="card-title"><i class="bi bi-search"></i> <span th:text="#{empleo.buscar_trabajo}">Buscar trabajo</span></h5>
+            <p class="card-text" th:text="#{empleo.buscar_trabajo.descripcion}">Recursos y portales para encontrar empleo, consejos para entrevistas y elaboración de CV.</p>
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card border-success h-100">
           <div class="card-body">
-            <h5 class="card-title"><i class="bi bi-person-plus"></i> Primer empleo</h5>
-            <p class="card-text">Ayuda para quienes buscan su primer trabajo en España: prácticas, becas y voluntariado.</p>
+            <h5 class="card-title"><i class="bi bi-person-plus"></i> <span th:text="#{empleo.primer_empleo}">Primer empleo</span></h5>
+            <p class="card-text" th:text="#{empleo.primer_empleo.descripcion}">Ayuda para quienes buscan su primer trabajo en España: prácticas, becas y voluntariado.</p>
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card border-warning h-100">
           <div class="card-body">
-            <h5 class="card-title"><i class="bi bi-currency-euro"></i> Contratos y nóminas</h5>
-            <p class="card-text">Dudas sobre tipos de contrato, nóminas, derechos laborales y Seguridad Social.</p>
+            <h5 class="card-title"><i class="bi bi-currency-euro"></i> <span th:text="#{empleo.contratos_nominas}">Contratos y nóminas</span></h5>
+            <p class="card-text" th:text="#{empleo.contratos_nominas.descripcion}">Dudas sobre tipos de contrato, nóminas, derechos laborales y Seguridad Social.</p>
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card border-danger h-100">
           <div class="card-body">
-            <h5 class="card-title"><i class="bi bi-people-fill"></i> Experiencias laborales</h5>
-            <p class="card-text">Comparte tu experiencia en el trabajo, recomendaciones y advertencias.</p>
+            <h5 class="card-title"><i class="bi bi-people-fill"></i> <span th:text="#{empleo.experiencias_laborales}">Experiencias laborales</span></h5>
+            <p class="card-text" th:text="#{empleo.experiencias_laborales.descripcion}">Comparte tu experiencia en el trabajo, recomendaciones y advertencias.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-
-
   <!-- Preguntas Frecuentes -->
   <div class="mt-5">
-    <h4><i class="bi bi-lightbulb"></i> Preguntas frecuentes</h4>
+    <h4><i class="bi bi-lightbulb"></i> <span th:text="#{empleo.faq.titulo}">Preguntas frecuentes</span></h4>
     <div class="accordion" id="faqAccordionEmpleo">
       <div class="accordion-item">
         <h2 class="accordion-header" id="faqE1">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseE1" aria-expanded="false" aria-controls="faqCollapseE1">
-            ¿Dónde puedo buscar ofertas de empleo en España?
-          </button>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseE1" aria-expanded="false" aria-controls="faqCollapseE1"
+            th:text="#{empleo.faq.p1.titulo}">¿Dónde puedo buscar ofertas de empleo en España?</button>
         </h2>
         <div id="faqCollapseE1" class="accordion-collapse collapse" aria-labelledby="faqE1" data-bs-parent="#faqAccordionEmpleo">
-          <div class="accordion-body">
+          <div class="accordion-body" th:text="#{empleo.faq.p1.respuesta}">
             Puedes buscar en portales como InfoJobs, Indeed, LinkedIn, SEPE y también en grupos de redes sociales.
           </div>
         </div>
       </div>
       <div class="accordion-item">
         <h2 class="accordion-header" id="faqE2">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseE2" aria-expanded="false" aria-controls="faqCollapseE2">
-            ¿Qué documentos necesito para trabajar legalmente?
-          </button>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseE2" aria-expanded="false" aria-controls="faqCollapseE2"
+            th:text="#{empleo.faq.p2.titulo}">¿Qué documentos necesito para trabajar legalmente?</button>
         </h2>
         <div id="faqCollapseE2" class="accordion-collapse collapse" aria-labelledby="faqE2" data-bs-parent="#faqAccordionEmpleo">
-          <div class="accordion-body">
+          <div class="accordion-body" th:text="#{empleo.faq.p2.respuesta}">
             Necesitas NIE, permiso de trabajo y, en algunos casos, estar empadronado. Consulta los requisitos según tu situación.
           </div>
         </div>
       </div>
       <div class="accordion-item">
         <h2 class="accordion-header" id="faqE3">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseE3" aria-expanded="false" aria-controls="faqCollapseE3">
-            ¿Cómo puedo homologar mi título profesional?
-          </button>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseE3" aria-expanded="false" aria-controls="faqCollapseE3"
+            th:text="#{empleo.faq.p3.titulo}">¿Cómo puedo homologar mi título profesional?</button>
         </h2>
         <div id="faqCollapseE3" class="accordion-collapse collapse" aria-labelledby="faqE3" data-bs-parent="#faqAccordionEmpleo">
-          <div class="accordion-body">
+          <div class="accordion-body" th:text="#{empleo.faq.p3.respuesta}">
             Debes solicitar la homologación en el Ministerio de Educación y FP. El proceso puede variar según el país y el título.
           </div>
         </div>
       </div>
       <div class="accordion-item">
         <h2 class="accordion-header" id="faqE4">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseE4" aria-expanded="false" aria-controls="faqCollapseE4">
-            ¿Qué derechos tengo como trabajador extranjero?
-          </button>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseE4" aria-expanded="false" aria-controls="faqCollapseE4"
+            th:text="#{empleo.faq.p4.titulo}">¿Qué derechos tengo como trabajador extranjero?</button>
         </h2>
         <div id="faqCollapseE4" class="accordion-collapse collapse" aria-labelledby="faqE4" data-bs-parent="#faqAccordionEmpleo">
-          <div class="accordion-body">
+          <div class="accordion-body" th:text="#{empleo.faq.p4.respuesta}">
             Tienes derecho a un contrato, salario mínimo, Seguridad Social y protección frente a despidos injustificados. Consulta la legislación laboral vigente.
           </div>
         </div>
@@ -95,12 +89,11 @@
     </div>
   </div>
 
-
   <!-- Botón para añadir pregunta -->
   <div class="alert alert-info mt-4 mb-2 d-flex align-items-center justify-content-between">
-    <span><i class="bi bi-question-circle"></i> ¿Tienes una nueva duda sobre trámites?</span>
+    <span><i class="bi bi-question-circle"></i> <span th:text="#{empleo.nueva_pregunta.texto}">¿Tienes una nueva duda sobre trámites?</span></span>
     <a class="btn btn-outline-info btn-sm" data-bs-toggle="collapse" href="#nuevaPreguntaEmpleo" role="button" aria-expanded="false" aria-controls="nuevaPreguntaEmpleo">
-      <i class="bi bi-plus-circle"></i> Añadir pregunta
+      <i class="bi bi-plus-circle"></i> <span th:text="#{empleo.nueva_pregunta.boton}">Añadir pregunta</span>
     </a>
   </div>
   <div class="collapse" id="nuevaPreguntaEmpleo">
@@ -109,18 +102,19 @@
         <form th:action="@{/foro/preguntasFrecuentes}" method="post">
           <input type="hidden" name="temaId" th:value="${tema.temaID}" />
           <div class="mb-3">
-            <label for="preguntaContenidoEmpleo" class="form-label">Pregunta</label>
+            <label for="preguntaContenidoEmpleo" class="form-label" th:text="#{empleo.nueva_pregunta.label}">Pregunta</label>
             <textarea class="form-control" id="preguntaContenidoEmpleo" name="contenido" rows="3" required></textarea>
           </div>
-          <button type="submit" class="btn btn-info">Publicar</button>
+          <button type="submit" class="btn btn-info" th:text="#{empleo.nueva_pregunta.publicar}">Publicar</button>
         </form>
       </div>
     </div>
   </div>
-      <!-- Preguntas de usuarios -->
+
+  <!-- Preguntas de usuarios -->
   <div class="mt-5">
-    <h4><i class="bi bi-people"></i> Preguntas de usuarios</h4>
-    <div th:if="${preguntasUsuarios != null and #lists.isEmpty(preguntasUsuarios)}" class="text-muted">
+    <h4><i class="bi bi-people"></i> <span th:text="#{empleo.preguntas_usuarios.titulo}">Preguntas de usuarios</span></h4>
+    <div th:if="${preguntasUsuarios != null and #lists.isEmpty(preguntasUsuarios)}" class="text-muted" th:text="#{empleo.preguntas_usuarios.vacio}">
       No hay preguntas publicadas aún. ¡Sé el primero en preguntar!
     </div>
     <div class="list-group">
@@ -132,5 +126,4 @@
       </div>
     </div>
   </div>
-
 </div>

@@ -24,7 +24,7 @@
             <div class="col-md-6 col-12 d-flex justify-content-center">
                 <form method="get" th:action="@{/eventos/listaEventos}" class="w-100 bg-white p-4 rounded shadow-sm d-flex flex-wrap gap-2 align-items-center justify-content-center">
                     <select name="categoria" class="form-select w-auto">
-                        <option th:value="0" th:selected="${categoriaSeleccionada == null}">Todas las categorías</option>
+                        <option th:value="0" th:selected="${categoriaSeleccionada == null}" th:text="#{evento.categorias}">Todas las categorías</option>
                         <option th:each="cat : ${categorias}" th:value="${cat.categoriaID}" th:text="${cat.nombre}" th:selected="${categoriaSeleccionada == cat.categoriaID}"></option>
                     </select>
                 </form>
@@ -60,9 +60,7 @@
                     </div>
                 </a>
             </div>
-
-            <!-- Si no hay eventos -->
-            <div th:if="${#lists.isEmpty(eventos)}" class="text-center text-muted w-100 mt-5">
+            <div th:if="${#lists.isEmpty(eventos)}" class="text-center text-muted w-100" th:text="#{evento.no_hay_eventos_disponibles_para_esta_categoría}">
                 No hay eventos disponibles para esta categoría.
             </div>
         </div>

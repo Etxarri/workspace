@@ -14,7 +14,10 @@ edu/mondragon/webengl/domain/user/service/UsuarioServiceImpl.class
 edu/mondragon/webengl/domain/user/service/UsuarioService.class
 edu/mondragon/webengl/controller/UsuarioController.class
 edu/mondragon/webengl/domain/encuesta/model/Encuesta.class
+<<<<<<< HEAD
 edu/mondragon/webengl/domain/foro/repository/PreguntaFrecuenteRepository.class
+=======
+>>>>>>> upstream/Multilenguaje
 edu/mondragon/webengl/domain/encuesta/repository/HacerEncuestaRepository.class
 edu/mondragon/webengl/controller/EncuestaController.class
 edu/mondragon/webengl/domain/user/model/Recienllegado.class
@@ -28,7 +31,10 @@ edu/mondragon/webengl/domain/encuesta/model/HacerEncuesta.class
 edu/mondragon/webengl/domain/foro/repository/TemaforoRepository.class
 edu/mondragon/webengl/controller/ForoController.class
 edu/mondragon/webengl/domain/user/model/PasswordResetTokenStore$1.class
+<<<<<<< HEAD
 edu/mondragon/webengl/controller/RecursoLocalController.class
+=======
+>>>>>>> upstream/Multilenguaje
 edu/mondragon/webengl/domain/evento/model/EventoLocal.class
 edu/mondragon/webengl/domain/encuesta/model/HacerEncuestaId.class
 edu/mondragon/webengl/domain/pais/model/Pais.class
@@ -40,7 +46,10 @@ edu/mondragon/webengl/domain/foro/model/ComentarioForo.class
 edu/mondragon/webengl/StartWebApplication.class
 edu/mondragon/webengl/controller/LoginController.class
 edu/mondragon/webengl/domain/evento/model/RecienllegadoEventoId.class
+<<<<<<< HEAD
 edu/mondragon/webengl/domain/foro/model/PreguntaFrecuente.class
+=======
+>>>>>>> upstream/Multilenguaje
 edu/mondragon/webengl/internationalization/InternationalizationConfig.class
 edu/mondragon/webengl/domain/foro/model/Temaforo.class
 edu/mondragon/webengl/domain/user/repository/VoluntarioRepository.class
@@ -51,6 +60,9 @@ edu/mondragon/webengl/domain/user/repository/RecienllegadoRepository.class
 edu/mondragon/webengl/controller/WelcomeController.class
 edu/mondragon/webengl/domain/encuesta/repository/EncuestaRepository.class
 edu/mondragon/webengl/controller/EventoLocalController.class
+<<<<<<< HEAD
 edu/mondragon/webengl/controller/FAQController.class
 edu/mondragon/webengl/domain/foro/repository/HiloforoRepository.class
 edu/mondragon/webengl/domain/pais/repository/PaisRepository.class
+=======
+>>>>>>> upstream/Multilenguaje
