@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title layout:title-pattern="$CONTENT_TITLE - Welco">Welco</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script src="/js/asideScript.js"></script>
+    <script src="/js/filtroCategoria.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+</head>
+<body>
+    <div th:replace="headerInmigrante :: header"></div>
+
+    <main layout:fragment="content"></main>
+
+    <footer class="text-center py-3">
+        © 2025 Welco
+    </footer>
+    
+    <script src="/js/javaScript.js"></script>
+    <script src="/js/filtroCategoria.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var recursos = /*[[${recursosMapa}]]*/ [];
+        /*]]>*/
+    </script>
+    <script src="/js/mapa.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7Hw2HQFKXoT4aFT50EY3DlhEl2YWdB2g&callback=initMap"
+      async defer></script>
+</body>
+</html>
