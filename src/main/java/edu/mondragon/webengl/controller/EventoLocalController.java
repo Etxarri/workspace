@@ -13,6 +13,8 @@ import edu.mondragon.webengl.domain.user.model.Usuario.TipoUsuario;
 import edu.mondragon.webengl.domain.user.repository.RecienllegadoRepository;
 import edu.mondragon.webengl.domain.user.repository.VoluntarioRepository;
 import edu.mondragon.webengl.seguridad.UsuarioDetails;
+import edu.mondragon.webengl.domain.pais.model.Ciudad;
+import edu.mondragon.webengl.domain.categoria.model.Categoria;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;

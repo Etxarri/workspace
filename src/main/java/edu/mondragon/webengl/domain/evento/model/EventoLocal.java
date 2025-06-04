@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import edu.mondragon.webengl.domain.categoria.model.Categoria;
 import edu.mondragon.webengl.domain.pais.model.Ciudad;
@@ -38,6 +39,7 @@ public class EventoLocal {
     private String descripcion;
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime fechaHora;
 
     @Column(nullable = false)
