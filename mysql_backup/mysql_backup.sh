@@ -10,3 +10,5 @@ FILENAME="$OUTPUT_DIR/backup_$DATABASE_$FECHA.sql"
 
 # Crear backup
 mysqldump -h 172.18.0.2 -u $USER -p$PASSWORD $DATABASE > $FILENAME
+
+# 0 3 * * * /workspace/mysql_backup/mysql_backup.sh >> /workspace/mysql_backup/mysql_backup.log 2>&1

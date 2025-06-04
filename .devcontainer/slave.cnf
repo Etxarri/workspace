@@ -1,0 +1,14 @@
+# Opciones para el servidor MySQL
+[mysqld]
+
+# Identificador único del servidor (debe ser diferente al del master)
+server-id=2
+
+# Nombre base para los archivos de relay log (almacenan eventos replicados)
+relay-log=relay-log
+
+# Activa el registro binario en el esclavo (útil si este será master de otros)
+log-bin=mysql-bin
+
+# Solo replica la base de datos 'welco'
+binlog_do_db=welco

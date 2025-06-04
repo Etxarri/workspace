@@ -7,17 +7,33 @@ services:
       - ..:/workspace
     command: sleep infinity
     depends_on:
-      - mysql
+      - mysql-master
 
-  mysql:
+  mysql-master:
     image: mysql:lts
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: pasahitza
-      MYSQL_DATABASE: pbl
+      MYSQL_DATABASE: welco
     volumes:
-      - mysql-data:/var/lib/mysql
+      - mysql-master-data:/var/lib/mysql
+      - ./master.cnf:/etc/mysql/conf.d/master.cnf
+      # - ./init-master.sql:/docker-entrypoint-initdb.d/init-master.sql
+
+  mysql-slave:
+    image: mysql:lts
+    ports:
+      - "3307:3307"
+    environment:
+      MYSQL_ROOT_PASSWORD: pasahitza
+      MYSQL_DATABASE: welco
+    depends_on:
+      - mysql-master
+    volumes:
+      - mysql-slave-data:/var/lib/mysql
+      - ./slave.cnf:/etc/mysql/conf.d/slave.cnf
 
 volumes:
-  mysql-data:
+  mysql-master-data:
+  mysql-slave-data:

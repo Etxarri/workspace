@@ -1,0 +1,14 @@
+# Opciones para el servidor MySQL
+[mysqld]
+
+# Identificador único del servidor (necesario para replicación)
+server-id = 1
+
+# Activa el registro binario (necesario para replicación)
+log-bin = mysql-bin
+
+# Solo replica la base de datos 'welco'
+binlog_do_db = welco
+
+# Carga el plugin de autenticación nativo de MySQL
+plugin-load-add = mysql_native_password.so  

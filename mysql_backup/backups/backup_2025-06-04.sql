@@ -140,7 +140,7 @@ CREATE TABLE `encuesta` (
   `titulo` varchar(50) NOT NULL,
   `descripcion` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`encuestaID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,7 +149,7 @@ CREATE TABLE `encuesta` (
 
 LOCK TABLES `encuesta` WRITE;
 /*!40000 ALTER TABLE `encuesta` DISABLE KEYS */;
-INSERT INTO `encuesta` VALUES (1,'Satisfacción de eventos','Cuestionario sobre los eventos realizados');
+INSERT INTO `encuesta` VALUES (1,'Satisfacción de eventos','Cuestionario sobre los eventos realizados'),(2,'a','a');
 /*!40000 ALTER TABLE `encuesta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -301,6 +301,28 @@ INSERT INTO `preguntafrecuente` VALUES (1,1,'¿Cómo practicar español diariame
 UNLOCK TABLES;
 
 --
+-- Table structure for table `prueba`
+--
+
+DROP TABLE IF EXISTS `prueba`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `prueba` (
+  `id` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `prueba`
+--
+
+LOCK TABLES `prueba` WRITE;
+/*!40000 ALTER TABLE `prueba` DISABLE KEYS */;
+INSERT INTO `prueba` VALUES (1);
+/*!40000 ALTER TABLE `prueba` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `recienllegado`
 --
 
@@ -323,7 +345,7 @@ CREATE TABLE `recienllegado` (
 
 LOCK TABLES `recienllegado` WRITE;
 /*!40000 ALTER TABLE `recienllegado` DISABLE KEYS */;
-INSERT INTO `recienllegado` VALUES (2,'Necesito aprender español','Inglés','2023-05-01'),(3,'d','d','2025-06-02');
+INSERT INTO `recienllegado` VALUES (2,'Necesito aprender español','Inglés','2023-05-01'),(3,'d','d','2025-06-03');
 /*!40000 ALTER TABLE `recienllegado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -441,7 +463,7 @@ CREATE TABLE `usuario` (
   KEY `USUARIO_CIUDAD_FK` (`ciudadID`),
   CONSTRAINT `USUARIO_CIUDAD_FK` FOREIGN KEY (`ciudadID`) REFERENCES `ciudad` (`ciudadID`),
   CONSTRAINT `USUARIO_PAIS_FK` FOREIGN KEY (`paisID`) REFERENCES `pais` (`paisID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -450,7 +472,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,1,1,'user123','Juan','García','juan@gmail.com','pass123','voluntario'),(2,2,1,'user456','María','López','maria@hotmail.com','pass456','recienllegado'),(3,1,1,'d','d','d','d@gmail','$2a$10$qI/77KP4ELk1NyrOZQu3QeX/b2.pTTqzw5dGw39rg0Suj7SEIBMba','recienllegado');
+INSERT INTO `usuario` VALUES (1,1,1,'user123','Juan','García','juan@gmail.com','pass123','voluntario'),(2,2,1,'user456','María','López','maria@hotmail.com','pass456','recienllegado'),(3,1,1,'d','d','d','d@gmail','$2a$10$/LbUsKbi9L96iqgtL2AuceyHO6s6UlMa0UBZwRh.MMCQIgGtQ850y','recienllegado'),(4,2,4,'a','a','a','a@gmail','$2a$10$0sr3OULuO1XqFGrItD2ChunbaTVF/GsZYIoGfRgeqnHfPnXeWVqOG','voluntario'),(5,2,1,'v','v','v','v@gmail','$2a$10$GBRc5UBG/xjNVGuq2LHbx.MjHKbi/31DdLGDYPxZHEQ9zet9D2h4C','voluntario');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -476,7 +498,7 @@ CREATE TABLE `voluntario` (
 
 LOCK TABLES `voluntario` WRITE;
 /*!40000 ALTER TABLE `voluntario` DISABLE KEYS */;
-INSERT INTO `voluntario` VALUES (1,'Traducción inglés-español','Ayudar a la integración cultural');
+INSERT INTO `voluntario` VALUES (1,'Traducción inglés-español','Ayudar a la integración cultural'),(4,'a','a'),(5,'v','v');
 /*!40000 ALTER TABLE `voluntario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -489,4 +511,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-03  9:39:02
+-- Dump completed on 2025-06-04 16:36:01
