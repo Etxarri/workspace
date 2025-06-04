@@ -8,7 +8,10 @@
         <!--a href="#" class="list-group-item list-group-item-action active" aria-current="true">
             The current link item
         </a-->
-        <a class="list-group-item list-group-item-action"th:href="@{/login/logout}">Logout</a>
+        <form th:action="@{/logout}" method="post" class="list-group-item list-group-item-action" >
+            <button type="submit" > Logout </button>
+        </form>
+
         <a href="#" class="list-group-item list-group-item-action">Encuestas</a>
         <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1">Perfil</a>
     </div>
