@@ -16,6 +16,7 @@
     <title>Analisis de la encuesta</title>
 </head>
 <body>
+
     <div class="container-fluid">
         
         <section>
@@ -23,15 +24,14 @@
 
             <script th:inline="javascript">
                 const etiquetas = ["Psicológica", "Lingüística", "Económica", "Política", "Social", "Navegacional"];
-                const datos = [{puntosPsi, puntosLin, puntosEco, puntosPol, puntosSoc, puntosNav}];
+                const datosGrafico = [{resultadoPsi, resultadoLin, resultadoEco, resultadoPol, resultadoSoc, resultadoNav}];
             </script>
-
 
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script src="/js/grafico-polar.js"></script>
         </section>
         
-        <button type="submit" class="btn btn-primary">Entrar</button>
+        <button type="submit" class="btn btn-primary">OK</button>
     </div>
     
 </body>

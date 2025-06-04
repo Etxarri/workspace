@@ -1,13 +1,18 @@
 package edu.mondragon.webengl.domain.encuesta.model;
 
+
+//import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 
+
 @Entity
+@Table(name = "hacer_encuesta")
 @IdClass(HacerEncuestaId.class)
 public class HacerEncuesta {
     @Id
@@ -24,59 +29,75 @@ public class HacerEncuesta {
     @JoinColumn(name = "usuarioID", insertable = false, updatable = false)
     private Usuario usuario;
 
+    //@Column(name = "titulo")
     private String titulo;
+
+    //@Column(name = "descripcion")
     private String descripcion;
 
     // Campos para las puntuaciones
-    private Integer puntosPsicologico;
-    private Integer puntosLinguistico;
-    private Integer puntosEconomico;
-    private Integer puntosPolitico;
-    private Integer puntosSocial;
-    private Integer puntosNavegacional;
-    private Double puntosTotal;
+    //@Column(name = "resultadoPsicologico", nullable = false)
+    private double resultadoPsicologico;
+
+    //@Column(name = "resultadoLinguistico", nullable = false)
+    private double resultadoLinguistico;
+
+    //@Column(name = "resultadoEconomico", nullable = false)
+    private double resultadoEconomico;
+
+    //@Column(name = "resultadoPolitico", nullable = false)
+    private double resultadoPolitico;
+
+    //@Column(name = "resultadoSocial", nullable = false)
+    private double resultadoSocial;
+
+    //@Column(name = "resultadoNavegacional", nullable = false)
+    private double resultadoNavegacional;
+
+    //@Column(name = "resultadoTotal", nullable = false)
+    private double resultadoTotal;
     
-    public Integer getPuntosPsicologico() {
-        return puntosPsicologico;
+    public double getResultadoPsicologico() {
+        return resultadoPsicologico;
     }
-    public void setPuntosPsicologico(Integer puntosPsicologico) {
-        this.puntosPsicologico = puntosPsicologico;
+    public void setResultadoPsicologico(double resultadoPsicologico) {
+        this.resultadoPsicologico = resultadoPsicologico;
     }
-    public Integer getPuntosLinguistico() {
-        return puntosLinguistico;
+    public double getResultadoLinguistico() {
+        return resultadoLinguistico;
     }
-    public void setPuntosLinguistico(Integer puntosLinguistico) {
-        this.puntosLinguistico = puntosLinguistico;
+    public void setResultadoLinguistico(double resultadoLinguistico) {
+        this.resultadoLinguistico = resultadoLinguistico;
     }
-    public Integer getPuntosEconomico() {
-        return puntosEconomico;
+    public double getResultadoEconomico() {
+        return resultadoEconomico;
     }
-    public void setPuntosEconomico(Integer puntosEconomico) {
-        this.puntosEconomico = puntosEconomico;
+    public void setResultadoEconomico(double resultadoEconomico) {
+        this.resultadoEconomico = resultadoEconomico;
     }
-    public Integer getPuntosPolitico() {
-        return puntosPolitico;
+    public double getResultadoPolitico() {
+        return resultadoPolitico;
     }
-    public void setPuntosPolitico(Integer puntosPolitico) {
-        this.puntosPolitico = puntosPolitico;
+    public void setResultadoPolitico(double resultadoPolitico) {
+        this.resultadoPolitico = resultadoPolitico;
     }
-    public Integer getPuntosSocial() {
-        return puntosSocial;
+    public double getResultadoSocial() {
+        return resultadoSocial;
     }
-    public void setPuntosSocial(Integer puntosSocial) {
-        this.puntosSocial = puntosSocial;
+    public void setResultadoSocial(double resultadoSocial) {
+        this.resultadoSocial = resultadoSocial;
     }
-    public Integer getPuntosNavegacional() {
-        return puntosNavegacional;
+    public double getResultadoNavegacional() {
+        return resultadoNavegacional;
     }
-    public void setPuntosNavegacional(Integer puntosNavegacional) {
-        this.puntosNavegacional = puntosNavegacional;
+    public void setResultadoNavegacional(double resultadoNavegacional) {
+        this.resultadoNavegacional = resultadoNavegacional;
     }
-    public Double getPuntosTotal() {
-        return puntosTotal;
+    public double getResultadoTotal() {
+        return resultadoTotal;
     }
-    public void setPuntosTotal(Double puntosTotal) {
-        this.puntosTotal = puntosTotal;
+    public void setResultadoTotal(double resultadoTotal) {
+        this.resultadoTotal = resultadoTotal;
     }
     public int getEncuestaID() {
         return encuestaID;
@@ -86,6 +107,9 @@ public class HacerEncuesta {
     }
     public int getUsuarioID() {
         return usuarioID;
+    }
+    public void setUsuarioID(int usuarioID) {
+        this.usuarioID = usuarioID;
     }
 
     public Encuesta getEncuesta() {

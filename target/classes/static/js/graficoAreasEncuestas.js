@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function ()
         data: {
             labels: etiquetas,
             datasets: [{
-                label: "Puntajes de Integración",
-                data: datos,
+                label: "Indices de Integración por Áreas",
+                data: datosGrafico,
                 backgroundColor: [
                     "rgba(255, 99, 132, 0.5)",
                     "rgba(54, 162, 235, 0.5)",

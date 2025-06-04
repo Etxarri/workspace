@@ -13,18 +13,6 @@
     <title>Lista de encuestas</title>
 </head>
 <body>
-    <!-- <h2 class="text-center">Encuestas diponibles</h2>
-    <div class="container-fluid">
-        
-        <tr th:each="encuesta : ${encuestas}">
-            <td>
-                <a th:href="@{/encuestas/{id}(id=${encuesta.encuestaID})}" 
-                th:text="${encuesta.titulo}">
-                </a>
-            </td>
-        </tr>
-    </div> -->
-
     <div class="container">
         <h2 class="text-center my-4">Encuestas Disponibles</h2>
         
@@ -36,9 +24,7 @@
 
             </a>
         </div>
-
     </div>
-
 
     <div th:if="${error}" class="alert alert-danger" role="alert">
         <span th:text="${error}">Error message</span>
