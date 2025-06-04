@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 import edu.mondragon.webengl.domain.categoria.model.Categoria;
 import edu.mondragon.webengl.domain.pais.model.Ciudad;
@@ -37,7 +38,7 @@ public class EventoLocal {
     private String descripcion;
 
     @Column(nullable = false)
-    private Timestamp fechaHora;
+    private LocalDateTime fechaHora;
 
     @Column(nullable = false)
     private String lugar;
@@ -93,11 +94,11 @@ public class EventoLocal {
         this.descripcion = descripcion;
     }
 
-    public Timestamp getFechaHora() {
+    public LocalDateTime getFechaHora() {
         return fechaHora;
     }
 
-    public void setFechaHora(Timestamp fechaHora) {
+    public void setFechaHora(LocalDateTime fechaHora) {
         this.fechaHora = fechaHora;
     }
 

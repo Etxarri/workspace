@@ -25,7 +25,7 @@
                 </form>
             </div>
         </div>
-        <div th:if="${usuario.tipo == 'voluntario'}">
+        <div th:if="${usuario.tipo.name() == 'voluntario'}">
             <form th:action="@{/eventos/crearEvento}" method="get" class="mt-4">
                 <button type="submit" class="btn btn-primary mt-4">Crear Evento</button>
             </form>

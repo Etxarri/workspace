@@ -25,6 +25,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Controller
 @RequestMapping("/eventos")
 public class EventoLocalController {
@@ -41,6 +44,8 @@ public class EventoLocalController {
     private final VoluntarioRepository voluntarioRepo;
     private final CiudadRepository ciudadRepository;
     private final CategoriaRepository categoriaRepo;
+
+    private static final Logger logger = LoggerFactory.getLogger(EventoLocalController.class);
 
     public EventoLocalController(EventoLocalRepository eventoRepo, RecienllegadoApuntarseEventoRepository inscripcionRepo, RecienllegadoRepository recienllegadoRepo, CategoriaRepository categoriaRepository, VoluntarioRepository voluntarioRepo, CiudadRepository ciudadRepository, CategoriaRepository categoriaRepo) {
         this.eventoRepo = eventoRepo;
@@ -145,7 +150,8 @@ public class EventoLocalController {
                     .filter(e -> e.getCategoria().getCategoriaID() == categoriaID)
                     .toList();
         }
-        
+        logger.info("\n\n\nTipo de usuario: {}", user.getUsuario().getTipo());
+
         model.addAttribute("eventos", eventos);
         model.addAttribute("categorias", categoriaRepository.findAll());
         model.addAttribute("categoriaSeleccionada", categoriaID); // Para que la vista sepa cuál está seleccionada
@@ -204,24 +210,32 @@ public class EventoLocalController {
 
     @PostMapping("/crearEvento")
     public String crearEvento(@AuthenticationPrincipal UsuarioDetails user,
-                              @ModelAttribute EventoLocal evento,
-                              RedirectAttributes redirectAttrs) {
+                          @ModelAttribute EventoLocal evento,
+                          @RequestParam("ciudadID") int ciudadID,
+                          @RequestParam("categoriaID") int categoriaID,
+                          RedirectAttributes redirectAttrs) {
         if (!user.getUsuario().getTipo().equals(TipoUsuario.voluntario)) {
             redirectAttrs.addFlashAttribute("error", "Solo los voluntarios pueden crear eventos.");
             return "redirect:/eventos/listaEventos";
         }
-        if (evento.getCiudad() == null || evento.getCategoria() == null || evento.getTitulo() == null ||
-            evento.getDescripcion() == null || evento.getFechaHora() == null || evento.getLugar() == null) {
-            redirectAttrs.addFlashAttribute("error", "Todos los campos son obligatorios.");
-            return "redirect:/eventos/crearEvento";
-        }
+
+        // Asignar ciudad y categoría a partir de los IDs recibidos
+        Ciudad ciudad = ciudadRepository.findById(ciudadID)
+            .orElseThrow(() -> new IllegalArgumentException("Ciudad no encontrada"));
+        evento.setCiudad(ciudad);
+
+        Categoria categoria = categoriaRepo.findById(categoriaID)
+            .orElseThrow(() -> new IllegalArgumentException("Categoría no encontrada"));
+        evento.setCategoria(categoria);
+
+        // ... resto de validaciones y guardado ...
         Voluntario userVoluntario = voluntarioRepo.findById(user.getUsuario().getUsuarioID())
                 .orElseThrow(() -> new IllegalArgumentException("El usuario no es un voluntario válido."));
         evento.setUsuario(userVoluntario);
         eventoRepo.save(evento);
+
         redirectAttrs.addFlashAttribute("success", "Evento creado correctamente.");
         return "redirect:/eventos/misEventos";
-
     }
 }
 

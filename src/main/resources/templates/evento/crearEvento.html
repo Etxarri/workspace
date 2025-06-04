@@ -21,7 +21,7 @@
             <div class="mb-3 mt-5">
                 <label for="ciudadID" class="form-label">Ciudad:</label>
                 <select id="ciudadID" name="ciudadID" class="form-select" required>
-                    <option th:each="ciudad : ${ciudades}" th:value="${ciudad.id}" th:text="${ciudad.nombre}"></option>
+                    <option th:each="ciudad : ${ciudades}" th:value="${ciudad.ciudadID}" th:text="${ciudad.nombre}"></option>
                 </select>
             </div>
             <div class="mb-3 mt-5">
@@ -29,16 +29,16 @@
                 <input type="text" id="lugar" name="lugar" class="form-control" required>
             </div>
 
-            <div class="mb-3 mt-5">
+            <!--div class="mb-3 mt-5">
                 <label for="fechaHora" class="form-label">Fecha y Hora:</label>
                 <input type="datetime-local" id="fechaHora" name="fechaHora" class="form-control" required>
-            </div>
+            </div-->
 
 
             <div class="mb-3 mt-5">
                 <label for="categoriaID" class="form-label">Categoría:</label>
                 <select id="categoriaID" name="categoriaID" class="form-select" required>
-                    <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
+                    <option th:each="categoria : ${categorias}" th:value="${categoria.categoriaID}" th:text="${categoria.nombre}"></option>
                 </select>
            </div>
 
@@ -46,5 +46,7 @@
                 <label for="imagen" class="form-label">Imagen:</label>
                 <input type="file" id="imagen" name="imagen" class="form-control" accept="image/*">
             </div>
+            <button type="submit" class="btn btn-primary mt-4">Crear</button>
+
 </main>
 </html>
