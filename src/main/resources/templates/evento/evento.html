@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detalle del evento</title>
+  <title th:text="#{evento.detalle.titulo}">Detalle del evento</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <script src="/js/asideScript.js"></script>
-    <script src="/js/filtroCategoria.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/js/asideScript.js"></script>
+  <script src="/js/filtroCategoria.js"></script>
 </head>
 <body>
   <div th:replace="headerInmigrante :: header"></div>
@@ -24,17 +24,17 @@
         <!-- Texto -->
         <div class="col-md-6 d-flex flex-column justify-content-center">
           <h2 class="mb-3" th:text="${evento.titulo}">Título del evento</h2>
-            <p class="card-text">
-              <small class="text-muted" th:text="'Ciudad: ' + ${evento.ciudad.nombre}"></small><br>
-              <small class="text-muted" th:text="'Lugar: ' + ${evento.lugar} + ' - Fecha: ' + ${evento.fechaHora}">Fecha y lugar</small>
-            </p>
+          <p class="card-text">
+            <small class="text-muted" th:text="${#messages.msg('evento.ciudad')} + ': ' + ${evento.ciudad.nombre}">Ciudad</small><br>
+            <small class="text-muted"
+              th:text="${#messages.msg('evento.lugar')} + ': ' + ${evento.lugar} + ' - ' + ${#messages.msg('evento.fecha')} + ': ' + ${evento.fechaHora}">
+              Lugar y fecha
+            </small>
+          </p>
           <p th:text="${evento.descripcion}">Descripción completa del evento</p>
 
-          <!-- Aquí puedes meter más atributos si quieres -->
-          <!-- <p><strong>Fecha:</strong> <span th:text="${evento.fecha}"></span></p> -->
-
           <form th:action="@{/eventos/{eventoID}/apuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
-            <button class="btn btn-success">Apuntarse</button>
+            <button class="btn btn-success" th:text="#{evento.apuntarse}">Apuntarse</button>
           </form>
         </div>
       </div>

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import edu.mondragon.webengl.domain.categoria.repository.CategoriaRepository;
 import edu.mondragon.webengl.domain.evento.model.EventoLocal;
 import edu.mondragon.webengl.domain.evento.repository.EventoLocalRepository;
 import java.util.List;
@@ -18,9 +19,12 @@ import org.springframework.ui.Model;
 public class LoginController {
 
     private final EventoLocalRepository eventoRepo;
+    private final CategoriaRepository categoriaRepository;
 
-    public LoginController(EventoLocalRepository eventoRepo) {
+
+    public LoginController(EventoLocalRepository eventoRepo, CategoriaRepository categoriaRepository) {
         this.eventoRepo = eventoRepo;
+        this.categoriaRepository = categoriaRepository;
     }
     
     @GetMapping
@@ -32,12 +36,14 @@ public class LoginController {
         return "login/login"; // muestra el login.html
     }
 
-    @GetMapping("/logged")
+   @GetMapping("/logged")
     public String logged(Model model) {
         List<EventoLocal> eventos = eventoRepo.findAll();
         model.addAttribute("eventos", eventos);
-        return "evento/listaEventos"; // Busca logged.html en templates
+        model.addAttribute("categorias", categoriaRepository.findAll()); 
+        return "evento/listaEventos";
     }
+    
     @GetMapping("/logout")
     public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
         session.removeAttribute("user");

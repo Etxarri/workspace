@@ -24,8 +24,16 @@
             <div class="col-md-6 col-12 d-flex justify-content-center">
                 <form method="get" th:action="@{/eventos/misEventos}" class="w-100 bg-white p-4 rounded shadow-sm d-flex flex-wrap gap-2 align-items-center justify-content-center">
                     <select name="categoria" class="form-select w-auto">
-                        <option th:value="0" th:selected="${categoriaSeleccionada == null}" th:text="${evento.todas_las_categorias}" >Todas las categorías</option>
-                        <option th:each="cat : ${categorias}" th:value="${cat.categoriaID}" th:text="${cat.nombre}" th:selected="${categoriaSeleccionada == cat.categoriaID}"></option>
+                        <option th:value="0"
+                                th:selected="${categoriaSeleccionada == null or categoriaSeleccionada == 0 or categoriaSeleccionada == '0'}"
+                                th:text="#{evento.categorias}">
+                            Todas las categorías
+                        </option>
+                        <option th:each="cat : ${categorias}"
+                                th:value="${cat.categoriaID}"
+                                th:text="${#messages.msg('categoria.' + cat.categoriaID)}"
+                                th:selected="${categoriaSeleccionada == cat.categoriaID}">
+                        </option>
                     </select>
                 </form>
             </div>
@@ -43,15 +51,18 @@
                                 <h5 class="card-title" th:text="${evento.titulo}">Título del evento</h5>
                                 <p class="card-text" th:text="${evento.descripcion}">Descripción</p>
                                 <p class="card-text">
-                                    <small class="text-muted" th:text="'Ciudad: ' + ${evento.ciudad.nombre}"></small><br>
-                                    <small class="text-muted" th:text="'Lugar: ' + ${evento.lugar} + ' - Fecha: ' + ${evento.fechaHora}">Fecha y lugar</small>
+                                    <small class="text-muted" th:text="#{evento.ciudad} + ': ' + ${evento.ciudad.nombre}">Ciudad</small><br>
+                                    <small class="text-muted"
+                                        th:text="${#messages.msg('evento.lugar')} + ': ' + ${evento.lugar} + ' - ' + ${#messages.msg('evento.fecha')} + ': ' + ${evento.fechaHora}">
+                                        Lugar y fecha
+                                    </small>
                                 </p>
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
-            <div th:if="${#lists.isEmpty(eventos)}" class="text-center text-muted w-100">
+            <div th:if="${#lists.isEmpty(eventos)}" class="text-center text-muted w-100" th:text="#{evento.no_hay_eventos_disponibles_para_esta_categoría}">
                 No hay eventos disponibles para esta categoría.
             </div>
         </div>

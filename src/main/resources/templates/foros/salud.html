@@ -1,135 +1,128 @@
 <div th:fragment="contenidoForo">
   <div class="mb-4">
-    <h2 class="mb-3"><i class="bi bi-hospital"></i> Acceso a Sanidad</h2>
-    <p class="text-muted">Cómo obtener la tarjeta sanitaria, centros de salud y atención primaria.</p>
+    <h2 class="mb-3"><i class="bi bi-hospital"></i> <span th:text="#{salud.titulo}">Acceso a Sanidad</span></h2>
+    <p class="text-muted" th:text="#{salud.descripcion}">Cómo obtener la tarjeta sanitaria, centros de salud y atención primaria.</p>
     <div class="row g-3">
       <div class="col-md-6">
         <div class="card border-primary h-100">
           <div class="card-body">
-            <h5 class="card-title"><i class="bi bi-person-vcard"></i> Seguros Médicos</h5>
-            <p class="card-text">Diferencias entre sanidad pública y privada, seguros y coberturas.</p>
+            <h5 class="card-title"><i class="bi bi-person-vcard"></i> <span th:text="#{salud.seguros.titulo}">Seguros Médicos</span></h5>
+            <p class="card-text" th:text="#{salud.seguros.descripcion}">Diferencias entre sanidad pública y privada, seguros y coberturas.</p>
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card border-success h-100">
           <div class="card-body">
-            <h5 class="card-title"><i class="bi bi-capsule-pill"></i>Medicamentos y recetas</h5>
-            <p class="card-text">Cómo funcionan las recetas, farmacias y acceso a medicamentos.</p>
+            <h5 class="card-title"><i class="bi bi-capsule-pill"></i> <span th:text="#{salud.medicamentos.titulo}">Medicamentos y recetas</span></h5>
+            <p class="card-text" th:text="#{salud.medicamentos.descripcion}">Cómo funcionan las recetas, farmacias y acceso a medicamentos.</p>
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card border-warning h-100">
           <div class="card-body">
-            <h5 class="card-title"><i class="bi bi-emoji-smile"></i>Salud mental</h5>
-            <p class="card-text">Recursos, apoyo psicológico y experiencias personales.</p>
+            <h5 class="card-title"><i class="bi bi-emoji-smile"></i> <span th:text="#{salud.mental.titulo}">Salud mental</span></h5>
+            <p class="card-text" th:text="#{salud.mental.descripcion}">Recursos, apoyo psicológico y experiencias personales.</p>
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card border-danger h-100">
           <div class="card-body">
-            <h5 class="card-title"><i class="bi bi-people"></i>Atención a familias</h5>
-            <p class="card-text">Pediatría, embarazo, vacunas y salud familiar.</p>
+            <h5 class="card-title"><i class="bi bi-people"></i> <span th:text="#{salud.familias.titulo}">Atención a familias</span></h5>
+            <p class="card-text" th:text="#{salud.familias.descripcion}">Pediatría, embarazo, vacunas y salud familiar.</p>
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card border-danger h-100">
           <div class="card-body">
-            <h5 class="card-title"><i class="bi bi-bandaid"></i>Emergencias</h5>
-            <p class="card-text">Qué hacer y a dónde acudir en caso de urgencia médica.</p>
+            <h5 class="card-title"><i class="bi bi-bandaid"></i> <span th:text="#{salud.emergencias.titulo}">Emergencias</span></h5>
+            <p class="card-text" th:text="#{salud.emergencias.descripcion}">Qué hacer y a dónde acudir en caso de urgencia médica.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-
-
   <!-- Preguntas Frecuentes -->
   <div class="mt-5">
-    <h4><i class="bi bi-lightbulb"></i> Preguntas frecuentes</h4>
-    <div class="accordion" id="faqAccordionTramites">
+    <h4><i class="bi bi-lightbulb"></i> <span th:text="#{salud.faq.titulo}">Preguntas frecuentes</span></h4>
+    <div class="accordion" id="faqAccordionSalud">
       <div class="accordion-item">
         <h2 class="accordion-header" id="faqA1">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA1" aria-expanded="false" aria-controls="faqCollapseA1">
-            ¿Cómo consigo la tarjeta sanitaria?
-          </button>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA1" aria-expanded="false" aria-controls="faqCollapseA1"
+            th:text="#{salud.faq.p1.titulo}">¿Cómo consigo la tarjeta sanitaria?</button>
         </h2>
-        <div id="faqCollapseA1" class="accordion-collapse collapse" aria-labelledby="faqA1" data-bs-parent="#faqAccordionTramites">
-          <div class="accordion-body">
-            Debes empadronarte y acudir a tu centro de salud con tu documentación. Allí te informarán del proceso y requisitos.          </div>
+        <div id="faqCollapseA1" class="accordion-collapse collapse" aria-labelledby="faqA1" data-bs-parent="#faqAccordionSalud">
+          <div class="accordion-body" th:text="#{salud.faq.p1.respuesta}">
+            Debes empadronarte y acudir a tu centro de salud con tu documentación. Allí te informarán del proceso y requisitos.
+          </div>
         </div>
       </div>
       <div class="accordion-item">
         <h2 class="accordion-header" id="faqA2">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA2" aria-expanded="false" aria-controls="faqCollapseA2">
-            ¿Puedo acceder a la sanidad pública sin papeles?
-          </button>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA2" aria-expanded="false" aria-controls="faqCollapseA2"
+            th:text="#{salud.faq.p2.titulo}">¿Puedo acceder a la sanidad pública sin papeles?</button>
         </h2>
-        <div id="faqCollapseA2" class="accordion-collapse collapse" aria-labelledby="faqA2" data-bs-parent="#faqAccordionTramites">
-          <div class="accordion-body">
+        <div id="faqCollapseA2" class="accordion-collapse collapse" aria-labelledby="faqA2" data-bs-parent="#faqAccordionSalud">
+          <div class="accordion-body" th:text="#{salud.faq.p2.respuesta}">
             En muchos casos sí, especialmente para menores y embarazadas. Consulta en tu centro de salud o pregunta en este foro.
           </div>
         </div>
       </div>
       <div class="accordion-item">
         <h2 class="accordion-header" id="faqA3">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA3" aria-expanded="false" aria-controls="faqCollapseA3">
-            ¿Cómo funcionan las recetas electrónicas?
-          </button>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA3" aria-expanded="false" aria-controls="faqCollapseA3"
+            th:text="#{salud.faq.p3.titulo}">¿Cómo funcionan las recetas electrónicas?</button>
         </h2>
-        <div id="faqCollapseA3" class="accordion-collapse collapse" aria-labelledby="faqA3" data-bs-parent="#faqAccordionTramites">
-          <div class="accordion-body">
+        <div id="faqCollapseA3" class="accordion-collapse collapse" aria-labelledby="faqA3" data-bs-parent="#faqAccordionSalud">
+          <div class="accordion-body" th:text="#{salud.faq.p3.respuesta}">
             Debes llevar tu tarjeta sanitaria al médico, quien te dará una receta electrónica que podrás usar en cualquier farmacia.
           </div>
         </div>
       </div>
       <div class="accordion-item">
         <h2 class="accordion-header" id="faqA4">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA4" aria-expanded="false" aria-controls="faqCollapseA4">
-            ¿Qué hago en caso de emergencia?
-          </button>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA4" aria-expanded="false" aria-controls="faqCollapseA4"
+            th:text="#{salud.faq.p4.titulo}">¿Qué hago en caso de emergencia?</button>
         </h2>
-        <div id="faqCollapseA4" class="accordion-collapse collapse" aria-labelledby="faqA4" data-bs-parent="#faqAccordionTramites">
-          <div class="accordion-body">
+        <div id="faqCollapseA4" class="accordion-collapse collapse" aria-labelledby="faqA4" data-bs-parent="#faqAccordionSalud">
+          <div class="accordion-body" th:text="#{salud.faq.p4.respuesta}">
             Llama al 112 o acude al servicio de urgencias más cercano. Lleva siempre tu documentación si es posible.
           </div>
         </div>
       </div>
     </div>
   </div>
-  
-
 
   <!-- Botón para añadir pregunta -->
   <div class="alert alert-info mt-4 mb-2 d-flex align-items-center justify-content-between">
-    <span><i class="bi bi-question-circle"></i> ¿Tienes una nueva duda sobre trámites?</span>
-    <a class="btn btn-outline-info btn-sm" data-bs-toggle="collapse" href="#nuevaPreguntaTramites" role="button" aria-expanded="false" aria-controls="nuevaPreguntaTramites">
-      <i class="bi bi-plus-circle"></i> Añadir pregunta
+    <span><i class="bi bi-question-circle"></i> <span th:text="#{salud.nueva_pregunta.texto}">¿Tienes una nueva duda sobre sanidad?</span></span>
+    <a class="btn btn-outline-info btn-sm" data-bs-toggle="collapse" href="#nuevaPreguntaSalud" role="button" aria-expanded="false" aria-controls="nuevaPreguntaSalud">
+      <i class="bi bi-plus-circle"></i> <span th:text="#{salud.nueva_pregunta.boton}">Añadir pregunta</span>
     </a>
   </div>
-  <div class="collapse" id="nuevaPreguntaTramites">
+  <div class="collapse" id="nuevaPreguntaSalud">
     <div class="card my-3">
       <div class="card-body">
         <form th:action="@{/foro/preguntasFrecuentes}" method="post">
           <input type="hidden" name="temaId" th:value="${tema.temaID}" />
           <div class="mb-3">
-            <label for="preguntaContenidoTramites" class="form-label">Pregunta</label>
-            <textarea class="form-control" id="preguntaContenidoTramites" name="contenido" rows="3" required></textarea>
+            <label for="preguntaContenidoSalud" class="form-label" th:text="#{salud.nueva_pregunta.label}">Pregunta</label>
+            <textarea class="form-control" id="preguntaContenidoSalud" name="contenido" rows="3" required></textarea>
           </div>
-          <button type="submit" class="btn btn-info">Publicar</button>
+          <button type="submit" class="btn btn-info" th:text="#{salud.nueva_pregunta.publicar}">Publicar</button>
         </form>
       </div>
     </div>
   </div>
 
-      <!-- Preguntas de usuarios -->
+  <!-- Preguntas de usuarios -->
   <div class="mt-5">
-    <h4><i class="bi bi-people"></i> Preguntas de usuarios</h4>
-    <div th:if="${preguntasUsuarios != null and #lists.isEmpty(preguntasUsuarios)}" class="text-muted">
+    <h4><i class="bi bi-people"></i> <span th:text="#{salud.preguntas_usuarios.titulo}">Preguntas de usuarios</span></h4>
+    <div th:if="${preguntasUsuarios != null and #lists.isEmpty(preguntasUsuarios)}" class="text-muted" th:text="#{salud.preguntas_usuarios.vacio}">
       No hay preguntas publicadas aún. ¡Sé el primero en preguntar!
     </div>
     <div class="list-group">

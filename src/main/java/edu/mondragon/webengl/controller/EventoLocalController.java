@@ -1,6 +1,7 @@
 package edu.mondragon.webengl.controller;
 
 
+import edu.mondragon.webengl.domain.categoria.model.Categoria;
 import edu.mondragon.webengl.domain.categoria.repository.CategoriaRepository;
 import edu.mondragon.webengl.domain.evento.model.EventoLocal;
 import edu.mondragon.webengl.domain.evento.model.RecienllegadoApuntarseEvento;
@@ -68,6 +69,8 @@ public class EventoLocalController {
     public String listarEventos(Model model) {
         List<EventoLocal> eventos = eventoRepo.findAll();
         model.addAttribute("eventos", eventos);
+        List<Categoria> categorias = categoriaRepository.findAll();
+        model.addAttribute("categorias", categorias);
         return "evento/listaEventos"; // nombre del template Thymeleaf
     }
 
@@ -136,6 +139,10 @@ public class EventoLocalController {
                     .filter(e -> e.getCategoria().getCategoriaID() == categoriaID)
                     .toList();
         }
+
+        List<Categoria> categorias = categoriaRepository.findAll();
+        System.out.println("CATEGORIAS DISPONIBLES: " + categorias.size()); // <-- Línea de depuración
+
 
         model.addAttribute("eventos", eventos);
         model.addAttribute("categorias", categoriaRepository.findAll());

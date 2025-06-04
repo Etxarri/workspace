@@ -35,15 +35,6 @@
 
             <!-- DERECHA: Banderas -->
             <div class="d-flex align-items-center">
-             
-
-                <!-- Banderas dinámicas 
-                <div th:each="bandera : ${banderas}" class="me-2">
-                    <a th:href="@{${#httpServletRequest.requestURI}(lang=${bandera.codigo})}">
-                        <img th:src="@{${bandera.src}}" th:alt="${bandera.alt}" style="width: 40px; height: 40px;" />
-                    </a>
-                </div>
-                -->
 
                 <a th:href="@{${#httpServletRequest.requestURI}(lang='es')}">
                     <img src="/images/español_logo.png" alt="Español" style="width: 40px; height: 40px;" />
@@ -57,6 +48,20 @@
                 <a th:href="@{${#httpServletRequest.requestURI}(lang='ar')}">
                     <img src="/images/arabe_logo.png" alt="Arabe" style="width: 40px; height: 40px;" />
                 </a>
+
+                <!--BOTON DE MAS IDIOMAS-->
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownIdiomas" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-translate"></i> <span th:text="#{language}">Lang</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownIdiomas">
+                    <li>
+                        <a class="dropdown-item disabled" href="#">Deutsch (próximamente)</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item disabled" href="#">Italiano (próximamente)</a>
+                    </li>
+                </ul>
+
                 <!-- Botón del aside -->
                 <button class="btn btn-outline-secondary ms-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                     <i class="bi bi-list" style="font-size: 2rem;"></i>

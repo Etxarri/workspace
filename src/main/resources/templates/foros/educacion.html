@@ -36,94 +36,95 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Preguntas Frecuentes -->
-      <div class="mt-5">
-        <h4><i class="bi bi-lightbulb"></i> <span th:text="#{educacion.faq.titulo}">Preguntas frecuentes</span></h4>
-        <div class="accordion" id="faqAccordionTramites">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="faqA1">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA1" aria-expanded="false" aria-controls="faqCollapseA1"
-                th:text="#{educacion.faq.p1.titulo}">¿Puedo estudiar en España sin homologar mi título?</button>
-            </h2>
-            <div id="faqCollapseA1" class="accordion-collapse collapse" aria-labelledby="faqA1" data-bs-parent="#faqAccordionTramites">
-              <div class="accordion-body" th:text="#{educacion.faq.p1.respuesta}">
-                Depende del nivel de estudios y la universidad. Consulta siempre los requisitos específicos.
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="faqA2">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA2" aria-expanded="false" aria-controls="faqCollapseA2"
-                th:text="#{educacion.faq.p2.titulo}">¿Dónde encuentro información sobre becas?</button>
-            </h2>
-            <div id="faqCollapseA2" class="accordion-collapse collapse" aria-labelledby="faqA2" data-bs-parent="#faqAccordionTramites">
-              <div class="accordion-body" th:text="#{educacion.faq.p2.respuesta}">
-                En la web del Ministerio de Educación y en las páginas de las universidades.
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="faqA3">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA3" aria-expanded="false" aria-controls="faqCollapseA3"
-                th:text="#{educacion.faq.p3.titulo}">¿Qué nivel de idioma necesito para acceder a estudios?</button>
-            </h2>
-            <div id="faqCollapseA3" class="accordion-collapse collapse" aria-labelledby="faqA3" data-bs-parent="#faqAccordionTramites">
-              <div class="accordion-body" th:text="#{educacion.faq.p3.respuesta}">
-                Normalmente B1 o B2, pero puede variar según el centro y la carrera.
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="faqA4">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA4" aria-expanded="false" aria-controls="faqCollapseA4"
-                th:text="#{educacion.faq.p4.titulo}">¿Cuánto tarda la homologación de un título?</button>
-            </h2>
-            <div id="faqCollapseA4" class="accordion-collapse collapse" aria-labelledby="faqA4" data-bs-parent="#faqAccordionTramites">
-              <div class="accordion-body" th:text="#{educacion.faq.p4.respuesta}">
-                Puede tardar de 6 meses a más de un año. Es recomendable iniciar el trámite cuanto antes.
-              </div>
+    <!-- Preguntas Frecuentes -->
+    <div class="mt-5">
+      <h4><i class="bi bi-lightbulb"></i> <span th:text="#{educacion.faq.titulo}">Preguntas frecuentes</span></h4>
+      <div class="accordion" id="faqAccordionTramites">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqA1">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA1" aria-expanded="false" aria-controls="faqCollapseA1"
+              th:text="#{educacion.faq.p1.titulo}">¿Puedo estudiar en España sin homologar mi título?</button>
+          </h2>
+          <div id="faqCollapseA1" class="accordion-collapse collapse" aria-labelledby="faqA1" data-bs-parent="#faqAccordionTramites">
+            <div class="accordion-body" th:text="#{educacion.faq.p1.respuesta}">
+              Depende del nivel de estudios y la universidad. Consulta siempre los requisitos específicos.
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Botón para añadir pregunta -->
-      <div class="alert alert-info mt-4 mb-2 d-flex align-items-center justify-content-between">
-        <span><i class="bi bi-question-circle"></i> <span th:text="#{educacion.nueva_pregunta.texto}">¿Tienes una nueva duda sobre educacion?</span></span>
-        <a class="btn btn-outline-info btn-sm" data-bs-toggle="collapse" href="#nuevaPreguntaEmpleo" role="button" aria-expanded="false" aria-controls="nuevaPreguntaEmpleo">
-          <i class="bi bi-plus-circle"></i> <span th:text="#{educacion.nueva_pregunta.boton}">Añadir pregunta</span>
-        </a>
-      </div>
-      <div class="collapse" id="nuevaPreguntaEmpleo">
-        <div class="card my-3">
-          <div class="card-body">
-            <form th:action="@{/foro/preguntasFrecuentes}" method="post">
-              <input type="hidden" name="temaId" th:value="${tema.temaID}" />
-              <div class="mb-3">
-                <label for="preguntaContenidoEmpleo" class="form-label" th:text="#{educacion.nueva_pregunta.label}">Pregunta</label>
-                <textarea class="form-control" id="preguntaContenidoEmpleo" name="contenido" rows="3" required></textarea>
-              </div>
-              <button type="submit" class="btn btn-info" th:text="#{educacion.nueva_pregunta.publicar}">Publicar</button>
-            </form>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqA2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA2" aria-expanded="false" aria-controls="faqCollapseA2"
+              th:text="#{educacion.faq.p2.titulo}">¿Dónde encuentro información sobre becas?</button>
+          </h2>
+          <div id="faqCollapseA2" class="accordion-collapse collapse" aria-labelledby="faqA2" data-bs-parent="#faqAccordionTramites">
+            <div class="accordion-body" th:text="#{educacion.faq.p2.respuesta}">
+              En la web del Ministerio de Educación y en las páginas de las universidades.
+            </div>
           </div>
         </div>
-      </div> 
-
-      <!-- Preguntas de usuarios -->
-      <div class="mt-5">
-        <h4><i class="bi bi-people"></i> <span th:text="#{educacion.preguntas_usuarios.titulo}">Preguntas de usuarios</span></h4>
-        <div th:if="${preguntasUsuarios != null and #lists.isEmpty(preguntasUsuarios)}" class="text-muted" th:text="#{educacion.preguntas_usuarios.vacio}">
-          No hay preguntas publicadas aún. ¡Sé el primero en preguntar!
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqA3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA3" aria-expanded="false" aria-controls="faqCollapseA3"
+              th:text="#{educacion.faq.p3.titulo}">¿Qué nivel de idioma necesito para acceder a estudios?</button>
+          </h2>
+          <div id="faqCollapseA3" class="accordion-collapse collapse" aria-labelledby="faqA3" data-bs-parent="#faqAccordionTramites">
+            <div class="accordion-body" th:text="#{educacion.faq.p3.respuesta}">
+              Normalmente B1 o B2, pero puede variar según el centro y la carrera.
+            </div>
+          </div>
         </div>
-        <div class="list-group">
-          <div th:each="pregunta : ${preguntasUsuarios}" class="list-group-item mb-2">
-            <a th:href="@{/foro/preguntaUsuario/{preguntaID}(preguntaID=${pregunta.preguntaID})}" style="text-decoration: none; color: inherit;">
-              <h6 class="mb-1"><i class="bi bi-question-circle"></i> <span th:text="${pregunta.pregunta}">Título de la pregunta</span></h6>
-            </a>
-            <small class="text-muted" th:text="${#dates.format(pregunta.fechaCreacion, 'dd/MM/yyyy')}">Fecha</small>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqA4">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseA4" aria-expanded="false" aria-controls="faqCollapseA4"
+              th:text="#{educacion.faq.p4.titulo}">¿Cuánto tarda la homologación de un título?</button>
+          </h2>
+          <div id="faqCollapseA4" class="accordion-collapse collapse" aria-labelledby="faqA4" data-bs-parent="#faqAccordionTramites">
+            <div class="accordion-body" th:text="#{educacion.faq.p4.respuesta}">
+              Puede tardar de 6 meses a más de un año. Es recomendable iniciar el trámite cuanto antes.
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Botón para añadir pregunta -->
+    <div class="alert alert-info mt-4 mb-2 d-flex align-items-center justify-content-between">
+      <span><i class="bi bi-question-circle"></i> <span th:text="#{educacion.nueva_pregunta.texto}">¿Tienes una nueva duda sobre educación?</span></span>
+      <a class="btn btn-outline-info btn-sm" data-bs-toggle="collapse" href="#nuevaPreguntaEmpleo" role="button" aria-expanded="false" aria-controls="nuevaPreguntaEmpleo">
+        <i class="bi bi-plus-circle"></i> <span th:text="#{educacion.nueva_pregunta.boton}">Añadir pregunta</span>
+      </a>
+    </div>
+    <div class="collapse" id="nuevaPreguntaEmpleo">
+      <div class="card my-3">
+        <div class="card-body">
+          <form th:action="@{/foro/preguntasFrecuentes}" method="post">
+            <input type="hidden" name="temaId" th:value="${tema.temaID}" />
+            <div class="mb-3">
+              <label for="preguntaContenidoEmpleo" class="form-label" th:text="#{educacion.nueva_pregunta.label}">Pregunta</label>
+              <textarea class="form-control" id="preguntaContenidoEmpleo" name="contenido" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-info" th:text="#{educacion.nueva_pregunta.publicar}">Publicar</button>
+          </form>
+        </div>
+      </div>
+    </div> 
+
+    <!-- Preguntas de usuarios -->
+    <div class="mt-5">
+      <h4><i class="bi bi-people"></i> <span th:text="#{educacion.preguntas_usuarios.titulo}">Preguntas de usuarios</span></h4>
+      <div th:if="${preguntasUsuarios != null and #lists.isEmpty(preguntasUsuarios)}" class="text-muted" th:text="#{educacion.preguntas_usuarios.vacio}">
+        No hay preguntas publicadas aún. ¡Sé el primero en preguntar!
+      </div>
+      <div class="list-group">
+        <div th:each="pregunta : ${preguntasUsuarios}" class="list-group-item mb-2">
+          <a th:href="@{/foro/preguntaUsuario/{preguntaID}(preguntaID=${pregunta.preguntaID})}" style="text-decoration: none; color: inherit;">
+            <h6 class="mb-1"><i class="bi bi-question-circle"></i> <span th:text="${pregunta.pregunta}">Título de la pregunta</span></h6>
+          </a>
+          <small class="text-muted" th:text="${#dates.format(pregunta.fechaCreacion, 'dd/MM/yyyy')}">Fecha</small>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
