@@ -33,15 +33,6 @@
                 <input type="email" id="email" name="email" class="form-control">
             </div>
 
-            <div class="mt-5">
-                <label for="tipo" class="form-label">Tipo de Usuario:</label>
-                <select name="tipo" id="tipo" class="form-select" required>
-                    <option value="">Selecciona...</option>
-                    <option value="voluntario">Voluntario</option>
-                    <option value="recienllegado">Recién Llegado</option>
-                </select>
-            </div>
-
             <div class="mb-3 mt-5">
                 <label for="ciudadID" class="form-label">Ciudad:</label>
                 <select id="ciudadID" name="ciudadID" class="form-select" required>
@@ -59,6 +50,15 @@
                     <th:block th:each="pais : ${paises}">
                         <option th:value="${pais.paisID}" th:text="${pais.nombre}"></option>
                     </th:block>
+                </select>
+            </div>
+
+            <div class="mt-5">
+                <label for="tipo" class="form-label">Tipo de Usuario:</label>
+                <select name="tipo" id="tipo" class="form-select" required>
+                    <option value="">Selecciona...</option>
+                    <option value="voluntario">Voluntario</option>
+                    <option value="recienllegado">Recién Llegado</option>
                 </select>
             </div>
 
@@ -84,10 +84,7 @@
 
             <!--VOLUNTARIO-->
             <div class="voluntario borrar" >
-                <!--div class="mb-3 mt-5">
-                    <label for="comunidad_autonoma" class="form-label">Comunidad Autonoma:</label>
-                    <input type="text" id="comunidad_autonoma" name="comunidad_autonoma" class="form-control">
-                </div-->
+
                 <div class="mb-3 mt-5">
                     <label for="habilidades" class="form-label">Habilidades:</label>
                     <input type="text" id="habilidades" name="habilidades" class="form-control">

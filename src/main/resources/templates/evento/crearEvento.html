@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title layout:title="Crear Evento"></title>
+</head>
+<main layout:fragment="content">
+    <div class="container-fluid">
+        <form th:action="@{/eventos/crearEvento}" method="post" class="mx-auto">
+            <h4 class="text-center">Crear Evento</h4>
+
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Título:</label>
+                <input type="text" id="titulo" name="titulo" class="form-control" required>
+            </div>
+
+            <div class="mb-3 mt-5">
+                <label for="descripcion" class="form-label">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <div class="mb-3 mt-5">
+                <label for="ciudadID" class="form-label">Ciudad:</label>
+                <select id="ciudadID" name="ciudadID" class="form-select" required>
+                    <option th:each="ciudad : ${ciudades}" th:value="${ciudad.id}" th:text="${ciudad.nombre}"></option>
+                </select>
+            </div>
+            <div class="mb-3 mt-5">
+                <label for="lugar" class="form-label">Lugar:</label>
+                <input type="text" id="lugar" name="lugar" class="form-control" required>
+            </div>
+
+            <div class="mb-3 mt-5">
+                <label for="fechaHora" class="form-label">Fecha y Hora:</label>
+                <input type="datetime-local" id="fechaHora" name="fechaHora" class="form-control" required>
+            </div>
+
+
+            <div class="mb-3 mt-5">
+                <label for="categoriaID" class="form-label">Categoría:</label>
+                <select id="categoriaID" name="categoriaID" class="form-select" required>
+                    <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
+                </select>
+           </div>
+
+            <div class="mb-3 mt-5">
+                <label for="imagen" class="form-label">Imagen:</label>
+                <input type="file" id="imagen" name="imagen" class="form-control" accept="image/*">
+            </div>
+</main>
+</html>

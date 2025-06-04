@@ -25,7 +25,11 @@
                 </form>
             </div>
         </div>
-
+        <div th:if="${usuario.tipo == 'voluntario'}">
+            <form th:action="@{/eventos/crearEvento}" method="get" class="mt-4">
+                <button type="submit" class="btn btn-primary mt-4">Crear Evento</button>
+            </form>
+        </div>
         <div class="container d-flex flex-column align-items-center my-5">
             <div th:each="evento : ${eventos}">
                 <a th:href="@{/eventos/{eventoID}/desapuntarse(eventoID=${evento.eventoID})}" style="text-decoration: none; color: inherit;">

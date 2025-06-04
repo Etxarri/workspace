@@ -7,8 +7,11 @@ import edu.mondragon.webengl.domain.evento.model.RecienllegadoApuntarseEvento;
 import edu.mondragon.webengl.domain.evento.model.RecienllegadoEventoId;
 import edu.mondragon.webengl.domain.evento.repository.EventoLocalRepository;
 import edu.mondragon.webengl.domain.evento.repository.RecienllegadoApuntarseEventoRepository;
+import edu.mondragon.webengl.domain.pais.repository.CiudadRepository;
+import edu.mondragon.webengl.domain.user.model.Voluntario;
 import edu.mondragon.webengl.domain.user.model.Usuario.TipoUsuario;
 import edu.mondragon.webengl.domain.user.repository.RecienllegadoRepository;
+import edu.mondragon.webengl.domain.user.repository.VoluntarioRepository;
 import edu.mondragon.webengl.seguridad.UsuarioDetails;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -35,11 +38,17 @@ public class EventoLocalController {
     private final EventoLocalRepository eventoRepo;
     private final RecienllegadoApuntarseEventoRepository inscripcionRepo;
     private final CategoriaRepository categoriaRepository;
+    private final VoluntarioRepository voluntarioRepo;
+    private final CiudadRepository ciudadRepository;
+    private final CategoriaRepository categoriaRepo;
 
-    public EventoLocalController(EventoLocalRepository eventoRepo, RecienllegadoApuntarseEventoRepository inscripcionRepo, RecienllegadoRepository recienllegadoRepo, CategoriaRepository categoriaRepository) {
+    public EventoLocalController(EventoLocalRepository eventoRepo, RecienllegadoApuntarseEventoRepository inscripcionRepo, RecienllegadoRepository recienllegadoRepo, CategoriaRepository categoriaRepository, VoluntarioRepository voluntarioRepo, CiudadRepository ciudadRepository, CategoriaRepository categoriaRepo) {
         this.eventoRepo = eventoRepo;
         this.inscripcionRepo = inscripcionRepo;
         this.categoriaRepository = categoriaRepository;
+        this.voluntarioRepo = voluntarioRepo;
+        this.ciudadRepository = ciudadRepository;
+        this.categoriaRepo = categoriaRepo;
     }
 
     @GetMapping("/listaEventos")
@@ -140,6 +149,7 @@ public class EventoLocalController {
         model.addAttribute("eventos", eventos);
         model.addAttribute("categorias", categoriaRepository.findAll());
         model.addAttribute("categoriaSeleccionada", categoriaID); // Para que la vista sepa cuál está seleccionada
+        model.addAttribute("usuario", user.getUsuario());   
         return "evento/misEventos";
     }
 
@@ -176,6 +186,42 @@ public class EventoLocalController {
             redirectAttrs.addFlashAttribute("error", "No estabas apuntado a este evento.");
             return "redirect:/eventos/misEventos";
         }
+    }
+
+    @GetMapping("/crearEvento")
+    public String crearEvento(@AuthenticationPrincipal UsuarioDetails user,
+                              Model model) {
+        if (!user.getUsuario().getTipo().equals(TipoUsuario.voluntario)) {
+            model.addAttribute("error", "Solo los voluntarios pueden crear eventos.");
+            return "redirect:/eventos/listaEventos";
+        }
+
+        model.addAttribute("ciudades", ciudadRepository.findAll());
+        model.addAttribute("categorias", categoriaRepo.findAll());
+        model.addAttribute("usuario", user.getUsuario());
+        return "evento/crearEvento";
+    }
+
+    @PostMapping("/crearEvento")
+    public String crearEvento(@AuthenticationPrincipal UsuarioDetails user,
+                              @ModelAttribute EventoLocal evento,
+                              RedirectAttributes redirectAttrs) {
+        if (!user.getUsuario().getTipo().equals(TipoUsuario.voluntario)) {
+            redirectAttrs.addFlashAttribute("error", "Solo los voluntarios pueden crear eventos.");
+            return "redirect:/eventos/listaEventos";
+        }
+        if (evento.getCiudad() == null || evento.getCategoria() == null || evento.getTitulo() == null ||
+            evento.getDescripcion() == null || evento.getFechaHora() == null || evento.getLugar() == null) {
+            redirectAttrs.addFlashAttribute("error", "Todos los campos son obligatorios.");
+            return "redirect:/eventos/crearEvento";
+        }
+        Voluntario userVoluntario = voluntarioRepo.findById(user.getUsuario().getUsuarioID())
+                .orElseThrow(() -> new IllegalArgumentException("El usuario no es un voluntario válido."));
+        evento.setUsuario(userVoluntario);
+        eventoRepo.save(evento);
+        redirectAttrs.addFlashAttribute("success", "Evento creado correctamente.");
+        return "redirect:/eventos/misEventos";
+
     }
 }
 
