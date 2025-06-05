@@ -35,13 +35,14 @@
                 <a th:href="@{/eventos/{eventoID}/desapuntarse(eventoID=${evento.eventoID})}" style="text-decoration: none; color: inherit;">
                     <div class="card custom-card shadow mb-4 w-100" style="max-width: 900px;">
                         <div class="d-flex flex-row">
-                            <div class="d-flex align-items-center image-container">
-                                <img src="https://picsum.photos/600/400" alt="Imagen" class="img-fluid custom-img">
+                            <div class="col-md-4">
+                                <img th:src="${#strings.isEmpty(evento.imagen) ? '/images/' + evento.categoria.categoriaID + '.png' : evento.imagen}" class="img-fluid rounded-start h-100" alt="Card image cap">
                             </div>
                             <div class="card-body d-flex flex-column justify-content-center">
                                 <h5 class="card-title" th:text="${evento.titulo}">Título del evento</h5>
                                 <p class="card-text" th:text="${evento.descripcion}">Descripción</p>
                                 <p class="card-text">
+                                    <small class="text-muted" th:text="'Creador del evento: ' + ${evento.usuario.usuario.nombre}"></small><br>
                                     <small class="text-muted" th:text="'Ciudad: ' + ${evento.ciudad.nombre}"></small><br>
                                     <small class="text-muted" th:text="'Lugar: ' + ${evento.lugar} + ' - Fecha: ' + ${evento.fechaHora}">Fecha y lugar</small>
                                 </p>

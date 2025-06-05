@@ -8,9 +8,10 @@
         <!--a href="#" class="list-group-item list-group-item-action active" aria-current="true">
             The current link item
         </a-->
-        <form th:action="@{/logout}" method="post" class="list-group-item list-group-item-action" >
-            <button type="submit" > Logout </button>
-        </form>
+        <form id="logoutForm" th:action="@{/logout}" method="post" style="display:none;"></form>
+        <a href="#" class="list-group-item list-group-item-action" onclick="document.getElementById('logoutForm').submit(); return false;">
+            Logout
+        </a>
 
         <a href="#" class="list-group-item list-group-item-action">Encuestas</a>
         <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1">Perfil</a>

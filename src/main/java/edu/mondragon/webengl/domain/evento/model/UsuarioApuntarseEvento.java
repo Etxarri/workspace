@@ -10,12 +10,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import edu.mondragon.webengl.domain.user.model.Recienllegado;
+import edu.mondragon.webengl.domain.user.model.Usuario;
 
 @Entity
-@Table(name = "recienllegado_apuntarse_evento")
-public class RecienllegadoApuntarseEvento {
+@Table(name = "usuario_apuntarse_evento")
+public class UsuarioApuntarseEvento {
     @EmbeddedId
-    private RecienllegadoEventoId id;
+    private UsuarioEventoId id;
 
     @ManyToOne
     @JoinColumn(name = "eventoID", insertable = false, updatable = false)
@@ -23,7 +24,7 @@ public class RecienllegadoApuntarseEvento {
 
     @ManyToOne
     @JoinColumn(name = "usuarioID", insertable = false, updatable = false)
-    private Recienllegado recienllegado;
+    private Usuario usuario;
 
     @Column(name = "fecha_inscripcion")
     private LocalDate fechaInscripcion;
@@ -58,19 +59,19 @@ public class RecienllegadoApuntarseEvento {
         this.evento = evento;
     }
 
-    public Recienllegado getRecienllegado() {
-        return recienllegado;
+    public Usuario getRecienllegado() {
+        return usuario;
     }
 
-    public void setRecienllegado(Recienllegado recienllegado) {
-        this.recienllegado = recienllegado;
+    public void setRecienllegado(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public RecienllegadoEventoId getId() {
+    public UsuarioEventoId getId() {
         return id;
     }
 
-    public void setId(RecienllegadoEventoId id) {
+    public void setId(UsuarioEventoId id) {
         this.id = id;
     }
     

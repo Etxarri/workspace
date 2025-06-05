@@ -3,10 +3,10 @@ package edu.mondragon.webengl.controller;
 
 import edu.mondragon.webengl.domain.categoria.repository.CategoriaRepository;
 import edu.mondragon.webengl.domain.evento.model.EventoLocal;
-import edu.mondragon.webengl.domain.evento.model.RecienllegadoApuntarseEvento;
-import edu.mondragon.webengl.domain.evento.model.RecienllegadoEventoId;
+import edu.mondragon.webengl.domain.evento.model.UsuarioEventoId;
+import edu.mondragon.webengl.domain.evento.model.UsuarioApuntarseEvento;
 import edu.mondragon.webengl.domain.evento.repository.EventoLocalRepository;
-import edu.mondragon.webengl.domain.evento.repository.RecienllegadoApuntarseEventoRepository;
+import edu.mondragon.webengl.domain.evento.repository.UsuarioApuntarseEventoRepository;
 import edu.mondragon.webengl.domain.pais.repository.CiudadRepository;
 import edu.mondragon.webengl.domain.user.model.Voluntario;
 import edu.mondragon.webengl.domain.user.model.Usuario.TipoUsuario;
@@ -41,7 +41,7 @@ public class EventoLocalController {
      */
 
     private final EventoLocalRepository eventoRepo;
-    private final RecienllegadoApuntarseEventoRepository inscripcionRepo;
+    private final UsuarioApuntarseEventoRepository inscripcionRepo;
     private final CategoriaRepository categoriaRepository;
     private final VoluntarioRepository voluntarioRepo;
     private final CiudadRepository ciudadRepository;
@@ -49,7 +49,7 @@ public class EventoLocalController {
 
     private static final Logger logger = LoggerFactory.getLogger(EventoLocalController.class);
 
-    public EventoLocalController(EventoLocalRepository eventoRepo, RecienllegadoApuntarseEventoRepository inscripcionRepo, RecienllegadoRepository recienllegadoRepo, CategoriaRepository categoriaRepository, VoluntarioRepository voluntarioRepo, CiudadRepository ciudadRepository, CategoriaRepository categoriaRepo) {
+    public EventoLocalController(EventoLocalRepository eventoRepo, UsuarioApuntarseEventoRepository inscripcionRepo, RecienllegadoRepository recienllegadoRepo, CategoriaRepository categoriaRepository, VoluntarioRepository voluntarioRepo, CiudadRepository ciudadRepository, CategoriaRepository categoriaRepo) {
         this.eventoRepo = eventoRepo;
         this.inscripcionRepo = inscripcionRepo;
         this.categoriaRepository = categoriaRepository;
@@ -75,19 +75,29 @@ public class EventoLocalController {
         model.addAttribute("paginaActual", "listaEventos");
 
 
+        int usuarioId = usuario.getUsuario().getUsuarioID();
+        List<UsuarioApuntarseEvento> inscripciones = inscripcionRepo.findById_UsuarioID(usuarioId);
+        List<Integer> eventosApuntadosIds = inscripciones.stream()
+                .map(insc -> insc.getId().getEventoID())
+                .toList();
+
+        List<EventoLocal> eventosFiltrados = eventos.stream()
+                .filter(e -> !eventosApuntadosIds.contains(e.getEventoID()))
+                .filter(e -> e.getUsuario() == null || e.getUsuario().getUsuarioID() != usuarioId) // <-- Añadido
+                .toList();
+
         model.addAttribute("usuario", usuario);
-        model.addAttribute("eventos", eventos);
+        model.addAttribute("eventos", eventosFiltrados);
         model.addAttribute("categorias", categoriaRepository.findAll());
         model.addAttribute("categoriaSeleccionada", categoriaID);
         return "evento/listaEventos";
     }
 
-        // Mostrar todos los recursos
     @GetMapping
     public String listarEventos(Model model) {
         List<EventoLocal> eventos = eventoRepo.findAll();
         model.addAttribute("eventos", eventos);
-        return "evento/listaEventos"; // nombre del template Thymeleaf
+        return "evento/listaEventos";
     }
 
     @GetMapping("/{eventoID}")
@@ -109,27 +119,25 @@ public class EventoLocalController {
             @AuthenticationPrincipal UsuarioDetails user,
             HttpSession session,
             RedirectAttributes redirectAttrs,
-            Model model) { // <-- Añade Model aquí
+            Model model) {
 
-        if (!user.getUsuario().getTipo().equals(TipoUsuario.recienllegado)) {
-            redirectAttrs.addFlashAttribute("error", "Solo los recién llegados pueden apuntarse.");
-            System.out.println("Usuario no es recienllegado: " + user.getUsuario().getTipo());
+        if (!(user.getUsuario().getTipo().equals(TipoUsuario.recienllegado) || user.getUsuario().getTipo().equals(TipoUsuario.voluntario))) {
+            redirectAttrs.addFlashAttribute("error", "Solo los recién llegados y voluntarios pueden apuntarse.");
             return "redirect:/eventos/listaEventos";
         }
 
-        RecienllegadoEventoId compuesta = new RecienllegadoEventoId(user.getUsuario().getUsuarioID(), eventoID);
+        UsuarioEventoId compuesta = new UsuarioEventoId(user.getUsuario().getUsuarioID(), eventoID);
 
         if (inscripcionRepo.existsById(compuesta)) {
             redirectAttrs.addFlashAttribute("info", "Ya estás apuntado a este evento.");
             System.out.println("Ya está apuntado al evento: " + eventoID);
             return "redirect:/eventos/listaEventos";
         } else {
-            RecienllegadoApuntarseEvento inscripcion = new RecienllegadoApuntarseEvento();
+            UsuarioApuntarseEvento inscripcion = new UsuarioApuntarseEvento();
             inscripcion.setId(compuesta);
             inscripcion.setFechaInscripcion(LocalDate.now());
             inscripcionRepo.save(inscripcion);
 
-            // Cargar el evento y pasarlo al modelo
             Optional<EventoLocal> eventoOpt = eventoRepo.findById(eventoID);
             eventoOpt.ifPresent(evento -> model.addAttribute("evento", evento));
 
@@ -144,14 +152,13 @@ public class EventoLocalController {
             Model model,
             @RequestParam(value = "categoria", required = false) Integer categoriaID) {
         int usuarioId = user.getUsuario().getUsuarioID();
-        List<RecienllegadoApuntarseEvento> inscripciones = inscripcionRepo.findById_UsuarioID(usuarioId);
+        List<UsuarioApuntarseEvento> inscripciones = inscripcionRepo.findById_UsuarioID(usuarioId);
         List<EventoLocal> eventos = inscripciones.stream()
                 .map(insc -> eventoRepo.findById(insc.getId().getEventoID()))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .toList();
 
-        // Filtrar por categoría si se selecciona una
         if (categoriaID != null && categoriaID != 0) {
             eventos = eventos.stream()
                     .filter(e -> e.getCategoria().getCategoriaID() == categoriaID)
@@ -163,7 +170,7 @@ public class EventoLocalController {
 
         model.addAttribute("eventos", eventos);
         model.addAttribute("categorias", categoriaRepository.findAll());
-        model.addAttribute("categoriaSeleccionada", categoriaID); // Para que la vista sepa cuál está seleccionada
+        model.addAttribute("categoriaSeleccionada", categoriaID);
         model.addAttribute("usuario", user.getUsuario());   
         return "evento/misEventos";
     }
@@ -189,15 +196,15 @@ public class EventoLocalController {
             @PathVariable("eventoID") int eventoID,
             @AuthenticationPrincipal UsuarioDetails user,
             RedirectAttributes redirectAttrs,
-            Model model) { // Añade Model aquí
+            Model model) { 
         int usuarioId = user.getUsuario().getUsuarioID();
-        RecienllegadoEventoId compuesta = new RecienllegadoEventoId(usuarioId, eventoID);
+        UsuarioEventoId compuesta = new UsuarioEventoId(usuarioId, eventoID);
 
         model.addAttribute("paginaActual", "listaEventos");
 
         if (inscripcionRepo.existsById(compuesta)) {
             inscripcionRepo.deleteById(compuesta);
-            // Cargar el evento y pasarlo al modelo
+
             Optional<EventoLocal> eventoOpt = eventoRepo.findById(eventoID);
             eventoOpt.ifPresent(evento -> model.addAttribute("evento", evento));
             return "evento/desapuntado";
@@ -209,7 +216,7 @@ public class EventoLocalController {
 
     @GetMapping("/crearEvento")
     public String crearEvento(@AuthenticationPrincipal UsuarioDetails user,
-                              Model model) {
+                            Model model) {
         if (!user.getUsuario().getTipo().equals(TipoUsuario.voluntario)) {
             model.addAttribute("error", "Solo los voluntarios pueden crear eventos.");
             return "redirect:/eventos/listaEventos";
@@ -223,16 +230,15 @@ public class EventoLocalController {
 
     @PostMapping("/crearEvento")
     public String crearEvento(@AuthenticationPrincipal UsuarioDetails user,
-                          @ModelAttribute EventoLocal evento,
-                          @RequestParam("ciudadID") int ciudadID,
-                          @RequestParam("categoriaID") int categoriaID,
-                          RedirectAttributes redirectAttrs) {
+                            @ModelAttribute EventoLocal evento,
+                            @RequestParam("ciudadID") int ciudadID,
+                            @RequestParam("categoriaID") int categoriaID,
+                            RedirectAttributes redirectAttrs) {
         if (!user.getUsuario().getTipo().equals(TipoUsuario.voluntario)) {
             redirectAttrs.addFlashAttribute("error", "Solo los voluntarios pueden crear eventos.");
             return "redirect:/eventos/listaEventos";
         }
 
-        // Asignar ciudad y categoría a partir de los IDs recibidos
         Ciudad ciudad = ciudadRepository.findById(ciudadID)
             .orElseThrow(() -> new IllegalArgumentException("Ciudad no encontrada"));
         evento.setCiudad(ciudad);
@@ -241,7 +247,6 @@ public class EventoLocalController {
             .orElseThrow(() -> new IllegalArgumentException("Categoría no encontrada"));
         evento.setCategoria(categoria);
 
-        // ... resto de validaciones y guardado ...
         Voluntario userVoluntario = voluntarioRepo.findById(user.getUsuario().getUsuarioID())
                 .orElseThrow(() -> new IllegalArgumentException("El usuario no es un voluntario válido."));
         evento.setUsuario(userVoluntario);
