@@ -54,7 +54,8 @@ public class ForoController {
         return "foros/forosPrincipal"; // Busca forosPrincipal.html en templates
     }
 
-    @GetMapping("/{temaID}")
+   // @GetMapping("/{temaID}")
+    @GetMapping("/{temaID:[0-9]+}")
     public String foroPorTema(@PathVariable int temaID, Model model, HttpSession session) {
         Optional<Temaforo> temaOpt = temaRepo.findById(temaID);
         logger.info("\n\nAccediendo al foro del tema: {}", temaID);
@@ -94,7 +95,7 @@ public class ForoController {
         return "redirect:/foro";
     }
 
-
+/*
     @PostMapping("/preguntasFrecuentes")
     public String crearPreguntaFrecuente(@RequestParam String contenido,
                                  RedirectAttributes redirectAttrs, HttpSession session, Model model) {
@@ -124,10 +125,36 @@ public class ForoController {
 
         return "foros/forosSecundario";
     }
+        */
 
-        @PostMapping("/{hiloID}/{preguntaID}/comentario")
+    @PostMapping("/preguntasFrecuentes")
+    public String crearPreguntaFrecuente(@RequestParam String contenido, @RequestParam int temaId,
+                                        RedirectAttributes redirectAttrs, Model model) {
+
+        Temaforo tema = temaRepo.findById(temaId).orElse(null);
+        if (tema == null) {
+            redirectAttrs.addFlashAttribute("error", "Tema no válido.");
+            return "redirect:/foro";
+        }
+
+        PreguntaFrecuente nuevaPregunta = new PreguntaFrecuente();
+        nuevaPregunta.setPregunta(contenido);
+        nuevaPregunta.setTema(tema);
+        nuevaPregunta.setFechaCreacion(java.sql.Date.valueOf(LocalDateTime.now().toLocalDate()));
+        preguntaFrecuenteRepo.saveAndFlush(nuevaPregunta);
+
+         // Crear el hilo asociado a la nueva pregunta
+        Hiloforo nuevoHilo = new Hiloforo();
+        nuevoHilo.setPreguntaID(nuevaPregunta.getPreguntaID());
+        nuevoHilo.setFechaCreacion(LocalDateTime.now());
+        hiloRepo.save(nuevoHilo);
+
+        // Redirige al foro del tema correspondiente
+        return "redirect:/foro/" + tema.getTemaID();
+    }
+
+    @PostMapping("/{hiloID}/{preguntaID}/comentario")
     public String agregarComentario(@PathVariable int hiloID,
-                                    
                                     @PathVariable int preguntaID,
                                     @RequestParam String contenido,
                                     HttpSession session,
@@ -156,7 +183,7 @@ public class ForoController {
         model.addAttribute("hilo", hiloOpt.get());
         model.addAttribute("usuarioLogueado", usuario.getUsuario()); 
 
-        return "/foros/pregunta";
+        return "redirect:/foro/preguntaUsuario/" + preguntaID;
     }
 
  
