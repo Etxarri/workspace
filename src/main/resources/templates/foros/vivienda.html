@@ -41,7 +41,6 @@
 
 
 
-  <!-- FAQ alternativa -->
   <div class="mt-5">
     <h4><i class="bi bi-lightbulb"></i> Preguntas frecuentes</h4>
     <div class="accordion" id="faqAccordionVivienda">
@@ -95,7 +94,6 @@
       </div>
     </div>
   </div>
-  <!-- Botón para añadir pregunta -->
   <div class="alert alert-info mt-4 mb-2 d-flex align-items-center justify-content-between">
     <span><i class="bi bi-question-circle"></i> ¿Tienes una nueva duda sobre trámites?</span>
     <a class="btn btn-outline-info btn-sm" data-bs-toggle="collapse" href="#nuevaPreguntaTramites" role="button" aria-expanded="false" aria-controls="nuevaPreguntaTramites">
@@ -117,7 +115,6 @@
     </div>
   </div>
 
-      <!-- Preguntas de usuarios -->
   <div class="mt-5">
     <h4><i class="bi bi-people"></i> Preguntas de usuarios</h4>
     <div th:if="${preguntasUsuarios != null and #lists.isEmpty(preguntasUsuarios)}" class="text-muted">
@@ -255,11 +252,23 @@
     <div th:if="${preguntasUsuarios != null and #lists.isEmpty(preguntasUsuarios)}" class="text-muted" th:text="#{vivienda.preguntas_usuarios.vacio}">
       No hay preguntas publicadas aún. ¡Sé el primero en preguntar!
     </div>
-    <div class="list-group">
+    <!--
       <div th:each="pregunta : ${preguntasUsuarios}" class="list-group-item mb-2">
         <a th:href="@{/foro/preguntaUsuario/{preguntaID}(preguntaID=${pregunta.preguntaID})}" style="text-decoration: none; color: inherit;">
           <h6 class="mb-1"><i class="bi bi-question-circle"></i> <span th:text="${pregunta.pregunta}">Título de la pregunta</span></h6>
         </a>
+        <small class="text-muted" th:text="${#dates.format(pregunta.fechaCreacion, 'dd/MM/yyyy')}">Fecha</small>
+      </div>
+    </div>-->
+    <div class="list-group">
+      <div th:each="pregunta : ${preguntasUsuarios}" class="list-group-item mb-2">
+        <a th:href="@{/foro/preguntaUsuario/{preguntaID}(preguntaID=${pregunta.preguntaID})}" style="text-decoration: none; color: inherit;">
+            <h6 class="mb-1"><i class="bi bi-question-circle"></i> <span th:text="${pregunta.pregunta}">Título de la pregunta</span></h6>
+        </a>
+
+        <!-- Fragmento del botón de traducción -->
+        <div th:replace="/foros/boton_traducir :: botonTraducir(${pregunta})"></div>
+
         <small class="text-muted" th:text="${#dates.format(pregunta.fechaCreacion, 'dd/MM/yyyy')}">Fecha</small>
       </div>
     </div>

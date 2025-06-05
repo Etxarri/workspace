@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @Service
 public class DeepLService {
@@ -24,19 +27,26 @@ public class DeepLService {
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         headers.set("Authorization", "DeepL-Auth-Key " + apiKey);
 
-        String body = "text=" + texto + "&target_lang=" + targetLang.toUpperCase();
+        String encodedText = URLEncoder.encode(texto, StandardCharsets.UTF_8);
+        String body = "text=" + encodedText + "&target_lang=" + targetLang.toUpperCase();
 
         HttpEntity<String> request = new HttpEntity<>(body, headers);
 
-        ResponseEntity<Map> response = restTemplate.postForEntity(API_URL, request, Map.class);
+        try {
+            ResponseEntity<Map> response = restTemplate.postForEntity(API_URL, request, Map.class);
 
-        if (response.getStatusCode() == HttpStatus.OK) {
-            List<Map<String, String>> translations = (List<Map<String, String>>) response.getBody().get("translations");
-            return translations.get(0).get("text");
+            if (response.getStatusCode() == HttpStatus.OK) {
+                List<Map<String, String>> translations = (List<Map<String, String>>) response.getBody().get("translations");
+                return translations.get(0).get("text");
+            }
+        } catch (Exception e) {
+            // Loguea el error o lanza una excepción personalizada
+            System.err.println("Error al traducir con DeepL: " + e.getMessage());
         }
         return texto;
     }
 
+/*
     private DeepLService deepLService;
 
     @GetMapping("/ejemplo-traduccion")
@@ -46,4 +56,5 @@ public class DeepLService {
         model.addAttribute("mensaje", textoTraducido);
         return "ejemploVista";
     }
+    */
 }
