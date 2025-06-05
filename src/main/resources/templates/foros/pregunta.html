@@ -1,63 +1,115 @@
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
     <title th:text="'Pregunta: ' + ${pregunta.pregunta}">Pregunta</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  </head>
-  <body>
-    <header th:replace="headerInmigrante :: header"></header>
-    <main class="container py-5">
-      <div class="mb-4">
-        <h2 class="mb-2"><i class="bi bi-question-circle"></i> <span th:text="${pregunta.pregunta}">Título de la pregunta</span></h2>
-        <div class="text-muted mb-2">
-          <i class="bi bi-calendar"></i>
-          <span th:text="${#dates.format(pregunta.fechaCreacion, 'dd/MM/yyyy')}">Fecha</span>
-        </div>
-        <div>
-          <!-- <span class="badge bg-primary">Hilo #<span th:text="${hilo.hiloID}">1</span></span> -->
-        </div>
-      </div>
 
-      <section class="mb-5">
-        <h4 class="mb-3"><i class="bi bi-chat-dots"></i> Comentarios</h4>
-        <div th:if="${comentarios == null or #lists.isEmpty(comentarios)}" class="alert alert-info">
-          No hay comentarios aún. ¡Sé el primero en responder!
+    <!-- SockJS + STOMP -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+</head>
+<body class="bg-light">
+
+<header th:replace="headerInmigrante :: header"></header>
+
+<main class="container py-4">
+
+    <div class="mb-4">
+        <h2><i class="bi bi-question-circle"></i> <span th:text="${pregunta.pregunta}">Título</span></h2>
+        <div class="text-muted">
+            <i class="bi bi-calendar"></i>
+            <span th:text="${#dates.format(pregunta.fechaCreacion, 'dd/MM/yyyy')}">Fecha</span>
         </div>
-        <div class="list-group mb-4" th:if="${comentarios != null and !#lists.isEmpty(comentarios)}">
-          <div class="mb-2"
-               th:each="comentario : ${comentarios}"
-               th:classappend="${comentario.usuario.usuarioID == usuarioLogueado.usuarioID} ? 'd-flex justify-content-end' : 'd-flex justify-content-start'">
-            <div class="list-group-item"
-                 th:classappend="${comentario.usuario.usuarioID == usuarioLogueado.usuarioID} ? 'bg-success text-white align-self-end' : 'bg-light align-self-start'"
-                 style="max-width: 60%; border-radius: 1rem;">
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <i class="bi bi-person-circle text-primary"></i>
-                  <strong th:text="${comentario.usuario.nombre}">Usuario</strong>
-                </div>
-                <small class="text-muted" th:text="${#temporals.format(comentario.fechaHora, 'dd/MM/yyyy HH:mm')}">Fecha</small>
-              </div>
-              <div class="mt-2" th:text="${comentario.contenido}">Contenido del comentario</div>
+    </div>
+
+    <!-- Comentarios WebSocket -->
+    <section class="mb-5">
+        <h4><i class="bi bi-chat-dots"></i> Comentarios en tiempo real</h4>
+
+        <ul class="list-group mb-4" id="comentariosLista">
+            <!-- Comentarios se insertan aquí -->
+        </ul>
+
+        <form id="comentarioForm">
+            <div class="mb-3">
+                <textarea class="form-control" id="contenido" rows="3" placeholder="Escribe tu comentario..." required></textarea>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Formulario para añadir un nuevo comentario -->
-      <section>
-        <h5 class="mb-3"><i class="bi bi-pencil-square"></i> Añadir comentario</h5>
-        <form th:action="@{/foro/{hiloID}/{preguntaID}/comentario(hiloID=${hilo.hiloID}, preguntaID=${pregunta.preguntaID})}" method="post">
-          <div class="mb-3">
-            <textarea class="form-control" name="contenido" rows="3" placeholder="Escribe tu comentario..." required></textarea>
-          </div>
-          <button type="submit" class="btn btn-success"><i class="bi bi-send"></i> Publicar</button>
+            <input type="hidden" id="usuarioID" th:value="${usuarioLogueado.usuarioID}" />
+            <input type="hidden" id="hiloID" th:value="${hilo.hiloID}" />
+            <button type="submit" class="btn btn-success"><i class="bi bi-send"></i> Enviar</button>
         </form>
-      </section>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+    </section>
+
+</main>
+
+<!-- Lógica WebSocket y Fetch integrada -->
+<script th:inline="javascript">
+    const hiloID = /*[[${hilo.hiloID}]]*/ 0;
+    const usuarioID = /*[[${usuarioLogueado.usuarioID}]]*/ 0;
+
+    const comentariosLista = document.getElementById("comentariosLista");
+
+    function agregarComentario(comentario) {
+        const esMio = comentario.usuarioID === usuarioID;
+        const li = document.createElement("li");
+        li.className = `list-group-item ${esMio ? 'bg-success text-white text-end' : 'bg-light'}`;
+        li.style.borderRadius = "1rem";
+        li.innerHTML = `
+            <strong>Usuario ${comentario.usuarioID}</strong><br>
+            ${comentario.contenido}<br>
+            <small>${new Date(comentario.fechaHora).toLocaleString()}</small>
+        `;
+        comentariosLista.appendChild(li);
+    }
+
+    // Cargar historial de comentarios
+    fetch(`/api/foro/${hiloID}/comentarios`)
+        .then(res => {
+            if (!res.ok) throw new Error("Error al cargar comentarios");
+            return res.json();
+        })
+        .then(comentarios => {
+            console.log("Comentarios recibidos:", comentarios);
+            comentarios.forEach(agregarComentario);
+        })
+        .catch(err => {
+            console.error("Fallo en fetch comentarios:", err);
+            const li = document.createElement("li");
+            li.className = "list-group-item text-danger";
+            li.textContent = "Error al cargar los comentarios.";
+            comentariosLista.appendChild(li);
+        });
+
+    // Conexión WebSocket
+    const socket = new SockJS("/foro-websocket");
+    const stompClient = Stomp.over(socket);
+
+    stompClient.connect({}, () => {
+        stompClient.subscribe(`/topic/foro/${hiloID}`, mensaje => {
+            const comentario = JSON.parse(mensaje.body);
+            agregarComentario(comentario);
+        });
+
+        document.getElementById("comentarioForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const contenido = document.getElementById("contenido").value.trim();
+            if (contenido === "") return;
+
+            stompClient.send(`/app/foro/${hiloID}/comentarios`, {}, JSON.stringify({
+                usuarioID: usuarioID,
+                contenido: contenido
+            }));
+
+            document.getElementById("contenido").value = '';
+        });
+    });
+</script>
+
+</body>
 </html>

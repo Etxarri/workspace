@@ -1,15 +1,18 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/recurso/repository/RecursoLocalRepository.java
+/workspace/src/main/java/edu/mondragon/webengl/webSocket/WebSocketConfig.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/UsuarioController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/RecienllegadoRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/evento/model/EventoLocal.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/repository/CiudadRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/repository/ComunidadAutonomaRepository.java
+/workspace/src/main/java/edu/mondragon/webengl/webSocket/ComentarioWebSocketController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/PasswordResetTokenStore.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/EventoLocalController.java
 /workspace/src/main/java/edu/mondragon/webengl/internationalization/InternationalizationConfig.java
 /workspace/src/main/java/edu/mondragon/webengl/internationalization/service/DeepLService.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/Hiloforo.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/repository/HiloforoRepository.java
+/workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/ComentarioDTO.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/evento/model/RecienllegadoApuntarseEvento.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/service/UsuarioService.java
 /workspace/src/main/java/edu/mondragon/webengl/seguridad/UsuarioDetails.java
@@ -45,6 +48,7 @@
 /workspace/src/main/java/edu/mondragon/webengl/controller/EncuestaController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/model/Pais.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/recurso/model/RecursoLocal.java
+/workspace/src/main/java/edu/mondragon/webengl/domain/foro/service/ComentarioForoService.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/VoluntarioRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/LoginController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/PreguntaFrecuente.java
@@ -52,5 +56,6 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/evento/repository/RecienllegadoApuntarseEventoRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/repository/PaisRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/categoria/repository/CategoriaRepository.java
+/workspace/src/main/java/edu/mondragon/webengl/controller/ComentarioRestController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/HacerEncuestaId.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/service/UsuarioServiceImpl.java

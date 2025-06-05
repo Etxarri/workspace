@@ -16,7 +16,9 @@ edu/mondragon/webengl/controller/UsuarioController.class
 edu/mondragon/webengl/domain/encuesta/model/Encuesta.class
 edu/mondragon/webengl/domain/foro/repository/PreguntaFrecuenteRepository.class
 edu/mondragon/webengl/domain/encuesta/repository/HacerEncuestaRepository.class
+edu/mondragon/webengl/controller/ComentarioRestController.class
 edu/mondragon/webengl/controller/EncuestaController.class
+edu/mondragon/webengl/domain/foro/service/ComentarioForoService.class
 edu/mondragon/webengl/domain/user/model/Recienllegado.class
 edu/mondragon/webengl/domain/user/service/EmailService.class
 edu/mondragon/webengl/domain/user/model/Usuario$TipoUsuario.class
@@ -40,12 +42,15 @@ edu/mondragon/webengl/domain/foro/model/ComentarioForo.class
 edu/mondragon/webengl/StartWebApplication.class
 edu/mondragon/webengl/controller/LoginController.class
 edu/mondragon/webengl/internationalization/service/DeepLService.class
+edu/mondragon/webengl/webSocket/WebSocketConfig.class
 edu/mondragon/webengl/controller/GlobalControllerIdiomas.class
 edu/mondragon/webengl/domain/evento/model/RecienllegadoEventoId.class
 edu/mondragon/webengl/domain/foro/model/PreguntaFrecuente.class
+edu/mondragon/webengl/webSocket/ComentarioWebSocketController.class
 edu/mondragon/webengl/internationalization/InternationalizationConfig.class
 edu/mondragon/webengl/domain/foro/model/Temaforo.class
 edu/mondragon/webengl/domain/user/repository/VoluntarioRepository.class
+edu/mondragon/webengl/domain/foro/model/ComentarioDTO.class
 edu/mondragon/webengl/seguridad/UsuarioDetailsService.class
 edu/mondragon/webengl/domain/encuesta/model/EncuestaRespuestas.class
 edu/mondragon/webengl/domain/evento/model/RecienllegadoApuntarseEvento.class

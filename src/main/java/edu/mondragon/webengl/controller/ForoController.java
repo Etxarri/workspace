@@ -125,7 +125,7 @@ public class ForoController {
         return "foros/forosSecundario";
     }
 
-        @PostMapping("/{hiloID}/{preguntaID}/comentario")
+        @PostMapping("/{hiloID}/{preguntaID}/comentarios")
     public String agregarComentario(@PathVariable int hiloID,
                                     
                                     @PathVariable int preguntaID,
