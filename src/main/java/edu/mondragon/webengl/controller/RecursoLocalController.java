@@ -8,6 +8,7 @@ import edu.mondragon.webengl.domain.recurso.model.RecursoLocal;
 import edu.mondragon.webengl.domain.recurso.repository.RecursoLocalRepository;
 import edu.mondragon.webengl.domain.user.repository.UsuarioRepository;
 import edu.mondragon.webengl.seguridad.UsuarioDetails;
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -39,7 +40,8 @@ public class RecursoLocalController {
 
     @GetMapping("/ciudadInfo")
     public String mostrarInformacionCiudad(
-        Model model, 
+        Model model,
+        HttpSession session, 
         @AuthenticationPrincipal UsuarioDetails usuario, 
         @RequestParam(value = "categoria", required = false) Integer categoriaId) {
 
@@ -65,6 +67,8 @@ public class RecursoLocalController {
             dto.setDescripcion(r.getDescripcion());
             return dto;
         }).collect(Collectors.toList());
+
+        model.addAttribute("paginaActual", "ciudadInfo");
 
         model.addAttribute("usuario", usuario);
         model.addAttribute("recursos", recursos);

@@ -47,9 +47,12 @@ public class ForoController {
         this.usuarioService = usuarioService;
         this.preguntaFrecuenteRepo = preguntaFrecuenteRepo;
     }
+
     @GetMapping("/principal")
-    public String principal(Model model) {
+    public String principal(Model model, HttpSession session) {
         List<Temaforo> temas = temaRepo.findAll();
+        
+        model.addAttribute("paginaActual", "foro");
         model.addAttribute("temaForo", temas);
         return "foros/forosPrincipal"; // Busca forosPrincipal.html en templates
     }
@@ -58,6 +61,7 @@ public class ForoController {
     public String foroPorTema(@PathVariable int temaID, Model model, HttpSession session) {
         Optional<Temaforo> temaOpt = temaRepo.findById(temaID);
         logger.info("\n\nAccediendo al foro del tema: {}", temaID);
+        model.addAttribute("paginaActual", "foro");
 
         if (temaOpt.isPresent()) {
             Object temaEnSesion = session.getAttribute("tema");
@@ -87,6 +91,7 @@ public class ForoController {
                 model.addAttribute("comentarios", comentarios);
                 model.addAttribute("pregunta", preguntaOpt.get()); 
                 model.addAttribute("usuarioLogueado", usuario.getUsuario()); 
+                model.addAttribute("paginaActual", "foro");
 
             }
             return "foros/pregunta";
@@ -163,7 +168,7 @@ public class ForoController {
 
     @GetMapping
     public String listarHilos(@RequestParam(required = false) int temaId, Model model) {
-        List<Hiloforo> hilos;
+        List<Hiloforo> hilos = null;
         if (temaId != 0) {
             Optional<Temaforo> temaOpt = temaRepo.findById(temaId);
             if (temaOpt.isPresent()) {

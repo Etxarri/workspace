@@ -146,3 +146,9 @@ a:focus {
     outline: none;
     box-shadow: none;
 }
+
+.nav-link.active {
+    color: rgb(149, 190, 255) !important; /* Verde */
+    font-weight: bold;
+    border-bottom: 2px solid rgb(149, 190, 255);
+}

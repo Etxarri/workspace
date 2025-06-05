@@ -26,18 +26,43 @@
             <!-- CENTRO: Menú -->
             <div class="collapse navbar-collapse position-absolute start-50 translate-middle-x" id="navbarResponsive">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" th:href="@{/eventos/listaEventos}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/foro/principal}">Forum</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/eventos/misEventos}">My Events</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/recursos/ciudadInfo}">My City</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                        th:href="@{/eventos/listaEventos}"
+                        th:classappend="${paginaActual == 'listaEventos'} ? ' active'">
+                        Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                        th:href="@{/foro/principal}"
+                        th:classappend="${paginaActual == 'foro'} ? ' active'">
+                        Forum
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                        th:href="@{/eventos/misEventos}"
+                        th:classappend="${paginaActual == 'misEventos'} ? ' active'">
+                        My Events
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                        th:href="@{/recursos/ciudadInfo}"
+                        th:classappend="${paginaActual == 'ciudadInfo'} ? ' active'">
+                        My City
+                        </a>
+                    </li>
                 </ul>
+
+
             </div>
 
             <!-- DERECHA: Banderas -->
             <div class="d-flex align-items-center">
-             
 
-                <!-- Banderas dinámicas 
+                <!-- Banderas dinámicas
                 <div th:each="bandera : ${banderas}" class="me-2">
                     <a th:href="@{${#httpServletRequest.requestURI}(lang=${bandera.codigo})}">
                         <img th:src="@{${bandera.src}}" th:alt="${bandera.alt}" style="width: 40px; height: 40px;" />
@@ -46,7 +71,7 @@
                 -->
 
                 <a th:href="@{${#httpServletRequest.requestURI}(lang='es')}">
-                    <img src="/images/español_logo.png" alt="Español" style="width: 40px; height: 40px;" />
+                    <img src="/images/espanol_logo.png" alt="Español" style="width: 40px; height: 40px;" />
                 </a>
                 <a th:href="@{${#httpServletRequest.requestURI}(lang='en')}">
                     <img src="/images/ingles_logo.png" alt="English" style="width: 40px; height: 40px;" />

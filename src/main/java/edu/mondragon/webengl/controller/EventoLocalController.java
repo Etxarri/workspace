@@ -72,6 +72,9 @@ public class EventoLocalController {
         } else {
             eventos = eventoRepo.findByCiudad_ComunidadAutonoma_ComunidadID(comunidadId);
         }
+        model.addAttribute("paginaActual", "listaEventos");
+
+
         model.addAttribute("usuario", usuario);
         model.addAttribute("eventos", eventos);
         model.addAttribute("categorias", categoriaRepository.findAll());
@@ -90,6 +93,8 @@ public class EventoLocalController {
     @GetMapping("/{eventoID}")
     public String detalleEvento(@PathVariable("eventoID") int eventoID, Model model) {
         Optional<EventoLocal> eventoOpt = eventoRepo.findById(eventoID);
+        model.addAttribute("paginaActual", "listaEventos");
+
         if (eventoOpt.isPresent()) {
             model.addAttribute("evento", eventoOpt.get());
             return "evento/evento";
@@ -154,6 +159,8 @@ public class EventoLocalController {
         }
         logger.info("\n\n\nTipo de usuario: {}", user.getUsuario().getTipo());
 
+        model.addAttribute("paginaActual", "misEventos");
+
         model.addAttribute("eventos", eventos);
         model.addAttribute("categorias", categoriaRepository.findAll());
         model.addAttribute("categoriaSeleccionada", categoriaID); // Para que la vista sepa cuál está seleccionada
@@ -167,6 +174,8 @@ public class EventoLocalController {
             @AuthenticationPrincipal UsuarioDetails user,
             Model model) {
         Optional<EventoLocal> eventoOpt = eventoRepo.findById(eventoID);
+        model.addAttribute("paginaActual", "listaEventos");
+
         if (eventoOpt.isPresent()) {
             model.addAttribute("evento", eventoOpt.get());
             return "evento/desapuntarse";
@@ -183,6 +192,8 @@ public class EventoLocalController {
             Model model) { // Añade Model aquí
         int usuarioId = user.getUsuario().getUsuarioID();
         RecienllegadoEventoId compuesta = new RecienllegadoEventoId(usuarioId, eventoID);
+
+        model.addAttribute("paginaActual", "listaEventos");
 
         if (inscripcionRepo.existsById(compuesta)) {
             inscripcionRepo.deleteById(compuesta);
@@ -203,7 +214,7 @@ public class EventoLocalController {
             model.addAttribute("error", "Solo los voluntarios pueden crear eventos.");
             return "redirect:/eventos/listaEventos";
         }
-
+        model.addAttribute("paginaActual", "listaEventos");
         model.addAttribute("ciudades", ciudadRepository.findAll());
         model.addAttribute("categorias", categoriaRepo.findAll());
         model.addAttribute("usuario", user.getUsuario());

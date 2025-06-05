@@ -37,6 +37,8 @@ edu/mondragon/webengl/controller/ForgotPasswordController.class
 edu/mondragon/webengl/domain/pais/model/ComunidadAutonoma.class
 edu/mondragon/webengl/domain/pais/model/RecursoMapaDTO.class
 edu/mondragon/webengl/domain/foro/model/ComentarioForo.class
+edu/mondragon/webengl/StartWebApplication.class
+edu/mondragon/webengl/controller/LoginController.class
 edu/mondragon/webengl/internationalization/service/DeepLService.class
 edu/mondragon/webengl/controller/GlobalControllerIdiomas.class
 edu/mondragon/webengl/domain/evento/model/RecienllegadoEventoId.class
@@ -48,6 +50,7 @@ edu/mondragon/webengl/seguridad/UsuarioDetailsService.class
 edu/mondragon/webengl/domain/encuesta/model/EncuestaRespuestas.class
 edu/mondragon/webengl/domain/evento/model/RecienllegadoApuntarseEvento.class
 edu/mondragon/webengl/domain/user/repository/RecienllegadoRepository.class
+edu/mondragon/webengl/controller/WelcomeController.class
 edu/mondragon/webengl/domain/encuesta/repository/EncuestaRepository.class
 edu/mondragon/webengl/controller/EventoLocalController.class
 edu/mondragon/webengl/controller/FAQController.class
