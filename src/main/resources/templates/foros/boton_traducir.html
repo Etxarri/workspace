@@ -1,17 +1,6 @@
 <!--BOTON TRADUCIR-->
 
-<!--VA BIEN CON ESTE QUE SOLO TRADUCE AL INGLES
-<div th:fragment="botonTraducir(pregunta)">
-  <button class="btn btn-sm btn-outline-secondary mt-1"
-          th:attr="data-text=${pregunta.pregunta}"
-          onclick="traducirPregunta(this, this.getAttribute('data-text'), 'en')">
-      Traducir
-  </button>
-  <div class="mt-2 text-primary traduccion"></div>
-</div>
--->
-
-
+<!--
 <div th:fragment="botonTraducir(pregunta)">
   <div class="traduccion-container">
     <div class="btn-group mt-1" role="group">
@@ -26,6 +15,28 @@
               onclick="traducirPregunta(this, this.getAttribute('data-text'), 'fr')">Francés</button>
       <button class="btn btn-sm btn-outline-secondary"
               th:attr="data-text=${pregunta.pregunta}"
+              onclick="traducirPregunta(this, this.getAttribute('data-text'), 'ar')">Árabe</button>
+    </div>
+    <div class="mt-2 text-primary traduccion"></div>
+  </div>
+</div>
+-->
+
+
+<div th:fragment="botonTraducir(texto)">
+  <div class="traduccion-container">
+    <div class="btn-group mt-1" role="group">
+      <button class="btn btn-sm btn-outline-secondary"
+              th:attr="data-text=${texto}"
+              onclick="traducirPregunta(this, this.getAttribute('data-text'), 'en')">Inglés</button>
+      <button class="btn btn-sm btn-outline-secondary"
+              th:attr="data-text=${texto}"
+              onclick="traducirPregunta(this, this.getAttribute('data-text'), 'es')">Español</button>
+      <button class="btn btn-sm btn-outline-secondary"
+              th:attr="data-text=${texto}"
+              onclick="traducirPregunta(this, this.getAttribute('data-text'), 'fr')">Francés</button>
+      <button class="btn btn-sm btn-outline-secondary"
+              th:attr="data-text=${texto}"
               onclick="traducirPregunta(this, this.getAttribute('data-text'), 'ar')">Árabe</button>
     </div>
     <div class="mt-2 text-primary traduccion"></div>

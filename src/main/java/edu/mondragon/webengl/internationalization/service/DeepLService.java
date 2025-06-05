@@ -35,12 +35,22 @@ public class DeepLService {
         try {
             ResponseEntity<Map> response = restTemplate.postForEntity(API_URL, request, Map.class);
 
-            if (response.getStatusCode() == HttpStatus.OK) {
-                List<Map<String, String>> translations = (List<Map<String, String>>) response.getBody().get("translations");
-                return translations.get(0).get("text");
+            if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
+                Object translationsObj = response.getBody().get("translations");
+                if (translationsObj instanceof List) {
+                    List translations = (List) translationsObj;
+                    if (!translations.isEmpty() && translations.get(0) instanceof Map) {
+                        Map first = (Map) translations.get(0);
+                        Object textObj = first.get("text");
+                        if (textObj != null) {
+                            return textObj.toString();
+                        }
+                    }
+                }
+            } else {
+                System.err.println("Respuesta de DeepL no OK: " + response.getStatusCode());
             }
         } catch (Exception e) {
-            // Loguea el error o lanza una excepción personalizada
             System.err.println("Error al traducir con DeepL: " + e.getMessage());
         }
         return texto;
