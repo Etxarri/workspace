@@ -10,8 +10,8 @@
         <div class="card shadow p-4 w-100" style="max-width: 1000px; border-radius: 1.5rem;">
             <div class="row g-4">
                 <!-- Imagen -->
-                <div class="col-md-6 d-flex align-items-center">
-                <img th:src="'https://picsum.photos/600/400'" class="img-fluid rounded" alt="Imagen del evento">
+                <div class="col-md-4">
+                    <img th:src="${#strings.isEmpty(evento.imagen) ? '/images/' + evento.categoria.categoriaID + '.png' : evento.imagen}" class="img-fluid rounded-start h-100" alt="Card image cap">
                 </div>
 
                 <!-- Texto -->

@@ -1,14 +1,14 @@
 package edu.mondragon.webengl.domain.evento.model;
 
-public class RecienllegadoEventoId implements java.io.Serializable {
+public class UsuarioEventoId implements java.io.Serializable {
     private int eventoID;
     private int usuarioID;
 
     // Constructor vacío requerido por JPA/Hibernate
-    public RecienllegadoEventoId() {
+    public UsuarioEventoId() {
     }
 
-    public RecienllegadoEventoId(int usuarioID, int eventoID) {
+    public UsuarioEventoId(int usuarioID, int eventoID) {
         this.eventoID = eventoID;
         this.usuarioID = usuarioID;
     }
@@ -16,9 +16,9 @@ public class RecienllegadoEventoId implements java.io.Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof RecienllegadoEventoId)) return false;
+        if (!(o instanceof UsuarioEventoId)) return false;
 
-        RecienllegadoEventoId that = (RecienllegadoEventoId) o;
+        UsuarioEventoId that = (UsuarioEventoId) o;
 
         if (eventoID != that.eventoID) return false;
         return usuarioID == that.usuarioID;
