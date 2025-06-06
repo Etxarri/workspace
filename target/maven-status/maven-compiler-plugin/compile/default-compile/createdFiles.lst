@@ -29,6 +29,10 @@ edu/mondragon/webengl/domain/encuesta/model/HacerEncuesta.class
 edu/mondragon/webengl/domain/evento/model/UsuarioApuntarseEvento.class
 edu/mondragon/webengl/domain/foro/repository/TemaforoRepository.class
 edu/mondragon/webengl/controller/ForoController.class
+<<<<<<< HEAD
+=======
+edu/mondragon/webengl/domain/user/model/PasswordResetTokenStore$1.class
+>>>>>>> origin/Multilenguaje-Manualmente
 edu/mondragon/webengl/controller/RecursoLocalController.class
 edu/mondragon/webengl/domain/evento/model/EventoLocal.class
 edu/mondragon/webengl/domain/encuesta/model/HacerEncuestaId.class
@@ -41,8 +45,12 @@ edu/mondragon/webengl/domain/pais/model/RecursoMapaDTO.class
 edu/mondragon/webengl/domain/foro/model/ComentarioForo.class
 edu/mondragon/webengl/StartWebApplication.class
 edu/mondragon/webengl/controller/LoginController.class
+<<<<<<< HEAD
 edu/mondragon/webengl/internationalization/service/DeepLService.class
 edu/mondragon/webengl/controller/GlobalControllerIdiomas.class
+=======
+edu/mondragon/webengl/domain/evento/model/RecienllegadoEventoId.class
+>>>>>>> origin/Multilenguaje-Manualmente
 edu/mondragon/webengl/domain/foro/model/PreguntaFrecuente.class
 edu/mondragon/webengl/internationalization/InternationalizationConfig.class
 edu/mondragon/webengl/domain/foro/model/Temaforo.class

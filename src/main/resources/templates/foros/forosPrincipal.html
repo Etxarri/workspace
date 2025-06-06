@@ -16,18 +16,33 @@
       </p>
     </section>
 
-    <section class="row justify-content-center">
-      <div class="col-md-4 mb-4" th:each="tema : ${temaForo}">
-        <div class="card h-100 card-temas">
-          <a th:href="@{/foro/{temaID}(temaID=${tema.temaID})}" style="text-decoration:none; color:inherit;">
-            <div class="card-body text-center">
-              <i th:class="${tema.logo} + ' fs-1 text-primary'"></i>
-              <h5 class="card-title mt-3"
-                th:text="#{foros.tema.${tema.temaID}.titulo}">Título del tema</h5>
-              <p class="card-text"
-                th:text="#{foros.tema.${tema.temaID}.descripcion}">Descripción del tema</p>
-            </div>
-          </a>
+      <section class="row justify-content-center">
+        <div class="col-md-4 mb-4" th:each="tema : ${temaForo}">
+          <div class="card h-100 card-temas">
+            <a th:href="@{/foro/{temaID}(temaID=${tema.temaID})}" style="text-decoration:none; color:inherit;">
+              <div class="card-body text-center">
+                <i th:class="${tema.logo} + ' fs-1 text-primary'"></i>
+                <!-- ESTE FUNCIONA CON TODOS MENOS CON EL IDIOMA PREDETERMINADO (ingles)
+                <h5 class="card-title mt-3"
+                    th:text="${#messages.msgOrNull('foros.tema.' + tema.temaID + '.titulo_' + #locale.language)} ?: 'Título por defecto'"></h5>
+                <p class="card-text"
+                    th:text="${#messages.msgOrNull('foros.tema.' + tema.temaID + '.descripcion_' + #locale.language)} ?: 'Descripción por defecto'"></p>-->
+                <!--<h5 class="card-title mt-3"
+                    th:text="${#messages.msgOrNull('foros.tema.' + tema.temaID + '.titulo_' + #locale.language)} ?: ${#messages.msgOrNull('foros.tema.' + tema.temaID + '.titulo')} ?: 'Título por defecto'"></h5>
+                <p class="card-text"
+                    th:text="${#messages.msgOrNull('foros.tema.' + tema.temaID + '.descripcion_' + #locale.language)} ?: ${#messages.msgOrNull('foros.tema.' + tema.temaID + '.descripcion')} ?: 'Descripción por defecto'"></p>
+              -->
+                <h5 class="card-title mt-3"
+                    th:text="${#messages.msgOrNull('foros.tema.' + tema.temaID + '.titulo_' + #locale.language) != null} ? ${#messages.msgOrNull('foros.tema.' + tema.temaID + '.titulo_' + #locale.language)} : (${#messages.msgOrNull('foros.tema.' + tema.temaID + '.titulo') != null} ? ${#messages.msgOrNull('foros.tema.' + tema.temaID + '.titulo')} : 'Título por defecto')">
+                    Título del tema
+                </h5>
+                <p class="card-text"
+                  th:text="${#messages.msgOrNull('foros.tema.' + tema.temaID + '.descripcion_' + #locale.language) != null} ? ${#messages.msgOrNull('foros.tema.' + tema.temaID + '.descripcion_' + #locale.language)} : (${#messages.msgOrNull('foros.tema.' + tema.temaID + '.descripcion') != null} ? ${#messages.msgOrNull('foros.tema.' + tema.temaID + '.descripcion')} : 'Descripción por defecto')">
+                    Descripción del tema
+                </p>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </section>

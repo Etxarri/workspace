@@ -119,9 +119,11 @@
     </div>
     <div class="list-group">
       <div th:each="pregunta : ${preguntasUsuarios}" class="list-group-item mb-2">
-        <a th:href="@{/foro/preguntaUsuario/{preguntaID}(preguntaID=${pregunta.preguntaID})}" style="text-decoration: none; color: inherit;">
-          <h6 class="mb-1"><i class="bi bi-question-circle"></i> <span th:text="${pregunta.pregunta}">Título de la pregunta</span></h6>
+        <a th:href="@{/foro/preguntaUsuario/{preguntaID}(preguntaID=${pregunta.preguntaID}, from=${#httpServletRequest.requestURL + (#httpServletRequest.queryString != null ? '?' + #httpServletRequest.queryString : '')})}" style="text-decoration: none; color: inherit;">
+            <h6 class="mb-1"><i class="bi bi-question-circle"></i> <span class="pregunta-original" th:text="${pregunta.pregunta}">Título de la pregunta</span></h6>
         </a>
+
+
         <small class="text-muted" th:text="${#dates.format(pregunta.fechaCreacion, 'dd/MM/yyyy')}">Fecha</small>
       </div>
     </div>

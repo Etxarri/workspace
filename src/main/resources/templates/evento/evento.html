@@ -17,10 +17,13 @@
         <!-- Texto -->
         <div class="col-md-6 d-flex flex-column justify-content-center">
           <h2 class="mb-3" th:text="${evento.titulo}">Título del evento</h2>
-            <p class="card-text">
-              <small class="text-muted" th:text="'Ciudad: ' + ${evento.ciudad.nombre}"></small><br>
-              <small class="text-muted" th:text="'Lugar: ' + ${evento.lugar} + ' - Fecha: ' + ${evento.fechaHora}">Fecha y lugar</small>
-            </p>
+          <p class="card-text">
+            <small class="text-muted" th:text="${#messages.msg('evento.ciudad')} + ': ' + ${evento.ciudad.nombre}">Ciudad</small><br>
+            <small class="text-muted"
+              th:text="${#messages.msg('evento.lugar')} + ': ' + ${evento.lugar} + ' - ' + ${#messages.msg('evento.fecha')} + ': ' + ${evento.fechaHora}">
+              Lugar y fecha
+            </small>
+          </p>
           <p th:text="${evento.descripcion}">Descripción completa del evento</p>
           <div th:if="${!apuntado}">
             <form th:action="@{/eventos/{eventoID}/apuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
@@ -33,6 +36,9 @@
                 </form>
           </div>
 
+          <form th:action="@{/eventos/{eventoID}/apuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
+            <button class="btn btn-success" th:text="#{evento.apuntarse}">Apuntarse</button>
+          </form>
         </div>
       </div>
     </div>
