@@ -1,37 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detalle del evento</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/main.css">
+  <title layout:title="Detalle del evento"></title>
 </head>
-<body>
-  <div th:replace="headerInmigrante :: header"></div>
+
+<main layout:fragment="content">
 
   <div class="container d-flex justify-content-center my-5">
     <div class="card shadow p-4 w-100" style="max-width: 1000px; border-radius: 1.5rem;">
       <div class="row g-4">
         <!-- Imagen -->
-        <div class="col-md-6 d-flex align-items-center">
-          <img th:src="'https://picsum.photos/600/400'" class="img-fluid rounded" alt="Imagen del evento">
+        <div class="col-md-4">
+          <img th:src="@{'/images/' + ${evento.categoria.categoriaID} + '.png'}" class="img-fluid rounded-start h-100" alt="Card image cap">
         </div>
 
         <!-- Texto -->
         <div class="col-md-6 d-flex flex-column justify-content-center">
           <h2 class="mb-3" th:text="${evento.titulo}">Título del evento</h2>
+            <p class="card-text">
+              <small class="text-muted" th:text="'Ciudad: ' + ${evento.ciudad.nombre}"></small><br>
+              <small class="text-muted" th:text="'Lugar: ' + ${evento.lugar} + ' - Fecha: ' + ${evento.fechaHora}">Fecha y lugar</small>
+            </p>
           <p th:text="${evento.descripcion}">Descripción completa del evento</p>
+          <div th:if="${!apuntado}">
+            <form th:action="@{/eventos/{eventoID}/apuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
+              <button class="btn btn-success">Apuntarse</button>
+            </form>
+          </div>
+          <div th:if="${apuntado}">
+                <form th:action="@{/eventos/{eventoID}/desapuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
+                    <button class="btn btn-danger">Desapuntarse</button>
+                </form>
+          </div>
 
-          <!-- Aquí puedes meter más atributos si quieres -->
-          <!-- <p><strong>Fecha:</strong> <span th:text="${evento.fecha}"></span></p> -->
-
-          <form th:action="@{/eventos/{eventoID}/apuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
-            <button class="btn btn-success">Apuntarse</button>
-          </form>
         </div>
       </div>
     </div>
   </div>
-</body>
+</main>
 </html>
