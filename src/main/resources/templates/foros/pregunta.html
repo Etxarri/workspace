@@ -28,10 +28,8 @@
       </div>
 
       <section class="mb-5">
-        <h4 class="mb-3"><i class="bi bi-chat-dots"></i> Comentarios</h4>
-        <div th:if="${comentarios == null or #lists.isEmpty(comentarios)}" class="alert alert-info">
-          No hay comentarios aún. ¡Sé el primero en responder!
-        </div>
+        <h4 class="mb-3"><i class="bi bi-chat-dots" th:text="#{pregunta.comentario}"></i> </h4>
+        <div th:if="${comentarios == null or #lists.isEmpty(comentarios)}" class="alert alert-info" th:text="#{nohaycomentarios}"></div>
         <div class="list-group mb-4" th:if="${comentarios != null and !#lists.isEmpty(comentarios)}">
           <div class="mb-2"
               th:each="comentario : ${comentarios}"
@@ -54,12 +52,12 @@
 
       <!-- Formulario para añadir un nuevo comentario -->
       <section>
-        <h5 class="mb-3"><i class="bi bi-pencil-square"></i> Añadir comentario</h5>
+        <h5 class="mb-3" th:text="#{pregunta.añadir.comentario}"><i class="bi bi-pencil-square"></i> Añadir comentario</h5>
         <form th:action="@{/foro/{hiloID}/{preguntaID}/comentario(hiloID=${hilo.hiloID}, preguntaID=${pregunta.preguntaID})}" method="post">
           <div class="mb-3">
             <textarea class="form-control" name="contenido" rows="3" placeholder="Escribe tu comentario..." required></textarea>
           </div>
-          <button type="submit" class="btn btn-success"><i class="bi bi-send"></i> Publicar</button>
+          <button type="submit" class="btn btn-success" th:text="#{pregunta.publicar}"><i class="bi bi-send"></i> Publicar</button>
         </form>
       </section>
     </main>
