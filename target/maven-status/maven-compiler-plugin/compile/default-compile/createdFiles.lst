@@ -1,7 +1,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Quitar-Opcion-Imagen
 edu/mondragon/webengl/domain/user/model/Usuario.class
 edu/mondragon/webengl/domain/foro/model/Hiloforo.class
+edu/mondragon/webengl/domain/evento/repository/UsuarioApuntarseEventoRepository.class
 edu/mondragon/webengl/domain/recurso/repository/RecursoLocalRepository.class
 edu/mondragon/webengl/domain/user/model/PasswordResetTokenStore$TokenData.class
 edu/mondragon/webengl/domain/pais/repository/CiudadRepository.class
@@ -27,6 +31,7 @@ edu/mondragon/webengl/domain/pais/model/Ciudad.class
 edu/mondragon/webengl/domain/user/model/PasswordResetTokenStore.class
 edu/mondragon/webengl/seguridad/SeguridadConfig.class
 edu/mondragon/webengl/domain/encuesta/model/HacerEncuesta.class
+edu/mondragon/webengl/domain/evento/model/UsuarioApuntarseEvento.class
 edu/mondragon/webengl/domain/foro/repository/TemaforoRepository.class
 edu/mondragon/webengl/controller/ForoController.class
 edu/mondragon/webengl/controller/RecursoLocalController.class
@@ -34,23 +39,21 @@ edu/mondragon/webengl/domain/evento/model/EventoLocal.class
 edu/mondragon/webengl/domain/encuesta/model/HacerEncuestaId.class
 edu/mondragon/webengl/domain/pais/model/Pais.class
 edu/mondragon/webengl/domain/recurso/model/RecursoLocal.class
-edu/mondragon/webengl/domain/evento/repository/RecienllegadoApuntarseEventoRepository.class
 edu/mondragon/webengl/controller/ForgotPasswordController.class
 edu/mondragon/webengl/domain/pais/model/ComunidadAutonoma.class
+edu/mondragon/webengl/domain/evento/model/UsuarioEventoId.class
 edu/mondragon/webengl/domain/pais/model/RecursoMapaDTO.class
 edu/mondragon/webengl/domain/foro/model/ComentarioForo.class
 edu/mondragon/webengl/StartWebApplication.class
 edu/mondragon/webengl/controller/LoginController.class
 edu/mondragon/webengl/internationalization/service/DeepLService.class
 edu/mondragon/webengl/controller/GlobalControllerIdiomas.class
-edu/mondragon/webengl/domain/evento/model/RecienllegadoEventoId.class
 edu/mondragon/webengl/domain/foro/model/PreguntaFrecuente.class
 edu/mondragon/webengl/internationalization/InternationalizationConfig.class
 edu/mondragon/webengl/domain/foro/model/Temaforo.class
 edu/mondragon/webengl/domain/user/repository/VoluntarioRepository.class
 edu/mondragon/webengl/seguridad/UsuarioDetailsService.class
 edu/mondragon/webengl/domain/encuesta/model/EncuestaRespuestas.class
-edu/mondragon/webengl/domain/evento/model/RecienllegadoApuntarseEvento.class
 edu/mondragon/webengl/domain/user/repository/RecienllegadoRepository.class
 edu/mondragon/webengl/controller/WelcomeController.class
 edu/mondragon/webengl/domain/encuesta/repository/EncuestaRepository.class
@@ -58,6 +61,7 @@ edu/mondragon/webengl/controller/EventoLocalController.class
 edu/mondragon/webengl/controller/FAQController.class
 edu/mondragon/webengl/domain/foro/repository/HiloforoRepository.class
 edu/mondragon/webengl/domain/pais/repository/PaisRepository.class
+<<<<<<< HEAD
 =======
 edu\mondragon\webengl\controller\FAQController.class
 edu\mondragon\webengl\domain\pais\repository\CiudadRepository.class
@@ -114,3 +118,5 @@ edu\mondragon\webengl\domain\encuesta\model\Encuesta.class
 =======
 edu/mondragon/webengl/domain/user/model/PasswordResetTokenStore$1.class
 >>>>>>> origin/Error_Compiler
+=======
+>>>>>>> origin/Quitar-Opcion-Imagen

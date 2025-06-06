@@ -40,12 +40,9 @@
                 <select id="categoriaID" name="categoriaID" class="form-select" required>
                     <option th:each="categoria : ${categorias}" th:value="${categoria.categoriaID}" th:text="${categoria.nombre}"></option>
                 </select>
-           </div>
-
-            <div class="mb-3 mt-5">
-                <label for="imagen" class="form-label">Imagen:</label>
-                <input type="file" id="imagen" name="imagen" class="form-control" accept="image/*">
             </div>
+
+
             <button type="submit" class="btn btn-primary mt-4">Crear</button>
 
 </main>

@@ -44,8 +44,7 @@ public class EventoLocal {
     @Column(nullable = false)
     private String lugar;
 
-    @Column
-    private String imagen;
+
 
     public int getEventoID() {
         return eventoID;
@@ -111,13 +110,7 @@ public class EventoLocal {
         this.lugar = lugar;
     }
 
-    public String getImagen() {
-        return imagen;
-    }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
 
     
 }

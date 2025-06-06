@@ -9,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import edu.mondragon.webengl.domain.user.model.Recienllegado;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 
 @Entity
@@ -59,13 +58,7 @@ public class UsuarioApuntarseEvento {
         this.evento = evento;
     }
 
-    public Usuario getRecienllegado() {
-        return usuario;
-    }
 
-    public void setRecienllegado(Usuario usuario) {
-        this.usuario = usuario;
-    }
 
     public UsuarioEventoId getId() {
         return id;
