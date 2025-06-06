@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="/js/javaScript.js" defer></script><!--EJECUTAR EL ARCHIVO CUANDO TODO SE HAYA CARGADO-->
+
+    <title>Resultados de la encuesta</title>
+</head>
+<body>
+    <h1 class="display-5 text-center mb-4">RESULTADOS DE LA ENCUESTA</h1>
+
+    <div>
+        <!-- Resultado total -->
+        <div class="text-center p-2 my-4">
+            <p class="mb-1 fs-5"><strong>Índice total de integración:</strong></p> 
+            <span class="display-5" th:text="${encuesta.resultadoTotal}"></span>
+        </div>
+
+        <!-- Gráfico -->
+        <div class="container-fluid">
+            <canvas id="graficoPolar"></canvas>
+        </div>
+
+        <!-- Botón para volver-->
+        <div class="text-center mt-3 mb-5">
+            <a href="/encuestas" class="btn btn-secondary"> ← Volver a encuestas</a>
+        </div>
+
+        <script th:inline="javascript">
+            // Obtener datos de Thymeleaf
+            const encuesta = /*[[${encuesta}]]*/ null;
+
+            const etiquetas = ["Psicológica", "Lingüística",
+                                "Económica", "Política",
+                                "Social", "Navegacional"];
+
+            const datosGrafico = [encuesta.resultadoPsicologico,
+                                encuesta.resultadoLinguistico,
+                                encuesta.resultadoEconomico,
+                                encuesta.resultadoPolitico,
+                                encuesta.resultadoSocial,
+                                encuesta.resultadoNavegacional];
+        </script>
+        <script src="/js/graficoAreasEncuestas.js"></script>
+    </div>
+    <!-- <div th:replace="fragments/aside :: aside"></div>
+    <footer th:replace="fragments/footer :: footer"></footer>     -->
+</body>
+</html>

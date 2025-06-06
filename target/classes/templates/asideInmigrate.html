@@ -1,0 +1,45 @@
+<head>
+    <link rel="stylesheet" href="/css/main.css">
+    <!--script src="/js/asideScript.js"></script-->
+</head>
+
+<div th:fragment="aside">
+    <div class="list-group">
+        <!--a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+            The current link item
+        </a-->
+        <div>
+            <a href="#" class="list-group-item list-group-item-action d-flex align-items-start disabled" tabindex="-1">
+                <div class="col-2 text-center">
+                    <i class="bi bi-person-circle fs-2"></i>
+                </div>
+                <div class="col-10 text-center align-items-center">
+                    Perfil
+                </div>
+            </a>
+        </div>
+        
+        <div>
+            <a class="list-group-item list-group-item-action d-flex align-items-start" th:href="@{/encuestas}">
+                <div class="col-2 text-center">
+                    <i class="bi bi-clipboard fs-2"></i>
+                </div>
+                <div class="col-10 text-center">
+                    Encuestas
+                </div>
+            </a>
+        </div>
+
+        <div>
+            <a class="list-group-item list-group-item-action d-flex align-items-start" th:href="@{/login/logout}">
+                <div class="col-2 text-center">
+                    <i class="bi bi-box-arrow-left fs-2"></i>
+                </div>
+                <div class="col-10 text-center">
+                    Logout
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>

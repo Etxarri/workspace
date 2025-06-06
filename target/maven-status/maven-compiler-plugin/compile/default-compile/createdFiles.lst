@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 edu/mondragon/webengl/domain/user/model/Usuario.class
 edu/mondragon/webengl/domain/foro/model/Hiloforo.class
 edu/mondragon/webengl/domain/recurso/repository/RecursoLocalRepository.class
@@ -110,3 +111,6 @@ edu\mondragon\webengl\domain\encuesta\repository\EncuestaRepository.class
 edu\mondragon\webengl\domain\user\repository\RecienllegadoRepository.class
 edu\mondragon\webengl\domain\encuesta\model\Encuesta.class
 >>>>>>> 3dc90194aacd82090683942dfbf6db67cea834d0
+=======
+edu/mondragon/webengl/domain/user/model/PasswordResetTokenStore$1.class
+>>>>>>> origin/Error_Compiler

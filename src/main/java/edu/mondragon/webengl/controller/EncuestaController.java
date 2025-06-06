@@ -7,12 +7,13 @@ import edu.mondragon.webengl.domain.encuesta.model.HacerEncuesta;
 import edu.mondragon.webengl.domain.encuesta.repository.EncuestaRepository;
 import edu.mondragon.webengl.domain.encuesta.repository.HacerEncuestaRepository;
 import edu.mondragon.webengl.domain.user.model.Usuario;
-
+import edu.mondragon.webengl.seguridad.UsuarioDetails;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
@@ -30,18 +31,15 @@ public class EncuestaController
     private final EncuestaRepository encuestaRepo;
     private final HacerEncuestaRepository hacerEncuestaRepo;
 
-    //private final EncuestaRespuestas encuestaRespuestas;
 
     public EncuestaController(EncuestaRepository encuestaRepo, HacerEncuestaRepository hacerEncuestaRepo)
     {
         this.encuestaRepo = encuestaRepo;
         this.hacerEncuestaRepo = hacerEncuestaRepo;
-
-        //this.encuestaRespuestas = encuestaRespuestas;
     }
 
     // Lista todas las encuestas disponibles
-    @GetMapping
+    @GetMapping()
     public String listarEncuestas(Model model)
     {
         List<Encuesta> encuestas = encuestaRepo.findAll();
@@ -50,47 +48,52 @@ public class EncuestaController
     }
 
     // Mostrar formulario para responder encuesta
-    @GetMapping("/{id}")
-    public String mostrarEncuesta(@PathVariable int id, Model model, HttpSession session, RedirectAttributes redirectAttrs)
-    {
-        Optional<Encuesta> encuestaOpt = encuestaRepo.findById(id);
+    @GetMapping("/{encuestaID}")
+    public String mostrarEncuesta(@PathVariable("encuestaID") int encuestaID,
+                                Model model,
+                                HttpSession session,
+                                HttpServletRequest request,
+                                RedirectAttributes redirectAttrs,
+                                @AuthenticationPrincipal UsuarioDetails user) {
+        // Buscar la encuesta específica
+        Optional<Encuesta> encuestaOpt = encuestaRepo.findById(encuestaID);
         if (encuestaOpt.isEmpty())
         {
             redirectAttrs.addFlashAttribute("error", "Encuesta no encontrada");
             return "redirect:/encuestas";
         }
 
-        Usuario usuario = (Usuario) session.getAttribute("user");
+        // Verificar si el usuario está autenticado
+        Usuario usuario = user.getUsuario();
         if (usuario == null)
         {
+            // Guardar la URL original
+            String originalUrl = request.getRequestURL().toString();
+            session.setAttribute("urlAnterior", originalUrl);
             redirectAttrs.addFlashAttribute("error", "Debes iniciar sesión para responder la encuesta");
             return "redirect:/login";
         }
 
         // Aquí podrías añadir lógica para evitar que un usuario conteste dos veces la misma encuesta si quieres
 
+        // Añadir la encuesta y el objeto para respuestas al modelo
+        // Añadir la encuesta al modelo
         model.addAttribute("encuesta", encuestaOpt.get());
-
         // Añadir el DTO vacío al modelo para el binding del formulario
         model.addAttribute("encuestaRespuestas", new EncuestaRespuestas());
 
-        return "encuestas/responder";
+        return "encuestas/encuesta";
     }
 
     // Procesar respuestas de la encuesta
-    @PostMapping("/{id}/responder")
-    public String guardarRespuesta(@PathVariable int id,
+    @PostMapping("/{encuestaID}/responder")
+    public String guardarRespuesta(@PathVariable("encuestaID") int encuestaID,
                                    @ModelAttribute EncuestaRespuestas encuestaRespuestas, //@RequestParam String respuestas, // ajusta según tus datos, por ejemplo JSON o params separados
                                    HttpSession session,
-                                   RedirectAttributes redirectAttrs) {
-        Usuario usuario = (Usuario) session.getAttribute("user");
-        if (usuario == null)
-        {
-            redirectAttrs.addFlashAttribute("error", "Debes iniciar sesión para responder la encuesta");
-            return "redirect:/login";
-        }
+                                   RedirectAttributes redirectAttrs,
+                                   @AuthenticationPrincipal UsuarioDetails user) {
 
-        Optional<Encuesta> encuestaOpt = encuestaRepo.findById(id);
+        Optional<Encuesta> encuestaOpt = encuestaRepo.findById(encuestaID);
         if (encuestaOpt.isEmpty())
         {
             redirectAttrs.addFlashAttribute("error", "Encuesta no encontrada");
@@ -98,112 +101,134 @@ public class EncuestaController
         }
 
         // Aquí guardamos la respuesta (simplificado)
+        // HacerEncuesta he = new HacerEncuesta();
+        // he.setEncuesta(encuestaOpt.get());
+        // he.setFecha(LocalDateTime.now());
+        // he.setRespuestas(respuestas); // campo ejemplo, ajusta según tu modelo
+
+        // Crear nueva respuesta de encuesta
         HacerEncuesta he = new HacerEncuesta();
-        he.setEncuesta(encuestaOpt.get());
-        he.setUsuario(usuario);
-        //he.setFecha(LocalDateTime.now());
-        //he.setRespuestas(respuestas); // campo ejemplo, ajusta según tu modelo
+        he.setEncuestaID(encuestaID);
+        he.setUsuarioID(user.getUsuario().getUsuarioID());
 
+        // Establecer título y descripción desde la encuesta original
+        Encuesta encuesta = encuestaOpt.get();
+        he.setTitulo(encuesta.getTitulo());
+        he.setDescripcion(encuesta.getDescripcion());
 
-        // Calcular y setear las puntuaciones (manejar NullPointerExceptions si alguna respuesta no es obligatoria)
-        // Es buena práctica verificar si los getters del DTO devuelven null antes de sumarlos
-        // si no todas las preguntas son obligatorias. Para simplificar, asumimos que se responden.
+        try
+        {
+            // Calcular y setear las puntuaciones 
+            double resultadoPsi = encuestaRespuestas.getPsicologicoConexion() + encuestaRespuestas.getPsicologicoExtranjero()
+                        + encuestaRespuestas.getPsicologicoDeseoVivir() + encuestaRespuestas.getPsicologicoAislamiento();
+            // he.setResultadoPsicologico(resultadoPsi);
 
-        int puntosPsi = (encuestaRespuestas.getPsicologicoConexion() != null ? encuestaRespuestas.getPsicologicoConexion() : 0)
-                     + (encuestaRespuestas.getPsicologicoExtranjero() != null ? encuestaRespuestas.getPsicologicoExtranjero() : 0)
-                     + (encuestaRespuestas.getPsicologicoDeseoVivir() != null ? encuestaRespuestas.getPsicologicoDeseoVivir() : 0)
-                     + (encuestaRespuestas.getPsicologicoAislamiento() != null ? encuestaRespuestas.getPsicologicoAislamiento() : 0);
-        he.setPuntosPsicologico(puntosPsi);
+            double resultadoLin = encuestaRespuestas.getLinguisticoLectura() + encuestaRespuestas.getLinguisticoConversacion()
+                        + encuestaRespuestas.getLinguisticoEscritura() + encuestaRespuestas.getLinguisticoEscucha();
+            // he.setResultadoLinguistico(resultadoLin);
 
-        int puntosLin = (encuestaRespuestas.getLinguisticoLectura() != null ? encuestaRespuestas.getLinguisticoLectura() : 0)
-                     + (encuestaRespuestas.getLinguisticoConversacion() != null ? encuestaRespuestas.getLinguisticoConversacion() : 0)
-                     + (encuestaRespuestas.getLinguisticoEscritura() != null ? encuestaRespuestas.getLinguisticoEscritura() : 0)
-                     + (encuestaRespuestas.getLinguisticoEscucha() != null ? encuestaRespuestas.getLinguisticoEscucha() : 0);
-        he.setPuntosLinguistico(puntosLin);
+            double resultadoEco = encuestaRespuestas.getEconomicoIngreso() + encuestaRespuestas.getEconomicoSituacion()
+                        + encuestaRespuestas.getEconomicoGasto400() + encuestaRespuestas.getEconomicoGasto800()
+                        + encuestaRespuestas.getEconomicoGasto8000() + encuestaRespuestas.getEconomicoGasto40000() + 1
+                        + encuestaRespuestas.getEconomicoSatisfaccion();
+            // he.setResultadoEconomico(resultadoEco);
+            
+            int resultadoPol4 = encuestaRespuestas.getPoliticoAccionConvencer() + encuestaRespuestas.getPoliticoAccionInfluirVoto()
+                        + encuestaRespuestas.getPoliticoAccionDeclaracion() + encuestaRespuestas.getPoliticoAccionDiscusionPublica()
+                        + encuestaRespuestas.getPoliticoAccionContacto() + encuestaRespuestas.getPoliticoAccionTrabajoPartido()
+                        + encuestaRespuestas.getPoliticoAccionInsignia() + encuestaRespuestas.getPoliticoAccionFirmaPeticion()
+                        + encuestaRespuestas.getPoliticoAccionManifestacion() + encuestaRespuestas.getPoliticoAccionBoicot()
+                        + encuestaRespuestas.getPoliticoAccionRecogerFirmas();
+            
+            double resultadoPol = encuestaRespuestas.getPoliticoComprension() + encuestaRespuestas.getPoliticoDiscusion()
+                        + encuestaRespuestas.getPoliticoPartidos() + encuestaRespuestas.getPoliticoPresidentePartido()
+                        + encuestaRespuestas.getPoliticoSenadoPartido() + Integer.valueOf(encuestaRespuestas.getPoliticoEdadVoto()) + 1
+                        + (resultadoPol4 > 4 ? 5 : (resultadoPol4 == 3 || resultadoPol4 == 4) ? 4 : (resultadoPol4 == 2) ? 3 : (resultadoPol4 == 1) ? 2 : 1);
+            // he.setResultadoPolitico(resultadoPol);
 
-        int puntosEco = (encuestaRespuestas.getEconomicoIngreso() != null ? encuestaRespuestas.getEconomicoIngreso() : 0)
-                     + (encuestaRespuestas.getEconomicoSituacion() != null ? encuestaRespuestas.getEconomicoSituacion() : 0)
-                     + (encuestaRespuestas.getEconomicoGasto400() != null ? encuestaRespuestas.getEconomicoGasto400() : 0)
-                     + (encuestaRespuestas.getEconomicoGasto800() != null ? encuestaRespuestas.getEconomicoGasto800() : 0)
-                     + (encuestaRespuestas.getEconomicoGasto8000() != null ? encuestaRespuestas.getEconomicoGasto8000() : 0)
-                     + (encuestaRespuestas.getEconomicoGasto40000() != null ? encuestaRespuestas.getEconomicoGasto40000() : 0)
-                     + 1
-                     + (encuestaRespuestas.getEconomicoSatisfaccion() != null ? encuestaRespuestas.getEconomicoSatisfaccion() : 0);
-        he.setPuntosEconomico(puntosEco);
+            int resultadoSoc3A = (encuestaRespuestas.getSocialParticipacionGrupoA() == 1 ? 0 : encuestaRespuestas.getSocialParticipacionGrupoA())
+                            * (encuestaRespuestas.getSocialMiembrosEspanolesGrupoA() == 1 ? 0 : encuestaRespuestas.getSocialMiembrosEspanolesGrupoA());
+            int resultadoSoc3B = (encuestaRespuestas.getSocialParticipacionGrupoB() == 1 ? 0 : encuestaRespuestas.getSocialParticipacionGrupoB())
+                            * (encuestaRespuestas.getSocialMiembrosEspanolesGrupoB() == 1 ? 0 : encuestaRespuestas.getSocialMiembrosEspanolesGrupoB());
+            int resultadoSoc3C = (encuestaRespuestas.getSocialParticipacionGrupoC() == 1 ? 0 : encuestaRespuestas.getSocialParticipacionGrupoC())
+                            * (encuestaRespuestas.getSocialMiembrosEspanolesGrupoC() == 1 ? 0 : encuestaRespuestas.getSocialMiembrosEspanolesGrupoC());
+            int resultadoSoc3D = (encuestaRespuestas.getSocialParticipacionGrupoD() == 1 ? 0 : encuestaRespuestas.getSocialParticipacionGrupoD())
+                            * (encuestaRespuestas.getSocialMiembrosEspanolesGrupoD() == 1 ? 0 : encuestaRespuestas.getSocialMiembrosEspanolesGrupoD());
+            int resultadoSoc3E = (encuestaRespuestas.getSocialParticipacionGrupoE() == 1 ? 0 : encuestaRespuestas.getSocialParticipacionGrupoE())
+                            * (encuestaRespuestas.getSocialMiembrosEspanolesGrupoE() == 1 ? 0 : encuestaRespuestas.getSocialMiembrosEspanolesGrupoE());
+            int resultadoSoc3 = Math.max(Math.max(resultadoSoc3A, resultadoSoc3B),Math.max(Math.max(resultadoSoc3C, resultadoSoc3D), resultadoSoc3E));
+
+            double resultadoSoc = encuestaRespuestas.getSocialCenaEspanoles() + encuestaRespuestas.getSocialContactosEspanoles()
+                        + ((int)Math.ceil((resultadoSoc3 / 25.0) * 4)) + encuestaRespuestas.getSocialFavoresEspanoles();
+            // he.setResultadoSocial(resultadoSoc);
+
+            double resultadoNav = encuestaRespuestas.getNavegacionalConsultaMedica() + encuestaRespuestas.getNavegacionalBuscarEmpleo()
+                        + encuestaRespuestas.getNavegacionalAyudaLegal() + encuestaRespuestas.getNavegacionalConduccionAlcohol()
+                        + encuestaRespuestas.getNavegacionalPagoImpuestos() + encuestaRespuestas.getNavegacionalFormatoDireccion()
+                        + encuestaRespuestas.getNavegacionalAyudaMedicaCronica() + 1;
+            // he.setResultadoNavegacional(resultadoNav);
+            
+            double indiceTotal = (((double)resultadoPsi + (double)resultadoLin + (double)resultadoEco + (double)resultadoPol + (double)resultadoSoc + (double)resultadoNav) - 24) / (120 - 24) * (1 - 0) + 0;
+            he.setResultadoTotal(indiceTotal);
+
+            double indicePsi = (resultadoPsi - 4) / (20 - 4) * (1 - 0) + 0;
+            double indiceLin = (resultadoLin - 4) / (20 - 4) * (1 - 0) + 0;
+            double indiceEco = (resultadoEco - 4) / (20 - 4) * (1 - 0) + 0;
+            double indicePol = (resultadoPol - 4) / (20 - 4) * (1 - 0) + 0;
+            double indiceSoc = (resultadoSoc - 4) / (20 - 4) * (1 - 0) + 0;
+            double indiceNav = (resultadoNav - 4) / (20 - 4) * (1 - 0) + 0;
+
+            he.setResultadoPsicologico(indicePsi);
+            he.setResultadoLinguistico(indiceLin);
+            he.setResultadoEconomico(indiceEco);
+            he.setResultadoPolitico(indicePol);
+            he.setResultadoSocial(indiceSoc);
+            he.setResultadoNavegacional(indiceNav);
+
+            // Debug para verificar valores
+            System.out.println("Indices:");
+            System.out.println("Psicológico: " + indicePsi);
+            System.out.println("Lingüístico: " + indiceLin);
+            System.out.println("Económico: " + indiceEco);
+            System.out.println("Político: " + indicePol);
+            System.out.println("Social: " + indiceSoc);
+            System.out.println("Navegacional: " + indiceNav);
+            System.out.println("Total: " + indiceTotal);
+
+            hacerEncuestaRepo.save(he);
+
+            redirectAttrs.addFlashAttribute("mensaje", "¡Gracias por responder la encuesta!");
+            return "redirect:/encuestas/graficoEncuesta";
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            redirectAttrs.addFlashAttribute("error", "Error al procesar la encuesta: " + e.getMessage());
+            return "redirect:/encuestas";// /" + encuestaID;
+        }
+    }
+
+    @GetMapping("/graficoEncuesta")
+    public String mostrarGrafico(Model model, @AuthenticationPrincipal UsuarioDetails user)
+    {
+        // Obtener los resultados de la última encuesta del usuario
+        Optional<HacerEncuesta> ultimaEncuesta = hacerEncuestaRepo
+            .findFirstByUsuarioIDOrderByEncuestaIDDesc(user.getUsuario().getUsuarioID());
         
-        int puntosPol4 = (encuestaRespuestas.getPoliticoAccionConvencer() != null ? encuestaRespuestas.getPoliticoAccionConvencer() : 0)
-                     + (encuestaRespuestas.getPoliticoAccionInfluirVoto() != null ? encuestaRespuestas.getPoliticoAccionInfluirVoto() : 0)
-                     + (encuestaRespuestas.getPoliticoAccionDeclaracion() != null ? encuestaRespuestas.getPoliticoAccionDeclaracion() : 0)
-                     + (encuestaRespuestas.getPoliticoAccionDiscusionPublica() != null ? encuestaRespuestas.getPoliticoAccionDiscusionPublica() : 0)
-                     + (encuestaRespuestas.getPoliticoAccionContacto() != null ? encuestaRespuestas.getPoliticoAccionContacto() : 0)
-                     + (encuestaRespuestas.getPoliticoAccionTrabajoPartido() != null ? encuestaRespuestas.getPoliticoAccionTrabajoPartido() : 0)
-                     + (encuestaRespuestas.getPoliticoAccionInsignia() != null ? encuestaRespuestas.getPoliticoAccionInsignia() : 0)
-                     + (encuestaRespuestas.getPoliticoAccionFirmaPeticion() != null ? encuestaRespuestas.getPoliticoAccionFirmaPeticion() : 0)
-                     + (encuestaRespuestas.getPoliticoAccionManifestacion() != null ? encuestaRespuestas.getPoliticoAccionManifestacion() : 0)
-                     + (encuestaRespuestas.getPoliticoAccionBoicot() != null ? encuestaRespuestas.getPoliticoAccionBoicot() : 0)
-                     + (encuestaRespuestas.getPoliticoAccionRecogerFirmas() != null ? encuestaRespuestas.getPoliticoAccionRecogerFirmas() : 0);
+        if (ultimaEncuesta.isPresent())
+        {
+            model.addAttribute("encuesta", ultimaEncuesta.get());
+            // Debug para verificar valores
+            HacerEncuesta he = ultimaEncuesta.get();
+            System.out.println("Valores en gráfico:");
+            System.out.println("Psicológico: " + he.getResultadoPsicologico());
+            System.out.println("Lingüístico: " + he.getResultadoLinguistico());
+            System.out.println("Económico: " + he.getResultadoEconomico());
+            System.out.println("Político: " + he.getResultadoPolitico());
+            System.out.println("Social: " + he.getResultadoSocial());
+            System.out.println("Navegacional: " + he.getResultadoNavegacional());
+        }
         
-        int puntosPol = (encuestaRespuestas.getPoliticoComprension() != null ? encuestaRespuestas.getPoliticoComprension() : 0)
-                     + (encuestaRespuestas.getPoliticoDiscusion() != null ? encuestaRespuestas.getPoliticoDiscusion() : 0)
-                     + (encuestaRespuestas.getPoliticoPartidos() != null ? encuestaRespuestas.getPoliticoPartidos() : 0)
-                     + (encuestaRespuestas.getPoliticoPresidentePartido() != null ? encuestaRespuestas.getPoliticoPresidentePartido() : 0)
-                     + (encuestaRespuestas.getPoliticoSenadoPartido() != null ? encuestaRespuestas.getPoliticoSenadoPartido() : 0)
-                     + (encuestaRespuestas.getPoliticoEdadVoto() != null ? Integer.parseInt(encuestaRespuestas.getPoliticoEdadVoto()) : 0)
-                     + 1
-                     + (puntosPol4 > 4 ? 5 : (puntosPol4 == 3 || puntosPol4 == 4) ? 4 : (puntosPol4 == 2) ? 3 : (puntosPol4 == 1) ? 2 : 1);
-        he.setPuntosPolitico(puntosPol);
-
-        int puntosSoc3A = (encuestaRespuestas.getSocialParticipacionGrupoA() != null ? encuestaRespuestas.getSocialParticipacionGrupoA() : 1)
-                        * (encuestaRespuestas.getSocialMiembrosEspanolesGrupoA() != null ? (encuestaRespuestas.getSocialParticipacionGrupoA() != 1 ? encuestaRespuestas.getSocialMiembrosEspanolesGrupoA() : 0) : 0);
-        int puntosSoc3B = (encuestaRespuestas.getSocialParticipacionGrupoB() != null ? encuestaRespuestas.getSocialParticipacionGrupoB() : 1)
-                        * (encuestaRespuestas.getSocialMiembrosEspanolesGrupoB() != null ? (encuestaRespuestas.getSocialParticipacionGrupoB() != 1 ? encuestaRespuestas.getSocialMiembrosEspanolesGrupoB() : 0) : 0);
-        int puntosSoc3C = (encuestaRespuestas.getSocialParticipacionGrupoC() != null ? encuestaRespuestas.getSocialParticipacionGrupoC() : 1)
-                        * (encuestaRespuestas.getSocialMiembrosEspanolesGrupoC() != null ? (encuestaRespuestas.getSocialParticipacionGrupoC() != 1 ? encuestaRespuestas.getSocialMiembrosEspanolesGrupoC() : 0) : 0);
-        int puntosSoc3D = (encuestaRespuestas.getSocialParticipacionGrupoD() != null ? encuestaRespuestas.getSocialParticipacionGrupoD() : 1)
-                        * (encuestaRespuestas.getSocialMiembrosEspanolesGrupoD() != null ? (encuestaRespuestas.getSocialParticipacionGrupoD() != 1 ? encuestaRespuestas.getSocialMiembrosEspanolesGrupoD() : 0) : 0);
-        int puntosSoc3E = (encuestaRespuestas.getSocialParticipacionGrupoE() != null ? encuestaRespuestas.getSocialParticipacionGrupoE() : 1)
-                        * (encuestaRespuestas.getSocialMiembrosEspanolesGrupoE() != null ? (encuestaRespuestas.getSocialParticipacionGrupoE() != 1 ? encuestaRespuestas.getSocialMiembrosEspanolesGrupoE() : 0) : 0);
-
-        int puntosSoc3 = Math.max(Math.max(puntosSoc3A, puntosSoc3B),Math.max(Math.max(puntosSoc3C, puntosSoc3D), puntosSoc3E));
-
-        int puntosSoc = (encuestaRespuestas.getSocialCenaEspanoles() != null ? encuestaRespuestas.getSocialCenaEspanoles() : 0)
-                     + (encuestaRespuestas.getSocialContactosEspanoles() != null ? encuestaRespuestas.getSocialContactosEspanoles() : 0)
-                     + ((int)Math.ceil((puntosSoc3 / 25.0) * 4))
-                     + (encuestaRespuestas.getSocialFavoresEspanoles() != null ? encuestaRespuestas.getSocialFavoresEspanoles() : 0);
-        he.setPuntosSocial(puntosSoc);
-
-        int puntosNav = (encuestaRespuestas.getNavegacionalConsultaMedica() != null ? encuestaRespuestas.getNavegacionalConsultaMedica() : 0)
-                     + (encuestaRespuestas.getNavegacionalBuscarEmpleo() != null ? encuestaRespuestas.getNavegacionalBuscarEmpleo() : 0)
-                     + (encuestaRespuestas.getNavegacionalAyudaLegal() != null ? encuestaRespuestas.getNavegacionalAyudaLegal() : 0)
-                     + (encuestaRespuestas.getNavegacionalConduccionAlcohol() != null ? encuestaRespuestas.getNavegacionalConduccionAlcohol() : 0)
-                     + (encuestaRespuestas.getNavegacionalPagoImpuestos() != null ? encuestaRespuestas.getNavegacionalPagoImpuestos() : 0)
-                     + (encuestaRespuestas.getNavegacionalFormatoDireccion() != null ? encuestaRespuestas.getNavegacionalFormatoDireccion() : 0)
-                     + (encuestaRespuestas.getNavegacionalAyudaMedicaCronica() != null ? encuestaRespuestas.getNavegacionalAyudaMedicaCronica() : 0)
-                     + 1;
-        he.setPuntosNavegacional(puntosNav);
-        
-        double indiceTotal = ((puntosPsi + puntosLin + puntosEco + puntosPol + puntosSoc + puntosNav) - 24) / (120 - 24) * (1 - 0) + 0;
-        he.setPuntosTotal(indiceTotal);
-
-        puntosPsi = (puntosPsi - 4) / (20 - 4) * (1 - 0) + 0;
-        puntosLin = (puntosLin - 4) / (20 - 4) * (1 - 0) + 0;
-        puntosEco = (puntosEco - 4) / (20 - 4) * (1 - 0) + 0;
-        puntosPol = (puntosPol - 4) / (20 - 4) * (1 - 0) + 0;
-        puntosSoc = (puntosSoc - 4) / (20 - 4) * (1 - 0) + 0;
-        puntosNav = (puntosNav - 4) / (20 - 4) * (1 - 0) + 0;
-
-        redirectAttrs.addFlashAttribute("puntosPsi", puntosPsi);
-        redirectAttrs.addFlashAttribute("puntosLin", puntosLin);
-        redirectAttrs.addFlashAttribute("puntosEco", puntosEco);
-        redirectAttrs.addFlashAttribute("puntosPol", puntosPol);
-        redirectAttrs.addFlashAttribute("puntosSoc", puntosSoc);
-        redirectAttrs.addFlashAttribute("puntosNav", puntosNav);
-
-
-        hacerEncuestaRepo.save(he);
-
-        redirectAttrs.addFlashAttribute("mensaje", "¡Gracias por responder la encuesta!");
-        return "redirect:/encuestas/graficoEncuesta";  // o la vista que quieras
-        //return "redirect:/encuestas";
+        return "encuestas/graficoEncuesta";
     }
 }

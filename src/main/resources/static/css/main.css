@@ -10,7 +10,6 @@ body{
   background-color:rgb(140, 207, 240);
   font-family: 'Poppins', sans-serif;
   padding-top: 80px;
-
 }
 
 .borrar {
@@ -24,11 +23,29 @@ form{
   border-radius: 20px;
 }
 
+.encuesta{
+  width: 100%;
+}
+
 .btn-primary{
   width: 100%;
   border: none;
   border-radius: 50px;
   background-color: rgb(149, 190, 255);
+}
+
+.btn-secondary{
+  width: 20%;
+  border: none;
+  border-radius: 50px;
+  background-color: rgb(72, 151, 204);
+}
+
+.btn-secondary:hover{
+  width: 20%;
+  border: none;
+  border-radius: 50px;
+  background-color: rgb(47, 97, 131);
 }
 
 .form-control{
@@ -48,6 +65,18 @@ h4{
 a {
   text-decoration: underline;
   color: #007bff; 
+}
+
+canvas
+{
+  width: 50% !important;
+  height: 50% !important;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.pregunta {
+  font-weight: bolder;
 }
 
 .form-label{
