@@ -8,13 +8,16 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 
 
 @Entity
 @Table(name = "hacer_encuesta")
 @IdClass(HacerEncuestaId.class)
-public class HacerEncuesta {
+@JsonIgnoreProperties({"encuesta", "usuario"})  // Ignorar estas propiedades en la serialización
+public class HacerEncuesta
+{
     @Id
     private int encuestaID;
 

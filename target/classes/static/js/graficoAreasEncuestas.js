@@ -7,30 +7,43 @@ document.addEventListener("DOMContentLoaded", function ()
         data: {
             labels: etiquetas,
             datasets: [{
-                label: "Indices de Integración por Áreas",
+                label: "Indice de integración",
                 data: datosGrafico,
                 backgroundColor: [
-                    "rgba(255, 99, 132, 0.5)",
-                    "rgba(54, 162, 235, 0.5)",
-                    "rgba(255, 206, 86, 0.5)",
-                    "rgba(75, 192, 192, 0.5)",
-                    "rgba(153, 102, 255, 0.5)",
-                    "rgba(255, 159, 64, 0.5)"
+                    "rgba(255, 206, 86, 0.5)", //Psicológica
+                    "rgba(153, 102, 255, 0.5)", //Lingüística
+                    "rgba(75, 192, 192, 0.5)", //Económica
+                    "rgba(54, 162, 235, 0.5)", //Política
+                    "rgba(255, 99, 132, 0.5)", //Social
+                    "rgba(255, 159, 64, 0.5)" //Navegacional
                 ],
-                borderColor: "#333",
+                borderColor: [
+                    "rgb(255, 206, 86)",
+                    "rgb(153, 102, 255)",
+                    "rgb(75, 192, 192)",
+                    "rgb(54, 162, 235)",
+                    "rgb(255, 99, 132)",
+                    "rgb(255, 159, 64)"
+                ],
+                borderAlign: "inner",
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             scales: {
                 r: {
-                    max: 5,
+                    min: 0,
+                    max: 1,
                     beginAtZero: true,
                     pointLabels: {
                         centerPointLabels: true,
-                        display: true
+                        display: true,
+                        font: {
+                            family: "'Poppins', sans-serif",
+                            size: 24
+                        }
                     }
                 }
             },

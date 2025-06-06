@@ -10,7 +10,6 @@ body{
   background-color:rgb(140, 207, 240);
   font-family: 'Poppins', sans-serif;
   padding-top: 80px;
-
 }
 
 .borrar {
@@ -24,11 +23,29 @@ form{
   border-radius: 20px;
 }
 
+.encuesta{
+  width: 100%;
+}
+
 .btn-primary{
   width: 100%;
   border: none;
   border-radius: 50px;
   background-color: rgb(149, 190, 255);
+}
+
+.btn-secondary{
+  width: 20%;
+  border: none;
+  border-radius: 50px;
+  background-color: rgb(72, 151, 204);
+}
+
+.btn-secondary:hover{
+  width: 20%;
+  border: none;
+  border-radius: 50px;
+  background-color: rgb(47, 97, 131);
 }
 
 .form-control{
@@ -48,6 +65,18 @@ h4{
 a {
   text-decoration: underline;
   color: #007bff; 
+}
+
+canvas
+{
+  width: 50% !important;
+  height: 50% !important;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.pregunta {
+  font-weight: bolder;
 }
 
 .form-label{
@@ -85,13 +114,14 @@ a {
     margin-left: 1rem;
 }
 .card-temas{
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.15); 
     border-radius: 1rem;
 }
 
 .card:hover {
   transform: translateY(-5px);
+  transition: 0.5s ease-in-out;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
@@ -136,5 +166,3 @@ a {
 .card-title {
   font-weight: bolder;
 }
-
-

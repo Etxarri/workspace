@@ -198,7 +198,7 @@ public class EncuestaController
 
             hacerEncuestaRepo.save(he);
 
-            // redirectAttrs.addFlashAttribute("mensaje", "¡Gracias por responder la encuesta!");
+            redirectAttrs.addFlashAttribute("mensaje", "¡Gracias por responder la encuesta!");
             return "redirect:/encuestas/graficoEncuesta";
         }
         catch (Exception e)
@@ -219,6 +219,15 @@ public class EncuestaController
         if (ultimaEncuesta.isPresent())
         {
             model.addAttribute("encuesta", ultimaEncuesta.get());
+            // Debug para verificar valores
+            HacerEncuesta he = ultimaEncuesta.get();
+            System.out.println("Valores en gráfico:");
+            System.out.println("Psicológico: " + he.getResultadoPsicologico());
+            System.out.println("Lingüístico: " + he.getResultadoLinguistico());
+            System.out.println("Económico: " + he.getResultadoEconomico());
+            System.out.println("Político: " + he.getResultadoPolitico());
+            System.out.println("Social: " + he.getResultadoSocial());
+            System.out.println("Navegacional: " + he.getResultadoNavegacional());
         }
         
         return "encuestas/graficoEncuesta";
