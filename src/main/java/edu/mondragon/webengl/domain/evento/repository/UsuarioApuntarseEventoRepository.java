@@ -10,6 +10,7 @@ import edu.mondragon.webengl.domain.evento.model.UsuarioApuntarseEvento;
 @Repository
 public interface UsuarioApuntarseEventoRepository extends JpaRepository<UsuarioApuntarseEvento, UsuarioEventoId> {
     List<UsuarioApuntarseEvento> findById_UsuarioID(int usuarioID);
+    boolean existsById_UsuarioIDAndId_EventoID(int usuarioID, int eventoID);
 
 }
 

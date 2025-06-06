@@ -9,6 +9,7 @@ import edu.mondragon.webengl.domain.evento.repository.EventoLocalRepository;
 import edu.mondragon.webengl.domain.evento.repository.UsuarioApuntarseEventoRepository;
 import edu.mondragon.webengl.domain.pais.repository.CiudadRepository;
 import edu.mondragon.webengl.domain.user.model.Voluntario;
+import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.model.Usuario.TipoUsuario;
 import edu.mondragon.webengl.domain.user.repository.RecienllegadoRepository;
 import edu.mondragon.webengl.domain.user.repository.VoluntarioRepository;
@@ -101,9 +102,16 @@ public class EventoLocalController {
     }
 
     @GetMapping("/{eventoID}")
-    public String detalleEvento(@PathVariable("eventoID") int eventoID, Model model) {
+    public String detalleEvento(@PathVariable("eventoID") int eventoID, Model model, @AuthenticationPrincipal UsuarioDetails usuario) {
         Optional<EventoLocal> eventoOpt = eventoRepo.findById(eventoID);
         model.addAttribute("paginaActual", "listaEventos");
+
+        Usuario loggedUser = usuario.getUsuario();
+        if(inscripcionRepo.existsById_UsuarioIDAndId_EventoID(loggedUser.getUsuarioID(), eventoID)){
+            model.addAttribute("apuntado", true);
+        } else {
+            model.addAttribute("apuntado", false);  
+        }
 
         if (eventoOpt.isPresent()) {
             model.addAttribute("evento", eventoOpt.get());
@@ -142,7 +150,7 @@ public class EventoLocalController {
             eventoOpt.ifPresent(evento -> model.addAttribute("evento", evento));
 
             System.out.println("Apuntado al evento: " + eventoID);
-            return "evento/apuntado";
+            return "redirect:/eventos/" + eventoID;
         }
     }
 
@@ -175,21 +183,6 @@ public class EventoLocalController {
         return "evento/misEventos";
     }
 
-    @GetMapping("/{eventoID}/desapuntarse")
-    public String mostrarDesapuntarse(
-            @PathVariable("eventoID") int eventoID,
-            @AuthenticationPrincipal UsuarioDetails user,
-            Model model) {
-        Optional<EventoLocal> eventoOpt = eventoRepo.findById(eventoID);
-        model.addAttribute("paginaActual", "listaEventos");
-
-        if (eventoOpt.isPresent()) {
-            model.addAttribute("evento", eventoOpt.get());
-            return "evento/desapuntarse";
-        } else {
-            return "redirect:/eventos/misEventos";
-        }
-    }
 
     @PostMapping("/{eventoID}/desapuntarse")
     public String desapuntarseEvento(
@@ -207,7 +200,7 @@ public class EventoLocalController {
 
             Optional<EventoLocal> eventoOpt = eventoRepo.findById(eventoID);
             eventoOpt.ifPresent(evento -> model.addAttribute("evento", evento));
-            return "evento/desapuntado";
+            return "redirect:/eventos/" + eventoID;
         } else {
             redirectAttrs.addFlashAttribute("error", "No estabas apuntado a este evento.");
             return "redirect:/eventos/misEventos";

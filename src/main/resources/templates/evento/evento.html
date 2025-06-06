@@ -11,7 +11,7 @@
       <div class="row g-4">
         <!-- Imagen -->
         <div class="col-md-4">
-            <img th:src="${#strings.isEmpty(evento.imagen) ? '/images/' + evento.categoria.categoriaID + '.png' : evento.imagen}" class="img-fluid rounded-start h-100" alt="Card image cap">
+          <img th:src="@{'/images/' + ${evento.categoria.categoriaID} + '.png'}" class="img-fluid rounded-start h-100" alt="Card image cap">
         </div>
 
         <!-- Texto -->
@@ -22,13 +22,17 @@
               <small class="text-muted" th:text="'Lugar: ' + ${evento.lugar} + ' - Fecha: ' + ${evento.fechaHora}">Fecha y lugar</small>
             </p>
           <p th:text="${evento.descripcion}">Descripción completa del evento</p>
+          <div th:if="${!apuntado}">
+            <form th:action="@{/eventos/{eventoID}/apuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
+              <button class="btn btn-success">Apuntarse</button>
+            </form>
+          </div>
+          <div th:if="${apuntado}">
+                <form th:action="@{/eventos/{eventoID}/desapuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
+                    <button class="btn btn-danger">Desapuntarse</button>
+                </form>
+          </div>
 
-          <!-- Aquí puedes meter más atributos si quieres -->
-          <!-- <p><strong>Fecha:</strong> <span th:text="${evento.fecha}"></span></p> -->
-
-          <form th:action="@{/eventos/{eventoID}/apuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
-            <button class="btn btn-success">Apuntarse</button>
-          </form>
         </div>
       </div>
     </div>
