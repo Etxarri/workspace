@@ -25,7 +25,7 @@ public class ComentarioForo {
     @JoinColumn(name = "usuarioID") // o el nombre real de la columna FK
     private Usuario usuario;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 1000)
     private String contenido;
 
     @Column(name = "fecha_hora", nullable = false)

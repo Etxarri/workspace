@@ -25,6 +25,7 @@ public class ComentarioRestController {
         return comentarios.stream().map(c -> {
             ComentarioDTO dto = new ComentarioDTO();
             dto.setUsuarioID(c.getUsuario().getUsuarioID());
+            dto.setNombre(c.getUsuario().getNombre()); // <-- Añade esta línea
             dto.setContenido(c.getContenido());
             dto.setFechaHora(c.getFechaHora());
             return dto;

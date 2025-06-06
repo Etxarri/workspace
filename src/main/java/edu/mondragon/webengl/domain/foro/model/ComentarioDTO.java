@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class ComentarioDTO {
     private Integer usuarioID;
+    private String nombre;
     private String contenido;
     private LocalDateTime fechaHora;
 
@@ -13,6 +14,14 @@ public class ComentarioDTO {
 
     public void setUsuarioID(Integer usuarioID) {
         this.usuarioID = usuarioID;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getContenido() {

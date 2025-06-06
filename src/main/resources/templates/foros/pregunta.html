@@ -20,7 +20,7 @@
 
 <main class="container py-4">
 
-    <div class="mb-4">
+    <div class="mb-4 text-center">
         <h2><i class="bi bi-question-circle"></i> <span th:text="${pregunta.pregunta}">Título</span></h2>
         <div class="text-muted">
             <i class="bi bi-calendar"></i>
@@ -28,25 +28,26 @@
         </div>
     </div>
 
-    <!-- Comentarios WebSocket -->
-    <section class="mb-5">
-        <h4><i class="bi bi-chat-dots"></i> Comentarios en tiempo real</h4>
+    <!-- Caja tipo chat con colores personalizados -->
+    <div class="card mx-auto" style="max-width: 800px;">
+        <div class="card-header text-white" style="background-color: rgb(140, 207, 240);"> </div>
 
-        <ul class="list-group mb-4" id="comentariosLista">
+        <div class="card-body" id="comentariosLista" style="height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
             <!-- Comentarios se insertan aquí -->
-        </ul>
+        </div>
 
-        <form id="comentarioForm">
-            <div class="mb-3">
-                <textarea class="form-control" id="contenido" rows="3" placeholder="Escribe tu comentario..." required></textarea>
-            </div>
-            <input type="hidden" id="usuarioID" th:value="${usuarioLogueado.usuarioID}" />
-            <input type="hidden" id="hiloID" th:value="${hilo.hiloID}" />
-            <button type="submit" class="btn btn-success"><i class="bi bi-send"></i> Enviar</button>
-        </form>
-    </section>
+        <div class="card-footer bg-white px-2">
+            <form id="comentarioForm" class="d-flex align-items-center w-100 gap-2 mt-2">
+                <input type="hidden" id="usuarioID" th:value="${usuarioLogueado.usuarioID}" />
+                <input type="hidden" id="hiloID" th:value="${hilo.hiloID}" />
+                <textarea class="form-control" id="contenido" rows="1" placeholder="Escribe tu comentario..." required style="resize: none; min-height: 20px;"></textarea>
+                <button type="submit" class="btn text-white" style="background-color: rgb(140, 207, 240);"><i class="bi bi-send"></i></button>
+            </form>
+        </div>
+    </div>
 
 </main>
+
 
 <!-- Lógica WebSocket y Fetch integrada -->
 <script th:inline="javascript">
@@ -56,17 +57,31 @@
     const comentariosLista = document.getElementById("comentariosLista");
 
     function agregarComentario(comentario) {
-        const esMio = comentario.usuarioID === usuarioID;
-        const li = document.createElement("li");
-        li.className = `list-group-item ${esMio ? 'bg-success text-white text-end' : 'bg-light'}`;
-        li.style.borderRadius = "1rem";
-        li.innerHTML = `
-            <strong>Usuario ${comentario.usuarioID}</strong><br>
-            ${comentario.contenido}<br>
-            <small>${new Date(comentario.fechaHora).toLocaleString()}</small>
-        `;
-        comentariosLista.appendChild(li);
-    }
+    const esMio = comentario.usuarioID === usuarioID;
+    console.log("Fecha recibida:", comentario.fechaHora);
+
+    const div = document.createElement("div");
+    div.className = `d-flex ${esMio ? 'justify-content-end' : 'justify-content-start'}`;
+
+    const bubble = document.createElement("div");
+    bubble.className = `p-2 rounded ${esMio ? 'text-white' : 'bg-light text-dark'}`;
+    bubble.style.maxWidth = "60%";
+    bubble.style.wordWrap = "break-word";
+    bubble.style.borderRadius = "15px";
+    bubble.style.backgroundColor = esMio ? "rgb(140, 207, 240)" : "#f1f1f1";
+
+    bubble.innerHTML = `
+        <div><strong>${comentario.nombre}</strong></div>
+        <div>${comentario.contenido}</div>
+        <div class="text-muted small text-end">${new Date(comentario.fechaHora).toLocaleString()}</div>
+    `;
+
+    div.appendChild(bubble);
+    comentariosLista.appendChild(div);
+
+    // Auto-scroll al fondo
+    comentariosLista.scrollTop = comentariosLista.scrollHeight;
+}
 
     // Cargar historial de comentarios
     fetch(`/api/foro/${hiloID}/comentarios`)

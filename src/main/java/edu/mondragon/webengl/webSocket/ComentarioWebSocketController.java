@@ -46,6 +46,7 @@ public class ComentarioWebSocketController {
 
         ComentarioDTO respuesta = new ComentarioDTO();
         respuesta.setUsuarioID(guardado.getUsuario().getUsuarioID());
+        respuesta.setNombre(guardado.getUsuario().getNombre());
         respuesta.setContenido(guardado.getContenido());
         respuesta.setFechaHora(guardado.getFechaHora());
 
