@@ -13,5 +13,7 @@ public interface RecursoLocalRepository extends JpaRepository<RecursoLocal, Inte
 
     List<RecursoLocal> findByCiudad_ComunidadAutonoma_ComunidadID(int comunidadId);
     List<RecursoLocal> findByCiudad_ComunidadAutonoma_ComunidadIDAndCategoria_CategoriaID(int comunidadId, int categoriaID);
+
+    List<RecursoLocal> findByCiudad_CiudadIDAndCategoria_CategoriaID(Integer ciudadId, Integer categoriaId);
 }
 

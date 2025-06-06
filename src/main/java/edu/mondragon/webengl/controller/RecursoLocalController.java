@@ -3,7 +3,9 @@ package edu.mondragon.webengl.controller;
 
 import edu.mondragon.webengl.domain.categoria.repository.CategoriaRepository;
 import edu.mondragon.webengl.domain.evento.repository.EventoLocalRepository;
+import edu.mondragon.webengl.domain.pais.model.Ciudad;
 import edu.mondragon.webengl.domain.pais.model.RecursoMapaDTO;
+import edu.mondragon.webengl.domain.pais.repository.CiudadRepository;
 import edu.mondragon.webengl.domain.recurso.model.RecursoLocal;
 import edu.mondragon.webengl.domain.recurso.repository.RecursoLocalRepository;
 import edu.mondragon.webengl.domain.user.repository.UsuarioRepository;
@@ -26,14 +28,17 @@ public class RecursoLocalController {
 
     private final RecursoLocalRepository recursoLocalRepository;
     private final UsuarioRepository usuarioRepository;
+    private final CiudadRepository ciudadRepository;
     private final CategoriaRepository categoriaRepository;
 
     public RecursoLocalController(RecursoLocalRepository recursoLocalRepository,
                                 EventoLocalRepository eventoLocalRepository,
+                                CiudadRepository ciudadRepository,
                                 UsuarioRepository usuarioRepository,
                                 CategoriaRepository categoriaRepository) {
         this.recursoLocalRepository = recursoLocalRepository;
         this.usuarioRepository = usuarioRepository;
+        this.ciudadRepository = ciudadRepository;
         this.categoriaRepository = categoriaRepository;
 
     }
@@ -43,15 +48,27 @@ public class RecursoLocalController {
         Model model,
         HttpSession session, 
         @AuthenticationPrincipal UsuarioDetails usuario, 
-        @RequestParam(value = "categoria", required = false) Integer categoriaId) {
+        @RequestParam(value = "categoria", required = false) Integer categoriaId,
+        @RequestParam(value = "ciudad", required = false) Integer ciudadId) {
 
         int comunidadId = usuario.getUsuario().getCiudad().getComunidadAutonoma();
 
+        // Obtener lista de ciudades de la comunidad
+        List<Ciudad> ciudades = ciudadRepository.findAll();
+
         List<RecursoLocal> recursos;
-        if (categoriaId != null && categoriaId != 0) {
-            recursos = recursoLocalRepository.findByCiudad_ComunidadAutonoma_ComunidadIDAndCategoria_CategoriaID(comunidadId, categoriaId);
+        if (ciudadId != null && ciudadId != 0) {
+            if (categoriaId != null && categoriaId != 0) {
+                recursos = recursoLocalRepository.findByCiudad_CiudadIDAndCategoria_CategoriaID(ciudadId, categoriaId);
+            } else {
+                recursos = recursoLocalRepository.findByCiudad_CiudadID(ciudadId);
+            }
         } else {
-            recursos = recursoLocalRepository.findByCiudad_ComunidadAutonoma_ComunidadID(comunidadId);
+            if (categoriaId != null && categoriaId != 0) {
+                recursos = recursoLocalRepository.findByCiudad_ComunidadAutonoma_ComunidadIDAndCategoria_CategoriaID(comunidadId, categoriaId);
+            } else {
+                recursos = recursoLocalRepository.findByCiudad_ComunidadAutonoma_ComunidadID(comunidadId);
+            }
         }
 
         // Transformar a DTO para el mapa
@@ -74,7 +91,9 @@ public class RecursoLocalController {
         model.addAttribute("recursos", recursos);
         model.addAttribute("categorias", categoriaRepository.findAll());
         model.addAttribute("categoriaSeleccionada", categoriaId);
-        model.addAttribute("recursosMapa", recursosMapa); // <-- Añade esto
+        model.addAttribute("recursosMapa", recursosMapa);
+        model.addAttribute("ciudades", ciudades);
+        model.addAttribute("ciudadSeleccionada", ciudadId);
 
         return "recursolocal/ciudadInfo";
     }
