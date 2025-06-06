@@ -16,7 +16,8 @@ body{
     display: none !important;
 }
 
-form{
+
+.gureForm{
   width: 24%;
   background-color: whitesmoke;
   padding: 50px;

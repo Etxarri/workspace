@@ -104,7 +104,6 @@ public class EventoLocalController {
     @GetMapping("/{eventoID}")
     public String detalleEvento(@PathVariable("eventoID") int eventoID, Model model, @AuthenticationPrincipal UsuarioDetails usuario) {
         Optional<EventoLocal> eventoOpt = eventoRepo.findById(eventoID);
-        model.addAttribute("paginaActual", "listaEventos");
 
         Usuario loggedUser = usuario.getUsuario();
         if(inscripcionRepo.existsById_UsuarioIDAndId_EventoID(loggedUser.getUsuarioID(), eventoID)){

@@ -23,7 +23,7 @@
             </p>
           <p th:text="${evento.descripcion}">Descripción completa del evento</p>
           <div th:if="${!apuntado}">
-            <form th:action="@{/eventos/{eventoID}/apuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
+            <form th:action="@{/eventos/{eventoID}/apuntarse(eventoID=${evento.eventoID})}" method="post" >
               <button class="btn btn-success">Apuntarse</button>
             </form>
           </div>

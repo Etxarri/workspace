@@ -34,6 +34,7 @@ edu/mondragon/webengl/domain/evento/model/EventoLocal.class
 edu/mondragon/webengl/domain/encuesta/model/HacerEncuestaId.class
 edu/mondragon/webengl/domain/pais/model/Pais.class
 edu/mondragon/webengl/domain/recurso/model/RecursoLocal.class
+edu/mondragon/webengl/domain/evento/repository/RecienllegadoApuntarseEventoRepository.class
 edu/mondragon/webengl/controller/ForgotPasswordController.class
 edu/mondragon/webengl/domain/pais/model/ComunidadAutonoma.class
 edu/mondragon/webengl/domain/evento/model/UsuarioEventoId.class
@@ -43,12 +44,14 @@ edu/mondragon/webengl/StartWebApplication.class
 edu/mondragon/webengl/controller/LoginController.class
 edu/mondragon/webengl/internationalization/service/DeepLService.class
 edu/mondragon/webengl/controller/GlobalControllerIdiomas.class
+edu/mondragon/webengl/domain/evento/model/RecienllegadoEventoId.class
 edu/mondragon/webengl/domain/foro/model/PreguntaFrecuente.class
 edu/mondragon/webengl/internationalization/InternationalizationConfig.class
 edu/mondragon/webengl/domain/foro/model/Temaforo.class
 edu/mondragon/webengl/domain/user/repository/VoluntarioRepository.class
 edu/mondragon/webengl/seguridad/UsuarioDetailsService.class
 edu/mondragon/webengl/domain/encuesta/model/EncuestaRespuestas.class
+edu/mondragon/webengl/domain/evento/model/RecienllegadoApuntarseEvento.class
 edu/mondragon/webengl/domain/user/repository/RecienllegadoRepository.class
 edu/mondragon/webengl/controller/WelcomeController.class
 edu/mondragon/webengl/domain/encuesta/repository/EncuestaRepository.class
