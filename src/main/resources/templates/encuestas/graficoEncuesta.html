@@ -1,24 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/main.css">
-
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script src="/js/javaScript.js" defer></script><!--EJECUTAR EL ARCHIVO CUANDO TODO SE HAYA CARGADO-->
-
-    <title>Resultados de la encuesta</title>
+    <title layout:title="Resultado de la encuesta"></title>
 </head>
-<body>
-    <h1 class="display-5 text-center mb-4">RESULTADOS DE LA ENCUESTA</h1>
-
+<body layout:fragment="content">
+    <h2 class="text-center mb-3 mt-5" style="font-size:2rem; font-weight:600; letter-spacing:1px;">
+        RESULTADOS DE LA ENCUESTA
+    </h2>
     <div>
         <!-- Resultado total -->
         <div class="text-center p-2 my-4">

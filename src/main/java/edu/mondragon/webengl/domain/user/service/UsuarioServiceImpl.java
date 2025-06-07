@@ -138,6 +138,30 @@ public class UsuarioServiceImpl implements UsuarioService {
             .executeUpdate();
     }
 
+    @Override
+    @Transactional
+    public void actualizarUsuario(Usuario usuario, String necesidades, String lenguaje, String habilidades, String motivacion) {
+        // Actualiza los datos básicos
+        usuarioRepository.save(usuario);
+
+        // Actualiza datos específicos según el tipo
+        if (usuario.getTipo() == Usuario.TipoUsuario.recienllegado) {
+            Recienllegado recien = recienllegadoRepository.findById(usuario.getUsuarioID()).orElse(null);
+            if (recien != null) {
+                recien.setNecesidades(necesidades);
+                recien.setLenguaje(lenguaje);
+                recienllegadoRepository.save(recien);
+            }
+        } else if (usuario.getTipo() == Usuario.TipoUsuario.voluntario) {
+            Voluntario voluntario = voluntarioRepository.findById(usuario.getUsuarioID()).orElse(null);
+            if (voluntario != null) {
+                voluntario.setHabilidades(habilidades);
+                voluntario.setMotivacion(motivacion);
+                voluntarioRepository.save(voluntario);
+            }
+        }
+    }
+
 
 }
 

@@ -6,24 +6,23 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.SecurityFilterChain;
 
 
 @Configuration
 @EnableWebSecurity
-public class SeguridadConfig extends WebSecurityConfigurerAdapter
-{
+public class SeguridadConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf().disable()
             .authorizeRequests()
-                .antMatchers("/login", "/css/**", "/js/**", "/usuario/crear", "/api/traducir").permitAll()
+                .antMatchers("/login", "/css/**", "/js/**", "/usuario/crear", "/api/traducir", "/forgot-password", "/verify-code", "/reset-password").permitAll()
                 .anyRequest().authenticated()
             .and()
             .formLogin()
@@ -37,6 +36,7 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .permitAll();
+        return http.build();
     }
 }
 

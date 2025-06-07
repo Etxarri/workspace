@@ -27,18 +27,16 @@
           <p th:text="${evento.descripcion}">Descripción completa del evento</p>
           <div th:if="${!apuntado}">
             <form th:action="@{/eventos/{eventoID}/apuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
+              <input type="hidden" name="redirectTo" value="listaEventos"/>
               <button class="btn btn-success">Apuntarse</button>
             </form>
           </div>
           <div th:if="${apuntado}">
                 <form th:action="@{/eventos/{eventoID}/desapuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
+                    <input type="hidden" name="redirectTo" value="misEventos"/>
                     <button class="btn btn-danger">Desapuntarse</button>
                 </form>
           </div>
-
-          <form th:action="@{/eventos/{eventoID}/apuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
-            <button class="btn btn-success" th:text="#{evento.apuntarse}">Apuntarse</button>
-          </form>
         </div>
       </div>
     </div>

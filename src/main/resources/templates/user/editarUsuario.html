@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title layout:title="Editar usuario"></title>
+</head>
+
+<main layout:fragment="content">
+    <div class="container-fluid mt-5">
+        <form th:action="@{/usuario/editar}" method="post" class="mx-auto">
+            <h4 class="text-center">Editar Usuario</h4>
+
+            <input type="hidden" name="usuarioID" th:value="${usuario.usuarioID}" />
+
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" id="nombre" class="form-control" name="nombre" th:value="${usuario.nombre}" required>
+            </div>
+
+            <div class="mb-3 mt-5">
+                <label for="apellido" class="form-label">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" class="form-control" th:value="${usuario.apellido}" required>
+            </div>
+
+            <div class="mb-3 mt-5">
+                <label for="username" class="form-label">Nombre de Usuario:</label>
+                <input type="text" id="username" name="username" class="form-control" th:value="${usuario.username}" required>
+            </div>
+
+            <div class="mb-3 mt-5">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" th:value="${usuario.email}" required>
+            </div>
+
+            <div class="mb-3 mt-5">
+                <label for="ciudadID" class="form-label">Ciudad:</label>
+                <select id="ciudadID" name="ciudadID" class="form-select" required>
+                    <option value="">Selecciona una ciudad...</option>
+                    <th:block th:each="ciudad : ${ciudades}">
+                        <option th:value="${ciudad.ciudadID}" th:text="${ciudad.nombre}" th:selected="${usuario.ciudad.ciudadID == ciudad.ciudadID}"></option>
+                    </th:block>
+                </select>
+            </div>
+
+            <div class="mb-3 mt-5">
+                <label for="paisID" class="form-label">Pais:</label>
+                <select id="paisID" name="paisID" class="form-select" required>
+                    <option value="">Selecciona un pais...</option>
+                    <th:block th:each="pais : ${paises}">
+                        <option th:value="${pais.paisID}" th:text="${pais.nombre}" th:selected="${usuario.pais.paisID == pais.paisID}"></option>
+                    </th:block>
+                </select>
+            </div>
+
+            <div class="mt-5">
+                <label for="tipo" class="form-label">Tipo de Usuario:</label>
+                <select name="tipo" id="tipo" class="form-select" required>
+                    <option value="">Selecciona...</option>
+                    <option value="voluntario" th:selected="${usuario.tipo == 'voluntario'}">Voluntario</option>
+                    <option value="recienllegado" th:selected="${usuario.tipo == 'recienllegado'}">Recién Llegado</option>
+                </select>
+            </div>
+
+            <!-- Campos específicos para Recien Llegado -->
+            <div class="recienllegado borrar">
+                <div class="mb-3 mt-5">
+                    <label for="lenguaje" class="form-label">Idioma Principal:</label>
+                    <select id="lenguaje" name="lenguaje" class="form-select" required>
+                        <option value="">Selecciona un idioma...</option>
+                        <option value="es" th:selected="${lenguaje == 'es'}">ES</option>
+                        <option value="en" th:selected="${lenguaje == 'en'}">EN</option>
+                        <option value="fr" th:selected="${lenguaje == 'fr'}">FR</option>
+                        <option value="ar" th:selected="${lenguaje == 'ar'}">AR</option>
+                    </select>
+                </div>
+                <div class="mb-3 mt-5">
+                    <label for="fecha_llegada" class="form-label">Fecha de Llegada:</label>
+                    <input type="date" id="fecha_llegada" name="fecha_llegada" class="form-control" th:value="${fecha_llegada}">
+                </div>
+                <div class="mb-3 mt-5">
+                    <label for="necesidades" class="form-label">Necesidades:</label>
+                    <input type="text" id="necesidades" name="necesidades" class="form-control" th:value="${necesidades}">
+                </div>
+            </div>
+
+            <!-- Campos específicos para Voluntario -->
+            <div class="voluntario borrar">
+                <div class="mb-3 mt-5">
+                    <label for="habilidades" class="form-label">Habilidades:</label>
+                    <input type="text" id="habilidades" name="habilidades" class="form-control" th:value="${habilidades}">
+                </div>
+                <div class="mb-3 mt-5">
+                    <label for="motivacion" class="form-label">Motivación:</label>
+                    <input type="text" id="motivacion" name="motivacion" class="form-control" th:value="${motivacion}">
+                </div>
+            </div>
+
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+            <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+
+            <button type="submit" class="btn btn-primary mt-4">Guardar Cambios</button>
+        </form>
+    </div>
+</main>
+</html>
