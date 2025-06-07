@@ -22,40 +22,32 @@
             <div class="collapse navbar-collapse position-absolute start-50 translate-middle-x d-none d-lg-block" id="navbarResponsive">
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link"
-                        th:href="@{/eventos/listaEventos}"
-                        th:classappend="${paginaActual == 'listaEventos'} ? ' active'">
-                        Home
+                        <a class="nav-link" th:href="@{/eventos/listaEventos}" th:classappend="${paginaActual == 'listaEventos'} ? ' active'" th:text="#{home}">
+                            Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                        th:href="@{/foro/principal}"
-                        th:classappend="${paginaActual == 'foro'} ? ' active'">
-                        Forum
+                        <a class="nav-link" th:href="@{/foro/principal}" th:classappend="${paginaActual == 'foro'} ? ' active'" th:text="#{forum}">
+                            Forum
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                        th:href="@{/eventos/misEventos}"
-                        th:classappend="${paginaActual == 'misEventos'} ? ' active'">
-                        My Events
+                        <a class="nav-link" th:href="@{/eventos/misEventos}" th:classappend="${paginaActual == 'misEventos'} ? ' active'" th:text="#{my_events}">
+                            My Events
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                        th:href="@{/recursos/ciudadInfo}"
-                        th:classappend="${paginaActual == 'ciudadInfo'} ? ' active'">
-                        My City
+                        <a class="nav-link" th:href="@{/recursos/ciudadInfo}" th:classappend="${paginaActual == 'ciudadInfo'} ? ' active'" th:text="#{my_city}">
+                            My City
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center" th:href="@{/encuestas}">
+                        <a class="nav-link d-flex align-items-center" th:href="@{/encuestas}" th:text="#{survey}">
                             Encuestas
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center" th:href="@{/usuario/editar}">
+                        <a class="nav-link d-flex align-items-center" th:href="@{/usuario/editar}" th:text="#{profile}">
                             Mi Perfil
                         </a>
                     </li>
@@ -63,19 +55,19 @@
             </div>
 
             <!-- BOTÓN FLECHA (solo visible en móvil) -->
-<div class="dropdown d-block d-lg-none">
-    <button class="btn btn-outline-secondary" type="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="bi bi-list fs-4"></i>
-    </button>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menuDropdown">
-        <li><a class="dropdown-item" th:href="@{/eventos/listaEventos}">Home</a></li>
-        <li><a class="dropdown-item" th:href="@{/foro/principal}">Forum</a></li>
-        <li><a class="dropdown-item" th:href="@{/eventos/misEventos}">My Events</a></li>
-        <li><a class="dropdown-item" th:href="@{/recursos/ciudadInfo}">My City</a></li>
-        <li><a class="dropdown-item" th:href="@{/encuestas}">Encuestas</a></li>
-        <li><a class="dropdown-item" th:href="@{/usuario/editar}">Mi Perfil</a></li>
-    </ul>
-</div>
+            <div class="dropdown d-block d-lg-none">
+                <button class="btn btn-outline-secondary" type="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menuDropdown">
+                    <li><a class="dropdown-item" th:text="#{home}" th:href="@{/eventos/listaEventos}">Home</a></li>
+                    <li><a class="dropdown-item" th:text="#{forum}" th:href="@{/foro/principal}">Forum</a></li>
+                    <li><a class="dropdown-item" th:text="#{my_events}" th:href="@{/eventos/misEventos}">My Events</a></li>
+                    <li><a class="dropdown-item" th:text="#{my_city}" th:href="@{/recursos/ciudadInfo}">My City</a></li>
+                    <li><a class="dropdown-item" th:text="#{survey}" th:href="@{/encuestas}">Encuestas</a></li>
+                    <li><a class="dropdown-item" th:text="#{profile}" th:href="@{/usuario/editar}">Mi Perfil</a></li>
+                </ul>
+            </div>
 
             <!-- DERECHA: Banderas -->
             <div class="d-flex align-items-center">
