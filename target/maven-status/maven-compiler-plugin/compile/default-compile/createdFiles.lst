@@ -32,6 +32,7 @@ edu/mondragon/webengl/controller/ForoController.class
 edu/mondragon/webengl/controller/RecursoLocalController.class
 edu/mondragon/webengl/domain/evento/model/EventoLocal.class
 edu/mondragon/webengl/domain/encuesta/model/HacerEncuestaId.class
+edu/mondragon/webengl/config/HttpToHttpsRedirectConfig.class
 edu/mondragon/webengl/domain/pais/model/Pais.class
 edu/mondragon/webengl/domain/recurso/model/RecursoLocal.class
 edu/mondragon/webengl/domain/evento/repository/RecienllegadoApuntarseEventoRepository.class

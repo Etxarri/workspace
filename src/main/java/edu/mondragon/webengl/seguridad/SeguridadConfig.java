@@ -7,12 +7,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
+import org.springframework.security.web.util.matcher.RegexRequestMatcher;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
+import org.apache.catalina.connector.Connector;
 
 @Configuration
 @EnableWebSecurity
-public class SeguridadConfig extends WebSecurityConfigurerAdapter
-{
+public class SeguridadConfig extends WebSecurityConfigurerAdapter {
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -21,15 +24,24 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+            // Fuerza HTTPS (redirige automáticamente de HTTP a HTTPS)
+            .requiresChannel()
+                .anyRequest()
+                .requiresSecure()
+            .and()
+            // Permite el acceso a recursos estáticos y páginas de login sin autenticación
             .authorizeRequests()
                 .antMatchers("/login", "/css/**", "/js/**", "/usuario/crear").permitAll()
                 .anyRequest().authenticated()
             .and()
+            // Indica donde se encuentra la página de login y la URL de éxito después del login
             .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/eventos/listaEventos", true)
                 .permitAll()
             .and()
+            // Indica donde se hace el logout y la URL de éxito después del logout
+            // Invalida la sesión y elimina las cookies de sesión
             .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login")
@@ -37,5 +49,27 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter
                 .deleteCookies("JSESSIONID")
                 .permitAll();
     }
-}
+    // Redirige HTTP a HTTPS
 
+/*
+        @Bean
+    public WebServerFactoryCustomizer<TomcatServletWebServerFactory> containerCustomizer() {
+   return factory -> {
+        Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
+        connector.setScheme("http");
+        connector.setPort(8080);
+        connector.setSecure(false);
+        connector.setRedirectPort(8443);
+        factory.addAdditionalTomcatConnectors(connector);
+    };    }
+
+    private Connector createHttpConnector() {
+        Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
+        connector.setScheme("http");
+        connector.setPort(8080); // escucha HTTP en 8080
+        connector.setSecure(false);
+        connector.setRedirectPort(8443); // redirige todo a HTTPS 8443
+        return connector;
+    }
+        */
+}
