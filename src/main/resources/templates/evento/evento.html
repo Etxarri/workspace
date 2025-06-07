@@ -5,37 +5,40 @@
 </head>
 
 <main layout:fragment="content">
-
   <div class="container d-flex justify-content-center my-5">
     <div class="card shadow p-4 w-100" style="max-width: 1000px; border-radius: 1.5rem;">
-      <div class="row g-4">
+      <div class="row g-0">
         <!-- Imagen -->
-        <div class="col-md-4">
-          <img th:src="@{'/images/' + ${evento.categoria.categoriaID} + '.png'}" class="img-fluid rounded-start h-100" alt="Card image cap">
+        <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
+          <img th:src="@{'/images/' + ${evento.categoria.categoriaID} + '.png'}"
+               class="img-fluid rounded-start"
+               style="max-width: 90%; max-height: 250px;"
+               alt="Card image cap">
         </div>
-
         <!-- Texto -->
-        <div class="col-md-6 d-flex flex-column justify-content-center">
-          <h2 class="mb-3" th:text="${evento.titulo}">Título del evento</h2>
-          <p class="card-text">
-            <small class="text-muted" th:text="${#messages.msg('evento.ciudad')} + ': ' + ${evento.ciudad.nombre}">Ciudad</small><br>
-            <small class="text-muted"
-              th:text="${#messages.msg('evento.lugar')} + ': ' + ${evento.lugar} + ' - ' + ${#messages.msg('evento.fecha')} + ': ' + ${evento.fechaHora}">
-              Lugar y fecha
-            </small>
-          </p>
-          <p th:text="${evento.descripcion}">Descripción completa del evento</p>
-          <div th:if="${!apuntado}">
-            <form th:action="@{/eventos/{eventoID}/apuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
-              <input type="hidden" name="redirectTo" value="listaEventos"/>
-              <button class="btn btn-success">Apuntarse</button>
-            </form>
-          </div>
-          <div th:if="${apuntado}">
-                <form th:action="@{/eventos/{eventoID}/desapuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
-                    <input type="hidden" name="redirectTo" value="misEventos"/>
-                    <button class="btn btn-danger">Desapuntarse</button>
-                </form>
+        <div class="col-12 col-md-8 d-flex align-items-center">
+          <div class="card-body">
+            <h2 class="mb-3" th:text="${evento.titulo}">Título del evento</h2>
+            <p class="card-text">
+              <small class="text-muted" th:text="#{evento.ciudad} + ': ' + ${evento.ciudad.nombre}">Ciudad</small><br>
+              <small class="text-muted"
+                th:text="${#messages.msg('evento.lugar')} + ': ' + ${evento.lugar} + ' - ' + ${#messages.msg('evento.fecha')} + ': ' + ${evento.fechaHora}">
+                Lugar y fecha
+              </small>
+            </p>
+            <p th:text="${evento.descripcion}">Descripción completa del evento</p>
+            <div th:if="${!apuntado}">
+              <form th:action="@{/eventos/{eventoID}/apuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
+                <input type="hidden" name="redirectTo" value="listaEventos"/>
+                <button class="btn btn-success">Apuntarse</button>
+              </form>
+            </div>
+            <div th:if="${apuntado}">
+              <form th:action="@{/eventos/{eventoID}/desapuntarse(eventoID=${evento.eventoID})}" method="post" class="mt-4">
+                <input type="hidden" name="redirectTo" value="misEventos"/>
+                <button class="btn btn-danger">Desapuntarse</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

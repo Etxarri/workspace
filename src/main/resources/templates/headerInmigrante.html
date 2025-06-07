@@ -18,13 +18,8 @@
             <!-- IZQUIERDA: Logo -->
             <a class="navbar-brand" th:href="@{/eventos/listaEventos}" style="margin-left: 0;">Welco</a>
 
-            <!-- BOTÓN HAMBURGUESA (móvil) -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- CENTRO: Menú -->
-            <div class="collapse navbar-collapse position-absolute start-50 translate-middle-x" id="navbarResponsive">
+            <!-- CENTRO: Menú (solo visible en pantallas grandes) -->
+            <div class="collapse navbar-collapse position-absolute start-50 translate-middle-x d-none d-lg-block" id="navbarResponsive">
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link"
@@ -54,10 +49,33 @@
                         My City
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" th:href="@{/encuestas}">
+                            Encuestas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center" th:href="@{/usuario/editar}">
+                            Mi Perfil
+                        </a>
+                    </li>
                 </ul>
-
-
             </div>
+
+            <!-- BOTÓN FLECHA (solo visible en móvil) -->
+<div class="dropdown d-block d-lg-none">
+    <button class="btn btn-outline-secondary" type="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-list fs-4"></i>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menuDropdown">
+        <li><a class="dropdown-item" th:href="@{/eventos/listaEventos}">Home</a></li>
+        <li><a class="dropdown-item" th:href="@{/foro/principal}">Forum</a></li>
+        <li><a class="dropdown-item" th:href="@{/eventos/misEventos}">My Events</a></li>
+        <li><a class="dropdown-item" th:href="@{/recursos/ciudadInfo}">My City</a></li>
+        <li><a class="dropdown-item" th:href="@{/encuestas}">Encuestas</a></li>
+        <li><a class="dropdown-item" th:href="@{/usuario/editar}">Mi Perfil</a></li>
+    </ul>
+</div>
 
             <!-- DERECHA: Banderas -->
             <div class="d-flex align-items-center">
@@ -70,24 +88,32 @@
                 </div>
                 -->
 
-                <a th:href="@{${#httpServletRequest.requestURI}(lang='es')}">
-                    <img src="/images/espanol_logo.png" alt="Español" style="width: 40px; height: 40px;" />
-                </a>
-                <a th:href="@{${#httpServletRequest.requestURI}(lang='en')}">
-                    <img src="/images/ingles_logo.png" alt="English" style="width: 40px; height: 40px;" />
-                </a>
-                <a th:href="@{${#httpServletRequest.requestURI}(lang='fr')}">
-                    <img src="/images/frances_logo.png" alt="Frances" style="width: 40px; height: 40px;" />
-                </a>
-                <a th:href="@{${#httpServletRequest.requestURI}(lang='ar')}">
-                    <img src="/images/arabe_logo.png" alt="Arabe" style="width: 40px; height: 40px;" />
-                </a>
-
                 <!--BOTON DE MAS IDIOMAS-->
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownIdiomas" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-translate"></i> <span th:text="#{language}">Lang</span>
                 </button>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownIdiomas">
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom" aria-labelledby="dropdownIdiomas">
+                    <li>
+                        <a class="dropdown-item" th:href="@{${#httpServletRequest.requestURI}(lang='es')}">
+                            <img src="/images/espanol_logo.png" alt="Español" style="width: 30px; height: 30px;" /> Español
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" th:href="@{${#httpServletRequest.requestURI}(lang='en')}">
+                            <img src="/images/ingles_logo.png" alt="English" style="width: 30px; height: 30px;" /> English
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" th:href="@{${#httpServletRequest.requestURI}(lang='fr')}">
+                            <img src="/images/frances_logo.png" alt="Frances" style="width: 30px; height: 30px;" /> Français
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" th:href="@{${#httpServletRequest.requestURI}(lang='ar')}">
+                            <img src="/images/arabe_logo.png" alt="Arabe" style="width: 30px; height: 30px;" /> عربي
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
                     <li>
                         <a class="dropdown-item disabled" href="#">Deutsch (próximamente)</a>
                     </li>
@@ -95,25 +121,14 @@
                         <a class="dropdown-item disabled" href="#">Italiano (próximamente)</a>
                     </li>
                 </ul>
-
-                <!-- Botón del aside -->
-                <button class="btn btn-outline-secondary ms-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                    <i class="bi bi-list" style="font-size: 2rem;"></i>
-                </button>
+                
+                <form id="logoutFormNav" th:action="@{/logout}" method="post" style="display:none;"></form>
+                <a href="#" class="nav-link d-flex align-items-center" onclick="document.getElementById('logoutFormNav').submit(); return false;">
+                    <i class="bi bi-box-arrow-right me-1 fs-3"></i> 
+                </a>
             </div>
         </div>
     </nav>
-
-    <!-- ASIDE -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasRightLabel" th:text="#{menu}">Menu</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div th:replace="asideInmigrate :: aside"></div>
-        </div>
-    </div>
 </div>
 
 <!-- Bootstrap JS (imprescindible para que funcione el offcanvas) -->

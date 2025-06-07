@@ -37,12 +37,13 @@
                 <a th:href="@{/eventos/{eventoID}(eventoID=${evento.eventoID})}" style="text-decoration: none; color: inherit;">
                     <div class="card mb-4" style="max-width: 1100px; margin: auto;">
                         <div class="row g-0">
-
-                            <div class="col-md-4">
-                                <img th:src="@{'/images/' + ${evento.categoria.categoriaID} + '.png'}" class="img-fluid rounded-start h-100" alt="Card image cap">
+                            <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
+                                <img th:src="@{'/images/' + ${evento.categoria.categoriaID} + '.png'}"
+                                     class="img-fluid rounded-start"
+                                     style="max-width: 90%; max-height: 250px;"
+                                     alt="Card image cap">
                             </div>
-
-                            <div class="col-md-8 d-flex align-items-center">
+                            <div class="col-12 col-md-8 d-flex align-items-center">
                                 <div class="card-body">
                                     <h5 class="card-title" th:text="${evento.titulo}" >Título del evento</h5>
                                     <p class="card-text" th:text="${evento.descripcion}">Descripción</p>
