@@ -69,7 +69,7 @@
                     </a>
                 </div>
                 -->
-
+<!--
                 <a th:href="@{${#httpServletRequest.requestURI}(lang='es')}">
                     <img src="/images/espanol_logo.png" alt="Español" style="width: 40px; height: 40px;" />
                 </a>
@@ -83,7 +83,6 @@
                     <img src="/images/arabe_logo.png" alt="Arabe" style="width: 40px; height: 40px;" />
                 </a>
 
-                <!--BOTON DE MAS IDIOMAS-->
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownIdiomas" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-translate"></i> <span th:text="#{language}">Lang</span>
                 </button>
@@ -94,7 +93,40 @@
                     <li>
                         <a class="dropdown-item disabled" href="#">Italiano (próximamente)</a>
                     </li>
+                    <li>
+                        <a th:href="@{${#httpServletRequest.requestURI}(lang='es')}">
+                            <img src="/images/espanol_logo.png" alt="Español" style="width: 40px; height: 40px;" />
+                        </a>
+                    </li>
                 </ul>
+            -->
+                <div class="dropdown me-2">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownLang" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-translate"></i> <span th:text="#{language}">Lang</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLang">
+                        <li>
+                            <a class="dropdown-item" th:href="@{${#httpServletRequest.requestURI}(lang='es')}">
+                                Es
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{${#httpServletRequest.requestURI}(lang='en')}">
+                                En
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{${#httpServletRequest.requestURI}(lang='fr')}">
+                                Fr
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{${#httpServletRequest.requestURI}(lang='ar')}">
+                                Ar
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
                 <!-- Botón del aside -->
                 <button class="btn btn-outline-secondary ms-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
