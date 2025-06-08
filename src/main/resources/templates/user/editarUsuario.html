@@ -7,34 +7,34 @@
 <main layout:fragment="content">
     <div class="container-fluid mt-5">
         <form th:action="@{/usuario/editar}" method="post" class="mx-auto">
-            <h4 class="text-center">Editar Usuario</h4>
+            <h4 class="text-center" th:text="#{usuario.editar.titulo}">Editar Usuario</h4>
 
             <input type="hidden" name="usuarioID" th:value="${usuario.usuarioID}" />
 
             <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre:</label>
+                <label for="nombre" class="form-label" th:text="#{usuario.nombre}">Nombre:</label>
                 <input type="text" id="nombre" class="form-control" name="nombre" th:value="${usuario.nombre}" required>
             </div>
 
             <div class="mb-3 mt-5">
-                <label for="apellido" class="form-label">Apellido:</label>
+                <label for="apellido" class="form-label" th:text="#{usuario.apellido}">Apellido:</label>
                 <input type="text" id="apellido" name="apellido" class="form-control" th:value="${usuario.apellido}" required>
             </div>
 
             <div class="mb-3 mt-5">
-                <label for="username" class="form-label">Nombre de Usuario:</label>
+                <label for="username" class="form-label" th:text="#{usuario.usuario}">Nombre de Usuario:</label>
                 <input type="text" id="username" name="username" class="form-control" th:value="${usuario.username}" required>
             </div>
 
             <div class="mb-3 mt-5">
-                <label for="email" class="form-label">Email:</label>
+                <label for="email" class="form-label" th:text="#{usuario.email}">Email:</label>
                 <input type="email" id="email" name="email" class="form-control" th:value="${usuario.email}" required>
             </div>
 
             <div class="mb-3 mt-5">
-                <label for="ciudadID" class="form-label">Ciudad:</label>
+                <label for="ciudadID" class="form-label" th:text="#{usuario.ciudad}">Ciudad:</label>
                 <select id="ciudadID" name="ciudadID" class="form-select" required>
-                    <option value="">Selecciona una ciudad...</option>
+                    <option value="" th:text="#{usuario.elegir_ciudad}">Selecciona una ciudad...</option>
                     <th:block th:each="ciudad : ${ciudades}">
                         <option th:value="${ciudad.ciudadID}" th:text="${ciudad.nombre}" th:selected="${usuario.ciudad.ciudadID == ciudad.ciudadID}"></option>
                     </th:block>
@@ -42,9 +42,9 @@
             </div>
 
             <div class="mb-3 mt-5">
-                <label for="paisID" class="form-label">Pais:</label>
+                <label for="paisID" class="form-label" th:text="#{usuario.pais}">Pais:</label>
                 <select id="paisID" name="paisID" class="form-select" required>
-                    <option value="">Selecciona un pais...</option>
+                    <option value="" th:text="#{usuario.elegir_pais}">Selecciona un pais...</option>
                     <th:block th:each="pais : ${paises}">
                         <option th:value="${pais.paisID}" th:text="${pais.nombre}" th:selected="${usuario.pais.paisID == pais.paisID}"></option>
                     </th:block>
@@ -52,20 +52,20 @@
             </div>
 
             <div class="mt-5">
-                <label for="tipo" class="form-label">Tipo de Usuario:</label>
+                <label for="tipo" class="form-label" th:text="#{usuario.tipo}">Tipo de Usuario:</label>
                 <select name="tipo" id="tipo" class="form-select" required>
-                    <option value="">Selecciona...</option>
-                    <option value="voluntario" th:selected="${usuario.tipo == 'voluntario'}">Voluntario</option>
-                    <option value="recienllegado" th:selected="${usuario.tipo == 'recienllegado'}">Recién Llegado</option>
+                    <option value="" th:text="#{usuario.selecciona}">Selecciona...</option>
+                    <option value="voluntario" th:selected="${usuario.tipo == 'voluntario'}" th:text="#{usuario.voluntario}">Voluntario</option>
+                    <option value="recienllegado" th:selected="${usuario.tipo == 'recienllegado'}" th:text="#{usuario.recienllegado}">Recién Llegado</option>
                 </select>
             </div>
 
             <!-- Campos específicos para Recien Llegado -->
             <div class="recienllegado borrar">
                 <div class="mb-3 mt-5">
-                    <label for="lenguaje" class="form-label">Idioma Principal:</label>
+                    <label for="lenguaje" class="form-label" th:text="#{usuario.idioma_principal}">Idioma Principal:</label>
                     <select id="lenguaje" name="lenguaje" class="form-select" required>
-                        <option value="">Selecciona un idioma...</option>
+                        <option value="" th:text="#{usuario.idioma}">Selecciona un idioma...</option>
                         <option value="es" th:selected="${lenguaje == 'es'}">ES</option>
                         <option value="en" th:selected="${lenguaje == 'en'}">EN</option>
                         <option value="fr" th:selected="${lenguaje == 'fr'}">FR</option>
@@ -73,11 +73,11 @@
                     </select>
                 </div>
                 <div class="mb-3 mt-5">
-                    <label for="fecha_llegada" class="form-label">Fecha de Llegada:</label>
+                    <label for="fecha_llegada" class="form-label" th:text="#{usuario.llegada}">Fecha de Llegada:</label>
                     <input type="date" id="fecha_llegada" name="fecha_llegada" class="form-control" th:value="${fecha_llegada}">
                 </div>
                 <div class="mb-3 mt-5">
-                    <label for="necesidades" class="form-label">Necesidades:</label>
+                    <label for="necesidades" class="form-label" th:text="#{usuario.necesidades}">Necesidades:</label>
                     <input type="text" id="necesidades" name="necesidades" class="form-control" th:value="${necesidades}">
                 </div>
             </div>
@@ -85,11 +85,11 @@
             <!-- Campos específicos para Voluntario -->
             <div class="voluntario borrar">
                 <div class="mb-3 mt-5">
-                    <label for="habilidades" class="form-label">Habilidades:</label>
+                    <label for="habilidades" class="form-label" th:text="#{usuario.habilidades}">Habilidades:</label>
                     <input type="text" id="habilidades" name="habilidades" class="form-control" th:value="${habilidades}">
                 </div>
                 <div class="mb-3 mt-5">
-                    <label for="motivacion" class="form-label">Motivación:</label>
+                    <label for="motivacion" class="form-label" th:text="#{usuario.necesidades}">Motivación:</label>
                     <input type="text" id="motivacion" name="motivacion" class="form-control" th:value="${motivacion}">
                 </div>
             </div>
@@ -97,7 +97,7 @@
             <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
             <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
 
-            <button type="submit" class="btn btn-primary mt-4">Guardar Cambios</button>
+            <button type="submit" class="btn btn-primary mt-4" th:text="#{usuario.editar.guardar}">Guardar Cambios</button>
         </form>
     </div>
 </main>

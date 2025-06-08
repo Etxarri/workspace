@@ -19,7 +19,8 @@
             <a class="navbar-brand" th:href="@{/eventos/listaEventos}" style="margin-left: 0;">Welco</a>
 
             <!-- CENTRO: Menú (solo visible en pantallas grandes) -->
-            <div class="collapse navbar-collapse position-absolute start-50 translate-middle-x d-none d-lg-block" id="navbarResponsive">
+            <div class="collapse navbar-collapse position-absolute start-50 translate-middle-x d-none d-lg-block" id="navbarResponsive"
+                 th:if="${#authorization.expression('isAuthenticated()')}">
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/eventos/listaEventos}" th:classappend="${paginaActual == 'listaEventos'} ? ' active'" th:text="#{home}">
@@ -55,7 +56,7 @@
             </div>
 
             <!-- BOTÓN FLECHA (solo visible en móvil) -->
-            <div class="dropdown d-block d-lg-none">
+            <div class="dropdown d-block d-lg-none" th:if="${#authorization.expression('isAuthenticated()')}">
                 <button class="btn btn-outline-secondary" type="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-list fs-4"></i>
                 </button>
@@ -71,51 +72,39 @@
 
             <!-- DERECHA: Banderas -->
             <div class="d-flex align-items-center">
-
-                <!-- Banderas dinámicas
-                <div th:each="bandera : ${banderas}" class="me-2">
-                    <a th:href="@{${#httpServletRequest.requestURI}(lang=${bandera.codigo})}">
-                        <img th:src="@{${bandera.src}}" th:alt="${bandera.alt}" style="width: 40px; height: 40px;" />
-                    </a>
+                <!--BOTON DE MAS IDIOMAS SIEMPRE VISIBLE-->
+                <div class="dropdown me-2">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownLang" data-bs-toggle="dropdown" aria-expanded="false" >
+                        <i class="bi bi-translate"></i> <span th:text="#{language}">Lang</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLang">
+                        <li>
+                            <a class="dropdown-item" th:href="@{${#httpServletRequest.requestURI}(lang='es')}">
+                                ES
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{${#httpServletRequest.requestURI}(lang='en')}">
+                                EN
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{${#httpServletRequest.requestURI}(lang='fr')}">
+                                FR
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{${#httpServletRequest.requestURI}(lang='ar')}">
+                                AR
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                -->
 
-                <!--BOTON DE MAS IDIOMAS-->
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownIdiomas" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-translate"></i> <span th:text="#{language}">Lang</span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom" aria-labelledby="dropdownIdiomas">
-                    <li>
-                        <a class="dropdown-item" th:href="@{${#httpServletRequest.requestURI}(lang='es')}">
-                            <img src="/images/espanol_logo.png" alt="Español" style="width: 30px; height: 30px;" /> Español
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" th:href="@{${#httpServletRequest.requestURI}(lang='en')}">
-                            <img src="/images/ingles_logo.png" alt="English" style="width: 30px; height: 30px;" /> English
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" th:href="@{${#httpServletRequest.requestURI}(lang='fr')}">
-                            <img src="/images/frances_logo.png" alt="Frances" style="width: 30px; height: 30px;" /> Français
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" th:href="@{${#httpServletRequest.requestURI}(lang='ar')}">
-                            <img src="/images/arabe_logo.png" alt="Arabe" style="width: 30px; height: 30px;" /> عربي
-                        </a>
-                    </li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                        <a class="dropdown-item disabled" href="#">Deutsch (próximamente)</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item disabled" href="#">Italiano (próximamente)</a>
-                    </li>
-                </ul>
-                
                 <form id="logoutFormNav" th:action="@{/logout}" method="post" style="display:none;"></form>
-                <a href="#" class="nav-link d-flex align-items-center" onclick="document.getElementById('logoutFormNav').submit(); return false;">
+                <a href="#" class="nav-link d-flex align-items-center"
+                    onclick="document.getElementById('logoutFormNav').submit(); return false;"
+                    th:if="${#authorization.expression('isAuthenticated()')}">
                     <i class="bi bi-box-arrow-right me-1 fs-3"></i> 
                 </a>
             </div>
