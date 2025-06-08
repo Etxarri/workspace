@@ -10,5 +10,6 @@ import edu.mondragon.webengl.domain.foro.model.Hiloforo;
 public interface ComentarioForoRepository extends JpaRepository<ComentarioForo, Integer> {
 
     List<ComentarioForo> findByHilo(Hiloforo hilo);
+    List<ComentarioForo> findByHiloOrderByBotoPosDesc(Hiloforo hilo);
 }
 

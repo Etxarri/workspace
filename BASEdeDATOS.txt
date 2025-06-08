@@ -1,0 +1,486 @@
+DROP DATABASE IF EXISTS welco;
+CREATE DATABASE welco;
+USE welco;
+
+create table pais (
+  paisID smallint unsigned not null AUTO_INCREMENT,
+  nombre VARCHAR(50) NOT NULL,
+  codigo_iso VARCHAR(2) unique,
+  CONSTRAINT PAIS_PK PRIMARY KEY (paisID)
+);
+
+create table comunidad_autonoma (
+  comunidadID smallint unsigned not null AUTO_INCREMENT,
+  paisID smallint unsigned not null,
+  nombre VARCHAR(50) NOT NULL,
+  CONSTRAINT COMUNIDAD_PK PRIMARY KEY (comunidadID),
+  CONSTRAINT COMUNIDAD_PAIS_FK FOREIGN KEY (paisID) REFERENCES pais (paisID)
+);
+
+create table ciudad (
+  ciudadID smallint unsigned not null AUTO_INCREMENT,
+  comunidadID smallint unsigned not null,
+  nombre varchar(50) not null,
+  codigo_postal  VARCHAR(10) not null,
+  latitud DECIMAL(10,7) NULL,
+  longitud DECIMAL(10,7) NULL,
+  CONSTRAINT CIUDAD_PK PRIMARY KEY (ciudadID),
+  CONSTRAINT CIUDAD_COMUNIDAD_FK FOREIGN KEY (comunidadID) REFERENCES comunidad_autonoma (comunidadID)
+);
+
+create table usuario (
+  usuarioID smallint unsigned not null auto_increment,
+  paisID smallint unsigned not null,
+  ciudadID smallint unsigned not null,
+  username varchar(50) not null,
+  nombre VARCHAR(50) NOT NULL,
+  apellido VARCHAR(50) NOT NULL,
+  email VARCHAR(100) UNIQUE,
+  password VARCHAR(100) NOT NULL,
+  tipo ENUM('recienllegado', 'voluntario') NOT NULL, -- Columna discriminadora
+  CONSTRAINT USUARIO_PK PRIMARY KEY (usuarioID),
+  CONSTRAINT USUARIO_PAIS_FK FOREIGN KEY (paisID) REFERENCES pais (paisID),
+  CONSTRAINT USUARIO_CIUDAD_FK FOREIGN KEY (ciudadID) REFERENCES ciudad (ciudadID)
+);
+
+create table recienllegado (
+  usuarioID smallint unsigned not null,
+  necesidades VARCHAR(50),
+  lenguaje varchar(10),
+  fecha_llegada date,
+  CONSTRAINT RECIENLLEGADO_PK PRIMARY KEY (usuarioID),
+  CONSTRAINT RECIENLLEGADO_USUARIO_FK FOREIGN KEY (usuarioID) REFERENCES usuario (usuarioID)
+);
+
+create table voluntario (
+  usuarioID smallint unsigned not null,
+  habilidades VARCHAR(50),
+  motivacion VARCHAR(50),
+  CONSTRAINT VOLUNTARIO_PK PRIMARY KEY (usuarioID),
+  CONSTRAINT VOLUNTARIO_USUARIO_FK FOREIGN KEY (usuarioID) REFERENCES usuario (usuarioID)
+);
+
+create table temaforo (
+  temaID smallint unsigned not null AUTO_INCREMENT,
+  nombre VARCHAR(50) not null,
+  descripcion VARCHAR(100),
+  logo		VARCHAR(50),
+  CONSTRAINT TEMAFORO_PK PRIMARY KEY (temaID)
+);
+
+create table preguntafrecuente (
+  preguntaID smallint unsigned not null AUTO_INCREMENT,
+  temaID smallint unsigned not null,
+  pregunta VARCHAR(50) not null,
+  fecha_creacion date not null,
+  CONSTRAINT PREGUNTA_PK PRIMARY KEY (preguntaID),
+  CONSTRAINT PREGUNTA_TEMA_FK FOREIGN KEY (temaID) REFERENCES temaforo (temaID)
+);
+
+create table hiloforo (
+  hiloID smallint unsigned not null AUTO_INCREMENT,
+  preguntaID smallint unsigned not null,
+  fecha_creacion timestamp not null,
+  CONSTRAINT HILOFORO_PK PRIMARY KEY (hiloID),
+  CONSTRAINT HILOFORO_PREGUNTA_FK FOREIGN KEY (preguntaID) REFERENCES preguntafrecuente (preguntaID)
+);
+
+create table comentarioforo (
+  comentarioID smallint unsigned not null AUTO_INCREMENT,
+  hiloID smallint unsigned not null,
+  usuarioID smallint unsigned not null,
+  contenido VARCHAR(50) not null,
+  fecha_hora timestamp not null,
+  boto_pos integer, 
+  boto_neg integer,
+  CONSTRAINT COMENTARIOFORO_PK PRIMARY KEY (comentarioID),
+  CONSTRAINT COMENTARIOFORO_HILO_FK FOREIGN KEY (hiloID) REFERENCES hiloforo (hiloID),
+  CONSTRAINT COMENTARIOFORO_USUARIO_FK FOREIGN KEY (usuarioID) REFERENCES usuario (usuarioID)
+);
+
+create table categoria (
+  categoriaID smallint unsigned not null AUTO_INCREMENT,
+  nombre VARCHAR(50) not null,
+  descripcion VARCHAR(100),
+  CONSTRAINT CATEGORIA_PK PRIMARY KEY (categoriaID)
+);
+create table eventolocal (
+  eventoID smallint unsigned not null AUTO_INCREMENT,
+  ciudadID smallint unsigned not null,
+  categoriaID smallint unsigned not null,
+  usuarioID smallint unsigned not null,
+  titulo VARCHAR(100) not null,
+  descripcion VARCHAR(100) not null,
+  fecha_hora timestamp not null,
+  lugar VARCHAR(100) not null,
+  CONSTRAINT EVENTOLOCAL_PK PRIMARY KEY (eventoID),
+  CONSTRAINT EVENTOLOCAL_CIUDAD_FK FOREIGN KEY (ciudadID) REFERENCES ciudad (ciudadID),
+  CONSTRAINT EVENTOLOCA_CATEGORIA_FK FOREIGN KEY (categoriaID) REFERENCES categoria (categoriaID),
+  CONSTRAINT EVENTOLOCAL_VOLUNTARIO_FK FOREIGN KEY (usuarioID) REFERENCES voluntario (usuarioID)
+);
+
+CREATE TABLE usuario_apuntarse_evento (
+  eventoID smallint unsigned not null,
+  usuarioID smallint unsigned not null,
+  fecha_inscripcion DATE,
+  CONSTRAINT APUNTARSE_PK PRIMARY KEY (eventoID, usuarioID),
+  CONSTRAINT APUNTARSE_EVENTOLOCAL_FK FOREIGN KEY (eventoID) REFERENCES eventolocal (eventoID),
+  CONSTRAINT APUNTARSE_USUARIO_FK FOREIGN KEY (usuarioID) REFERENCES usuario (usuarioID)
+);
+
+create table recursolocal (
+  recursoID smallint unsigned not null AUTO_INCREMENT,
+  categoriaID smallint unsigned not null,
+  ciudadID smallint unsigned not null,
+  nombre varchar(50) not null,
+  descripcion VARCHAR(100),
+  direccion VARCHAR(100),
+  telefono VARCHAR(20),
+  hora_abierto  time,
+  hora_cerrado  time,
+  latitud DECIMAL(9,6) NOT NULL,
+  longitud DECIMAL(9,6) NOT NULL,
+  CONSTRAINT RECURSOLOCAL_PK PRIMARY KEY (recursoID),
+  CONSTRAINT RECURSOLOCAL_CATEGORIA_FK FOREIGN KEY (categoriaID) REFERENCES categoria (categoriaID),
+  CONSTRAINT RECURSOLOCAL_CIUDAD_FK FOREIGN KEY (ciudadID) REFERENCES ciudad (ciudadID)
+);
+
+create table encuesta (
+  encuestaID smallint unsigned not null AUTO_INCREMENT,
+  titulo varchar(50) not null,
+  descripcion varchar(100),
+  CONSTRAINT ENCUESTA_PK PRIMARY KEY (encuestaID)
+);
+
+create table hacer_encuesta (
+  encuestaID smallint unsigned not null,
+  usuarioID smallint unsigned not null,
+  titulo varchar(50) not null,
+  descripcion varchar(100),
+  CONSTRAINT HACER_PK PRIMARY KEY (encuestaID, usuarioID),
+  CONSTRAINT HACER_ENCUESTA_FK FOREIGN KEY (encuestaID) REFERENCES encuesta (encuestaID),
+  CONSTRAINT HACER_USUARIO_FK FOREIGN KEY (usuarioID) REFERENCES usuario (usuarioID)
+);
+
+
+-- Poblar tabla pais
+INSERT INTO pais (paisID, nombre, codigo_iso) VALUES
+(1, 'España', 'ES'),
+(2, 'Francia', 'FR'),
+(3, 'Portugal', 'PT'),
+(4, 'Colombia', 'CO'),
+(5, 'Marruecos', 'MA'),
+(6, 'Venezuela', 'VE');
+
+-- Poblar tabla comunidad_autonoma
+INSERT INTO comunidad_autonoma (comunidadID, paisID, nombre) VALUES
+(1, 1, 'Andalucía'),
+(2, 1, 'Cataluña'),
+(3, 1, 'Madrid'),
+(4, 1, 'Comunidad Valenciana'),
+(5, 1, 'Galicia'),
+(6, 1, 'País Vasco');
+
+-- Poblar tabla ciudad
+INSERT INTO ciudad (ciudadID, comunidadID, nombre, codigo_postal, latitud, longitud) VALUES
+(1, 1, 'Sevilla', '41001', 37.3886, -5.9823),
+(2, 2, 'Barcelona', '08001', 41.3888, 2.1590),
+(3, 3, 'Madrid', '28001', 40.4168, -3.7038),
+(4, 4, 'Valencia', '46001', 39.4699, -0.3763),
+(5, 5, 'Santiago de Compostela', '15701', 42.8805, -8.5457),
+(6, 6, 'Bilbao', '48001', 43.2630, -2.9350);
+
+-- Poblar tabla usuario
+INSERT INTO usuario (usuarioID, paisID, ciudadID, nombre, apellido, email, username, password, tipo) VALUES
+(1, 1, 1, 'Juan', 'García', 'juan@gmail.com','user123', 'pass123', 'voluntario'),
+(2, 2, 1, 'María', 'López', 'maria@hotmail.com','user456', 'pass456', 'recienllegado');
+
+-- Poblar tabla recienllegado
+INSERT INTO recienllegado (usuarioID, necesidades, lenguaje, fecha_llegada) VALUES
+(2, 'Necesito aprender español', 'Inglés', '2023-05-01');
+
+-- Poblar tabla voluntario
+INSERT INTO voluntario (usuarioID, habilidades, motivacion) VALUES
+(1, 'Traducción inglés-español', 'Ayudar a la integración cultural');
+
+-- Poblar tabla temaforo
+
+-- Poblar tabla temaforo
+INSERT INTO temaforo (nombre, descripcion, logo) VALUES
+('Trámites-Documentación', 'Resuelve tus dudas sobre papeles, permisos y procesos administrativos.', 'bi bi-file-earmark-text'),
+('Vivienda', 'Comparte y encuentra información sobre alquiler, compra y ayudas para vivienda', 'bi bi-house-door'),
+('Empleo', 'Ofertas, consejos y experiencias sobre el mundo laboral.', 'bi bi-briefcase'),
+('Educación', 'Información sobre estudios, homologaciones y formación.', 'bi bi-mortarboard'),
+('Salud', 'Acceso a la sanidad, seguros y consejos para tu bienestar.', 'bi bi-heart-pulse'),
+('Otros', 'Comparte inquietudes o preguntas que no se encuadren en las categorías anteriores.', 'bi bi-three-dots');
+
+
+-- Poblar tabla preguntafrecuente
+INSERT INTO preguntafrecuente (preguntaID, temaID, pregunta, fecha_creacion) VALUES
+(1, 1, '¿Cómo practicar español diariamente?', '2023-04-10'),
+(2, 2, '¿Qué festividades hay en Sevilla?', '2023-04-15');
+
+-- Poblar tabla hiloforo
+INSERT INTO hiloforo (hiloID, preguntaID, fecha_creacion) VALUES
+(1, 1, '2023-04-11 10:00:00'),
+(2, 2, '2023-04-16 15:30:00');
+
+-- Poblar tabla comentarioforo
+INSERT INTO comentarioforo (comentarioID, hiloID, usuarioID, contenido, fecha_hora) VALUES
+(1, 1, 1, 'Puedes ver series en español', '2023-04-11 11:00:00'),
+(2, 2, 2, 'Hay procesiones en Semana Santa', '2023-04-16 16:00:00');
+
+-- Poblar tabla categoria
+INSERT INTO categoria (categoriaID, nombre, descripcion) VALUES
+(1, 'Idiomas', 'Clases, recursos y apoyo para aprender o mejorar el idioma local'),
+(2, 'Cultura', 'Actividades relacionadas con la cultura local, tradiciones y costumbres'),
+(3, 'Trabajo', 'Ofertas laborales, orientación profesional y talleres de empleo'),
+(4, 'Colegio', 'Información y apoyo sobre escolarización, inscripciones y recursos educativos'),
+(5, 'Salud', 'Recursos sanitarios, centros de salud y campañas de bienestar'),
+(6, 'Documentos y Trámites', 'Asistencia con empadronamiento, NIE, seguridad social y otros trámites'),
+(7, 'Jurídico', 'Asesoría legal, derechos laborales y recursos jurídicos');
+
+
+-- Poblar tabla eventolocal
+INSERT INTO eventolocal (eventoID, ciudadID, categoriaID, usuarioID, titulo, descripcion, fecha_hora, lugar) VALUES
+(1, 1, 1, 1, 'Intercambio de idiomas', 'Sesión para practicar inglés y español', '2023-05-20 18:00:00', 'Centro Cultural'),
+(2, 3, 2, 1, 'Taller cultural', 'Introducción a las festividades españolas', '2023-06-15 10:00:00', 'Sala de conferencias'),
+(3, 1, 3, 1, 'Feria de empleo', 'Conecta con empleadores locales y recibe orientación laboral', '2023-07-10 09:00:00', 'Pabellón municipal de Barcelona'),
+(4, 2, 4, 1, 'Puertas abiertas escolares', 'Visita a colegios públicos para conocer opciones educativas', '2023-07-15 17:30:00', 'Escuela Primaria Central'),
+(5, 3, 5, 1, 'Charla sobre salud pública', 'Información sobre servicios sanitarios gratuitos', '2023-07-22 11:00:00', 'Centro de Salud Lavapiés'),
+(6, 1, 6, 1, 'Ayuda con trámites', 'Taller práctico para empadronamiento y NIE', '2023-08-01 16:00:00', 'Oficina de Atención al Ciudadano'),
+(7, 2, 7, 1, 'Asesoría legal básica', 'Sesión de preguntas y respuestas sobre derechos laborales', '2023-08-10 18:00:00', 'Centro Comunitario La Merced'),
+(8, 3, 2, 1, 'Taller cultural', 'Introducción a las festividades españolas', '2023-06-15 10:00:00', 'Sala de conferencias');
+
+-- SEVILLA
+INSERT INTO recursolocal (recursoID, categoriaID, ciudadID, nombre, descripcion, direccion, telefono, hora_abierto, hora_cerrado, latitud, longitud) VALUES
+(1, 5, 1, 'Centro de Salud Norte', 'Atención sanitaria primaria gratuita', 'Avda. de Miraflores 15', '954789012', '08:00:00', '15:00:00', 37.410142, -5.975333),
+(2, 1, 1, 'Ouiea Idiomas', 'Academia de idiomas', 'C. Lebrija, 2', '954701105', '16:30:00', '20:30:00', 37.376971, -5.970471),
+(3, 2, 1, 'Peña Cultural La Barzola', 'Centro cultural', 'Pl. Virgen del Pilar, 15', '954946967', '11:00:00', '22:30:00', 37.408400, -5.980943),
+(4, 3, 1, 'Servicio Público de Empleo Estatal', 'Oficina de empleo', 'C. Botánica, s/n, Norte', '955563646', '09:00:00', '14:00:00', 37.432218, -5.975492),
+(5, 4, 1, 'Equipo de Orientación Educativa', 'Consejeria de educacion', 'C. Gallega a la Ventana, 5', '955624587', '09:00:00', '14:00:00', 37.396755, -5.967081),
+(6, 6, 1, 'Agencia Tributaria de Sevilla', 'Oficina de administracion tributaria', 'C. José Luis Luque, 4 acc, Casco Antiguo', '902415600', '08:30:00', '14:00:00', 37.394558, -5.991113),
+(7, 7, 1, 'Analistas Laborales Sur', 'Gestoria', 'C. Telegrafistas, 18, Norte', '664828542', '09:00:00', '20:00:00', 37.419225, -5.968626);
+
+-- BARCELONA
+INSERT INTO recursolocal (recursoID, categoriaID, ciudadID, nombre, descripcion, direccion, telefono, hora_abierto, hora_cerrado, latitud, longitud) VALUES
+(8, 1, 2, 'Idiomes BCN', 'Talleres de catalán y español', 'Rambla Catalunya 18', '933001122', '09:00:00', '13:00:00', 41.388946, 2.166938),
+(9, 2, 2, 'Centre Cultural Raval', 'Charlas y exposiciones culturales', 'Calle Hospital 22', '933003344', '11:00:00', '20:00:00', 41.380775, 2.173661),
+(10, 3, 2, 'Emplea Jove BCN', 'Orientación para empleo juvenil', 'Avenida Diagonal 120', '933005566', '08:00:00', '14:00:00', 41.394170, 2.151200),
+(11, 5, 2, 'Salut Migrant', 'Información sanitaria gratuita', 'Calle Pelayo 7', '933007788', '08:00:00', '15:00:00', 41.385064, 2.168294),
+(12, 4, 2, 'Centro de Apoyo Escolar Barcelona', 'Refuerzo académico y apoyo para familias migrantes', 'Gran Vía 99', '933223344', '16:00:00', '20:00:00', 41.410566, 2.195869),
+(13, 6, 2, 'Tràmits Fàcils', 'Asesoría sobre NIE y empadronamiento', 'Passeig de Gràcia 55', '933009900', '10:00:00', '17:00:00', 41.392235, 2.165409),
+(14, 7, 2, 'Defensa Legal Migrant', 'Asistencia jurídica para inmigrantes', 'Gran Via 101', '933001234', '12:00:00', '19:00:00', 41.410566, 2.195869);
+
+-- MADRID
+INSERT INTO recursolocal (recursoID, categoriaID, ciudadID, nombre, descripcion, direccion, telefono, hora_abierto, hora_cerrado, latitud, longitud) VALUES
+(15, 1, 3, 'Idiomas Madrid Centro', 'Clases para recién llegados', 'Calle Arenal 13', '915001122', '10:00:00', '14:00:00', 40.416775, -3.703790),
+(16, 2, 3, 'Casa de Cultura Latina', 'Eventos multiculturales', 'Calle Embajadores 44', '915003344', '11:00:00', '19:00:00', 40.404674, -3.702560),
+(17, 3, 3, 'Empleo Madrid Activa', 'Servicios para el empleo', 'Calle Princesa 77', '915005566', '09:00:00', '15:00:00', 40.426000, -3.714000),
+(18, 6, 3, 'Punto de Información Administrativa', 'Asistencia para trámites legales en Madrid', 'Calle Alcalá 100', '915432100', '09:30:00', '17:30:00', 40.420000, -3.688000),
+(19, 4, 3, 'Centro Escolar Madrid', 'Refuerzo escolar gratuito', 'Avenida de América 99', '915007788', '16:00:00', '20:00:00', 40.439000, -3.675000),
+(20, 5, 3, 'Centro de Salud Este', 'Atención sanitaria gratuita', 'Calle Alcalde Sainz 12', '915009900', '08:00:00', '16:00:00', 40.410000, -3.670000),
+(21, 7, 3, 'Jurídico Madrid Norte', 'Asesoría legal laboral', 'Paseo Castellana 234', '915001234', '10:00:00', '18:00:00', 40.465000, -3.688000);
+
+
+-- VALENCIA 
+INSERT INTO recursolocal (recursoID, categoriaID, ciudadID, nombre, descripcion, direccion, telefono, hora_abierto, hora_cerrado, latitud, longitud) VALUES
+(22, 2, 4, 'Museo Local Valencia', 'Talleres sobre historia local', 'Calle Historiador 6', '961223344', '10:00:00', '18:00:00', 39.470000, -0.376000),
+(23, 1, 4, 'Centro de Idiomas Valencia', 'Cursos de español y valenciano', 'Calle Colón 22', '963456789', '09:00:00', '17:00:00', 39.470000, -0.375000),
+(24, 4, 4, 'Colegio Abierto Valencia', 'Asesoramiento sobre educación', 'Calle Maestro 14', '961334455', '15:00:00', '20:00:00', 39.460000, -0.370000),
+(25, 5, 4, 'Ambulatorio Central', 'Atención médica sin cita', 'Av. del Puerto 45', '961445566', '08:00:00', '14:00:00', 39.460000, -0.340000),
+(26, 3, 4, 'Oficina Empleo Jove', 'Ayuda para encontrar trabajo joven en Valencia', 'Avinguda de les Corts 10', '961112233', '08:30:00', '14:30:00', 39.470000, -0.350000),
+(27, 6, 4, 'Trámites Valencia', 'NIE, seguridad social y más', 'Calle San Vicente 90', '961556677', '09:00:00', '17:00:00', 39.470000, -0.380000),
+(28, 7, 4, 'LegalVal', 'Orientación jurídica migratoria', 'Plaza Ayuntamiento 3', '961667788', '11:00:00', '19:00:00', 39.469900, -0.376288);
+
+
+-- SANTIAGO DE COMPOSTELA
+INSERT INTO recursolocal (recursoID, categoriaID, ciudadID, nombre, descripcion, direccion, telefono, hora_abierto, hora_cerrado, latitud, longitud) VALUES
+(29, 2, 5, 'Centro Cultural Compostela', 'Muestra de arte y cultura gallega', 'Rúa Nova 11', '981223344', '10:00:00', '20:00:00', 42.880000, -8.545000),
+(30, 3, 5, 'Oficina Empleo Compostela', 'Ayuda laboral en Galicia', 'Rúa do Hórreo 30', '981334455', '09:00:00', '15:00:00', 42.880000, -8.540000),
+(31, 4, 5, 'Escuela de Refuerzo', 'Apoyo educativo migrante', 'Rúa de San Pedro 18', '981445566', '16:00:00', '19:00:00', 42.880000, -8.540000),
+(32, 1, 5, 'Aula de Idiomas Compostela', 'Clases gratuitas de gallego para inmigrantes', 'Rúa do Franco 14', '981123456', '10:00:00', '18:00:00', 42.880000, -8.545000),
+(33, 5, 5, 'Centro Salud Zona Sur', 'Salud pública gratuita', 'Rúa das Galeras 27', '981556677', '08:00:00', '14:00:00', 42.880000, -8.550000),
+(34, 6, 5, 'Oficina Trámites Compostela', 'Gestiones legales', 'Rúa do Vilar 3', '981667788', '09:30:00', '16:30:00', 42.880000, -8.545000),
+(35, 7, 5, 'Asesoría Legal Galega', 'Ayuda jurídica para inmigrantes', 'Praza do Obradoiro 4', '981778899', '11:00:00', '18:00:00', 42.880000, -8.545000);
+
+
+-- BILBAO 
+INSERT INTO recursolocal (recursoID, categoriaID, ciudadID, nombre, descripcion, direccion, telefono, hora_abierto, hora_cerrado, latitud, longitud) VALUES
+(36, 1, 6, 'Euskera para Todos', 'Cursos de euskera y castellano', 'Calle Gran Vía 12', '944223344', '09:00:00', '13:00:00', 43.262211, -2.929884),
+(37, 3, 6, 'Lanpostu Bilbao', 'Talleres de inserción laboral', 'Avenida Lehendakari Aguirre 50', '944334455', '08:30:00', '14:30:00', 43.270000, -2.940000),
+(38, 2, 6, 'Casa de Cultura Vasca', 'Eventos y talleres sobre cultura vasca', 'Calle Iparraguirre 45', '944556677', '11:00:00', '20:00:00', 43.262000, -2.938000),
+(39, 4, 6, 'Educación Migrante', 'Ayuda escolar en euskera y español', 'Calle Zabalbide 33', '944445566', '16:00:00', '20:00:00', 43.254585, -2.912248),
+(40, 5, 6, 'Centro Salud Miribilla', 'Centro médico accesible', 'Calle Miribilla 1', '944556677', '08:00:00', '15:00:00', 43.254658, -2.925853),
+(41, 6, 6, 'Trámites Bizkaia', 'Asistencia a trámites legales', 'Calle Autonomía 44', '944667788', '09:00:00', '17:00:00', 43.256000, -2.938000),
+(42, 7, 6, 'Asesoría Jurídica Bilbao', 'Orientación legal gratuita sobre inmigración y trabajo', 'Plaza Moyua 3', '944112233', '12:00:00', '19:00:00', 43.262542, -2.935483);
+
+
+
+-- Poblar tabla encuesta
+INSERT INTO encuesta (encuestaID, titulo, descripcion) VALUES
+(1, 'Satisfacción de eventos', 'Cuestionario sobre los eventos realizados'),
+(2, 'a', 'a');
+
+-- Poblar tabla hacer_encuesta
+INSERT INTO hacer_encuesta (encuestaID, usuarioID, titulo, descripcion) VALUES
+(1, 2, 'Evaluación de taller cultural', 'Me gustó el evento cultural realizado');
+
+-- Procedimientos almacenados
+DELIMITER //
+CREATE PROCEDURE crear_usuario(
+    IN p_nombre VARCHAR(50),
+    IN p_apellido VARCHAR(50),
+    IN p_username VARCHAR(50),
+    IN p_email VARCHAR(100),
+    IN p_password VARCHAR(100),
+    IN p_tipo ENUM('recienllegado', 'voluntario'),
+    IN p_paisID SMALLINT UNSIGNED,
+    IN p_ciudadID SMALLINT UNSIGNED
+)
+BEGIN
+    INSERT INTO usuario (nombre, apellido, username, email, password, tipo, paisID, ciudadID)
+    VALUES (p_nombre, p_apellido, p_username, p_email, p_password, p_tipo, p_paisID, p_ciudadID);
+END //
+DELIMITER ;
+-- Procedure para crear recienllegado
+DELIMITER //
+CREATE PROCEDURE crear_recienllegado(
+    IN p_usuarioID INT,
+    IN p_necesidades VARCHAR(255),
+    IN p_lenguaje VARCHAR(100),
+    IN p_fecha_llegada DATE
+)
+BEGIN
+    INSERT INTO recienllegado (usuarioID, necesidades, lenguaje, fecha_llegada)
+    VALUES (p_usuarioID, p_necesidades, p_lenguaje, p_fecha_llegada);
+END //
+DELIMITER ;
+
+-- Procedure para crear voluntario
+DELIMITER //
+CREATE PROCEDURE crear_voluntario(
+    IN p_usuarioID INT,
+    IN p_habilidades VARCHAR(255),
+    IN p_motivacion VARCHAR(255)
+)
+BEGIN
+    INSERT INTO voluntario (usuarioID, habilidades, motivacion)
+    VALUES (p_usuarioID, p_habilidades, p_motivacion);
+END //
+DELIMITER ;
+
+
+-- 2.1. Registro de usuarios (Voluntarios y recién llegados)
+	-- Voluntarios registrados
+	SELECT 
+		u.nombre, 
+        u.apellido, 
+        u.email, 
+        u.password, 
+        v.habilidades
+	FROM usuario u
+	JOIN voluntario v ON u.usuarioID = v.usuarioID;
+
+	-- Recién llegados registrados
+	SELECT 
+		u.nombre, 
+        u.apellido, 
+        u.email, 
+        u.password,
+        c.nombre,
+        r.necesidades, 
+        r.fecha_llegada
+	FROM usuario u
+	JOIN recienllegado r ON u.usuarioID = r.usuarioID
+	JOIN ciudad c ON c.ciudadID = u.ciudadID
+    order by r.fecha_llegada;
+
+-- 2.2. Emparejamiento inteligente (Ubicación e intereses)
+	-- Emparejamiento entre voluntarios y recién llegados en la misma ciudad
+	SELECT 
+		v.nombre AS voluntario, 
+        r.nombre AS recien_llegado,
+        c.nombre AS ciudad
+	FROM usuario v
+	JOIN voluntario vol ON v.usuarioID = vol.usuarioID
+	JOIN usuario r ON r.ciudadID = v.ciudadID AND r.tipo = 'recienllegado'
+	JOIN ciudad c ON v.ciudadID = c.ciudadID;
+
+-- 2.3. Gestión de eventos
+
+	-- Listado de eventos disponibles
+	SELECT 
+		e.titulo, 
+        e.descripcion, 
+        e.fecha_hora, 
+        c.nombre AS ciudad, 
+        cat.nombre AS categoria
+	FROM eventolocal e
+	JOIN ciudad c ON e.ciudadID = c.ciudadID
+	JOIN categoria cat ON e.categoriaID = cat.categoriaID where c.nombre = 'Madrid';
+use welco;
+	-- Participantes en eventos
+	SELECT 
+		u.nombre AS nombre_recienllegado,
+		u.apellido,
+		e.titulo AS evento,
+		c.nombre AS ciudad
+	FROM recienllegado_apuntarse_evento ra
+	JOIN usuario u ON ra.usuarioID = u.usuarioID
+	JOIN eventolocal e ON ra.eventoID = e.eventoID
+	JOIN ciudad c ON e.ciudadID = c.ciudadID;
+
+-- 2.4. Recursos locales
+use welco;
+	-- Recursos por ciudad y categoría
+	SELECT 
+		c.nombre AS ciudad,
+		r.nombre AS recurso,
+		r.descripcion,
+		cat.nombre AS categoria
+	FROM recursolocal r
+	JOIN ciudad c ON r.ciudadID = c.ciudadID 
+	JOIN comunidad_autonoma co ON co.comunidadID = c.comunidadID 
+	JOIN categoria cat ON r.categoriaID = cat.categoriaID where c.nombre = 'Santiago de Compostela'
+	ORDER BY c.nombre, r.nombre;
+
+-- 2.5. Foro comunitario
+
+	-- Hilos más activos del foro
+	SELECT 
+		tf.nombre as Tema, 
+        p.pregunta, 
+        COUNT(c.comentarioID) AS num_comentarios
+	FROM preguntafrecuente p
+	JOIN hiloforo h ON p.preguntaID = h.preguntaID
+	JOIN comentarioforo c ON h.hiloID = c.hiloID
+	JOIN temaforo tf ON p.temaID = tf.temaID
+	GROUP BY tf.nombre, p.pregunta
+	ORDER BY num_comentarios DESC;
+
+	-- Últimos comentarios del foro
+	SELECT 
+		u.nombre AS autor_comentario,
+		tf.nombre AS tema,
+		p.pregunta,
+		c.contenido,
+		c.fecha_hora
+	FROM comentarioforo c
+	JOIN usuario u ON c.usuarioID = u.usuarioID
+	JOIN hiloforo h ON c.hiloID = h.hiloID
+	JOIN preguntafrecuente p ON h.preguntaID = p.preguntaID
+	JOIN temaforo tf ON p.temaID = tf.temaID
+	ORDER BY c.fecha_hora DESC
+	LIMIT 5;
+
+-- 2.6. Encuestas internas
+
+	-- Encuestas completadas por los usuarios
+	SELECT 
+		e.titulo, 
+        e.descripcion, 
+        u.nombre, u.apellido
+	FROM hacer_encuesta he
+	JOIN encuesta e ON he.encuestaID = e.encuestaID
+	JOIN usuario u ON he.usuarioID = u.usuarioID;
