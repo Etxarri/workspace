@@ -54,55 +54,55 @@
                         My City
                         </a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Otros
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Perfil</a></li>
+                            <li><a class="dropdown-item" th:href="@{/encuestas}">Encuestas</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a></li>
+                        </ul>
+                    </li>
+
                 </ul>
 
 
             </div>
 
+
+
+
             <!-- DERECHA: Banderas -->
             <div class="d-flex align-items-center">
-
-                <!-- Banderas dinámicas
-                <div th:each="bandera : ${banderas}" class="me-2">
-                    <a th:href="@{${#httpServletRequest.requestURI}(lang=${bandera.codigo})}">
-                        <img th:src="@{${bandera.src}}" th:alt="${bandera.alt}" style="width: 40px; height: 40px;" />
-                    </a>
-                </div>
-                -->
-
-                <a th:href="@{${#httpServletRequest.requestURI}(lang='es')}">
-                    <img src="/images/espanol_logo.png" alt="Español" style="width: 40px; height: 40px;" />
-                </a>
-                <a th:href="@{${#httpServletRequest.requestURI}(lang='en')}">
-                    <img src="/images/ingles_logo.png" alt="English" style="width: 40px; height: 40px;" />
-                </a>
-                <a th:href="@{${#httpServletRequest.requestURI}(lang='fr')}">
-                    <img src="/images/frances_logo.png" alt="Frances" style="width: 40px; height: 40px;" />
-                </a>
-                <a th:href="@{${#httpServletRequest.requestURI}(lang='ar')}">
-                    <img src="/images/arabe_logo.png" alt="Arabe" style="width: 40px; height: 40px;" />
-                </a>
-                <!-- Botón del aside -->
-                <button class="btn btn-outline-secondary ms-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                    <i class="bi bi-list" style="font-size: 2rem;"></i>
-                </button>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownFlags" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-flag"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownFlags">
+                            <li>
+                                <a class="dropdown-item" href="@{${#httpServletRequest.requestURI}(lang='en')}"><i class="flag-uk flag"></i>English</a>
+                            </li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="@{${#httpServletRequest.requestURI}(lang='pl')}"><i class="flag-pl flag"></i>Polski</a></li>
+                            <li><a class="dropdown-item" href="@{${#httpServletRequest.requestURI}(lang='cn')}"><i class="flag-cn flag"></i>中文</a></li>
+                            <li><a class="dropdown-item" href="@{${#httpServletRequest.requestURI}(lang='jp')}"><i class="flag-jp flag"></i>日本語</a></li>
+                            <li><a class="dropdown-item" href="@{${#httpServletRequest.requestURI}(lang='de')}"><i class="flag-de flag"></i>Deutsch</a></li>
+                            <li><a class="dropdown-item" href="@{${#httpServletRequest.requestURI}(lang='fr')}"><i class="flag-fr flag"></i>Français</a></li>
+                            <li><a class="dropdown-item" href="@{${#httpServletRequest.requestURI}(lang='es')}"><i class="flag-es flag"></i>Español</a></li>
+                            <li><a class="dropdown-item" href="@{${#httpServletRequest.requestURI}(lang='ru')}"><i class="flag-ru flag"></i>Русский</a></li>
+                            <li><a class="dropdown-item" href="@{${#httpServletRequest.requestURI}(lang='pt')} "><i class="flag-pt flag"></i>Português</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- ASIDE -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasRightLabel" th:text="#{menu}">Menu</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div th:replace="asideInmigrate :: aside"></div>
-        </div>
-    </div>
 </div>
 
-<!-- Bootstrap JS (imprescindible para que funcione el offcanvas) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
