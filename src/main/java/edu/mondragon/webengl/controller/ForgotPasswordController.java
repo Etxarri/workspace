@@ -46,7 +46,7 @@ public class ForgotPasswordController {
                 Optional.empty();
 
         if (user.isEmpty()) {
-            redirectAttributes.addFlashAttribute("error", "No se encontró una cuenta con ese correo.");
+            redirectAttributes.addFlashAttribute("error", "error.forgot");
             return "redirect:/forgot-password";
         }
 
