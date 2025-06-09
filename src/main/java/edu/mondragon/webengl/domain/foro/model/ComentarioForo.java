@@ -31,6 +31,11 @@ public class ComentarioForo {
     @Column(name = "fecha_hora", nullable = false)
     private LocalDateTime fechaHora;
 
+    @Column(name = "boto_pos")
+    private int botoPos;
+
+    @Column(name = "boto_neg")
+    private int botoNeg;
     // Getters y setters
 
     public int getComentarioID() {
@@ -71,6 +76,20 @@ public class ComentarioForo {
 
     public void setFechaHora(LocalDateTime fechaHora) {
         this.fechaHora = fechaHora;
+    }
+
+    public int getBotoPos() {
+        return botoPos;
+    }   
+
+    public int getBotoNeg() {
+        return botoNeg;
+    }
+    public void setBotoNeg(int botoNeg) {
+        this.botoNeg = botoNeg;
+    }
+    public void setBotoPos(int botoPos) {
+        this.botoPos = botoPos;
     }
 }
 

@@ -87,7 +87,7 @@ public class ForoController {
             Optional<Hiloforo> hiloOpt = hiloRepo.findByPreguntaID(preguntaID);
             if (hiloOpt.isPresent()) {
                 Hiloforo hilo = hiloOpt.get();
-                List<ComentarioForo> comentarios = comentarioRepo.findByHilo(hilo);
+                List<ComentarioForo> comentarios = comentarioRepo.findByHiloOrderByBotoPosDesc(hiloOpt.get());
                 model.addAttribute("hilo", hilo);
                 model.addAttribute("comentarios", comentarios);
                 model.addAttribute("pregunta", preguntaOpt.get()); 
@@ -179,9 +179,11 @@ public class ForoController {
         comentario.setUsuario(usuarioService.findUsuarioByIdUsuario(usuario.getUsuario().getUsuarioID()));
         comentario.setContenido(contenido);
         comentario.setFechaHora(LocalDateTime.now());
+        comentario.setBotoPos(0); // Inicializar en 0
+        comentario.setBotoNeg(0); // Inicializar en 0
         comentarioRepo.save(comentario);
 
-        List<ComentarioForo> comentarios = comentarioRepo.findByHilo(hiloOpt.get());
+        List<ComentarioForo> comentarios = comentarioRepo.findByHiloOrderByBotoPosDesc(hiloOpt.get());
         model.addAttribute("comentarios", comentarios);
 
         model.addAttribute("pregunta", preguntaFrecuenteRepo.findById(preguntaID).orElse(null));
@@ -191,7 +193,23 @@ public class ForoController {
         return "redirect:/foro/preguntaUsuario/" + preguntaID;
     }
 
- 
+    @PostMapping("/{hiloID}/{preguntaID}/{comentarioID}")
+    public String likeComentario(@PathVariable int hiloID, @PathVariable int preguntaID, @PathVariable int comentarioID) {
+        Optional<Hiloforo> hiloOpt = hiloRepo.findById(hiloID);
+        if (hiloOpt.isEmpty()) {
+            return "redirect:/foro";
+        }
+
+        Optional<ComentarioForo> comentarioOpt = comentarioRepo.findById(comentarioID);
+
+        if (comentarioOpt.isPresent()) {
+            ComentarioForo comentario = comentarioOpt.get();
+            comentario.setBotoPos(comentario.getBotoPos() + 1);
+            comentarioRepo.save(comentario);
+        }
+
+        return "redirect:/foro/preguntaUsuario/" + preguntaID;
+    }
 
     @GetMapping
     public String listarHilos(@RequestParam(required = false) int temaId, Model model) {
@@ -226,7 +244,7 @@ public class ForoController {
         }
         return "redirect:/foro";
     }
-
+    /*
     @GetMapping("/nuevo")
     public String mostrarFormularioNuevoHilo(Model model) {
         List<Temaforo> temas = temaRepo.findAll();
@@ -267,6 +285,6 @@ public class ForoController {
         redirectAttrs.addFlashAttribute("mensaje", "Hilo creado correctamente.");
         return "redirect:/foro/" + nuevoHilo.getHiloID();
     }
-
+    */
 }
 

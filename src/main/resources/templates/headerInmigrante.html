@@ -52,6 +52,18 @@
                             Mi Perfil
                         </a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Otros
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Perfil</a></li>
+                            <li><a class="dropdown-item" th:href="@{/encuestas}">Encuestas</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a></li>
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
 
@@ -69,6 +81,9 @@
                     <li><a class="dropdown-item" th:text="#{profile}" th:href="@{/usuario/editar}">Mi Perfil</a></li>
                 </ul>
             </div>
+
+
+
 
             <!-- DERECHA: Banderas -->
             <div class="d-flex align-items-center">
@@ -112,7 +127,6 @@
     </nav>
 </div>
 
-<!-- Bootstrap JS (imprescindible para que funcione el offcanvas) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
