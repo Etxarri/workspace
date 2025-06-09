@@ -10,7 +10,7 @@
             <div class="col-12 text-center">
                 <h3>
                     <i class="bi bi-collection"></i>
-                    Recursos Locales
+                    <span th:text="#{recursos.locales}">Recursos Locales</span>
                 </h3>
             </div>
             <div class="col-md-6 col-12 d-flex justify-content-center">
@@ -23,8 +23,8 @@
                         </option>
                     </select>
                     <select name="categoria" class="form-select w-auto">
-                        <option th:value="0" th:selected="${categoriaSeleccionada == null}">Todas las categorías</option>
-                        <option th:each="cat : ${categorias}" th:value="${cat.categoriaID}" th:text="${cat.nombre}" th:selected="${categoriaSeleccionada == cat.categoriaID}"></option>
+                        <option th:value="0" th:selected="${categoriaSeleccionada == null}" th:text="#{evento.categorias}">Todas las categorías</option>
+                        <option th:each="cat : ${categorias}" th:value="${cat.categoriaID}" th:text="${#messages.msg('categoria.' + cat.categoriaID)}" th:selected="${categoriaSeleccionada == cat.categoriaID}"></option>
                     </select>
                 </form>
             </div>
@@ -42,15 +42,15 @@
                                         <i class="bi bi-geo-alt"></i>
                                         <span th:text="${recurso.ciudad.nombre}"></span>
                                     </p>
-                                    <p class="mb-0"><strong>Dirección:</strong> <span th:text="${recurso.direccion}"></span></p>
-                                    <p class="mb-0"><strong>Teléfono:</strong> <span th:text="${recurso.telefono}"></span></p>
-                                    <p class="mb-0"><strong>Horario:</strong> <span th:text="${recurso.hora_abierto}"></span> - <span th:text="${recurso.hora_cerrado}"></span></p>
-                                    <p class="mb-0"><strong>Descripción:</strong> <span th:text="${recurso.descripcion}"></span></p>
+                                    <p class="mb-0"><strong th:text="#{Dirección}">Dirección:</strong> <span th:text="${recurso.direccion}"></span></p>
+                                    <p class="mb-0"><strong th:text="#{Teléfono}">Teléfono:</strong> <span th:text="${recurso.telefono}"></span></p>
+                                    <p class="mb-0"><strong th:text="#{Horario}">Horario:</strong> <span th:text="${recurso.hora_abierto}"></span> - <span th:text="${recurso.hora_cerrado}"></span></p>
+                                    <p class="mb-0"><strong th:text="#{Descripción}">Descripción:</strong> <span th:text="${recurso.descripcion}"></span></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div th:if="${#lists.isEmpty(recursos)}" class="text-center text-muted">
+                    <div th:if="${#lists.isEmpty(recursos)}" class="text-center text-muted" th:text="#{recursos.vacios}">
                         No hay recursos disponibles para esta categoría.
                     </div>
                 </div>
