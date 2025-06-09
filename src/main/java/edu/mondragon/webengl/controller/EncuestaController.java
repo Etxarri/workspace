@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -40,10 +42,24 @@ public class EncuestaController
 
     // Lista todas las encuestas disponibles
     @GetMapping()
-    public String listarEncuestas(Model model)
+    public String listarEncuestas(Model model, @AuthenticationPrincipal UsuarioDetails user)
     {
         List<Encuesta> encuestas = encuestaRepo.findAll();
         model.addAttribute("encuestas", encuestas);
+
+        // Mapa para saber si el usuario ha respondido cada encuesta
+        Map<Integer, Boolean> respondidas = new HashMap<>();
+        if (user != null) {
+            int usuarioID = user.getUsuario().getUsuarioID();
+            for (Encuesta encuesta : encuestas) {
+                boolean respondida = hacerEncuestaRepo
+                    .findFirstByUsuarioIDAndEncuestaIDOrderByEncuestaIDDesc(usuarioID, encuesta.getEncuestaID())
+                    .isPresent();
+                respondidas.put(encuesta.getEncuestaID(), respondida);
+            }
+        }
+        model.addAttribute("respondidas", respondidas);
+
         return "encuestas/lista";
     }
 
@@ -229,6 +245,23 @@ public class EncuestaController
             System.out.println("Navegacional: " + he.getResultadoNavegacional());
         }
         
+        return "encuestas/graficoEncuesta";
+    }
+
+    @GetMapping("/{encuestaID}/grafico")
+    public String mostrarGraficoEncuesta(@PathVariable("encuestaID") int encuestaID, 
+                                     @AuthenticationPrincipal UsuarioDetails user, 
+                                     Model model) {
+        // Busca la última respuesta del usuario para esa encuesta
+        Optional<HacerEncuesta> heOpt = hacerEncuestaRepo.findFirstByUsuarioIDAndEncuestaIDOrderByEncuestaIDDesc(
+            user.getUsuario().getUsuarioID(), encuestaID);
+
+        if (heOpt.isEmpty()) {
+            model.addAttribute("error", "No has respondido esta encuesta.");
+            return "redirect:/encuestas";
+        }
+
+        model.addAttribute("encuesta", heOpt.get());
         return "encuestas/graficoEncuesta";
     }
 }

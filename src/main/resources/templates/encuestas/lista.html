@@ -10,15 +10,24 @@
         </h2>
         
         <div class="list-group">
-            <a th:each="encuesta : ${encuestas}" th:href="@{/encuestas/{id}(id=${encuesta.encuestaID})}" class="list-group-item list-group-item-action d-flex align-items-start align-item-center">
-                <div class="col-2 text-center">
-                    <i class="bi bi-clipboard-data fs-1"></i>
+            <div th:each="encuesta : ${encuestas}" class="list-group-item mb-3 p-0 border-0 bg-transparent">
+                <div class="d-flex align-items-center justify-content-between bg-white rounded shadow-sm p-3">
+                    <a th:href="@{/encuestas/{id}(id=${encuesta.encuestaID})}" class="d-flex align-items-center text-decoration-none text-dark flex-grow-1">
+                        <div class="text-center me-3" style="width:60px;">
+                            <i class="bi bi-clipboard-data fs-1"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1" th:text="${encuesta.titulo}">Título de la encuesta</h5>
+                            <p class="mb-1" th:text="${encuesta.descripcion}">Descripción de la encuesta</p>
+                        </div>
+                    </a>
+                    <span th:if="${respondidas[encuesta.encuestaID]}">
+                        <a th:href="@{/encuestas/{id}/grafico(id=${encuesta.encuestaID})}" class="btn btn-outline-primary btn-sm ms-2" title="Ver resultado">
+                            <i class="bi bi-bar-chart-line"></i> Ver resultado
+                        </a>
+                    </span>
                 </div>
-                <div class="col-10">
-                    <h5 class="mb-1" th:text="${encuesta.titulo}">Título de la encuesta</h5>
-                    <p class="mb-1" th:text="${encuesta.descripcion}">Descripción de la encuesta</p>
-                </div>
-            </a>
+            </div>
         </div>
     </div>
 
