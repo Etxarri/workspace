@@ -180,7 +180,6 @@ public class ForoController {
         comentario.setContenido(contenido);
         comentario.setFechaHora(LocalDateTime.now());
         comentario.setBotoPos(0); // Inicializar en 0
-        comentario.setBotoNeg(0); // Inicializar en 0
         comentarioRepo.save(comentario);
 
         List<ComentarioForo> comentarios = comentarioRepo.findByHiloOrderByBotoPosDesc(hiloOpt.get());
