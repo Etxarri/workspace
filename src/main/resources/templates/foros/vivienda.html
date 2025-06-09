@@ -1,92 +1,88 @@
+
 <div th:fragment="contenidoForo">
   <div class="mb-4">
-    <h2 class="mb-3"><i class="bi bi-house-door"></i> Vivienda</h2>
-    <p class="text-muted">Comparte tus dudas y consejos sobre alquiler, compra y ayudas para vivienda en España.</p>
+    <h2 class="mb-3"><i class="bi bi-house-door"></i> <span th:text="#{vivienda.titulo}">Vivienda</span></h2>
+    <p class="text-muted" th:text="#{vivienda.descripcion}">Comparte tus dudas y consejos sobre alquiler, compra y ayudas para vivienda en España.</p>
     <div class="row g-3">
       <div class="col-md-6">
         <div class="card border-success h-100">
           <div class="card-body">
-            <h5 class="card-title"><i class="bi bi-key"></i> Alquiler</h5>
-            <p class="card-text">Consejos para buscar piso, entender contratos y derechos del inquilino.</p>
+            <h5 class="card-title"><i class="bi bi-key"></i> <span th:text="#{vivienda.alquiler.titulo}">Alquiler</span></h5>
+            <p class="card-text" th:text="#{vivienda.alquiler.descripcion}">Consejos para buscar piso, entender contratos y derechos del inquilino.</p>
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card border-primary h-100">
           <div class="card-body">
-            <h5 class="card-title"><i class="bi bi-house"></i> Compra de vivienda</h5>
-            <p class="card-text">Información sobre hipotecas, trámites y experiencias al comprar una casa.</p>
+            <h5 class="card-title"><i class="bi bi-house"></i> <span th:text="#{vivienda.compra.titulo}">Compra de vivienda</span></h5>
+            <p class="card-text" th:text="#{vivienda.compra.descripcion}">Información sobre hipotecas, trámites y experiencias al comprar una casa.</p>
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card border-warning h-100">
           <div class="card-body">
-            <h5 class="card-title"><i class="bi bi-cash-coin"></i> Ayudas y subvenciones</h5>
-            <p class="card-text">Consulta sobre ayudas públicas, subsidios y programas de apoyo a la vivienda.</p>
+            <h5 class="card-title"><i class="bi bi-cash-coin"></i> <span th:text="#{vivienda.ayudas.titulo}">Ayudas y subvenciones</span></h5>
+            <p class="card-text" th:text="#{vivienda.ayudas.descripcion}">Consulta sobre ayudas públicas, subsidios y programas de apoyo a la vivienda.</p>
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card border-danger h-100">
           <div class="card-body">
-            <h5 class="card-title"><i class="bi bi-people"></i> Compartir piso</h5>
-            <p class="card-text">Experiencias y consejos para convivir y buscar compañeros de piso.</p>
+            <h5 class="card-title"><i class="bi bi-people"></i> <span th:text="#{vivienda.compartir.titulo}">Compartir piso</span></h5>
+            <p class="card-text" th:text="#{vivienda.compartir.descripcion}">Experiencias y consejos para convivir y buscar compañeros de piso.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-
   <!-- FAQ alternativa -->
   <div class="mt-5">
-    <h4><i class="bi bi-lightbulb"></i> Preguntas frecuentes</h4>
+    <h4><i class="bi bi-lightbulb"></i> <span th:text="#{vivienda.faq.titulo}">Preguntas frecuentes</span></h4>
     <div class="accordion" id="faqAccordionVivienda">
       <div class="accordion-item">
         <h2 class="accordion-header" id="faqV1">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseV1" aria-expanded="false" aria-controls="faqCollapseV1">
-            ¿Qué documentos necesito para alquilar un piso?
-          </button>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseV1" aria-expanded="false" aria-controls="faqCollapseV1"
+            th:text="#{vivienda.faq.p1.titulo}">¿Qué documentos necesito para alquilar un piso?</button>
         </h2>
         <div id="faqCollapseV1" class="accordion-collapse collapse" aria-labelledby="faqV1" data-bs-parent="#faqAccordionVivienda">
-          <div class="accordion-body">
+          <div class="accordion-body" th:text="#{vivienda.faq.p1.respuesta}">
             Normalmente se pide DNI/NIE, contrato de trabajo o justificante de ingresos y, a veces, aval bancario.
           </div>
         </div>
       </div>
       <div class="accordion-item">
         <h2 class="accordion-header" id="faqV2">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseV2" aria-expanded="false" aria-controls="faqCollapseV2">
-            ¿Cómo puedo solicitar ayudas al alquiler?
-          </button>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseV2" aria-expanded="false" aria-controls="faqCollapseV2"
+            th:text="#{vivienda.faq.p2.titulo}">¿Cómo puedo solicitar ayudas al alquiler?</button>
         </h2>
         <div id="faqCollapseV2" class="accordion-collapse collapse" aria-labelledby="faqV2" data-bs-parent="#faqAccordionVivienda">
-          <div class="accordion-body">
+          <div class="accordion-body" th:text="#{vivienda.faq.p2.respuesta}">
             Debes consultar las convocatorias de tu comunidad autónoma y presentar la documentación requerida en los plazos establecidos.
           </div>
         </div>
       </div>
       <div class="accordion-item">
         <h2 class="accordion-header" id="faqV3">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseV3" aria-expanded="false" aria-controls="faqCollapseV3">
-            ¿Qué derechos tengo como inquilino?
-          </button>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseV3" aria-expanded="false" aria-controls="faqCollapseV3"
+            th:text="#{vivienda.faq.p3.titulo}">¿Qué derechos tengo como inquilino?</button>
         </h2>
         <div id="faqCollapseV3" class="accordion-collapse collapse" aria-labelledby="faqV3" data-bs-parent="#faqAccordionVivienda">
-          <div class="accordion-body">
+          <div class="accordion-body" th:text="#{vivienda.faq.p3.respuesta}">
             Tienes derecho a un contrato por escrito, devolución de la fianza y a que el piso esté en condiciones de habitabilidad. Consulta la LAU para más detalles.
           </div>
         </div>
       </div>
       <div class="accordion-item">
         <h2 class="accordion-header" id="faqV4">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseV4" aria-expanded="false" aria-controls="faqCollapseV4">
-            ¿Cómo puedo encontrar compañeros de piso?
-          </button>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseV4" aria-expanded="false" aria-controls="faqCollapseV4"
+            th:text="#{vivienda.faq.p4.titulo}">¿Cómo puedo encontrar compañeros de piso?</button>
         </h2>
         <div id="faqCollapseV4" class="accordion-collapse collapse" aria-labelledby="faqV4" data-bs-parent="#faqAccordionVivienda">
-          <div class="accordion-body">
+          <div class="accordion-body" th:text="#{vivienda.faq.p4.respuesta}">
             Puedes usar plataformas online, grupos de redes sociales o preguntar en este foro por recomendaciones y experiencias.
           </div>
         </div>
@@ -95,37 +91,49 @@
   </div>
   <!-- Botón para añadir pregunta -->
   <div class="alert alert-info mt-4 mb-2 d-flex align-items-center justify-content-between">
-    <span><i class="bi bi-question-circle"></i> ¿Tienes una nueva duda sobre trámites?</span>
-    <a class="btn btn-outline-info btn-sm" data-bs-toggle="collapse" href="#nuevaPreguntaTramites" role="button" aria-expanded="false" aria-controls="nuevaPreguntaTramites">
-      <i class="bi bi-plus-circle"></i> Añadir pregunta
+    <span><i class="bi bi-question-circle"></i> <span th:text="#{vivienda.nueva_pregunta.texto}">¿Tienes una nueva duda sobre vivienda?</span></span>
+    <a class="btn btn-outline-info btn-sm" data-bs-toggle="collapse" href="#nuevaPreguntaVivienda" role="button" aria-expanded="false" aria-controls="nuevaPreguntaVivienda">
+      <i class="bi bi-plus-circle"></i> <span th:text="#{vivienda.nueva_pregunta.boton}">Añadir pregunta</span>
     </a>
   </div>
-  <div class="collapse" id="nuevaPreguntaTramites">
+  <div class="collapse" id="nuevaPreguntaVivienda">
     <div class="card my-3">
       <div class="card-body">
         <form th:action="@{/foro/preguntasFrecuentes}" method="post">
           <input type="hidden" name="temaId" th:value="${tema.temaID}" />
           <div class="mb-3">
-            <label for="preguntaContenidoTramites" class="form-label">Pregunta</label>
-            <textarea class="form-control" id="preguntaContenidoTramites" name="contenido" rows="3" required></textarea>
+            <label for="preguntaContenidoVivienda" class="form-label" th:text="#{vivienda.nueva_pregunta.label}">Pregunta</label>
+            <textarea class="form-control" id="preguntaContenidoVivienda" name="contenido" rows="3" required></textarea>
           </div>
-          <button type="submit" class="btn btn-info">Publicar</button>
+          <button type="submit" class="btn btn-info" th:text="#{vivienda.nueva_pregunta.publicar}">Publicar</button>
         </form>
       </div>
     </div>
   </div>
 
-      <!-- Preguntas de usuarios -->
+  <!-- Preguntas de usuarios -->
   <div class="mt-5">
-    <h4><i class="bi bi-people"></i> Preguntas de usuarios</h4>
-    <div th:if="${preguntasUsuarios != null and #lists.isEmpty(preguntasUsuarios)}" class="text-muted">
+    <h4><i class="bi bi-people"></i> <span th:text="#{vivienda.preguntas_usuarios.titulo}">Preguntas de usuarios</span></h4>
+    <div th:if="${preguntasUsuarios != null and #lists.isEmpty(preguntasUsuarios)}" class="text-muted" th:text="#{vivienda.preguntas_usuarios.vacio}">
       No hay preguntas publicadas aún. ¡Sé el primero en preguntar!
     </div>
-    <div class="list-group">
+    <!--
       <div th:each="pregunta : ${preguntasUsuarios}" class="list-group-item mb-2">
         <a th:href="@{/foro/preguntaUsuario/{preguntaID}(preguntaID=${pregunta.preguntaID})}" style="text-decoration: none; color: inherit;">
           <h6 class="mb-1"><i class="bi bi-question-circle"></i> <span th:text="${pregunta.pregunta}">Título de la pregunta</span></h6>
         </a>
+        <small class="text-muted" th:text="${#dates.format(pregunta.fechaCreacion, 'dd/MM/yyyy')}">Fecha</small>
+      </div>
+    </div>-->
+    <div class="list-group">
+      <div th:each="pregunta : ${preguntasUsuarios}" class="list-group-item mb-2">
+        <a th:href="@{/foro/preguntaUsuario/{preguntaID}(preguntaID=${pregunta.preguntaID})}" style="text-decoration: none; color: inherit;">
+            <h6 class="mb-1"><i class="bi bi-question-circle"></i> <span class="pregunta-original" th:text="${pregunta.pregunta}">Título de la pregunta</span></h6>
+        </a>
+
+        <!-- Fragmento del botón de traducción -->
+       <!-- <div th:replace="/foros/boton_traducir :: botonTraducir(${pregunta.pregunta})"></div>-->
+
         <small class="text-muted" th:text="${#dates.format(pregunta.fechaCreacion, 'dd/MM/yyyy')}">Fecha</small>
       </div>
     </div>

@@ -26,6 +26,7 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/HacerEncuesta.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/evento/model/RecienllegadoEventoId.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/Temaforo.java
+/workspace/src/main/java/edu/mondragon/webengl/controller/DeepLRestController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/repository/ComentarioForoRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/categoria/model/Categoria.java
 /workspace/src/main/java/edu/mondragon/webengl/seguridad/UsuarioDetailsService.java

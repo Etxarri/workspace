@@ -1,6 +1,7 @@
 package edu.mondragon.webengl.controller;
 
 
+import edu.mondragon.webengl.domain.categoria.model.Categoria;
 import edu.mondragon.webengl.domain.categoria.repository.CategoriaRepository;
 import edu.mondragon.webengl.domain.evento.model.EventoLocal;
 import edu.mondragon.webengl.domain.evento.model.UsuarioEventoId;
@@ -98,7 +99,9 @@ public class EventoLocalController {
     public String listarEventos(Model model) {
         List<EventoLocal> eventos = eventoRepo.findAll();
         model.addAttribute("eventos", eventos);
-        return "evento/listaEventos";
+        List<Categoria> categorias = categoriaRepository.findAll();
+        model.addAttribute("categorias", categorias);
+        return "evento/listaEventos"; // nombre del template Thymeleaf
     }
 
     @GetMapping("/{eventoID}")
@@ -124,6 +127,7 @@ public class EventoLocalController {
     public String apuntarseEvento(
             @PathVariable("eventoID") int eventoID,
             @AuthenticationPrincipal UsuarioDetails user,
+            @RequestParam(value = "redirectTo", required = false) String redirectTo,
             HttpSession session,
             RedirectAttributes redirectAttrs,
             Model model) {
@@ -137,7 +141,6 @@ public class EventoLocalController {
 
         if (inscripcionRepo.existsById(compuesta)) {
             redirectAttrs.addFlashAttribute("info", "Ya estás apuntado a este evento.");
-            System.out.println("Ya está apuntado al evento: " + eventoID);
             return "redirect:/eventos/listaEventos";
         } else {
             UsuarioApuntarseEvento inscripcion = new UsuarioApuntarseEvento();
@@ -145,11 +148,14 @@ public class EventoLocalController {
             inscripcion.setFechaInscripcion(LocalDate.now());
             inscripcionRepo.save(inscripcion);
 
-            Optional<EventoLocal> eventoOpt = eventoRepo.findById(eventoID);
-            eventoOpt.ifPresent(evento -> model.addAttribute("evento", evento));
-
-            System.out.println("Apuntado al evento: " + eventoID);
-            return "redirect:/eventos/" + eventoID;
+            // Redirección según el parámetro
+            if ("listaEventos".equals(redirectTo)) {
+                return "redirect:/eventos/listaEventos";
+            } else if ("misEventos".equals(redirectTo)) {
+                return "redirect:/eventos/misEventos";
+            } else {
+                return "redirect:/eventos/" + eventoID;
+            }
         }
     }
 
@@ -175,6 +181,10 @@ public class EventoLocalController {
 
         model.addAttribute("paginaActual", "misEventos");
 
+        List<Categoria> categorias = categoriaRepository.findAll();
+        System.out.println("CATEGORIAS DISPONIBLES: " + categorias.size()); // <-- Línea de depuración
+
+
         model.addAttribute("eventos", eventos);
         model.addAttribute("categorias", categoriaRepository.findAll());
         model.addAttribute("categoriaSeleccionada", categoriaID);
@@ -187,6 +197,7 @@ public class EventoLocalController {
     public String desapuntarseEvento(
             @PathVariable("eventoID") int eventoID,
             @AuthenticationPrincipal UsuarioDetails user,
+            @RequestParam(value = "redirectTo", required = false) String redirectTo,
             RedirectAttributes redirectAttrs,
             Model model) { 
         int usuarioId = user.getUsuario().getUsuarioID();
@@ -197,9 +208,14 @@ public class EventoLocalController {
         if (inscripcionRepo.existsById(compuesta)) {
             inscripcionRepo.deleteById(compuesta);
 
-            Optional<EventoLocal> eventoOpt = eventoRepo.findById(eventoID);
-            eventoOpt.ifPresent(evento -> model.addAttribute("evento", evento));
-            return "redirect:/eventos/" + eventoID;
+            // Redirección según el parámetro
+            if ("listaEventos".equals(redirectTo)) {
+                return "redirect:/eventos/listaEventos";
+            } else if ("misEventos".equals(redirectTo)) {
+                return "redirect:/eventos/misEventos";
+            } else {
+                return "redirect:/eventos/" + eventoID;
+            }
         } else {
             redirectAttrs.addFlashAttribute("error", "No estabas apuntado a este evento.");
             return "redirect:/eventos/misEventos";

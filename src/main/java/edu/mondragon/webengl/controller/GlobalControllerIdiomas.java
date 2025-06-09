@@ -13,7 +13,7 @@ public class GlobalControllerIdiomas {
             Map.of("src", "/images/español_logo.png", "alt", "Español", "lang", "es"),
             Map.of("src", "/images/frances_logo.png", "alt", "Francés", "lang", "fr"),
             Map.of("src", "/images/ingles_logo.png", "alt", "Inglés", "lang", "en"),
-            Map.of("src", "/images/arabe_logo.png", "alt", "arabe", "lang", "ar")
+            Map.of("src", "/images/arabe_logo.png", "alt", "Arabe", "lang", "ar")
         );
     }
 }

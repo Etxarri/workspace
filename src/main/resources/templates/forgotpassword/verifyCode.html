@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
-    <title layout:title="Verificar Código"></title>
+    <title layout:title="Verificar codigo"></title>
 </head>
+
 <main layout:fragment="content">
     <div class="container-fluid">
 
@@ -11,13 +12,13 @@
         </div>
 
         <form th:action="@{/verify-code}" method="post" class="mx-auto gureForm">
-            <h4 class="text-center">Introduce el código recibido</h4>
+            <h4 class="text-center" th:text="#{recibido}">Introduce el código recibido</h4>
             <input type="hidden" name="email" th:value="${email}" />
             <div class="mb-3">
-                <label for="code">Código:</label>
+                <label for="code" th:text="#{introducir}">Código:</label>
                 <input type="text" id="code" name="code" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Verificar</button>
+            <button type="submit" class="btn btn-primary mt-3" th:text="#{verificar}">Verificar</button>
         </form>
     </div>
 </main>

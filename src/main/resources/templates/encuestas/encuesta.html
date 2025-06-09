@@ -1,20 +1,13 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/css/main.css">
-
-    <title th:text="${encuesta.titulo}">Encuesta</title>
+    <title layout:title="Encuesta"></title>
 </head>
-<body>
-    <h1 class="col-12 text-center display-4 mb-3">ENCUESTA DE INTEGRACIÓN</h1>
+<body layout:fragment="content">
+    <h2 class="text-center mb-3 mt-5" style="font-size:2rem; font-weight:600; letter-spacing:1px;">
+        ENCUESTA DE INTEGRACION
+    </h2>
     <div class="col-10 container-fluid mb-5 mt-3">
         <form th:action="@{/encuestas/{encuestaID}/responder(encuestaID=${encuesta.encuestaID})}" th:object="${encuestaRespuestas}" method="post" class="mx-auto encuesta">
         

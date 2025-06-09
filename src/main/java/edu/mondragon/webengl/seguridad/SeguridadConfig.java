@@ -6,24 +6,21 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.util.matcher.RegexRequestMatcher;
-import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
-import org.springframework.boot.web.server.WebServerFactoryCustomizer;
-import org.apache.catalina.connector.Connector;
+import org.springframework.security.web.SecurityFilterChain;
+
 
 @Configuration
 @EnableWebSecurity
-public class SeguridadConfig extends WebSecurityConfigurerAdapter {
-
+public class SeguridadConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+            .csrf().disable()
             // Fuerza HTTPS (redirige automáticamente de HTTP a HTTPS)
             .requiresChannel()
                 .anyRequest()
@@ -31,7 +28,7 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter {
             .and()
             // Permite el acceso a recursos estáticos y páginas de login sin autenticación
             .authorizeRequests()
-                .antMatchers("/login", "/css/**", "/js/**", "/usuario/crear").permitAll()
+                .antMatchers("/login", "/css/**", "/js/**", "/usuario/crear", "/api/traducir", "/forgot-password", "/verify-code", "/reset-password").permitAll()
                 .anyRequest().authenticated()
             .and()
             // Indica donde se encuentra la página de login y la URL de éxito después del login
@@ -48,6 +45,7 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .permitAll();
+        return http.build();
     }
     // Redirige HTTP a HTTPS
 

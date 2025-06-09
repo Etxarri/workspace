@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @Service
 public class DeepLService {
@@ -24,19 +27,36 @@ public class DeepLService {
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         headers.set("Authorization", "DeepL-Auth-Key " + apiKey);
 
-        String body = "text=" + texto + "&target_lang=" + targetLang.toUpperCase();
+        String encodedText = URLEncoder.encode(texto, StandardCharsets.UTF_8);
+        String body = "text=" + encodedText + "&target_lang=" + targetLang.toUpperCase();
 
         HttpEntity<String> request = new HttpEntity<>(body, headers);
 
-        ResponseEntity<Map> response = restTemplate.postForEntity(API_URL, request, Map.class);
+        try {
+            ResponseEntity<Map> response = restTemplate.postForEntity(API_URL, request, Map.class);
 
-        if (response.getStatusCode() == HttpStatus.OK) {
-            List<Map<String, String>> translations = (List<Map<String, String>>) response.getBody().get("translations");
-            return translations.get(0).get("text");
+            if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
+                Object translationsObj = response.getBody().get("translations");
+                if (translationsObj instanceof List) {
+                    List translations = (List) translationsObj;
+                    if (!translations.isEmpty() && translations.get(0) instanceof Map) {
+                        Map first = (Map) translations.get(0);
+                        Object textObj = first.get("text");
+                        if (textObj != null) {
+                            return textObj.toString();
+                        }
+                    }
+                }
+            } else {
+                System.err.println("Respuesta de DeepL no OK: " + response.getStatusCode());
+            }
+        } catch (Exception e) {
+            System.err.println("Error al traducir con DeepL: " + e.getMessage());
         }
         return texto;
     }
 
+/*
     private DeepLService deepLService;
 
     @GetMapping("/ejemplo-traduccion")
@@ -46,4 +66,5 @@ public class DeepLService {
         model.addAttribute("mensaje", textoTraducido);
         return "ejemploVista";
     }
+    */
 }
