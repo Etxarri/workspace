@@ -6,7 +6,7 @@
 
 <main layout:fragment="content">
     <div class="container-fluid mt-5">
-        <form th:action="@{/usuario/editar}" method="post" class="mx-auto">
+        <form th:action="@{/usuario/editar}" method="post" class="mx-auto gureForm">
             <h4 class="text-center" th:text="#{usuario.editar.titulo}">Editar Usuario</h4>
 
             <input type="hidden" name="usuarioID" th:value="${usuario.usuarioID}" />
