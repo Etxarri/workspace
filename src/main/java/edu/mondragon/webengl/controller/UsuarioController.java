@@ -9,6 +9,8 @@ import edu.mondragon.webengl.domain.user.model.Usuario.TipoUsuario;
 import edu.mondragon.webengl.domain.user.service.UsuarioService;
 import edu.mondragon.webengl.seguridad.UsuarioDetails;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,9 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
     private final CiudadRepository ciudadRepository;
     private final PaisRepository paisRepository;   
+
+    private static final Logger logger = LoggerFactory.getLogger(EventoLocalController.class);
+
 
     public UsuarioController(UsuarioService usuarioService, CiudadRepository ciudadRepository, PaisRepository paisRepository) {
         this.usuarioService = usuarioService;
@@ -50,6 +55,7 @@ public class UsuarioController {
             @RequestParam(required = false) String lenguaje,
             @RequestParam(required = false) String habilidades,
             @RequestParam(required = false) String motivacion,
+            @RequestParam(required = false) String fecha_llegada,
             @RequestParam int paisID,
             @RequestParam int ciudadID,
             HttpSession session,
@@ -57,8 +63,11 @@ public class UsuarioController {
     ) {
         if (usuarioService.existeUsuarioPorEmail(email)) {
             redirectAttributes.addFlashAttribute("error", "El email ya está registrado.");
+                    logger.info("\n \naasdfasdfa\n");
+
             return "redirect:/usuario/crear";
         }
+        logger.info("\n \naasdfasdfa\n");
 
         usuarioService.crearUsuario(
             nombre,
@@ -70,6 +79,8 @@ public class UsuarioController {
             paisID,
             ciudadID
         );
+
+        logger.info("\n \naasdfasdfa\n");
 
         Usuario usuarioCreado = usuarioService.findUsuarioByEmail(email).orElse(null);
         if (usuarioCreado != null) {
