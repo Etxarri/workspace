@@ -9,7 +9,6 @@ import edu.mondragon.webengl.domain.foro.repository.ComentarioForoRepository;
 import edu.mondragon.webengl.domain.foro.repository.HiloforoRepository;
 import edu.mondragon.webengl.domain.foro.repository.PreguntaFrecuenteRepository;
 import edu.mondragon.webengl.domain.foro.repository.TemaforoRepository;
-import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.service.UsuarioService;
 import edu.mondragon.webengl.seguridad.UsuarioDetails;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -79,8 +78,7 @@ public class ForoController {
     }
 
     @GetMapping("/preguntaUsuario/{preguntaID}")
-    public String accederPreguntaUsuario(@PathVariable int preguntaID,@AuthenticationPrincipal UsuarioDetails usuario, Model model) {
-        
+    public String accederPreguntaUsuario(@PathVariable int preguntaID, @AuthenticationPrincipal UsuarioDetails usuario, Model model) {
         Optional<PreguntaFrecuente> preguntaOpt = preguntaFrecuenteRepo.findById(preguntaID);
         logger.info("\n\nAccediendo a la pregunta frecuente: {}\n\n", preguntaID);
         if (preguntaOpt.isPresent()) {
@@ -90,10 +88,11 @@ public class ForoController {
                 List<ComentarioForo> comentarios = comentarioRepo.findByHiloOrderByBotoPosDesc(hiloOpt.get());
                 model.addAttribute("hilo", hilo);
                 model.addAttribute("comentarios", comentarios);
-                model.addAttribute("pregunta", preguntaOpt.get()); 
-                model.addAttribute("usuarioLogueado", usuario.getUsuario()); 
+                model.addAttribute("pregunta", preguntaOpt.get());
+                model.addAttribute("usuarioLogueado", usuario.getUsuario());
                 model.addAttribute("paginaActual", "foro");
-
+                // Añade el temaID al modelo
+                model.addAttribute("temaID", preguntaOpt.get().getTema().getTemaID());
             }
             return "foros/pregunta";
         }
@@ -180,7 +179,6 @@ public class ForoController {
         comentario.setContenido(contenido);
         comentario.setFechaHora(LocalDateTime.now());
         comentario.setBotoPos(0); // Inicializar en 0
-        comentario.setBotoNeg(0); // Inicializar en 0
         comentarioRepo.save(comentario);
 
         List<ComentarioForo> comentarios = comentarioRepo.findByHiloOrderByBotoPosDesc(hiloOpt.get());

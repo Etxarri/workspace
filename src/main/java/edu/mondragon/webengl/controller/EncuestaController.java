@@ -59,6 +59,7 @@ public class EncuestaController
             }
         }
         model.addAttribute("respondidas", respondidas);
+        model.addAttribute("paginaActual", "encuestas");
 
         return "encuestas/lista";
     }
@@ -97,6 +98,7 @@ public class EncuestaController
         model.addAttribute("encuesta", encuestaOpt.get());
         // Añadir el DTO vacío al modelo para el binding del formulario
         model.addAttribute("encuestaRespuestas", new EncuestaRespuestas());
+        model.addAttribute("paginaActual", "encuestas");
 
         return "encuestas/encuesta";
     }
@@ -214,6 +216,7 @@ public class EncuestaController
             hacerEncuestaRepo.save(he);
 
             redirectAttrs.addFlashAttribute("mensaje", "¡Gracias por responder la encuesta!");
+
             return "redirect:/encuestas/graficoEncuesta";
         }
         catch (Exception e)
@@ -244,7 +247,8 @@ public class EncuestaController
             System.out.println("Social: " + he.getResultadoSocial());
             System.out.println("Navegacional: " + he.getResultadoNavegacional());
         }
-        
+        model.addAttribute("paginaActual", "encuestas");
+
         return "encuestas/graficoEncuesta";
     }
 
@@ -262,6 +266,8 @@ public class EncuestaController
         }
 
         model.addAttribute("encuesta", heOpt.get());
+        model.addAttribute("paginaActual", "encuestas");
+
         return "encuestas/graficoEncuesta";
     }
 }

@@ -1,47 +1,40 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
-    <meta charset="UTF-8">
-    <title th:text="'Chat en ' + ${idioma}">Chat</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
-    <!-- SockJS + STOMP -->
-    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+    <title layout:title="Chat"></title>
 </head>
-<body class="bg-light">
 
-<header th:replace="headerInmigrante :: header"></header>
+<main layout:fragment="content">
+    <div class="container py-4" style="max-width: 900px;">
+        <a class="btn btn-link mb-2 p-0" th:href="@{/foro/principal}" style="text-decoration:none; font-size:1.2rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16" style="vertical-align: middle;">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 7.5H14.5A.5.5 0 0 1 15 8z"/>
+            </svg>
+            <span style="vertical-align: middle;" th:text="#{volver}">Volver</span>
+        </a>
 
-<main class="container py-4">
-
-    <div class="mb-4 text-center">
-        <h2><i class="bi bi-chat-dots"></i> Chat en <span th:text="${idioma}">idioma</span></h2>
-    </div>
-
-    <!-- Caja tipo chat con colores personalizados -->
-    <div class="card mx-auto" style="max-width: 800px;">
-        <div class="card-header text-white" style="background-color: rgb(140, 207, 240);"> </div>
-
-        <div class="card-body" id="comentariosLista" style="height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
-            <!-- Comentarios se insertan aquí -->
+        <div class="mb-4 text-center">
+            <h2><i class="bi bi-chat-dots"></i> <span th:text="#{chat}">Chat</span></h2>
         </div>
 
-        <div class="card-footer bg-white px-2">
-            <form id="comentarioForm" class="d-flex align-items-center w-100 gap-2 mt-2">
-                <input type="hidden" id="usuarioID" th:value="${usuarioLogueado.usuarioID}" />
-                <input type="hidden" id="idioma" th:value="${idioma}" />
-                <textarea class="form-control" id="contenido" rows="1" placeholder="Escribe tu mensaje..." required style="resize: none; min-height: 20px;"></textarea>
-                <button type="submit" class="btn text-white" style="background-color: rgb(140, 207, 240);"><i class="bi bi-send"></i></button>
-            </form>
+        <!-- Caja tipo chat con colores personalizados -->
+        <div class="card mx-auto" style="max-width: 800px;">
+            <div class="card-header text-white" style="background-color: rgb(140, 207, 240);"> </div>
+
+            <div class="card-body" id="comentariosLista" style="height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
+                <!-- Comentarios se insertan aquí -->
+            </div>
+
+            <div class="card-footer bg-white px-2">
+                <form id="comentarioForm" class="d-flex align-items-center w-100 gap-2 mt-2">
+                    <input type="hidden" id="usuarioID" th:value="${usuarioLogueado.usuarioID}" />
+                    <input type="hidden" id="idioma" th:value="${idioma}" />
+                    <textarea class="form-control" id="contenido" rows="1" placeholder="Escribe tu mensaje..." required style="resize: none; min-height: 20px;"></textarea>
+                    <button type="submit" class="btn text-white" style="background-color: rgb(140, 207, 240);"><i class="bi bi-send"></i></button>
+                </form>
+            </div>
         </div>
     </div>
-
 </main>
 
 <!-- Lógica WebSocket y Fetch integrada -->

@@ -121,6 +121,8 @@ public class UsuarioController {
             model.addAttribute("motivacion", voluntario != null ? voluntario.getMotivacion() : "");
         }
 
+        model.addAttribute("paginaActual", "perfil");
+
         return "user/editarUsuario";
     }
 
@@ -163,8 +165,8 @@ public class UsuarioController {
 
         // Recarga el usuario actualizado desde la base de datos
         Usuario usuarioActualizado = usuarioService.findUsuarioByIdUsuario(usuarioID);
-        session.setAttribute("usuario", usuarioActualizado);
-
+        session.setAttribute("usuario", usuarioActualizado);        
+        session.setAttribute("paginaActual", "perfil");
         redirectAttributes.addFlashAttribute("success", "Datos actualizados correctamente.");
         return "redirect:/login";
     }

@@ -3,8 +3,12 @@
   <head>
     <title layout:title="Foros Secundario"></title>
   </head>
+<body>
 <main layout:fragment="content">
   <div class="container py-5">
+    <a class="btn btn-link text-decoration-none" th:href="@{/foro/principal}" style="font-size: 1.2rem;">
+        <i class="bi bi-arrow-left-circle-fill"></i> <span th:text="#{volver}">Volver</span>
+    </a>
       <div th:switch="${tema.nombre}">
           <div th:case="'Trámites-Documentación'">
               <div th:replace="foros/tramites :: contenidoForo"></div>

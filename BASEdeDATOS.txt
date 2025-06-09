@@ -42,7 +42,14 @@ create table usuario (
   CONSTRAINT USUARIO_PAIS_FK FOREIGN KEY (paisID) REFERENCES pais (paisID),
   CONSTRAINT USUARIO_CIUDAD_FK FOREIGN KEY (ciudadID) REFERENCES ciudad (ciudadID)
 );
-
+CREATE TABLE mensajechat (
+  mensajeID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  usuarioID SMALLINT UNSIGNED NOT NULL,
+  contenido VARCHAR(1000) NOT NULL,
+  fecha_hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  idioma VARCHAR(10) NOT NULL,
+  FOREIGN KEY (usuarioID) REFERENCES usuario(usuarioID)
+);
 create table recienllegado (
   usuarioID smallint unsigned not null,
   necesidades VARCHAR(50),
@@ -91,8 +98,7 @@ create table comentarioforo (
   usuarioID smallint unsigned not null,
   contenido VARCHAR(50) not null,
   fecha_hora timestamp not null,
-  boto_pos integer, 
-  boto_neg integer,
+  boto_pos integer,
   CONSTRAINT COMENTARIOFORO_PK PRIMARY KEY (comentarioID),
   CONSTRAINT COMENTARIOFORO_HILO_FK FOREIGN KEY (hiloID) REFERENCES hiloforo (hiloID),
   CONSTRAINT COMENTARIOFORO_USUARIO_FK FOREIGN KEY (usuarioID) REFERENCES usuario (usuarioID)
@@ -113,6 +119,7 @@ create table eventolocal (
   descripcion VARCHAR(100) not null,
   fecha_hora timestamp not null,
   lugar VARCHAR(100) not null,
+  imagen VARCHAR(100),
   CONSTRAINT EVENTOLOCAL_PK PRIMARY KEY (eventoID),
   CONSTRAINT EVENTOLOCAL_CIUDAD_FK FOREIGN KEY (ciudadID) REFERENCES ciudad (ciudadID),
   CONSTRAINT EVENTOLOCA_CATEGORIA_FK FOREIGN KEY (categoriaID) REFERENCES categoria (categoriaID),
@@ -157,6 +164,13 @@ create table hacer_encuesta (
   usuarioID smallint unsigned not null,
   titulo varchar(50) not null,
   descripcion varchar(100),
+  resultado_psicologico double(5, 4) unsigned not null,
+  resultado_linguistico double(5, 4) unsigned not null,
+  resultado_economico double(5, 4) unsigned not null,
+  resultado_politico double(5, 4) unsigned not null,
+  resultado_social double(5, 4) unsigned not null,
+  resultado_navegacional double(5, 4) unsigned not null,
+  resultado_total double(5, 4) unsigned not null,
   CONSTRAINT HACER_PK PRIMARY KEY (encuestaID, usuarioID),
   CONSTRAINT HACER_ENCUESTA_FK FOREIGN KEY (encuestaID) REFERENCES encuesta (encuestaID),
   CONSTRAINT HACER_USUARIO_FK FOREIGN KEY (usuarioID) REFERENCES usuario (usuarioID)
@@ -242,15 +256,15 @@ INSERT INTO categoria (categoriaID, nombre, descripcion) VALUES
 
 
 -- Poblar tabla eventolocal
-INSERT INTO eventolocal (eventoID, ciudadID, categoriaID, usuarioID, titulo, descripcion, fecha_hora, lugar) VALUES
-(1, 1, 1, 1, 'Intercambio de idiomas', 'Sesión para practicar inglés y español', '2023-05-20 18:00:00', 'Centro Cultural'),
-(2, 3, 2, 1, 'Taller cultural', 'Introducción a las festividades españolas', '2023-06-15 10:00:00', 'Sala de conferencias'),
-(3, 1, 3, 1, 'Feria de empleo', 'Conecta con empleadores locales y recibe orientación laboral', '2023-07-10 09:00:00', 'Pabellón municipal de Barcelona'),
-(4, 2, 4, 1, 'Puertas abiertas escolares', 'Visita a colegios públicos para conocer opciones educativas', '2023-07-15 17:30:00', 'Escuela Primaria Central'),
-(5, 3, 5, 1, 'Charla sobre salud pública', 'Información sobre servicios sanitarios gratuitos', '2023-07-22 11:00:00', 'Centro de Salud Lavapiés'),
-(6, 1, 6, 1, 'Ayuda con trámites', 'Taller práctico para empadronamiento y NIE', '2023-08-01 16:00:00', 'Oficina de Atención al Ciudadano'),
-(7, 2, 7, 1, 'Asesoría legal básica', 'Sesión de preguntas y respuestas sobre derechos laborales', '2023-08-10 18:00:00', 'Centro Comunitario La Merced'),
-(8, 3, 2, 1, 'Taller cultural', 'Introducción a las festividades españolas', '2023-06-15 10:00:00', 'Sala de conferencias');
+INSERT INTO eventolocal (eventoID, ciudadID, categoriaID, usuarioID, titulo, descripcion, fecha_hora, lugar, imagen) VALUES
+(1, 1, 1, 1, 'Intercambio de idiomas', 'Sesión para practicar inglés y español', '2023-05-20 18:00:00', 'Centro Cultural', null),
+(2, 3, 2, 1, 'Taller cultural', 'Introducción a las festividades españolas', '2023-06-15 10:00:00', 'Sala de conferencias', null),
+(3, 1, 3, 1, 'Feria de empleo', 'Conecta con empleadores locales y recibe orientación laboral', '2023-07-10 09:00:00', 'Pabellón municipal de Barcelona', null),
+(4, 2, 4, 1, 'Puertas abiertas escolares', 'Visita a colegios públicos para conocer opciones educativas', '2023-07-15 17:30:00', 'Escuela Primaria Central', null),
+(5, 3, 5, 1, 'Charla sobre salud pública', 'Información sobre servicios sanitarios gratuitos', '2023-07-22 11:00:00', 'Centro de Salud Lavapiés', null),
+(6, 1, 6, 1, 'Ayuda con trámites', 'Taller práctico para empadronamiento y NIE', '2023-08-01 16:00:00', 'Oficina de Atención al Ciudadano', null),
+(7, 2, 7, 1, 'Asesoría legal básica', 'Sesión de preguntas y respuestas sobre derechos laborales', '2023-08-10 18:00:00', 'Centro Comunitario La Merced', null),
+(8, 3, 2, 1, 'Taller cultural', 'Introducción a las festividades españolas', '2023-06-15 10:00:00', 'Sala de conferencias', null);
 
 -- SEVILLA
 INSERT INTO recursolocal (recursoID, categoriaID, ciudadID, nombre, descripcion, direccion, telefono, hora_abierto, hora_cerrado, latitud, longitud) VALUES
@@ -319,12 +333,13 @@ INSERT INTO recursolocal (recursoID, categoriaID, ciudadID, nombre, descripcion,
 
 -- Poblar tabla encuesta
 INSERT INTO encuesta (encuestaID, titulo, descripcion) VALUES
-(1, 'Satisfacción de eventos', 'Cuestionario sobre los eventos realizados'),
-(2, 'a', 'a');
+(1, 'Encuesta de Integración 2025', 'Evaluación completa del nivel de integración de migrantes'),
+(2, 'Satisfacción de eventos', 'Cuestionario sobre los eventos realizados'),
+(3, 'Evaluación de taller cultural', 'Me gustó el evento cultural realizado');
 
 -- Poblar tabla hacer_encuesta
-INSERT INTO hacer_encuesta (encuestaID, usuarioID, titulo, descripcion) VALUES
-(1, 2, 'Evaluación de taller cultural', 'Me gustó el evento cultural realizado');
+INSERT INTO hacer_encuesta (encuestaID, usuarioID, titulo, descripcion, resultado_psicologico, resultado_linguistico, resultado_economico, resultado_politico, resultado_social, resultado_navegacional, resultado_total) VALUES
+(1, 2, 'Encuesta de Integración 2025', 'Evaluación completa del nivel de integración de migrantes', 0.25, 0.37, 0.14, 0.099, 0.601, 0.524, 0.082);
 
 -- Procedimientos almacenados
 DELIMITER //
@@ -419,17 +434,6 @@ DELIMITER ;
 	FROM eventolocal e
 	JOIN ciudad c ON e.ciudadID = c.ciudadID
 	JOIN categoria cat ON e.categoriaID = cat.categoriaID where c.nombre = 'Madrid';
-use welco;
-	-- Participantes en eventos
-	SELECT 
-		u.nombre AS nombre_recienllegado,
-		u.apellido,
-		e.titulo AS evento,
-		c.nombre AS ciudad
-	FROM recienllegado_apuntarse_evento ra
-	JOIN usuario u ON ra.usuarioID = u.usuarioID
-	JOIN eventolocal e ON ra.eventoID = e.eventoID
-	JOIN ciudad c ON e.ciudadID = c.ciudadID;
 
 -- 2.4. Recursos locales
 use welco;
@@ -476,11 +480,17 @@ use welco;
 
 -- 2.6. Encuestas internas
 
-	-- Encuestas completadas por los usuarios
+-- Encuestas completadas por los usuarios
 	SELECT 
 		e.titulo, 
         e.descripcion, 
-        u.nombre, u.apellido
+        u.nombre, u.apellido,
+        he.resultado_psicologico,
+        he.resultado_linguistico,
+        he.resultado_economico,
+        he.resultado_politico,
+        he.resultado_social,
+        he.resultado_navegacional
 	FROM hacer_encuesta he
 	JOIN encuesta e ON he.encuestaID = e.encuestaID
-	JOIN usuario u ON he.usuarioID = u.usuarioID;
+    JOIN usuario u ON he.usuarioID = u.usuarioID;
