@@ -78,7 +78,6 @@ public class ComentarioForo {
     public int getBotoPos() {
         return botoPos;
     }   
-
     public void setBotoPos(int botoPos) {
         this.botoPos = botoPos;
     }
