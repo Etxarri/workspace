@@ -14,6 +14,7 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/service/UsuarioService.java
 /workspace/src/main/java/edu/mondragon/webengl/seguridad/UsuarioDetails.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/evento/repository/EventoLocalRepository.java
+/workspace/src/main/java/edu/mondragon/webengl/config/HttpToHttpsRedirectConfig.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/ForgotPasswordController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/model/ComunidadAutonoma.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/service/EmailService.java
