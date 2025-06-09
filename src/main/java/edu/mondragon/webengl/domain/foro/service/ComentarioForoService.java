@@ -21,4 +21,18 @@ public class ComentarioForoService {
     public List<ComentarioForo> obtenerComentariosPorHilo(Integer hiloID) {
         return comentarioRepo.findByHilo_HiloIDOrderByFechaHoraAsc(hiloID);
     }
+
+    public List<ComentarioForo> obtenerComentariosOrdenadosPorVotos(int hiloID) {
+    return comentarioRepo.findByHilo_HiloIDOrderByVotosDescFechaHoraAsc(hiloID);
+    }
+
+    public ComentarioForo actualizarVoto(int comentarioID, boolean positivo) {
+    ComentarioForo comentario = comentarioRepo.findById(comentarioID).orElseThrow();
+
+    int nuevosVotos = comentario.getVotos() + (positivo ? 1 : -1);
+    if (nuevosVotos < 0) nuevosVotos = 0;
+
+    comentario.setVotos(nuevosVotos);
+    return comentarioRepo.save(comentario);
+    }
 }

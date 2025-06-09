@@ -23,11 +23,6 @@ public class Hiloforo {
     private int preguntaID;
 
 
-
-
-
-
-
     public int getHiloID() {
         return hiloID;
     }

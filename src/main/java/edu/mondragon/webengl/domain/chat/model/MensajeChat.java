@@ -1,8 +1,10 @@
-package edu.mondragon.webengl.domain.foro.model;
+package edu.mondragon.webengl.domain.chat.model;
 
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -10,19 +12,15 @@ import javax.persistence.Table;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 
 @Entity
-@Table(name = "comentarioforo")
-public class ComentarioForo {
+@Table(name = "mensajechat")
+public class MensajeChat {
 
     @Id
-    @Column(name = "comentarioID")
-    private int comentarioID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int mensajeID;
 
     @ManyToOne
-    @JoinColumn(name = "hiloID", nullable = false)
-    private Hiloforo hilo;
-
-    @ManyToOne
-    @JoinColumn(name = "usuarioID") // o el nombre real de la columna FK
+    @JoinColumn(name = "usuarioID", nullable = false)
     private Usuario usuario;
 
     @Column(nullable = false, length = 1000)
@@ -31,25 +29,15 @@ public class ComentarioForo {
     @Column(name = "fecha_hora", nullable = false)
     private LocalDateTime fechaHora;
 
-    @Column(nullable = false)
-    private int votos = 0;
+    @Column(nullable = false, length = 10)
+    private String idioma;
 
-    // Getters y setters
-
-    public int getComentarioID() {
-        return comentarioID;
+    public int getMensajeID() {
+        return mensajeID;
     }
 
-    public void setComentarioID(int comentarioID) {
-        this.comentarioID = comentarioID;
-    }
-
-    public Hiloforo getHilo() {
-        return hilo;
-    }
-
-    public void setHilo(Hiloforo hilo) {
-        this.hilo = hilo;
+    public void setMensajeID(int mensajeID) {
+        this.mensajeID = mensajeID;
     }
 
     public Usuario getUsuario() {
@@ -76,12 +64,13 @@ public class ComentarioForo {
         this.fechaHora = fechaHora;
     }
 
-    public int getVotos() {
-    return votos;
-}
-
-    public void setVotos(int votos) {
-        this.votos = votos;
+    public String getIdioma() {
+        return idioma;
     }
-}
 
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
+    }
+
+    
+}

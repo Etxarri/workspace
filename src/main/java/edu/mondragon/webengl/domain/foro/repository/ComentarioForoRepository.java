@@ -11,6 +11,6 @@ public interface ComentarioForoRepository extends JpaRepository<ComentarioForo, 
 
     List<ComentarioForo> findByHilo(Hiloforo hilo);
     List<ComentarioForo> findByHilo_HiloIDOrderByFechaHoraAsc(Integer hiloID);
-
+    List<ComentarioForo> findByHilo_HiloIDOrderByVotosDescFechaHoraAsc(Integer hiloID);
 }
 

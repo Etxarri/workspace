@@ -1,44 +1,54 @@
 <!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title th:text="#{foros.principal.titulo}">Foros Principal</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  </head>
-  <body>
-    <header th:replace="headerInmigrante :: header"></header>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title th:text="#{foros.principal.titulo}">Foros Principal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+  <header th:replace="headerInmigrante :: header"></header>
 
-    <main class="container py-5">
-      <section class="text-center mb-5">
-        <h1 class="display-4 mb-3">
-          <i class="bi bi-chat-dots"></i>
-          <span th:text="#{foros.principal.bienvenida}">Bienvenido al Foro</span>
-        </h1>
-        <p class="lead" th:text="#{foros.principal.descripcion}">
-          Aquí encontrarás información y podrás debatir sobre los siguientes temas:
-        </p>
-      </section>
+  <main class="container py-5">
+    <!-- Bienvenida -->
+    <section class="text-center mb-5">
+      <h1 class="display-4 mb-3">
+        <i class="bi bi-chat-dots"></i>
+        <span th:text="#{foros.principal.bienvenida}">Bienvenido al Foro</span>
+      </h1>
+      <p class="lead" th:text="#{foros.principal.descripcion}">
+        Aquí encontrarás información y podrás debatir sobre los siguientes temas:
+      </p>
+    </section>
 
-      <section class="row justify-content-center">
-        <div class="col-md-4 mb-4" th:each="tema : ${temaForo}">
-          <div class="card h-100 card-temas">
-            <a th:href="@{/foro/{temaID}(temaID=${tema.temaID})}" style="text-decoration:none; color:inherit;">
-              <div class="card-body text-center">
-                <i th:class="${tema.logo} + ' fs-1 text-primary'"></i>
-                <h5 class="card-title mt-3"
-                    th:text="#{foros.tema.${tema.temaID}.titulo}">Título del tema</h5>
-                <p class="card-text"
-                   th:text="#{foros.tema.${tema.temaID}.descripcion}">Descripción del tema</p>
-              </div>
-            </a>
-          </div>
+    <!-- Tarjetas de temas -->
+    <section class="row justify-content-center">
+      <div class="col-md-4 mb-4" th:each="tema : ${temaForo}">
+        <div class="card h-100 card-temas">
+          <a th:href="@{/foro/{temaID}(temaID=${tema.temaID})}" style="text-decoration:none; color:inherit;">
+            <div class="card-body text-center">
+              <i th:class="${tema.logo} + ' fs-1 text-primary'"></i>
+              <h5 class="card-title mt-3" th:text="#{foros.tema.${tema.temaID}.titulo}">Título del tema</h5>
+              <p class="card-text" th:text="#{foros.tema.${tema.temaID}.descripcion}">Descripción del tema</p>
+            </div>
+          </a>
         </div>
-      </section>
+      </div>
+    </section>
+    <!-- Chat general -->
+    <section class="my-5 py-5 bg-primary text-white text-center w-100" style="min-width:100vw; margin-left:calc(-50vw + 50%);">
+      <div class="container">
+        <h2 class="display-5 mb-3"><i class="bi bi-people-fill"></i> Habla con todos</h2>
+        <p class="lead">Únete a la conversación general del foro y comparte tus ideas, dudas o experiencias con toda la comunidad.</p>
+        <a th:href="@{/chat/{lang}(lang=${#locale.language})}" class="btn btn-light btn-lg">
+          <i class="bi bi-chat"></i> Ir al chat
+        </a>
+      </div>
+    </section>
+  </main>
 
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

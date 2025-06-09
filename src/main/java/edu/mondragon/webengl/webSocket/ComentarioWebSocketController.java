@@ -45,11 +45,27 @@ public class ComentarioWebSocketController {
         ComentarioForo guardado = comentarioService.guardarComentario(comentario);
 
         ComentarioDTO respuesta = new ComentarioDTO();
+        respuesta.setComentarioID(guardado.getComentarioID());
         respuesta.setUsuarioID(guardado.getUsuario().getUsuarioID());
         respuesta.setNombre(guardado.getUsuario().getNombre());
         respuesta.setContenido(guardado.getContenido());
         respuesta.setFechaHora(guardado.getFechaHora());
+        respuesta.setVotos(guardado.getVotos());
 
         messagingTemplate.convertAndSend("/topic/foro/" + hiloID, respuesta);
     }
+
+    @MessageMapping("/comentario/{comentarioID}/voto/{tipo}")
+    public void actualizarVoto(@DestinationVariable Integer comentarioID,@DestinationVariable String tipo) {
+
+    boolean esPositivo = tipo.equals("up");
+    ComentarioForo actualizado = comentarioService.actualizarVoto(comentarioID, esPositivo);
+
+    ComentarioDTO dto = new ComentarioDTO();
+    dto.setComentarioID(actualizado.getComentarioID());
+    dto.setVotos(actualizado.getVotos());
+
+    messagingTemplate.convertAndSend("/topic/comentario/votos", dto);
+    }
+
 }
