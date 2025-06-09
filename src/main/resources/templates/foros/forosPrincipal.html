@@ -46,7 +46,15 @@
         </div>
       </div>
     </section>
-
+<section class="my-5 py-5 bg-primary text-white text-center w-100" style="min-width:100vw; margin-left:calc(-50vw + 50%);">
+      <div class="container">
+        <h2 class="display-5 mb-3"><i class="bi bi-people-fill"></i> Habla con todos</h2>
+        <p class="lead">Únete a la conversación general del foro y comparte tus ideas, dudas o experiencias con toda la comunidad.</p>
+        <a th:href="@{/chat/{lang}(lang=${#locale.language})}" class="btn btn-light btn-lg">
+          <i class="bi bi-chat"></i> Ir al chat
+        </a>
+      </div>
+    </section>
   </div>
 </main>
 </html>
