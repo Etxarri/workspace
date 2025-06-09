@@ -10,5 +10,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     //El optional es una clase en el que el contenido puede contener un usuario(en este caso) o pude estar vacío.
     Optional<Usuario> findByUsername(String username);
     Optional<Usuario> findByusuarioID(int idUsuario);
+    boolean existsByUsuarioIDAndEventosApuntados_EventoID(int usuarioId, int eventoId);
+    Optional<Usuario> deleteByEventosApuntados_EventoID(int eventoId);
+
 }
 

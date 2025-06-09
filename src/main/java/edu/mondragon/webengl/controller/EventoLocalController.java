@@ -4,19 +4,14 @@ package edu.mondragon.webengl.controller;
 import edu.mondragon.webengl.domain.categoria.model.Categoria;
 import edu.mondragon.webengl.domain.categoria.repository.CategoriaRepository;
 import edu.mondragon.webengl.domain.evento.model.EventoLocal;
-import edu.mondragon.webengl.domain.evento.model.UsuarioEventoId;
-import edu.mondragon.webengl.domain.evento.model.UsuarioApuntarseEvento;
 import edu.mondragon.webengl.domain.evento.repository.EventoLocalRepository;
-import edu.mondragon.webengl.domain.evento.repository.UsuarioApuntarseEventoRepository;
 import edu.mondragon.webengl.domain.pais.repository.CiudadRepository;
-import edu.mondragon.webengl.domain.user.model.Voluntario;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.model.Usuario.TipoUsuario;
 import edu.mondragon.webengl.domain.user.repository.RecienllegadoRepository;
-import edu.mondragon.webengl.domain.user.repository.VoluntarioRepository;
+import edu.mondragon.webengl.domain.user.repository.UsuarioRepository;
 import edu.mondragon.webengl.seguridad.UsuarioDetails;
 import edu.mondragon.webengl.domain.pais.model.Ciudad;
-import edu.mondragon.webengl.domain.categoria.model.Categoria;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -25,10 +20,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,30 +36,29 @@ public class EventoLocalController {
      */
 
     private final EventoLocalRepository eventoRepo;
-    private final UsuarioApuntarseEventoRepository inscripcionRepo;
     private final CategoriaRepository categoriaRepository;
-    private final VoluntarioRepository voluntarioRepo;
     private final CiudadRepository ciudadRepository;
     private final CategoriaRepository categoriaRepo;
+    private final UsuarioRepository usuarioRepo;
 
-    private static final Logger logger = LoggerFactory.getLogger(EventoLocalController.class);
 
-    public EventoLocalController(EventoLocalRepository eventoRepo, UsuarioApuntarseEventoRepository inscripcionRepo, RecienllegadoRepository recienllegadoRepo, CategoriaRepository categoriaRepository, VoluntarioRepository voluntarioRepo, CiudadRepository ciudadRepository, CategoriaRepository categoriaRepo) {
+    public EventoLocalController(EventoLocalRepository eventoRepo, RecienllegadoRepository recienllegadoRepo, CategoriaRepository categoriaRepository, CiudadRepository ciudadRepository, CategoriaRepository categoriaRepo, UsuarioRepository usuarioRepo) {
         this.eventoRepo = eventoRepo;
-        this.inscripcionRepo = inscripcionRepo;
         this.categoriaRepository = categoriaRepository;
-        this.voluntarioRepo = voluntarioRepo;
         this.ciudadRepository = ciudadRepository;
         this.categoriaRepo = categoriaRepo;
+        this.usuarioRepo = usuarioRepo;
     }
-
+    private static final Logger logger = LoggerFactory.getLogger(EventoLocalController.class);
     @GetMapping("/listaEventos")
     public String listarEventosLocales(
         Model model,
-        @AuthenticationPrincipal UsuarioDetails usuario,
+        @AuthenticationPrincipal UsuarioDetails user,
         @RequestParam(value = "categoria", required = false) Integer categoriaID) {
 
-        int comunidadId = usuario.getUsuario().getCiudad().getComunidadAutonoma();
+        Usuario usuario = user.getUsuario();
+        usuario.getEventosApuntados().size(); // Fuerza la carga
+        int comunidadId = usuario.getCiudad().getComunidadAutonoma();
 
         List<EventoLocal> eventos;
         if (categoriaID != null && categoriaID != 0) {
@@ -76,15 +68,12 @@ public class EventoLocalController {
         }
         model.addAttribute("paginaActual", "listaEventos");
 
+        int usuarioId = usuario.getUsuarioID();
 
-        int usuarioId = usuario.getUsuario().getUsuarioID();
-        List<UsuarioApuntarseEvento> inscripciones = inscripcionRepo.findById_UsuarioID(usuarioId);
-        List<Integer> eventosApuntadosIds = inscripciones.stream()
-                .map(insc -> insc.getId().getEventoID())
-                .toList();
+        List<EventoLocal> eventosApuntados = new java.util.ArrayList<>(usuario.getEventosApuntados());
 
-        List<EventoLocal> eventosFiltrados = eventos.stream()
-                .filter(e -> !eventosApuntadosIds.contains(e.getEventoID()))
+        List<EventoLocal> eventosFiltrados = eventos.stream()//.stream() señala que estamos trabajando con una lista
+                .filter(e -> !eventosApuntados.contains(e))//Esto descarta los eventos a los que el usuario ya está apuntado.
                 .filter(e -> e.getUsuario() == null || e.getUsuario().getUsuarioID() != usuarioId) // <-- Añadido
                 .toList();
 
@@ -109,7 +98,10 @@ public class EventoLocalController {
         Optional<EventoLocal> eventoOpt = eventoRepo.findById(eventoID);
 
         Usuario loggedUser = usuario.getUsuario();
-        if(inscripcionRepo.existsById_UsuarioIDAndId_EventoID(loggedUser.getUsuarioID(), eventoID)){
+        boolean existe = usuarioRepo.existsByUsuarioIDAndEventosApuntados_EventoID(loggedUser.getUsuarioID(), eventoID);
+
+        logger.info("Usuario ID: " + loggedUser.getUsuarioID() + ", Evento ID: " + eventoID + ", Existe: " + existe);
+        if(existe){
             model.addAttribute("apuntado", true);
         } else {
             model.addAttribute("apuntado", false);  
@@ -132,22 +124,17 @@ public class EventoLocalController {
             RedirectAttributes redirectAttrs,
             Model model) {
 
-        if (!(user.getUsuario().getTipo().equals(TipoUsuario.recienllegado) || user.getUsuario().getTipo().equals(TipoUsuario.voluntario))) {
-            redirectAttrs.addFlashAttribute("error", "Solo los recién llegados y voluntarios pueden apuntarse.");
-            return "redirect:/eventos/listaEventos";
-        }
+        Usuario usuario = user.getUsuario();
+        EventoLocal evento = eventoRepo.findById(eventoID).orElseThrow();
 
-        UsuarioEventoId compuesta = new UsuarioEventoId(user.getUsuario().getUsuarioID(), eventoID);
-
-        if (inscripcionRepo.existsById(compuesta)) {
+        if(usuarioRepo.existsByUsuarioIDAndEventosApuntados_EventoID(usuario.getUsuarioID(), eventoID)) {
             redirectAttrs.addFlashAttribute("info", "Ya estás apuntado a este evento.");
-            return "redirect:/eventos/listaEventos";
+            return "redirect:/eventos/misEventos";
         } else {
-            UsuarioApuntarseEvento inscripcion = new UsuarioApuntarseEvento();
-            inscripcion.setId(compuesta);
-            inscripcion.setFechaInscripcion(LocalDate.now());
-            inscripcionRepo.save(inscripcion);
 
+            usuario.getEventosApuntados().add(evento);
+            evento.getUsuariosApuntados().add(usuario);
+            usuarioRepo.save(usuario);
             // Redirección según el parámetro
             if ("listaEventos".equals(redirectTo)) {
                 return "redirect:/eventos/listaEventos";
@@ -164,20 +151,14 @@ public class EventoLocalController {
             @AuthenticationPrincipal UsuarioDetails user,
             Model model,
             @RequestParam(value = "categoria", required = false) Integer categoriaID) {
-        int usuarioId = user.getUsuario().getUsuarioID();
-        List<UsuarioApuntarseEvento> inscripciones = inscripcionRepo.findById_UsuarioID(usuarioId);
-        List<EventoLocal> eventos = inscripciones.stream()
-                .map(insc -> eventoRepo.findById(insc.getId().getEventoID()))
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .toList();
+        
+        Usuario usuario = user.getUsuario();
+
+        List<EventoLocal> eventos = new java.util.ArrayList<>(usuario.getEventosApuntados());
 
         if (categoriaID != null && categoriaID != 0) {
-            eventos = eventos.stream()
-                    .filter(e -> e.getCategoria().getCategoriaID() == categoriaID)
-                    .toList();
+            eventos = eventoRepo.findByCategoria_CategoriaID(categoriaID);
         }
-        logger.info("\n\n\nTipo de usuario: {}", user.getUsuario().getTipo());
 
         model.addAttribute("paginaActual", "misEventos");
 
@@ -200,14 +181,14 @@ public class EventoLocalController {
             @RequestParam(value = "redirectTo", required = false) String redirectTo,
             RedirectAttributes redirectAttrs,
             Model model) { 
-        int usuarioId = user.getUsuario().getUsuarioID();
-        UsuarioEventoId compuesta = new UsuarioEventoId(usuarioId, eventoID);
+
+        Usuario usuario = user.getUsuario();
+        int usuarioId = usuario.getUsuarioID();
 
         model.addAttribute("paginaActual", "listaEventos");
-
-        if (inscripcionRepo.existsById(compuesta)) {
-            inscripcionRepo.deleteById(compuesta);
-
+        if (usuarioRepo.existsByUsuarioIDAndEventosApuntados_EventoID(usuarioId, eventoID)) {
+            usuario.getEventosApuntados().removeIf(e -> e.getEventoID() == eventoID);
+            usuarioRepo.save(usuario);
             // Redirección según el parámetro
             if ("listaEventos".equals(redirectTo)) {
                 return "redirect:/eventos/listaEventos";
@@ -255,9 +236,7 @@ public class EventoLocalController {
             .orElseThrow(() -> new IllegalArgumentException("Categoría no encontrada"));
         evento.setCategoria(categoria);
 
-        Voluntario userVoluntario = voluntarioRepo.findById(user.getUsuario().getUsuarioID())
-                .orElseThrow(() -> new IllegalArgumentException("El usuario no es un voluntario válido."));
-        evento.setUsuario(userVoluntario);
+        evento.setUsuario(user.getUsuario());
         eventoRepo.save(evento);
 
         redirectAttrs.addFlashAttribute("success", "Evento creado correctamente.");

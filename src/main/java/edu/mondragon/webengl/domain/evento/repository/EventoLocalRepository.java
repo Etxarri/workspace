@@ -10,4 +10,6 @@ import edu.mondragon.webengl.domain.evento.model.EventoLocal;
 public interface EventoLocalRepository extends JpaRepository<EventoLocal, Integer> {
     List<EventoLocal> findByCiudad_ComunidadAutonoma_ComunidadID(int comunidadId);
     List<EventoLocal> findByCiudad_ComunidadAutonoma_ComunidadIDAndCategoria_CategoriaID(int comunidadId, int categoriaID);
+    List<EventoLocal> findByCategoria_CategoriaID(int categoriaID);
+    
 }
