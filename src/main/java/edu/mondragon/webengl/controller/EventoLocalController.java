@@ -197,13 +197,19 @@ public class EventoLocalController {
 
         model.addAttribute("paginaActual", "listaEventos");
         if (usuarioRepo.existsByUsuarioIDAndEventosApuntados_EventoID(usuarioId, eventoID)) {
+            // Eliminar del usuario
             usuario.getEventosApuntados().removeIf(e -> e.getEventoID() == eventoID);
+            // Eliminar del evento (importante para la relación bidireccional)
+            EventoLocal evento = eventoRepo.findById(eventoID).orElse(null);
+            if (evento != null) {
+                evento.getUsuariosApuntados().removeIf(u -> u.getUsuarioID() == usuarioId);
+                eventoRepo.save(evento);
+            }
             usuarioRepo.save(usuario);
             // Redirección según el parámetro
             if ("listaEventos".equals(redirectTo)) {
                 return "redirect:/eventos/listaEventos";
             } else if ("misEventos".equals(redirectTo)) {
-                
                 return "redirect:/eventos/misEventos";
             } else {
                 return "redirect:/eventos/" + eventoID;

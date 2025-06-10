@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error - Welco</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="alert alert-danger text-center">
+            <h1><i class="bi bi-exclamation-triangle-fill"></i> Ha ocurrido un error</h1>
+            <p th:text="${message} ?: 'Ha ocurrido un error inesperado. Por favor, inténtalo más tarde.'"></p>
+            <a href="/" class="btn btn-primary mt-3">Volver al inicio</a>
+        </div>
+    </div>
+</body>
+</html>

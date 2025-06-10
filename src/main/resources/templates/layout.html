@@ -18,6 +18,23 @@
 <body>
     <div th:replace="headerInmigrante :: header"></div>
 
+<div class="container mt-4 justify-content-center">
+    <div th:if="${info}" class="alert alert-info d-flex align-items-center" role="alert">
+        <i class="bi bi-info-circle-fill me-2"></i>
+        <span th:text="${info}"></span>
+    </div>
+    <div th:if="${error}" class="alert alert-danger d-flex align-items-center" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <span th:text="${error}"></span>
+    </div>
+    <div th:if="${success}" class="alert alert-success d-flex align-items-center" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        <span th:text="${success}"></span>
+    </div>
+</div>
+
+
+    
     <main layout:fragment="content"></main>
 
     <footer class="text-center py-3">

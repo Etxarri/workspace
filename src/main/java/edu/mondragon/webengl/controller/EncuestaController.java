@@ -59,6 +59,7 @@ public class EncuestaController
             }
         }
         model.addAttribute("respondidas", respondidas);
+        model.addAttribute("tituloPagina", "Encuestas Disponibles");
 
         return "encuestas/lista";
     }
@@ -97,6 +98,7 @@ public class EncuestaController
         model.addAttribute("encuesta", encuestaOpt.get());
         // Añadir el DTO vacío al modelo para el binding del formulario
         model.addAttribute("encuestaRespuestas", new EncuestaRespuestas());
+        model.addAttribute("tituloPagina", "Responder Encuesta");
 
         return "encuestas/encuesta";
     }
@@ -244,7 +246,8 @@ public class EncuestaController
             System.out.println("Social: " + he.getResultadoSocial());
             System.out.println("Navegacional: " + he.getResultadoNavegacional());
         }
-        
+        model.addAttribute("tituloPagina", "Resultados de la Encuesta");
+
         return "encuestas/graficoEncuesta";
     }
 
@@ -260,7 +263,7 @@ public class EncuestaController
             model.addAttribute("error", "No has respondido esta encuesta.");
             return "redirect:/encuestas";
         }
-
+        model.addAttribute("tituloPagina", "Resultados de la Encuesta");
         model.addAttribute("encuesta", heOpt.get());
         return "encuestas/graficoEncuesta";
     }

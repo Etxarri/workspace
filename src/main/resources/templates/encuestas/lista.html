@@ -5,20 +5,26 @@
 </head>
 <body layout:fragment="content">
     <div class="container">
-        <h2 class="text-center mb-3 mt-5" style="font-size:2rem; font-weight:600; letter-spacing:1px;">
-            ENCUESTAS DISPONIBLES
-        </h2>
+            <div class="col-12 text-center">
+                <h3>
+                    <i class="bi bi-collection"></i>
+                    <span th:text="${tituloPagina}">Encuestas</span>
+                </h3>
+            </div>
         
         <div class="list-group">
-            <div th:each="encuesta : ${encuestas}" class="list-group-item mb-3 p-0 border-0 bg-transparent">
-                <div class="d-flex align-items-center justify-content-between bg-white rounded shadow-sm p-3">
+            <div th:each="encuesta : ${encuestas}" class="list-group-item mb-4 p-0 border-0 bg-transparent">
+                <div class="d-flex align-items-center justify-content-between bg-white rounded shadow-sm p-4 encuesta-card">
                     <a th:href="@{/encuestas/{id}(id=${encuesta.encuestaID})}" class="d-flex align-items-center text-decoration-none text-dark flex-grow-1">
                         <div class="text-center me-3" style="width:60px;">
-                            <i class="bi bi-clipboard-data fs-1"></i>
+                            <i class="bi bi-clipboard-data fs-1 text-primary"></i>
                         </div>
                         <div>
-                            <h5 class="mb-1" th:text="${encuesta.titulo}">Título de la encuesta</h5>
-                            <p class="mb-1" th:text="${encuesta.descripcion}">Descripción de la encuesta</p>
+                            <h5 class="mb-1 d-flex align-items-center">
+                                <span th:text="${encuesta.titulo}">Título de la encuesta</span>
+                                <span th:if="${respondidas[encuesta.encuestaID]}" class="badge bg-success ms-2">Respondida</span>
+                            </h5>
+                            <p class="mb-1 text-muted" th:text="${encuesta.descripcion}">Descripción de la encuesta</p>
                         </div>
                     </a>
                     <span th:if="${respondidas[encuesta.encuestaID]}">
@@ -31,13 +37,6 @@
         </div>
     </div>
 
-    <div th:if="${error}" class="alert alert-danger" role="alert">
-        <span th:text="${error}">Error message</span>
-    </div>
-
-    <div th:if="${mensaje}" class="alert alert-success" role="alert">
-        <span th:text="${mensaje}">Success message</span>
-    </div>
 
 </body>
 </html>
