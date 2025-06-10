@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
-    <title layout:title="Eventos"></title>
+    <title layout:title="${tituloPagina}"></title>
 </head>
-
 <main layout:fragment="content">
-
     <div class="container mt-4">
         <div class="row justify-content-center mb-4">
             <div class="col-12 text-center">
                 <h3>
                     <i class="bi bi-collection"></i>
-                    <span th:text="#{evento.lista.titulo}">Eventos locales</span>
+                    <span th:text="${tituloPagina}">Eventos</span>
                 </h3>
             </div>
             <div class="col-md-6 col-12 d-flex justify-content-center">
@@ -31,7 +29,6 @@
                 </form>
             </div>
         </div>
-
         <div class="container">
             <div th:each="evento : ${eventos}">
                 <a th:href="@{/eventos/{eventoID}(eventoID=${evento.eventoID})}" style="text-decoration: none; color: inherit;">
@@ -61,12 +58,10 @@
                     </div>
                 </a>
             </div>
-
-            <div th:if="${#lists.isEmpty(eventos)}" class="text-center text-muted w-100" th:text="#{evento.no_hay_eventos_disponibles_para_esta_categoría}">
-                No hay eventos disponibles para esta categoría.
+            <div th:if="${#lists.isEmpty(eventos)}" class="text-center text-muted w-100" th:text="${textoNoEventos}">
+                No hay eventos disponibles.
             </div>
         </div>
     </div>
-
 </main>
 </html>

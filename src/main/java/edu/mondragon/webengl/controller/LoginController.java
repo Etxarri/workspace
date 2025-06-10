@@ -40,7 +40,10 @@ public class LoginController {
         List<EventoLocal> eventos = eventoRepo.findAll();
         model.addAttribute("eventos", eventos);
         model.addAttribute("categorias", categoriaRepository.findAll()); 
-        return "evento/listaEventos";
+        model.addAttribute("tituloPagina", "Eventos locales");
+        model.addAttribute("textoNoEventos", "No hay eventos disponibles para esta categoría.");
+
+        return "evento/eventosListaGenerica";
     }
     @GetMapping("/login/logged")
     public String redirigirEventos() {

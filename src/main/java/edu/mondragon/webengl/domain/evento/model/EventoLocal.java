@@ -4,14 +4,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import edu.mondragon.webengl.domain.categoria.model.Categoria;
 import edu.mondragon.webengl.domain.pais.model.Ciudad;
-import edu.mondragon.webengl.domain.user.model.Voluntario;
+import edu.mondragon.webengl.domain.user.model.Usuario;
 
 @Entity
 @Table(name = "eventolocal")
@@ -20,6 +24,10 @@ public class EventoLocal {
     private int eventoID;
 
     @ManyToOne
+    @JoinColumn(name = "usuarioID", nullable = false)
+    private Usuario usuario;
+    
+    @ManyToOne
     @JoinColumn(name = "ciudadID", nullable = false)
     private Ciudad ciudad;
 
@@ -27,9 +35,8 @@ public class EventoLocal {
     @JoinColumn(name = "categoriaID", nullable = false)
     private Categoria categoria;
 
-    @ManyToOne
-    @JoinColumn(name = "usuarioID", nullable = false)
-    private Voluntario usuario;
+    @ManyToMany (mappedBy = "eventosApuntados")
+    private Set<Usuario> usuariosApuntados = new HashSet<>();
 
     @Column(nullable = false)
     private String titulo;
@@ -70,12 +77,11 @@ public class EventoLocal {
         this.categoria = categoria;
     }
 
-    public Voluntario getUsuario() {
-        return usuario;
+    public Set<Usuario> getUsuariosApuntados() {
+        return usuariosApuntados;
     }
-
-    public void setUsuario(Voluntario usuario) {
-        this.usuario = usuario;
+    public void setUsuariosApuntados(Set<Usuario> usuariosApuntados) {
+        this.usuariosApuntados = usuariosApuntados;
     }
 
     public String getTitulo() {
@@ -110,8 +116,27 @@ public class EventoLocal {
         this.lugar = lugar;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
 
+@Override
+public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    EventoLocal that = (EventoLocal) o;
+    return eventoID == that.eventoID;
+}
+
+@Override
+public int hashCode() {
+    return Integer.hashCode(eventoID);
+}
     
 }
 

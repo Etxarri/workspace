@@ -123,13 +123,12 @@ create table eventolocal (
   CONSTRAINT EVENTOLOCAL_PK PRIMARY KEY (eventoID),
   CONSTRAINT EVENTOLOCAL_CIUDAD_FK FOREIGN KEY (ciudadID) REFERENCES ciudad (ciudadID),
   CONSTRAINT EVENTOLOCA_CATEGORIA_FK FOREIGN KEY (categoriaID) REFERENCES categoria (categoriaID),
-  CONSTRAINT EVENTOLOCAL_VOLUNTARIO_FK FOREIGN KEY (usuarioID) REFERENCES voluntario (usuarioID)
+  CONSTRAINT EVENTOLOCAL_VOLUNTARIO_FK FOREIGN KEY (usuarioID) REFERENCES usuario (usuarioID)
 );
 
 CREATE TABLE usuario_apuntarse_evento (
   eventoID smallint unsigned not null,
   usuarioID smallint unsigned not null,
-  fecha_inscripcion DATE,
   CONSTRAINT APUNTARSE_PK PRIMARY KEY (eventoID, usuarioID),
   CONSTRAINT APUNTARSE_EVENTOLOCAL_FK FOREIGN KEY (eventoID) REFERENCES eventolocal (eventoID),
   CONSTRAINT APUNTARSE_USUARIO_FK FOREIGN KEY (usuarioID) REFERENCES usuario (usuarioID)
