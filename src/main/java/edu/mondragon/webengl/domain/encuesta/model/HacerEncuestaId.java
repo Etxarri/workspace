@@ -1,5 +1,6 @@
 package edu.mondragon.webengl.domain.encuesta.model;
 
+
 public class HacerEncuestaId implements java.io.Serializable {
     private int encuestaID;
     private int usuarioID;

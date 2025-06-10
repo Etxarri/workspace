@@ -17,7 +17,7 @@
                 <div class="d-flex align-items-center justify-content-between bg-white rounded shadow-sm p-4 encuesta-card">
                     <a th:href="@{/encuestas/{id}(id=${encuesta.encuestaID})}" class="d-flex align-items-center text-decoration-none text-dark flex-grow-1">
                         <div class="text-center me-3" style="width:60px;">
-                            <i class="bi bi-clipboard-data fs-1 text-primary"></i>
+                            <i th:class="${'bi ' + (encuesta.tipoEncuesta == 'proximamente' ? 'bi-tools' : 'bi-clipboard-data')} + ' fs-1 text-primary'"></i>
                         </div>
                         <div>
                             <h5 class="mb-1 d-flex align-items-center">
@@ -27,8 +27,8 @@
                             <p class="mb-1 text-muted" th:text="${encuesta.descripcion}">Descripción de la encuesta</p>
                         </div>
                     </a>
-                    <span th:if="${respondidas[encuesta.encuestaID]}">
-                        <a th:href="@{/encuestas/{id}/grafico(id=${encuesta.encuestaID})}" class="btn btn-outline-primary btn-sm ms-2" title="Ver resultado">
+                    <span th:if="${respondidas[encuesta.encuestaID]}"> 
+                        <a th:href="@{/encuestas/grafico/{id}(id=${encuesta.encuestaID})}" class="btn btn-outline-primary btn-sm ms-2" title="Ver resultado">
                             <i class="bi bi-bar-chart-line"></i> Ver resultado
                         </a>
                     </span>

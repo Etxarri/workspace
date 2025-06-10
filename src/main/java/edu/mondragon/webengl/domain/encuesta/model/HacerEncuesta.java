@@ -32,12 +32,6 @@ public class HacerEncuesta
     @JoinColumn(name = "usuarioID", insertable = false, updatable = false)
     private Usuario usuario;
 
-    //@Column(name = "titulo")
-    private String titulo;
-
-    //@Column(name = "descripcion")
-    private String descripcion;
-
     // Campos para las puntuaciones
     //@Column(name = "resultadoPsicologico", nullable = false)
     private double resultadoPsicologico;
@@ -126,17 +120,5 @@ public class HacerEncuesta
     }
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-    public String getTitulo() {
-        return titulo;
-    }
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-    public String getDescripcion() {
-        return descripcion;
-    }
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 }

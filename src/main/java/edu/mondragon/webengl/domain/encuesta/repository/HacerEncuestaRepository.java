@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface HacerEncuestaRepository extends JpaRepository<HacerEncuesta, Integer> {
     Optional<HacerEncuesta> findFirstByUsuarioIDAndEncuestaIDOrderByEncuestaIDDesc(int usuarioID, int encuestaID);
     Optional<HacerEncuesta> findFirstByUsuarioIDOrderByEncuestaIDDesc(int usuarioID);
+    Optional<HacerEncuesta> findByUsuarioIDAndEncuestaID(int usuarioID, int encuestaID);
 }

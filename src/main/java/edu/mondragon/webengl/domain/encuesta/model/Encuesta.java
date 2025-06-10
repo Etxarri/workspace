@@ -16,6 +16,11 @@ public class Encuesta {
 
     private String descripcion;
 
+    @Column(name = "tipo_encuesta", nullable = false)
+    private String tipoEncuesta;
+
+
+    // Getters y setters
     public int getEncuestaID() {
         return encuestaID;
     }
@@ -38,6 +43,14 @@ public class Encuesta {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getTipoEncuesta() {
+        return tipoEncuesta;
+    }
+
+    public void setTipoEncuesta(String tipoEncuesta) {
+        this.tipoEncuesta = tipoEncuesta;
     }
 
     @Override

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title layout:title="Encuesta"></title>
+</head>
+<body layout:fragment="content">
+    <!-- Estructura para encuestas futuras-->
+    <div class="col-12 text-center">
+        <h3>
+            <i class="bi bi-collection"></i>
+            <span th:text="${tituloPagina}">Resultados de la Encuesta</span>
+        </h3>
+    </div>
+
+    <div class="col-10 container-fluid mb-1 mt-1">
+        <div class="alert alert-light" role="alert">
+            <h4 class="alert-heading">
+                <i class="bi bi-hourglass-split"></i>
+                ¡Próximamente!
+            </h4>
+            <p>Esta encuesta aún no está lista. Estamos trabajando para habilitar esta encuesta, pero muy pronto podrás compartir tu opinión.</p>
+            <hr>
+            <p class="mb-0">¡Gracias por tu paciencia!</p>
+        </div>
+    </div>
+
+    <!-- Botón para volver-->
+    <div class="text-center mb-5">
+        <a href="/encuestas" class="btn btn-secondary"> ← Volver a encuestas</a>
+    </div>
+</body>
+</html>

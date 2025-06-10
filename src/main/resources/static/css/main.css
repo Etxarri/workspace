@@ -16,7 +16,6 @@ body{
     display: none !important;
 }
 
-
 .gureForm{
   width: 24%;
   background-color: whitesmoke;
@@ -24,11 +23,11 @@ body{
   border-radius: 20px;
 }
 
-.encuesta{
+.encuesta {
   width: 100%;
 }
 
-.btn-primary{
+.btn-primary {
   width: 100%;
   border: none;
   border-radius: 50px;
@@ -49,7 +48,7 @@ body{
   background-color: rgb(47, 97, 131);
 }
 
-.form-control{
+.form-control {
   color: rgba(0, 0, 0, 0.87);
   border-bottom-color: rgba(0, 0, 0, 0.42);
   box-shadow: none !important;
@@ -58,7 +57,7 @@ body{
   border-radius: 4px 4px 0 0;
 }
 
-h4{
+h4 {
   font-size: 2rem !important;
   font-weight: 700;
 }
@@ -68,8 +67,7 @@ a {
   color: #007bff; 
 }
 
-canvas
-{
+canvas {
   width: 50% !important;
   height: 50% !important;
   background-color: white;
@@ -80,7 +78,7 @@ canvas
   font-weight: bolder;
 }
 
-.form-label{
+.form-label {
   font-family: 800 !important;
 }
 
@@ -108,15 +106,18 @@ canvas
     cursor: pointer;
     margin-left: 1rem;
 }
-.card-temas{
+.card-temas {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.15); 
     border-radius: 1rem;
 }
 
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 .card:hover {
   transform: translateY(-2px) scale(1.01);
-
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
@@ -126,6 +127,16 @@ canvas
   border-radius: 1rem;
   overflow: hidden;
   padding: 16px; 
+}
+
+.encuesta-card {
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.encuesta-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    transform: translateY(-2px) scale(1.01);
+    background-color: #f8f9fa;
 }
 
 .container-fluid {
@@ -161,7 +172,6 @@ canvas
 .card-title {
   font-weight: bolder;
 }
-
 
 a img:focus, a img:active {
     outline: none;
@@ -210,13 +220,14 @@ a:focus {
 }
 
 @media only screen and (max-width: 1400px){
-  form{
+  form {
     width: 70% !important;
   }
     .row.align-items-center.mb-2 {
     flex-direction: column !important;
     align-items: flex-start !important;
   }
+
   .row.align-items-center.mb-2 > .col-1,
   .row.align-items-center.mb-2 > .col {
     width: 100% !important;
@@ -225,25 +236,19 @@ a:focus {
     padding-left: 0 !important;
     text-align: left !important;
   }
+
   .row.align-items-center.mb-2 > .col-1 {
     margin-bottom: 0.2rem;
     font-weight: bold;
   }
+
   .form-check-inline {
     display: inline-block !important;
     margin-right: 1.5rem;
   }
+  
   .form-label.pregunta {
     font-size: 1rem !important;
   }
 
-}
-
-.encuesta-card {
-    transition: box-shadow 0.2s, transform 0.2s;
-}
-.encuesta-card:hover {
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-    transform: translateY(-2px) scale(1.01);
-    background-color: #f8f9fa;
 }
