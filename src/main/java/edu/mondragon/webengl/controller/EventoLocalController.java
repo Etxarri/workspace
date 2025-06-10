@@ -81,9 +81,13 @@ public class EventoLocalController {
         model.addAttribute("eventos", eventosFiltrados);
         model.addAttribute("categorias", categoriaRepository.findAll());
         model.addAttribute("categoriaSeleccionada", categoriaID);
-        return "evento/listaEventos";
-    }
 
+        model.addAttribute("tituloPagina", "Eventos locales");
+        model.addAttribute("textoNoEventos", "No hay eventos disponibles para esta categoría.");
+
+        return "evento/eventosListaGenerica";
+    }
+    /*
     @GetMapping
     public String listarEventos(Model model) {
         List<EventoLocal> eventos = eventoRepo.findAll();
@@ -92,6 +96,7 @@ public class EventoLocalController {
         model.addAttribute("categorias", categorias);
         return "evento/listaEventos"; // nombre del template Thymeleaf
     }
+        */
 
     @GetMapping("/{eventoID}")
     public String detalleEvento(@PathVariable("eventoID") int eventoID, Model model, @AuthenticationPrincipal UsuarioDetails usuario) {
@@ -169,8 +174,13 @@ public class EventoLocalController {
         model.addAttribute("eventos", eventos);
         model.addAttribute("categorias", categoriaRepository.findAll());
         model.addAttribute("categoriaSeleccionada", categoriaID);
-        model.addAttribute("usuario", user.getUsuario());   
-        return "evento/misEventos";
+        model.addAttribute("usuario", user.getUsuario()); 
+        
+        model.addAttribute("tituloPagina", "Mis eventos");
+        model.addAttribute("textoNoEventos", "No estás apuntado a ningún evento.");
+
+
+        return "evento/eventosListaGenerica";
     }
 
 
@@ -193,6 +203,7 @@ public class EventoLocalController {
             if ("listaEventos".equals(redirectTo)) {
                 return "redirect:/eventos/listaEventos";
             } else if ("misEventos".equals(redirectTo)) {
+                
                 return "redirect:/eventos/misEventos";
             } else {
                 return "redirect:/eventos/" + eventoID;
