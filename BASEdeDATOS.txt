@@ -123,12 +123,13 @@ create table eventolocal (
   CONSTRAINT EVENTOLOCAL_PK PRIMARY KEY (eventoID),
   CONSTRAINT EVENTOLOCAL_CIUDAD_FK FOREIGN KEY (ciudadID) REFERENCES ciudad (ciudadID),
   CONSTRAINT EVENTOLOCA_CATEGORIA_FK FOREIGN KEY (categoriaID) REFERENCES categoria (categoriaID),
-  CONSTRAINT EVENTOLOCAL_VOLUNTARIO_FK FOREIGN KEY (usuarioID) REFERENCES usuario (usuarioID)
+  CONSTRAINT EVENTOLOCAL_VOLUNTARIO_FK FOREIGN KEY (usuarioID) REFERENCES voluntario (usuarioID)
 );
 
 CREATE TABLE usuario_apuntarse_evento (
   eventoID smallint unsigned not null,
   usuarioID smallint unsigned not null,
+  fecha_inscripcion DATE,
   CONSTRAINT APUNTARSE_PK PRIMARY KEY (eventoID, usuarioID),
   CONSTRAINT APUNTARSE_EVENTOLOCAL_FK FOREIGN KEY (eventoID) REFERENCES eventolocal (eventoID),
   CONSTRAINT APUNTARSE_USUARIO_FK FOREIGN KEY (usuarioID) REFERENCES usuario (usuarioID)
@@ -383,6 +384,34 @@ BEGIN
     VALUES (p_usuarioID, p_habilidades, p_motivacion);
 END //
 DELIMITER ;
+
+DROP USER 'webuser'@'172.18.0.1';
+CREATE USER 'webuser'@'172.18.0.1' IDENTIFIED BY 'password';
+
+GRANT SELECT, INSERT, DELETE ON welco.usuario TO 'webuser'@'172.18.0.1';
+GRANT SELECT, INSERT, DELETE ON welco.recienllegado TO 'webuser'@'172.18.0.1';
+GRANT SELECT, INSERT, DELETE ON welco.voluntario TO 'webuser'@'172.18.0.1';
+GRANT SELECT, INSERT, DELETE ON welco.eventolocal TO 'webuser'@'172.18.0.1';
+GRANT SELECT, INSERT ON welco.preguntafrecuente TO 'webuser'@'172.18.0.1';
+GRANT SELECT, INSERT ON welco.comentarioforo TO 'webuser'@'172.18.0.1';
+GRANT SELECT, INSERT ON welco.hiloforo TO 'webuser'@'172.18.0.1';
+GRANT SELECT, INSERT ON welco.mensajechat TO 'webuser'@'172.18.0.1';
+GRANT SELECT, INSERT ON welco.usuario_apuntarse_evento TO 'webuser'@'172.18.0.1';
+GRANT SELECT, INSERT ON welco.hacer_encuesta TO 'webuser'@'172.18.0.1';
+
+-- Solo SELECT en el resto de tablas
+GRANT SELECT ON welco.pais TO 'webuser'@'172.18.0.1';
+GRANT SELECT ON welco.comunidad_autonoma TO 'webuser'@'172.18.0.1';
+GRANT SELECT ON welco.ciudad TO 'webuser'@'172.18.0.1';
+GRANT SELECT ON welco.temaforo TO 'webuser'@'172.18.0.1';
+GRANT SELECT ON welco.categoria TO 'webuser'@'172.18.0.1';
+GRANT SELECT ON welco.recursolocal TO 'webuser'@'172.18.0.1';
+GRANT SELECT ON welco.encuesta TO 'webuser'@'172.18.0.1';
+
+GRANT EXECUTE ON PROCEDURE welco.crear_usuario TO 'webuser'@'172.18.0.1';
+GRANT EXECUTE ON PROCEDURE welco.crear_recienllegado TO 'webuser'@'172.18.0.1';
+GRANT EXECUTE ON PROCEDURE welco.crear_voluntario TO 'webuser'@'172.18.0.1';
+FLUSH PRIVILEGES;
 
 
 -- 2.1. Registro de usuarios (Voluntarios y recién llegados)

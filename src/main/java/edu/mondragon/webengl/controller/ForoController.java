@@ -50,10 +50,9 @@ public class ForoController {
     @GetMapping("/principal")
     public String principal(Model model, HttpSession session) {
         List<Temaforo> temas = temaRepo.findAll();
-        
         model.addAttribute("paginaActual", "foro");
         model.addAttribute("temaForo", temas);
-        return "foros/forosPrincipal"; // Busca forosPrincipal.html en templates
+        return "foros/forosPrincipal";
     }
 
    // @GetMapping("/{temaID}")

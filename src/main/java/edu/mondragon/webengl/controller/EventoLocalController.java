@@ -56,8 +56,10 @@ public class EventoLocalController {
         @AuthenticationPrincipal UsuarioDetails user,
         @RequestParam(value = "categoria", required = false) Integer categoriaID) {
 
-        Usuario usuario = user.getUsuario();
+        // Recarga el usuario desde la base de datos para tener los eventos apuntados actualizados
+        Usuario usuario = usuarioRepo.findById(user.getUsuario().getUsuarioID()).orElseThrow();
         usuario.getEventosApuntados().size(); // Fuerza la carga
+
         int comunidadId = usuario.getCiudad().getComunidadAutonoma();
 
         List<EventoLocal> eventos;
@@ -72,9 +74,9 @@ public class EventoLocalController {
 
         List<EventoLocal> eventosApuntados = new java.util.ArrayList<>(usuario.getEventosApuntados());
 
-        List<EventoLocal> eventosFiltrados = eventos.stream()//.stream() señala que estamos trabajando con una lista
-                .filter(e -> !eventosApuntados.contains(e))//Esto descarta los eventos a los que el usuario ya está apuntado.
-                .filter(e -> e.getUsuario() == null || e.getUsuario().getUsuarioID() != usuarioId) // <-- Añadido
+        List<EventoLocal> eventosFiltrados = eventos.stream()
+                .filter(e -> !eventosApuntados.contains(e))
+                .filter(e -> e.getUsuario() == null || e.getUsuario().getUsuarioID() != usuarioId)
                 .toList();
 
         model.addAttribute("usuario", usuario);
@@ -129,18 +131,18 @@ public class EventoLocalController {
             RedirectAttributes redirectAttrs,
             Model model) {
 
-        Usuario usuario = user.getUsuario();
+        int usuarioId = user.getUsuario().getUsuarioID();
+        Usuario usuario = usuarioRepo.findById(usuarioId).orElseThrow();
         EventoLocal evento = eventoRepo.findById(eventoID).orElseThrow();
 
-        if(usuarioRepo.existsByUsuarioIDAndEventosApuntados_EventoID(usuario.getUsuarioID(), eventoID)) {
+        if(usuarioRepo.existsByUsuarioIDAndEventosApuntados_EventoID(usuarioId, eventoID)) {
             redirectAttrs.addFlashAttribute("info", "Ya estás apuntado a este evento.");
             return "redirect:/eventos/misEventos";
         } else {
-
             usuario.getEventosApuntados().add(evento);
             evento.getUsuariosApuntados().add(usuario);
-            usuarioRepo.save(usuario);
-            // Redirección según el parámetro
+            usuarioRepo.save(usuario); // Solo guarda el usuario
+
             if ("listaEventos".equals(redirectTo)) {
                 return "redirect:/eventos/listaEventos";
             } else if ("misEventos".equals(redirectTo)) {
@@ -157,28 +159,33 @@ public class EventoLocalController {
             Model model,
             @RequestParam(value = "categoria", required = false) Integer categoriaID) {
         
-        Usuario usuario = user.getUsuario();
+        Usuario usuario = usuarioRepo.findById(user.getUsuario().getUsuarioID()).orElseThrow();
 
-        List<EventoLocal> eventos = new java.util.ArrayList<>(usuario.getEventosApuntados());
+        // Eventos a los que está apuntado
+        List<EventoLocal> eventosApuntados = new java.util.ArrayList<>(usuario.getEventosApuntados());
 
+        // Eventos creados por el usuario
+        List<EventoLocal> eventosCreados = eventoRepo.findByUsuario_UsuarioID(usuario.getUsuarioID());
+
+        // Unir ambos (sin duplicados)
+        java.util.Set<EventoLocal> eventos = new java.util.HashSet<>(eventosApuntados);
+        eventos.addAll(eventosCreados);
+
+        // Filtrar por categoría si corresponde
+        List<EventoLocal> eventosFiltrados = new java.util.ArrayList<>(eventos);
         if (categoriaID != null && categoriaID != 0) {
-            eventos = eventoRepo.findByCategoria_CategoriaID(categoriaID);
+            eventosFiltrados = eventosFiltrados.stream()
+                .filter(e -> e.getCategoria().getCategoriaID() == categoriaID)
+                .toList();
         }
 
         model.addAttribute("paginaActual", "misEventos");
-
-        List<Categoria> categorias = categoriaRepository.findAll();
-        System.out.println("CATEGORIAS DISPONIBLES: " + categorias.size()); // <-- Línea de depuración
-
-
-        model.addAttribute("eventos", eventos);
+        model.addAttribute("eventos", eventosFiltrados);
         model.addAttribute("categorias", categoriaRepository.findAll());
         model.addAttribute("categoriaSeleccionada", categoriaID);
-        model.addAttribute("usuario", user.getUsuario()); 
-        
+        model.addAttribute("usuario", usuario);
         model.addAttribute("tituloPagina", "Mis eventos");
-        model.addAttribute("textoNoEventos", "No estás apuntado a ningún evento.");
-
+        model.addAttribute("textoNoEventos", "No estás apuntado ni has creado ningún evento.");
 
         return "evento/eventosListaGenerica";
     }
