@@ -42,7 +42,6 @@ create table usuario (
   CONSTRAINT USUARIO_PAIS_FK FOREIGN KEY (paisID) REFERENCES pais (paisID),
   CONSTRAINT USUARIO_CIUDAD_FK FOREIGN KEY (ciudadID) REFERENCES ciudad (ciudadID)
 );
-
 CREATE TABLE mensajechat (
   mensajeID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   usuarioID SMALLINT UNSIGNED NOT NULL,
@@ -51,7 +50,6 @@ CREATE TABLE mensajechat (
   idioma VARCHAR(10) NOT NULL,
   FOREIGN KEY (usuarioID) REFERENCES usuario(usuarioID)
 );
-
 create table recienllegado (
   usuarioID smallint unsigned not null,
   necesidades VARCHAR(50),
@@ -112,7 +110,6 @@ create table categoria (
   descripcion VARCHAR(100),
   CONSTRAINT CATEGORIA_PK PRIMARY KEY (categoriaID)
 );
-
 create table eventolocal (
   eventoID smallint unsigned not null AUTO_INCREMENT,
   ciudadID smallint unsigned not null,
@@ -154,18 +151,20 @@ create table recursolocal (
   CONSTRAINT RECURSOLOCAL_CATEGORIA_FK FOREIGN KEY (categoriaID) REFERENCES categoria (categoriaID),
   CONSTRAINT RECURSOLOCAL_CIUDAD_FK FOREIGN KEY (ciudadID) REFERENCES ciudad (ciudadID)
 );
+create table aa (encuestaID smallint);
 
 create table encuesta (
   encuestaID smallint unsigned not null AUTO_INCREMENT,
   titulo varchar(50) not null,
   descripcion varchar(100),
-  tipo_encuesta varchar(50) not null,
   CONSTRAINT ENCUESTA_PK PRIMARY KEY (encuestaID)
 );
 
 create table hacer_encuesta (
   encuestaID smallint unsigned not null,
   usuarioID smallint unsigned not null,
+  titulo varchar(50) not null,
+  descripcion varchar(100),
   resultado_psicologico double(5, 4) unsigned not null,
   resultado_linguistico double(5, 4) unsigned not null,
   resultado_economico double(5, 4) unsigned not null,
@@ -220,6 +219,8 @@ INSERT INTO voluntario (usuarioID, habilidades, motivacion) VALUES
 (1, 'Traducción inglés-español', 'Ayudar a la integración cultural');
 
 -- Poblar tabla temaforo
+
+-- Poblar tabla temaforo
 INSERT INTO temaforo (nombre, descripcion, logo) VALUES
 ('Trámites-Documentación', 'Resuelve tus dudas sobre papeles, permisos y procesos administrativos.', 'bi bi-file-earmark-text'),
 ('Vivienda', 'Comparte y encuentra información sobre alquiler, compra y ayudas para vivienda', 'bi bi-house-door'),
@@ -227,6 +228,7 @@ INSERT INTO temaforo (nombre, descripcion, logo) VALUES
 ('Educación', 'Información sobre estudios, homologaciones y formación.', 'bi bi-mortarboard'),
 ('Salud', 'Acceso a la sanidad, seguros y consejos para tu bienestar.', 'bi bi-heart-pulse'),
 ('Otros', 'Comparte inquietudes o preguntas que no se encuadren en las categorías anteriores.', 'bi bi-three-dots');
+
 
 -- Poblar tabla preguntafrecuente
 INSERT INTO preguntafrecuente (preguntaID, temaID, pregunta, fecha_creacion) VALUES
@@ -252,6 +254,7 @@ INSERT INTO categoria (categoriaID, nombre, descripcion) VALUES
 (5, 'Salud', 'Recursos sanitarios, centros de salud y campañas de bienestar'),
 (6, 'Documentos y Trámites', 'Asistencia con empadronamiento, NIE, seguridad social y otros trámites'),
 (7, 'Jurídico', 'Asesoría legal, derechos laborales y recursos jurídicos');
+
 
 -- Poblar tabla eventolocal
 INSERT INTO eventolocal (eventoID, ciudadID, categoriaID, usuarioID, titulo, descripcion, fecha_hora, lugar, imagen) VALUES
@@ -294,6 +297,7 @@ INSERT INTO recursolocal (recursoID, categoriaID, ciudadID, nombre, descripcion,
 (20, 5, 3, 'Centro de Salud Este', 'Atención sanitaria gratuita', 'Calle Alcalde Sainz 12', '915009900', '08:00:00', '16:00:00', 40.410000, -3.670000),
 (21, 7, 3, 'Jurídico Madrid Norte', 'Asesoría legal laboral', 'Paseo Castellana 234', '915001234', '10:00:00', '18:00:00', 40.465000, -3.688000);
 
+
 -- VALENCIA 
 INSERT INTO recursolocal (recursoID, categoriaID, ciudadID, nombre, descripcion, direccion, telefono, hora_abierto, hora_cerrado, latitud, longitud) VALUES
 (22, 2, 4, 'Museo Local Valencia', 'Talleres sobre historia local', 'Calle Historiador 6', '961223344', '10:00:00', '18:00:00', 39.470000, -0.376000),
@@ -303,6 +307,7 @@ INSERT INTO recursolocal (recursoID, categoriaID, ciudadID, nombre, descripcion,
 (26, 3, 4, 'Oficina Empleo Jove', 'Ayuda para encontrar trabajo joven en Valencia', 'Avinguda de les Corts 10', '961112233', '08:30:00', '14:30:00', 39.470000, -0.350000),
 (27, 6, 4, 'Trámites Valencia', 'NIE, seguridad social y más', 'Calle San Vicente 90', '961556677', '09:00:00', '17:00:00', 39.470000, -0.380000),
 (28, 7, 4, 'LegalVal', 'Orientación jurídica migratoria', 'Plaza Ayuntamiento 3', '961667788', '11:00:00', '19:00:00', 39.469900, -0.376288);
+
 
 -- SANTIAGO DE COMPOSTELA
 INSERT INTO recursolocal (recursoID, categoriaID, ciudadID, nombre, descripcion, direccion, telefono, hora_abierto, hora_cerrado, latitud, longitud) VALUES
@@ -314,6 +319,7 @@ INSERT INTO recursolocal (recursoID, categoriaID, ciudadID, nombre, descripcion,
 (34, 6, 5, 'Oficina Trámites Compostela', 'Gestiones legales', 'Rúa do Vilar 3', '981667788', '09:30:00', '16:30:00', 42.880000, -8.545000),
 (35, 7, 5, 'Asesoría Legal Galega', 'Ayuda jurídica para inmigrantes', 'Praza do Obradoiro 4', '981778899', '11:00:00', '18:00:00', 42.880000, -8.545000);
 
+
 -- BILBAO 
 INSERT INTO recursolocal (recursoID, categoriaID, ciudadID, nombre, descripcion, direccion, telefono, hora_abierto, hora_cerrado, latitud, longitud) VALUES
 (36, 1, 6, 'Euskera para Todos', 'Cursos de euskera y castellano', 'Calle Gran Vía 12', '944223344', '09:00:00', '13:00:00', 43.262211, -2.929884),
@@ -324,15 +330,17 @@ INSERT INTO recursolocal (recursoID, categoriaID, ciudadID, nombre, descripcion,
 (41, 6, 6, 'Trámites Bizkaia', 'Asistencia a trámites legales', 'Calle Autonomía 44', '944667788', '09:00:00', '17:00:00', 43.256000, -2.938000),
 (42, 7, 6, 'Asesoría Jurídica Bilbao', 'Orientación legal gratuita sobre inmigración y trabajo', 'Plaza Moyua 3', '944112233', '12:00:00', '19:00:00', 43.262542, -2.935483);
 
+
+
 -- Poblar tabla encuesta
-INSERT INTO encuesta (encuestaID, titulo, descripcion, tipo_encuesta) VALUES
-(1, 'Encuesta de Integración 2025', 'Evaluación completa del nivel de integración de migrantes', 'integracion'),
-(2, 'Satisfacción de eventos', 'Cuestionario sobre los eventos realizados', 'proximamente'),
-(3, 'Evaluación de taller cultural', 'Valora el evento cultural realizado', 'proximamente');
+INSERT INTO encuesta (encuestaID, titulo, descripcion) VALUES
+(1, 'Encuesta de Integración 2025', 'Evaluación completa del nivel de integración de migrantes'),
+(2, 'Satisfacción de eventos', 'Cuestionario sobre los eventos realizados'),
+(3, 'Evaluación de taller cultural', 'Me gustó el evento cultural realizado');
 
 -- Poblar tabla hacer_encuesta
-INSERT INTO hacer_encuesta (encuestaID, usuarioID, resultado_psicologico, resultado_linguistico, resultado_economico, resultado_politico, resultado_social, resultado_navegacional, resultado_total) VALUES
-(1, 2, 0.25, 0.37, 0.14, 0.099, 0.601, 0.524, 0.082);
+INSERT INTO hacer_encuesta (encuestaID, usuarioID, titulo, descripcion, resultado_psicologico, resultado_linguistico, resultado_economico, resultado_politico, resultado_social, resultado_navegacional, resultado_total) VALUES
+(1, 2, 'Encuesta de Integración 2025', 'Evaluación completa del nivel de integración de migrantes', 0.25, 0.37, 0.14, 0.099, 0.601, 0.524, 0.082);
 
 -- Procedimientos almacenados
 DELIMITER //
@@ -378,32 +386,32 @@ BEGIN
 END //
 DELIMITER ;
 
-DROP USER 'webuser'@'172.18.0.1';
-CREATE USER 'webuser'@'172.18.0.1' IDENTIFIED BY 'password';
+DROP USER IF EXISTS 'webuser'@'%';
+CREATE USER 'webuser'@'%' IDENTIFIED BY 'password';
 
-GRANT SELECT, INSERT, DELETE ON welco.usuario TO 'webuser'@'172.18.0.1';
-GRANT SELECT, INSERT, DELETE ON welco.recienllegado TO 'webuser'@'172.18.0.1';
-GRANT SELECT, INSERT, DELETE ON welco.voluntario TO 'webuser'@'172.18.0.1';
-GRANT SELECT, INSERT, DELETE ON welco.eventolocal TO 'webuser'@'172.18.0.1';
-GRANT SELECT, INSERT ON welco.preguntafrecuente TO 'webuser'@'172.18.0.1';
-GRANT SELECT, INSERT ON welco.comentarioforo TO 'webuser'@'172.18.0.1';
-GRANT SELECT, INSERT ON welco.hiloforo TO 'webuser'@'172.18.0.1';
-GRANT SELECT, INSERT ON welco.mensajechat TO 'webuser'@'172.18.0.1';
-GRANT SELECT, INSERT ON welco.usuario_apuntarse_evento TO 'webuser'@'172.18.0.1';
-GRANT SELECT, INSERT ON welco.hacer_encuesta TO 'webuser'@'172.18.0.1';
+-- Repite los GRANTs para 'webuser'@'%'
+GRANT SELECT, INSERT, DELETE ON welco.usuario TO 'webuser'@'%';
+GRANT SELECT, INSERT, DELETE ON welco.recienllegado TO 'webuser'@'%';
+GRANT SELECT, INSERT, DELETE ON welco.voluntario TO 'webuser'@'%';
+GRANT SELECT, INSERT, DELETE ON welco.eventolocal TO 'webuser'@'%';
+GRANT SELECT, INSERT ON welco.preguntafrecuente TO 'webuser'@'%';
+GRANT SELECT, INSERT ON welco.comentarioforo TO 'webuser'@'%';
+GRANT SELECT, INSERT ON welco.hiloforo TO 'webuser'@'%';
+GRANT SELECT, INSERT ON welco.mensajechat TO 'webuser'@'%';
+GRANT SELECT, INSERT ON welco.usuario_apuntarse_evento TO 'webuser'@'%';
+GRANT SELECT, INSERT ON welco.hacer_encuesta TO 'webuser'@'%';
 
--- Solo SELECT en el resto de tablas
-GRANT SELECT ON welco.pais TO 'webuser'@'172.18.0.1';
-GRANT SELECT ON welco.comunidad_autonoma TO 'webuser'@'172.18.0.1';
-GRANT SELECT ON welco.ciudad TO 'webuser'@'172.18.0.1';
-GRANT SELECT ON welco.temaforo TO 'webuser'@'172.18.0.1';
-GRANT SELECT ON welco.categoria TO 'webuser'@'172.18.0.1';
-GRANT SELECT ON welco.recursolocal TO 'webuser'@'172.18.0.1';
-GRANT SELECT ON welco.encuesta TO 'webuser'@'172.18.0.1';
+GRANT SELECT ON welco.pais TO 'webuser'@'%';
+GRANT SELECT ON welco.comunidad_autonoma TO 'webuser'@'%';
+GRANT SELECT ON welco.ciudad TO 'webuser'@'%';
+GRANT SELECT ON welco.temaforo TO 'webuser'@'%';
+GRANT SELECT ON welco.categoria TO 'webuser'@'%';
+GRANT SELECT ON welco.recursolocal TO 'webuser'@'%';
+GRANT SELECT ON welco.encuesta TO 'webuser'@'%';
 
-GRANT EXECUTE ON PROCEDURE welco.crear_usuario TO 'webuser'@'172.18.0.1';
-GRANT EXECUTE ON PROCEDURE welco.crear_recienllegado TO 'webuser'@'172.18.0.1';
-GRANT EXECUTE ON PROCEDURE welco.crear_voluntario TO 'webuser'@'172.18.0.1';
+GRANT EXECUTE ON PROCEDURE welco.crear_usuario TO 'webuser'@'%';
+GRANT EXECUTE ON PROCEDURE welco.crear_recienllegado TO 'webuser'@'%';
+GRANT EXECUTE ON PROCEDURE welco.crear_voluntario TO 'webuser'@'%';
 FLUSH PRIVILEGES;
 
 
