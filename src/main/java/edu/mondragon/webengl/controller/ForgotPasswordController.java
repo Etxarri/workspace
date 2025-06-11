@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import edu.mondragon.webengl.domain.user.model.PasswordResetTokenStore;
 import edu.mondragon.webengl.domain.user.model.Usuario;
-
+import edu.mondragon.webengl.domain.user.repository.UsuarioRepository;
 import edu.mondragon.webengl.domain.user.service.EmailService;
 import edu.mondragon.webengl.domain.user.service.UsuarioService;
 
@@ -25,13 +25,11 @@ public class ForgotPasswordController {
     @Autowired
     private PasswordResetTokenStore tokenStore;
 
+    private final UsuarioRepository usuarioRepository;
     private final UsuarioService usuarioService;
-
-    //private UsuarioRepository userRepository;
-
-    public ForgotPasswordController(UsuarioService usuarioService) {
+    public ForgotPasswordController(UsuarioRepository usuarioRepository, UsuarioService usuarioService) {
+        this.usuarioRepository = usuarioRepository;
         this.usuarioService = usuarioService;
-
     }
 
     @GetMapping("/forgot-password")
@@ -41,9 +39,7 @@ public class ForgotPasswordController {
 
     @PostMapping("/forgot-password")
     public String processForgotPassword(@RequestParam("email") String email, RedirectAttributes redirectAttributes) {
-        Optional<Usuario> user = usuarioService.existeUsuarioPorEmail(email)?
-                usuarioService.findUsuarioByEmail(email) :
-                Optional.empty();
+        Optional<Usuario> user = usuarioRepository.findByEmail(email)   ;
 
         if (user.isEmpty()) {
             redirectAttributes.addFlashAttribute("error", "error.forgot");
@@ -89,7 +85,7 @@ public class ForgotPasswordController {
             @RequestParam("password") String password,
             RedirectAttributes redirectAttributes) {
 
-        java.util.Optional<Usuario> userOpt = usuarioService.findUsuarioByEmail(email);
+        java.util.Optional<Usuario> userOpt = usuarioRepository.findByEmail(email);
         if (userOpt.isEmpty()) {
             redirectAttributes.addFlashAttribute("error", "Usuario no encontrado.");
             System.out.println("Error");
@@ -98,7 +94,7 @@ public class ForgotPasswordController {
 
         Usuario user = userOpt.get();
         user.setContraseña(usuarioService.encriptarContraseña(password));
-        usuarioService.guardarUsuario(user);
+        usuarioRepository.save(user);
         tokenStore.removeCode(email);
 
         redirectAttributes.addFlashAttribute("message", "Tu contraseña ha sido restablecida.");

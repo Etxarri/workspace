@@ -9,6 +9,7 @@ import edu.mondragon.webengl.domain.foro.repository.ComentarioForoRepository;
 import edu.mondragon.webengl.domain.foro.repository.HiloforoRepository;
 import edu.mondragon.webengl.domain.foro.repository.PreguntaFrecuenteRepository;
 import edu.mondragon.webengl.domain.foro.repository.TemaforoRepository;
+import edu.mondragon.webengl.domain.user.repository.UsuarioRepository;
 import edu.mondragon.webengl.domain.user.service.UsuarioService;
 import edu.mondragon.webengl.seguridad.UsuarioDetails;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -33,17 +34,15 @@ public class ForoController {
     private final ComentarioForoRepository comentarioRepo;
     private final TemaforoRepository temaRepo;
     private final PreguntaFrecuenteRepository preguntaFrecuenteRepo;
-
-    private final UsuarioService usuarioService;
-
+    private final UsuarioRepository usuarioRepo;
     private static final Logger logger = LoggerFactory.getLogger(ForoController.class);
 
 
-    public ForoController(HiloforoRepository hiloRepo, ComentarioForoRepository comentarioRepo, TemaforoRepository temaRepo, UsuarioService usuarioService, PreguntaFrecuenteRepository preguntaFrecuenteRepo) {
+    public ForoController(HiloforoRepository hiloRepo, ComentarioForoRepository comentarioRepo, TemaforoRepository temaRepo, UsuarioRepository usuarioRepo, PreguntaFrecuenteRepository preguntaFrecuenteRepo) {
         this.hiloRepo = hiloRepo;
         this.comentarioRepo = comentarioRepo;
         this.temaRepo = temaRepo;
-        this.usuarioService = usuarioService;
+        this.usuarioRepo = usuarioRepo;
         this.preguntaFrecuenteRepo = preguntaFrecuenteRepo;
     }
 
@@ -98,38 +97,6 @@ public class ForoController {
         return "redirect:/foro";
     }
 
-/*
-    @PostMapping("/preguntasFrecuentes")
-    public String crearPreguntaFrecuente(@RequestParam String contenido,
-                                 RedirectAttributes redirectAttrs, HttpSession session, Model model) {
-
-        Object tema = session.getAttribute("tema");
-        if (tema == null) {
-            redirectAttrs.addFlashAttribute("error", "Tema no válido.");
-            return "redirect:/foro";
-        }
-
-        PreguntaFrecuente nuevaPregunta = new PreguntaFrecuente();
-        nuevaPregunta.setPregunta(contenido);
-        nuevaPregunta.setTema((Temaforo) tema);
-        nuevaPregunta.setFechaCreacion(java.sql.Date.valueOf(LocalDateTime.now().toLocalDate()));
-        nuevaPregunta = preguntaFrecuenteRepo.saveAndFlush(nuevaPregunta);//Forzar persistencia inmediata 
-
-        // Crear el hilo asociado a la nueva pregunta
-        Hiloforo nuevoHilo = new Hiloforo();
-        nuevoHilo.setPreguntaID(nuevaPregunta.getPreguntaID());
-        nuevoHilo.setFechaCreacion(LocalDateTime.now());
-        hiloRepo.save(nuevoHilo);
-
-        // Recupera las preguntas y pásalas al modelo
-        List<PreguntaFrecuente> preguntas = preguntaFrecuenteRepo.findByTema_TemaID(((Temaforo) tema).getTemaID());
-        model.addAttribute("preguntasUsuarios", preguntas);
-        model.addAttribute("tema", tema);
-
-        return "foros/forosSecundario";
-    }
-        */
-
     @PostMapping("/preguntasFrecuentes")
     public String crearPreguntaFrecuente(@RequestParam String contenido, @RequestParam int temaId,
                                         RedirectAttributes redirectAttrs, Model model) {
@@ -174,7 +141,7 @@ public class ForoController {
 
         ComentarioForo comentario = new ComentarioForo();
         comentario.setHilo(hiloOpt.get());
-        comentario.setUsuario(usuarioService.findUsuarioByIdUsuario(usuario.getUsuario().getUsuarioID()));
+        comentario.setUsuario(usuarioRepo.findById(usuario.getUsuario().getUsuarioID()).orElse(null));
         comentario.setContenido(contenido);
         comentario.setFechaHora(LocalDateTime.now());
         comentario.setBotoPos(0); // Inicializar en 0
@@ -207,7 +174,7 @@ public class ForoController {
 
         return "redirect:/foro/preguntaUsuario/" + preguntaID;
     }
-
+    /*
     @GetMapping
     public String listarHilos(@RequestParam(required = false) int temaId, Model model) {
         List<Hiloforo> hilos = null;
@@ -241,47 +208,6 @@ public class ForoController {
         }
         return "redirect:/foro";
     }
-    /*
-    @GetMapping("/nuevo")
-    public String mostrarFormularioNuevoHilo(Model model) {
-        List<Temaforo> temas = temaRepo.findAll();
-        model.addAttribute("temas", temas);
-        return "foro/nuevoHilo";
-    }
-
-    @PostMapping("/nuevo")
-    public String crearNuevoHilo(@RequestParam String titulo,
-                                 @RequestParam String contenido,
-                                 @RequestParam int temaId,
-                                 HttpSession session,
-                                 RedirectAttributes redirectAttrs) {
-        Usuario usuario = (Usuario) session.getAttribute("user");
-        if (usuario == null) {
-            redirectAttrs.addFlashAttribute("error", "Debes estar logueado para crear un hilo.");
-            return "redirect:/login";
-        }
-
-        Optional<Temaforo> temaOpt = temaRepo.findById(temaId);
-        if (temaOpt.isEmpty()) {
-            redirectAttrs.addFlashAttribute("error", "Tema no válido.");
-            return "redirect:/foro/nuevo";
-        }
-
-        Hiloforo nuevoHilo = new Hiloforo();
-        nuevoHilo.setFechaCreacion(LocalDateTime.now());
-        nuevoHilo.setPreguntaID(temaId);
-        hiloRepo.save(nuevoHilo);
-
-        ComentarioForo primerComentario = new ComentarioForo();
-        primerComentario.setHilo(nuevoHilo);
-        primerComentario.setUsuario(usuarioService.findUsuarioByIdUsuario(usuario.getUsuarioID()));
-        primerComentario.setContenido(contenido);
-        primerComentario.setFechaHora(LocalDateTime.now());
-        comentarioRepo.save(primerComentario);
-
-        redirectAttrs.addFlashAttribute("mensaje", "Hilo creado correctamente.");
-        return "redirect:/foro/" + nuevoHilo.getHiloID();
-    }
-    */
+*/
 }
 

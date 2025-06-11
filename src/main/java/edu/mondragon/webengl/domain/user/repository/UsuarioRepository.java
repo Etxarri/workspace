@@ -12,6 +12,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     Optional<Usuario> findByusuarioID(int idUsuario);
     boolean existsByUsuarioIDAndEventosApuntados_EventoID(int usuarioId, int eventoId);
     Optional<Usuario> deleteByEventosApuntados_EventoID(int eventoId);
+    boolean existsByEmail(String email);
 
 }
 

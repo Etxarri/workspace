@@ -1,8 +1,5 @@
 package edu.mondragon.webengl.domain.user.service;
 
-
-import java.util.Optional;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -40,62 +37,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         this.voluntarioRepository = voluntarioRepository;
     }
 
-    @Override
-    public boolean existeUsuarioPorEmail(String email) {
-        return usuarioRepository.findByEmail(email).isPresent();
-    }
-    @Override
-    public Optional<Usuario> findUsuarioByEmail(String email) {
-        return usuarioRepository.findByEmail(email);
-    }
 
-    /*
-     *     @Override
-    public Usuario login(String username, String password) {
-        Optional<Usuario> usuarioOpt = usuarioRepository.findByUsername(username);
-        if (usuarioOpt.isPresent()) {
-            Usuario usuario = usuarioOpt.get();
-            String hash = new String(usuario.getContraseña());
-            if (passwordEncoder.matches(password, hash)) {
-                return usuario;
-            }
-        }
-        return null;
-    }
-     */
 
-    @Override
-    public Recienllegado findRecienllegadoById(int id) {
-        return recienllegadoRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    @Transactional
-    public void guardarUsuario(Usuario usuario) {
-        usuarioRepository.save(usuario);
-    }
-
-    @Override
-    @Transactional
-    public void guardarVoluntario(Voluntario voluntario) {
-        voluntarioRepository.save(voluntario);
-    }
-
-    @Override
-    @Transactional
-    public void guardarRecienllegado(Recienllegado recien) {
-        recienllegadoRepository.save(recien);
-    }
-
-    @Override
-    public Voluntario findVoluntarioById(int id) {
-        return voluntarioRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public Usuario findUsuarioByIdUsuario(int id) {
-        return usuarioRepository.findById(id).orElse(null);
-    }
 
     @Override
     public String encriptarContraseña(String rawPassword) {
