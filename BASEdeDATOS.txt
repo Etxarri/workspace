@@ -398,7 +398,7 @@ GRANT SELECT, INSERT ON welco.preguntafrecuente TO 'webuser'@'%';
 GRANT SELECT, INSERT ON welco.comentarioforo TO 'webuser'@'%';
 GRANT SELECT, INSERT ON welco.hiloforo TO 'webuser'@'%';
 GRANT SELECT, INSERT ON welco.mensajechat TO 'webuser'@'%';
-GRANT SELECT, INSERT ON welco.usuario_apuntarse_evento TO 'webuser'@'%';
+GRANT SELECT, INSERT, DELETE ON welco.usuario_apuntarse_evento TO 'webuser'@'%';
 GRANT SELECT, INSERT ON welco.hacer_encuesta TO 'webuser'@'%';
 
 GRANT SELECT ON welco.pais TO 'webuser'@'%';
