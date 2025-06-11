@@ -12,11 +12,11 @@
         </div>
     <div>
         <!-- Resultado total -->
-        <div class="text-center p-2 my-4">
-            <div class="card shadow-sm mx-auto" style="max-width: 300px;">
+        <div class="text-center p-2 my-2">
+            <div class="card shadow-sm mx-auto" style="max-width: 50%;">
                 <div class="card-body">
                     <h5 class="card-title mb-3">Índice total de integración</h5>
-                    <div class="position-relative d-inline-block">
+                    <div class="d-inline-block">
                         <div class="rounded-circle p-4" th:style="${'background-color: ' + 
                             (encuesta.resultadoTotal >= 0.9 ? 'rgba(25, 135, 84, 0.1)' :
                             encuesta.resultadoTotal >= 0.7 ? 'rgba(13, 202, 240, 0.1)' :
@@ -57,16 +57,22 @@
             </div>
         </div>
 
-        <!-- Gráfico -->
-        <div class="container-fluid">
-            <canvas id="graficoPolar"></canvas>
-        </div>
-
-        <!-- Consejos después del gráfico -->
-        <div class="container mt-4">
+        <div class="encuesta-results">
             <div class="row">
-                <div class="col-md-6">
+                <!-- Columna para el gráfico -->
+                <div class="col-md-6 mb-4">
                     <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-center mb-2">Gráfico de integración por áreas</h5>
+                            <canvas id="graficoPolar"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna para consejos -->
+                <div class="col-md-6 pe-2">
+                    <!-- Nivel de integración general -->
+                    <div class="card shadow-sm mb-4">
                         <div class="card-body">
                             <h5 class="card-title">Nivel de integración general</h5>
                             <div th:if="${nivelGeneral}" class="mb-3">
@@ -88,10 +94,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="col-md-6" th:if="${areaDebil}">
-                    <div class="card shadow-sm">
+
+                    <!-- Área que necesita más atención -->
+                    <div class="card shadow-sm" th:if="${areaDebil}">
                         <div class="card-body">
                             <h5 class="card-title">Área que necesita más atención</h5>
                             <h6 class="mb-3" th:text="${'Área: ' + #strings.capitalize(areaDebil)}"></h6>
@@ -111,7 +116,7 @@
         </div>
 
         <!-- Botón para volver-->
-        <div class="text-center mt-3 mb-5">
+        <div class="text-center mt-3 mb-5" style="min-width: 150px;">
             <a href="/encuestas" class="btn btn-secondary"> ← Volver a encuestas</a>
         </div>
 

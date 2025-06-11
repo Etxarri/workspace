@@ -11,8 +11,17 @@
         </h3>
     </div>
     <div class="col-10 container-fluid mb-5 mt-3">
-        <form th:action="@{/encuestas/{encuestaID}/responder(encuestaID=${encuesta.encuestaID})}" th:object="${encuestaRespuestas}" method="post" class="mx-auto encuesta">
-        
+        <form th:action="@{/encuestas/{encuestaID}/responder(encuestaID=${encuesta.encuestaID})}" th:object="${encuestaRespuestas}" method="post" class="mx-auto encuesta bg-white p-4 rounded shadow-sm">
+            
+            <section>
+                <h2 th:text="${encuesta.titulo}" class="card-title text-center mt-2 mb-4">Encuesta integracion</h2>
+                <div class="form-text mb-4">Diseñada para medir el nivel de integración de personas migrantes a través de un enfoque multidimensional y estandarizado.
+                    Está compuesto por 24 preguntas, agrupados en 6 áreas.<br>
+                    <strong>Tiempo estimado:</strong> 5-10 minutos.
+                    <hr>
+                </div>
+            </section>
+
             <section class="card p-4 mb-4">
                 <h3 class="card-title mb-5"><i class="bi bi-heart-half"></i> Psicológico</h3>
 
@@ -955,9 +964,9 @@
                 </div>
             </section>
 
-            <div class="gureform text-center mt-4">
+            <div class="text-center mt-4">
                 <p class="text-muted">Gracias por participar en esta encuesta. Sus respuestas son muy valiosas para nosotros.</p>
-                <button type="submit" class="btn btn-primary px-5 py-3">Enviar encuesta</button>
+                <button type="submit" class="btn btn-primary w-50 px-5 py-3">Enviar encuesta</button>
             </div>
         </form>
     </div>

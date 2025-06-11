@@ -68,10 +68,16 @@ a {
 }
 
 canvas {
-  width: 50% !important;
-  height: 50% !important;
+  width: 100% !important;
+  height: 100% !important;
   background-color: white;
   border-radius: 20px;
+}
+
+/* Modificar la regla container-fluid */
+.encuesta-results {
+    min-height: auto;
+    padding: 30px;
 }
 
 .pregunta {
@@ -246,7 +252,7 @@ a:focus {
     display: inline-block !important;
     margin-right: 1.5rem;
   }
-  
+
   .form-label.pregunta {
     font-size: 1rem !important;
   }

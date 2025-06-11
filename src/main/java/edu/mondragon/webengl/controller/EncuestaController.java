@@ -163,17 +163,14 @@ public class EncuestaController
         // Calcular y setear las puntuaciones 
         double resultadoPsi = er.getPsicologicoConexion() + er.getPsicologicoExtranjero()
                             + er.getPsicologicoDeseoVivir() + er.getPsicologicoAislamiento();
-        // he.setResultadoPsicologico(resultadoPsi);
 
         double resultadoLin = er.getLinguisticoLectura() + er.getLinguisticoConversacion()
                             + er.getLinguisticoEscritura() + er.getLinguisticoEscucha();
-        // he.setResultadoLinguistico(resultadoLin);
 
         double resultadoEco = er.getEconomicoIngreso() + er.getEconomicoSituacion()
                             + er.getEconomicoGasto400() + er.getEconomicoGasto800()
                             + er.getEconomicoGasto8000() + er.getEconomicoGasto40000() + 1
                             + er.getEconomicoSatisfaccion();
-        // he.setResultadoEconomico(resultadoEco);
             
         int resultadoPol4 = er.getPoliticoAccionConvencer() + er.getPoliticoAccionInfluirVoto()
                             + er.getPoliticoAccionDeclaracion() + er.getPoliticoAccionDiscusionPublica()
@@ -186,7 +183,6 @@ public class EncuestaController
                             + er.getPoliticoPartidos() + er.getPoliticoPresidentePartido()
                             + er.getPoliticoSenadoPartido() + Integer.valueOf(er.getPoliticoEdadVoto()) + 1
                             + (resultadoPol4 > 4 ? 5 : (resultadoPol4 == 3 || resultadoPol4 == 4) ? 4 : (resultadoPol4 == 2) ? 3 : (resultadoPol4 == 1) ? 2 : 1);
-        // he.setResultadoPolitico(resultadoPol);
 
         int resultadoSoc3A = (er.getSocialParticipacionGrupoA() == 1 ? 0 : er.getSocialParticipacionGrupoA())
                             * (er.getSocialMiembrosEspanolesGrupoA() == 1 ? 0 : er.getSocialMiembrosEspanolesGrupoA());
@@ -202,13 +198,11 @@ public class EncuestaController
 
         double resultadoSoc = er.getSocialCenaEspanoles() + er.getSocialContactosEspanoles()
                             + ((int)Math.ceil((resultadoSoc3 / 25.0) * 4)) + er.getSocialFavoresEspanoles();
-        // he.setResultadoSocial(resultadoSoc);
 
         double resultadoNav = er.getNavegacionalConsultaMedica() + er.getNavegacionalBuscarEmpleo()
                             + er.getNavegacionalAyudaLegal() + er.getNavegacionalConduccionAlcohol()
                             + er.getNavegacionalPagoImpuestos() + er.getNavegacionalFormatoDireccion()
                             + er.getNavegacionalAyudaMedicaCronica() + 1;
-        // he.setResultadoNavegacional(resultadoNav);
             
         double indiceTotal = (((double)resultadoPsi + (double)resultadoLin + (double)resultadoEco + (double)resultadoPol + (double)resultadoSoc + (double)resultadoNav) - 24) / (120 - 24) * (1 - 0) + 0;
         he.setResultadoTotal(indiceTotal);
@@ -236,14 +230,13 @@ public class EncuestaController
         System.out.println("Social: " + indiceSoc);
         System.out.println("Navegacional: " + indiceNav);
         System.out.println("Total: " + indiceTotal);
-
     }
 
 
     @Autowired
     private ConsejoService consejoService;
 
-    @GetMapping("/grafico/{encuestaID}") //graficoEncuesta
+    @GetMapping("/graficoEncuesta")
     public String mostrarGrafico(@PathVariable("encuestaID") int encuestaID,
                                 Model model,
                                 @AuthenticationPrincipal UsuarioDetails user) {
@@ -296,4 +289,3 @@ public class EncuestaController
         return "encuestas/graficoEncuesta";
     }
 }
-//{id}/grafico(id=${encuesta.encuestaID})
