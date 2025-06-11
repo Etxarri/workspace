@@ -29,9 +29,9 @@
                 </form>
             </div>
         </div>
-        <div th:if="${usuario.tipo.name() == 'voluntario'}" class="mb-4">
+        <div th:if="${usuario.tipo.name() == 'voluntario' and paginaActual == 'misEventos'}" class="mb-4">
             <form th:action="@{/eventos/crearEvento}" method="get" class="mt-4">
-                <button type="submit" class="btn btn-primary mt-4">Crear Evento</button>
+                <button type="submit" class="btn btn-primary mt-4" th:text="#{evento.crear}">Crear Evento</button>
             </form>
         </div>
         <div class="container">
