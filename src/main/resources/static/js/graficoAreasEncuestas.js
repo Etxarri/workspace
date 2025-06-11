@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function ()
         options: {
             responsive: true,
             maintainAspectRatio: true,
+            aspectRatio: 1,
             scales: {
                 r: {
                     min: 0,
@@ -42,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function ()
                         display: true,
                         font: {
                             family: "'Poppins', sans-serif",
-                            size: 24
+                            size: 16//Math.max(16, Math.min(window.innerWidth * 0.025, 32))
                         }
                     }
                 }
