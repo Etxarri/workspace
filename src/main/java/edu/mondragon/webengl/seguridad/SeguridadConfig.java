@@ -47,27 +47,5 @@ public class SeguridadConfig {
                 .permitAll();
         return http.build();
     }
-    // Redirige HTTP a HTTPS
 
-/*
-        @Bean
-    public WebServerFactoryCustomizer<TomcatServletWebServerFactory> containerCustomizer() {
-   return factory -> {
-        Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
-        connector.setScheme("http");
-        connector.setPort(8080);
-        connector.setSecure(false);
-        connector.setRedirectPort(8443);
-        factory.addAdditionalTomcatConnectors(connector);
-    };    }
-
-    private Connector createHttpConnector() {
-        Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
-        connector.setScheme("http");
-        connector.setPort(8080); // escucha HTTP en 8080
-        connector.setSecure(false);
-        connector.setRedirectPort(8443); // redirige todo a HTTPS 8443
-        return connector;
-    }
-        */
 }
