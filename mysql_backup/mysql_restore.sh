@@ -3,9 +3,9 @@
 USER="root"
 PASSWORD="pasahitza"
 DATABASE="welco"
-BACKUP_FILE="/workspace/mysql_backup/backups/backup_2025-06-11.sql"
-BINLOG_DIR="/var/lib/mysql/mysql-bin" # Cambia esto si tus binlogs están en otra ruta
-BINLOG_FILE="mysql-bin.000055" # Cambia esto por el nombre real de tu binlog
+BACKUP_FILE="/workspace/mysql_backup/backups/welco_backup_2025-06-11.sql"
+BINLOG_DIR="/workspace/mysql_backup"
+BINLOG_FILE="mysql-bin.000058"
 
 # 1. Restaurar el backup
 mysql -h 172.18.0.2 -u $USER -p$PASSWORD $DATABASE < $BACKUP_FILE

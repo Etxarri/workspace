@@ -148,7 +148,7 @@ public class EncuestaController
             }
             hacerEncuestaRepo.save(he);
             redirectAttrs.addFlashAttribute("mensaje", "¡Gracias por responder la encuesta!");
-            return "redirect:/encuestas/graficoEncuesta";
+            return "redirect:/encuestas/grafico/" + encuestaID;
         }
         catch (Exception e)
         {
@@ -236,10 +236,10 @@ public class EncuestaController
     @Autowired
     private ConsejoService consejoService;
 
-    @GetMapping("/graficoEncuesta")
+    @GetMapping("/grafico/{encuestaID}")
     public String mostrarGrafico(@PathVariable("encuestaID") int encuestaID,
-                                Model model,
-                                @AuthenticationPrincipal UsuarioDetails user) {
+                             Model model,
+                             @AuthenticationPrincipal UsuarioDetails user) {
         // Obtener los resultados de la última encuesta del usuario
         Optional<HacerEncuesta> encuesta = hacerEncuestaRepo
             .findByUsuarioIDAndEncuestaID(user.getUsuario().getUsuarioID(), encuestaID);
