@@ -99,7 +99,7 @@ public class EncuestaController
 
         model.addAttribute("encuesta", encuesta);
         model.addAttribute("preguntas", encuesta.getPreguntas());
-        model.addAttribute("encuestaRespuestas", new HashMap<Integer, Double>()); // clave: preguntaID, valor: respuesta
+        model.addAttribute("encuestaRespuestas", new EncuestaRespuestas()); // clave: preguntaID, valor: respuesta
 
         model.addAttribute("tituloPagina", "Responder Encuesta");
 
@@ -158,16 +158,12 @@ public class EncuestaController
     private void calcularResultadosIntegracion(HacerEncuesta he, EncuestaRespuestas er)
     {
         // Calcular y setear las puntuaciones 
-        double resultadoPsi = er.getPsicologicoConexion() + er.getPsicologicoExtranjero()
-                            + er.getPsicologicoDeseoVivir() + er.getPsicologicoAislamiento();
+        double resultadoPsi = er.getPsicologico();
 
-        double resultadoLin = er.getLinguisticoLectura() + er.getLinguisticoConversacion()
-                            + er.getLinguisticoEscritura() + er.getLinguisticoEscucha();
+        double resultadoLin = er.getLinguistico();
 
-        double resultadoEco = er.getEconomicoIngreso() + er.getEconomicoSituacion()
-                            + er.getEconomicoGasto400() + er.getEconomicoGasto800()
-                            + er.getEconomicoGasto8000() + er.getEconomicoGasto40000() + 1
-                            + er.getEconomicoSatisfaccion();
+        double resultadoEco = er.getEconomico();
+
             
         int resultadoPol4 = er.getPoliticoAccionConvencer() + er.getPoliticoAccionInfluirVoto()
                             + er.getPoliticoAccionDeclaracion() + er.getPoliticoAccionDiscusionPublica()
