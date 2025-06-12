@@ -1,4 +1,4 @@
-package edu.mondragon.webengl.config;
+package edu.mondragon.webengl.seguridad;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

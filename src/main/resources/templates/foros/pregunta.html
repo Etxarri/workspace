@@ -52,8 +52,11 @@
               <div>
                 <form th:action="@{/foro/{hiloID}/{preguntaID}/{comentarioID}(hiloID=${hilo.hiloID}, preguntaID=${pregunta.preguntaID}, comentarioID=${comentario.comentarioID})}" method="post">
                   <input type="hidden" name="comentarioID" th:value="${comentario.comentarioID}"/>
-                  <button type="submit" class="btn btn-outline-primary bg-success"><i class="bi bi-hand-thumbs-up-fill"></i></button>
-                  <span class="ms-2" th:text="${comentario.botoPos}">0</span>
+                  <button type="submit"
+                          th:class="'btn ' + (${comentario.usuariosQueDieronLike.contains(usuarioLogueado)} ? 'btn-success' : 'btn-outline-secondary')">
+                    <i class="bi bi-hand-thumbs-up-fill"></i>
+                  </button>                  
+                  <span class="ms-2" th:text="${comentario.usuariosQueDieronLike.size()}">0</span>
                 </form>
 
               </div>

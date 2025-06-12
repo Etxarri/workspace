@@ -1,10 +1,15 @@
 package edu.mondragon.webengl.domain.foro.model;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import edu.mondragon.webengl.domain.user.model.Usuario;
@@ -31,8 +36,15 @@ public class ComentarioForo {
     @Column(name = "fecha_hora", nullable = false)
     private LocalDateTime fechaHora;
 
-    @Column(name = "boto_pos")
-    private int botoPos;
+
+
+    @ManyToMany
+    @JoinTable(
+        name = "comentario_like",
+        joinColumns = @JoinColumn(name = "comentarioID"),
+        inverseJoinColumns = @JoinColumn(name = "usuarioID")
+    )
+    private Set<Usuario> usuariosQueDieronLike = new HashSet<>();
     // Getters y setters
 
     public int getComentarioID() {
@@ -75,11 +87,12 @@ public class ComentarioForo {
         this.fechaHora = fechaHora;
     }
 
-    public int getBotoPos() {
-        return botoPos;
-    }   
-    public void setBotoPos(int botoPos) {
-        this.botoPos = botoPos;
+    public Set<Usuario> getUsuariosQueDieronLike() {
+        return usuariosQueDieronLike;
     }
-}
 
+    public void setUsuariosQueDieronLike(Set<Usuario> usuariosQueDieronLike) {
+        this.usuariosQueDieronLike = usuariosQueDieronLike;
+    }
+
+}

@@ -17,7 +17,6 @@
 /workspace/src/main/java/edu/mondragon/webengl/seguridad/UsuarioDetails.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/ChatRestController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/evento/repository/EventoLocalRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/config/HttpToHttpsRedirectConfig.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/ForgotPasswordController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/model/ComunidadAutonoma.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/service/EmailService.java
@@ -58,6 +57,7 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/PreguntaFrecuente.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/ComentarioForo.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/ChatWebSocketController.java
+/workspace/src/main/java/edu/mondragon/webengl/seguridad/HttpToHttpsRedirectConfig.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/repository/PaisRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/categoria/repository/CategoriaRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/HacerEncuestaId.java
