@@ -1,13 +1,16 @@
 package edu.mondragon.webengl.controller;
 
 
+import edu.mondragon.webengl.domain.encuesta.model.ConsejoIntegracion;
 import edu.mondragon.webengl.domain.encuesta.model.Encuesta;
 import edu.mondragon.webengl.domain.encuesta.model.EncuestaRespuestas;
 import edu.mondragon.webengl.domain.encuesta.model.HacerEncuesta;
 import edu.mondragon.webengl.domain.encuesta.repository.EncuestaRepository;
 import edu.mondragon.webengl.domain.encuesta.repository.HacerEncuestaRepository;
+import edu.mondragon.webengl.domain.encuesta.service.ConsejoService;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.seguridad.UsuarioDetails;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,9 +52,11 @@ public class EncuestaController
 
         // Mapa para saber si el usuario ha respondido cada encuesta
         Map<Integer, Boolean> respondidas = new HashMap<>();
-        if (user != null) {
+        if (user != null)
+        {
             int usuarioID = user.getUsuario().getUsuarioID();
-            for (Encuesta encuesta : encuestas) {
+            for (Encuesta encuesta : encuestas)
+            {
                 boolean respondida = hacerEncuestaRepo
                     .findFirstByUsuarioIDAndEncuestaIDOrderByEncuestaIDDesc(usuarioID, encuesta.getEncuestaID())
                     .isPresent();
@@ -91,16 +96,18 @@ public class EncuestaController
             return "redirect:/login";
         }
 
-        // Aquí podrías añadir lógica para evitar que un usuario conteste dos veces la misma encuesta si quieres
+        // Aquí se podría añadir lógica para evitar que un usuario conteste dos veces la misma encuesta
 
         // Añadir la encuesta y el objeto para respuestas al modelo
+        Encuesta encuesta = encuestaOpt.get();
         // Añadir la encuesta al modelo
-        model.addAttribute("encuesta", encuestaOpt.get());
+        model.addAttribute("encuesta", encuesta);
         // Añadir el DTO vacío al modelo para el binding del formulario
         model.addAttribute("encuestaRespuestas", new EncuestaRespuestas());
         model.addAttribute("tituloPagina", "Responder Encuesta");
 
-        return "encuestas/encuesta";
+
+        return "encuestas/tipos/" + encuesta.getTipoEncuesta();
     }
 
     // Procesar respuestas de la encuesta
@@ -118,126 +125,135 @@ public class EncuestaController
             return "redirect:/encuestas";
         }
 
-        // Aquí guardamos la respuesta (simplificado)
-        // HacerEncuesta he = new HacerEncuesta();
-        // he.setEncuesta(encuestaOpt.get());
         // he.setFecha(LocalDateTime.now());
-        // he.setRespuestas(respuestas); // campo ejemplo, ajusta según tu modelo
 
         // Crear nueva respuesta de encuesta
         HacerEncuesta he = new HacerEncuesta();
         he.setEncuestaID(encuestaID);
         he.setUsuarioID(user.getUsuario().getUsuarioID());
 
-        // Establecer título y descripción desde la encuesta original
+        // Utilizar encuesta original
         Encuesta encuesta = encuestaOpt.get();
-        he.setTitulo(encuesta.getTitulo());
-        he.setDescripcion(encuesta.getDescripcion());
 
         try
         {
-            // Calcular y setear las puntuaciones 
-            double resultadoPsi = encuestaRespuestas.getPsicologicoConexion() + encuestaRespuestas.getPsicologicoExtranjero()
-                        + encuestaRespuestas.getPsicologicoDeseoVivir() + encuestaRespuestas.getPsicologicoAislamiento();
-            // he.setResultadoPsicologico(resultadoPsi);
-
-            double resultadoLin = encuestaRespuestas.getLinguisticoLectura() + encuestaRespuestas.getLinguisticoConversacion()
-                        + encuestaRespuestas.getLinguisticoEscritura() + encuestaRespuestas.getLinguisticoEscucha();
-            // he.setResultadoLinguistico(resultadoLin);
-
-            double resultadoEco = encuestaRespuestas.getEconomicoIngreso() + encuestaRespuestas.getEconomicoSituacion()
-                        + encuestaRespuestas.getEconomicoGasto400() + encuestaRespuestas.getEconomicoGasto800()
-                        + encuestaRespuestas.getEconomicoGasto8000() + encuestaRespuestas.getEconomicoGasto40000() + 1
-                        + encuestaRespuestas.getEconomicoSatisfaccion();
-            // he.setResultadoEconomico(resultadoEco);
-            
-            int resultadoPol4 = encuestaRespuestas.getPoliticoAccionConvencer() + encuestaRespuestas.getPoliticoAccionInfluirVoto()
-                        + encuestaRespuestas.getPoliticoAccionDeclaracion() + encuestaRespuestas.getPoliticoAccionDiscusionPublica()
-                        + encuestaRespuestas.getPoliticoAccionContacto() + encuestaRespuestas.getPoliticoAccionTrabajoPartido()
-                        + encuestaRespuestas.getPoliticoAccionInsignia() + encuestaRespuestas.getPoliticoAccionFirmaPeticion()
-                        + encuestaRespuestas.getPoliticoAccionManifestacion() + encuestaRespuestas.getPoliticoAccionBoicot()
-                        + encuestaRespuestas.getPoliticoAccionRecogerFirmas();
-            
-            double resultadoPol = encuestaRespuestas.getPoliticoComprension() + encuestaRespuestas.getPoliticoDiscusion()
-                        + encuestaRespuestas.getPoliticoPartidos() + encuestaRespuestas.getPoliticoPresidentePartido()
-                        + encuestaRespuestas.getPoliticoSenadoPartido() + Integer.valueOf(encuestaRespuestas.getPoliticoEdadVoto()) + 1
-                        + (resultadoPol4 > 4 ? 5 : (resultadoPol4 == 3 || resultadoPol4 == 4) ? 4 : (resultadoPol4 == 2) ? 3 : (resultadoPol4 == 1) ? 2 : 1);
-            // he.setResultadoPolitico(resultadoPol);
-
-            int resultadoSoc3A = (encuestaRespuestas.getSocialParticipacionGrupoA() == 1 ? 0 : encuestaRespuestas.getSocialParticipacionGrupoA())
-                            * (encuestaRespuestas.getSocialMiembrosEspanolesGrupoA() == 1 ? 0 : encuestaRespuestas.getSocialMiembrosEspanolesGrupoA());
-            int resultadoSoc3B = (encuestaRespuestas.getSocialParticipacionGrupoB() == 1 ? 0 : encuestaRespuestas.getSocialParticipacionGrupoB())
-                            * (encuestaRespuestas.getSocialMiembrosEspanolesGrupoB() == 1 ? 0 : encuestaRespuestas.getSocialMiembrosEspanolesGrupoB());
-            int resultadoSoc3C = (encuestaRespuestas.getSocialParticipacionGrupoC() == 1 ? 0 : encuestaRespuestas.getSocialParticipacionGrupoC())
-                            * (encuestaRespuestas.getSocialMiembrosEspanolesGrupoC() == 1 ? 0 : encuestaRespuestas.getSocialMiembrosEspanolesGrupoC());
-            int resultadoSoc3D = (encuestaRespuestas.getSocialParticipacionGrupoD() == 1 ? 0 : encuestaRespuestas.getSocialParticipacionGrupoD())
-                            * (encuestaRespuestas.getSocialMiembrosEspanolesGrupoD() == 1 ? 0 : encuestaRespuestas.getSocialMiembrosEspanolesGrupoD());
-            int resultadoSoc3E = (encuestaRespuestas.getSocialParticipacionGrupoE() == 1 ? 0 : encuestaRespuestas.getSocialParticipacionGrupoE())
-                            * (encuestaRespuestas.getSocialMiembrosEspanolesGrupoE() == 1 ? 0 : encuestaRespuestas.getSocialMiembrosEspanolesGrupoE());
-            int resultadoSoc3 = Math.max(Math.max(resultadoSoc3A, resultadoSoc3B),Math.max(Math.max(resultadoSoc3C, resultadoSoc3D), resultadoSoc3E));
-
-            double resultadoSoc = encuestaRespuestas.getSocialCenaEspanoles() + encuestaRespuestas.getSocialContactosEspanoles()
-                        + ((int)Math.ceil((resultadoSoc3 / 25.0) * 4)) + encuestaRespuestas.getSocialFavoresEspanoles();
-            // he.setResultadoSocial(resultadoSoc);
-
-            double resultadoNav = encuestaRespuestas.getNavegacionalConsultaMedica() + encuestaRespuestas.getNavegacionalBuscarEmpleo()
-                        + encuestaRespuestas.getNavegacionalAyudaLegal() + encuestaRespuestas.getNavegacionalConduccionAlcohol()
-                        + encuestaRespuestas.getNavegacionalPagoImpuestos() + encuestaRespuestas.getNavegacionalFormatoDireccion()
-                        + encuestaRespuestas.getNavegacionalAyudaMedicaCronica() + 1;
-            // he.setResultadoNavegacional(resultadoNav);
-            
-            double indiceTotal = (((double)resultadoPsi + (double)resultadoLin + (double)resultadoEco + (double)resultadoPol + (double)resultadoSoc + (double)resultadoNav) - 24) / (120 - 24) * (1 - 0) + 0;
-            he.setResultadoTotal(indiceTotal);
-
-            double indicePsi = (resultadoPsi - 4) / (20 - 4) * (1 - 0) + 0;
-            double indiceLin = (resultadoLin - 4) / (20 - 4) * (1 - 0) + 0;
-            double indiceEco = (resultadoEco - 4) / (20 - 4) * (1 - 0) + 0;
-            double indicePol = (resultadoPol - 4) / (20 - 4) * (1 - 0) + 0;
-            double indiceSoc = (resultadoSoc - 4) / (20 - 4) * (1 - 0) + 0;
-            double indiceNav = (resultadoNav - 4) / (20 - 4) * (1 - 0) + 0;
-
-            he.setResultadoPsicologico(indicePsi);
-            he.setResultadoLinguistico(indiceLin);
-            he.setResultadoEconomico(indiceEco);
-            he.setResultadoPolitico(indicePol);
-            he.setResultadoSocial(indiceSoc);
-            he.setResultadoNavegacional(indiceNav);
-
-            // Debug para verificar valores
-            System.out.println("Indices:");
-            System.out.println("Psicológico: " + indicePsi);
-            System.out.println("Lingüístico: " + indiceLin);
-            System.out.println("Económico: " + indiceEco);
-            System.out.println("Político: " + indicePol);
-            System.out.println("Social: " + indiceSoc);
-            System.out.println("Navegacional: " + indiceNav);
-            System.out.println("Total: " + indiceTotal);
-
+            // Calcular resultados según el tipo de encuesta
+            switch(encuesta.getTipoEncuesta())
+            {
+                case "integracion":
+                    calcularResultadosIntegracion(he, encuestaRespuestas);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Tipo de encuesta no soportada");
+            }
             hacerEncuestaRepo.save(he);
-
             redirectAttrs.addFlashAttribute("mensaje", "¡Gracias por responder la encuesta!");
-            return "redirect:/encuestas/graficoEncuesta";
+            return "redirect:/encuestas/grafico/" + encuestaID;
         }
         catch (Exception e)
         {
             e.printStackTrace();
             redirectAttrs.addFlashAttribute("error", "Error al procesar la encuesta: " + e.getMessage());
-            return "redirect:/encuestas";// /" + encuestaID;
+            return "redirect:/encuestas";
         }
     }
 
-    @GetMapping("/graficoEncuesta")
-    public String mostrarGrafico(Model model, @AuthenticationPrincipal UsuarioDetails user)
+    private void calcularResultadosIntegracion(HacerEncuesta he, EncuestaRespuestas er)
     {
+        // Calcular y setear las puntuaciones 
+        double resultadoPsi = er.getPsicologicoConexion() + er.getPsicologicoExtranjero()
+                            + er.getPsicologicoDeseoVivir() + er.getPsicologicoAislamiento();
+
+        double resultadoLin = er.getLinguisticoLectura() + er.getLinguisticoConversacion()
+                            + er.getLinguisticoEscritura() + er.getLinguisticoEscucha();
+
+        double resultadoEco = er.getEconomicoIngreso() + er.getEconomicoSituacion()
+                            + er.getEconomicoGasto400() + er.getEconomicoGasto800()
+                            + er.getEconomicoGasto8000() + er.getEconomicoGasto40000() + 1
+                            + er.getEconomicoSatisfaccion();
+            
+        int resultadoPol4 = er.getPoliticoAccionConvencer() + er.getPoliticoAccionInfluirVoto()
+                            + er.getPoliticoAccionDeclaracion() + er.getPoliticoAccionDiscusionPublica()
+                            + er.getPoliticoAccionContacto() + er.getPoliticoAccionTrabajoPartido()
+                            + er.getPoliticoAccionInsignia() + er.getPoliticoAccionFirmaPeticion()
+                            + er.getPoliticoAccionManifestacion() + er.getPoliticoAccionBoicot()
+                            + er.getPoliticoAccionRecogerFirmas();
+            
+        double resultadoPol = er.getPoliticoComprension() + er.getPoliticoDiscusion()
+                            + er.getPoliticoPartidos() + er.getPoliticoPresidentePartido()
+                            + er.getPoliticoSenadoPartido() + Integer.valueOf(er.getPoliticoEdadVoto()) + 1
+                            + (resultadoPol4 > 4 ? 5 : (resultadoPol4 == 3 || resultadoPol4 == 4) ? 4 : (resultadoPol4 == 2) ? 3 : (resultadoPol4 == 1) ? 2 : 1);
+
+        int resultadoSoc3A = (er.getSocialParticipacionGrupoA() == 1 ? 0 : er.getSocialParticipacionGrupoA())
+                            * (er.getSocialMiembrosEspanolesGrupoA() == 1 ? 0 : er.getSocialMiembrosEspanolesGrupoA());
+        int resultadoSoc3B = (er.getSocialParticipacionGrupoB() == 1 ? 0 : er.getSocialParticipacionGrupoB())
+                            * (er.getSocialMiembrosEspanolesGrupoB() == 1 ? 0 : er.getSocialMiembrosEspanolesGrupoB());
+        int resultadoSoc3C = (er.getSocialParticipacionGrupoC() == 1 ? 0 : er.getSocialParticipacionGrupoC())
+                            * (er.getSocialMiembrosEspanolesGrupoC() == 1 ? 0 : er.getSocialMiembrosEspanolesGrupoC());
+        int resultadoSoc3D = (er.getSocialParticipacionGrupoD() == 1 ? 0 : er.getSocialParticipacionGrupoD())
+                            * (er.getSocialMiembrosEspanolesGrupoD() == 1 ? 0 : er.getSocialMiembrosEspanolesGrupoD());
+        int resultadoSoc3E = (er.getSocialParticipacionGrupoE() == 1 ? 0 : er.getSocialParticipacionGrupoE())
+                            * (er.getSocialMiembrosEspanolesGrupoE() == 1 ? 0 : er.getSocialMiembrosEspanolesGrupoE());
+        int resultadoSoc3 = Math.max(Math.max(resultadoSoc3A, resultadoSoc3B),Math.max(Math.max(resultadoSoc3C, resultadoSoc3D), resultadoSoc3E));
+
+        double resultadoSoc = er.getSocialCenaEspanoles() + er.getSocialContactosEspanoles()
+                            + ((int)Math.ceil((resultadoSoc3 / 25.0) * 4)) + er.getSocialFavoresEspanoles();
+
+        double resultadoNav = er.getNavegacionalConsultaMedica() + er.getNavegacionalBuscarEmpleo()
+                            + er.getNavegacionalAyudaLegal() + er.getNavegacionalConduccionAlcohol()
+                            + er.getNavegacionalPagoImpuestos() + er.getNavegacionalFormatoDireccion()
+                            + er.getNavegacionalAyudaMedicaCronica() + 1;
+            
+        double indiceTotal = (((double)resultadoPsi + (double)resultadoLin + (double)resultadoEco + (double)resultadoPol + (double)resultadoSoc + (double)resultadoNav) - 24) / (120 - 24) * (1 - 0) + 0;
+        he.setResultadoTotal(indiceTotal);
+
+        double indicePsi = (resultadoPsi - 4) / (20 - 4) * (1 - 0) + 0;
+        double indiceLin = (resultadoLin - 4) / (20 - 4) * (1 - 0) + 0;
+        double indiceEco = (resultadoEco - 4) / (20 - 4) * (1 - 0) + 0;
+        double indicePol = (resultadoPol - 4) / (20 - 4) * (1 - 0) + 0;
+        double indiceSoc = (resultadoSoc - 4) / (20 - 4) * (1 - 0) + 0;
+        double indiceNav = (resultadoNav - 4) / (20 - 4) * (1 - 0) + 0;
+
+        he.setResultadoPsicologico(indicePsi);
+        he.setResultadoLinguistico(indiceLin);
+        he.setResultadoEconomico(indiceEco);
+        he.setResultadoPolitico(indicePol);
+        he.setResultadoSocial(indiceSoc);
+        he.setResultadoNavegacional(indiceNav);
+
+        // Debug para verificar valores
+        System.out.println("Indices:");
+        System.out.println("Psicológico: " + indicePsi);
+        System.out.println("Lingüístico: " + indiceLin);
+        System.out.println("Económico: " + indiceEco);
+        System.out.println("Político: " + indicePol);
+        System.out.println("Social: " + indiceSoc);
+        System.out.println("Navegacional: " + indiceNav);
+        System.out.println("Total: " + indiceTotal);
+    }
+
+
+    @Autowired
+    private ConsejoService consejoService;
+
+    @GetMapping("/grafico/{encuestaID}")
+    public String mostrarGrafico(@PathVariable("encuestaID") int encuestaID,
+                             Model model,
+                             @AuthenticationPrincipal UsuarioDetails user) {
         // Obtener los resultados de la última encuesta del usuario
-        Optional<HacerEncuesta> ultimaEncuesta = hacerEncuestaRepo
-            .findFirstByUsuarioIDOrderByEncuestaIDDesc(user.getUsuario().getUsuarioID());
+        Optional<HacerEncuesta> encuesta = hacerEncuestaRepo
+            .findByUsuarioIDAndEncuestaID(user.getUsuario().getUsuarioID(), encuestaID);
         
-        if (ultimaEncuesta.isPresent())
+        if (encuesta.isPresent())
         {
-            model.addAttribute("encuesta", ultimaEncuesta.get());
+            HacerEncuesta he = encuesta.get();
+            model.addAttribute("encuesta", he);
+
+            // Evaluar nivel general
+            ConsejoIntegracion nivelGeneral = consejoService.evaluarNivel(he.getResultadoTotal());
+            model.addAttribute("nivelGeneral", nivelGeneral);
+
             // Debug para verificar valores
-            HacerEncuesta he = ultimaEncuesta.get();
             System.out.println("Valores en gráfico:");
             System.out.println("Psicológico: " + he.getResultadoPsicologico());
             System.out.println("Lingüístico: " + he.getResultadoLinguistico());
@@ -245,26 +261,31 @@ public class EncuestaController
             System.out.println("Político: " + he.getResultadoPolitico());
             System.out.println("Social: " + he.getResultadoSocial());
             System.out.println("Navegacional: " + he.getResultadoNavegacional());
+
+            // Encontrar el área más débil
+            Map<String, Double> areas = new HashMap<>();
+            areas.put("psicologico", he.getResultadoPsicologico());
+            areas.put("linguistico", he.getResultadoLinguistico());
+            areas.put("economico", he.getResultadoEconomico());
+            areas.put("politico", he.getResultadoPolitico());
+            areas.put("social", he.getResultadoSocial());
+            areas.put("navegacional", he.getResultadoNavegacional());
+            
+            String areaDebil = areas.entrySet()
+                .stream()
+                .min(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .orElse(null);
+                
+            if (areaDebil != null)
+            {
+                model.addAttribute("consejosAreaDebil", 
+                    consejoService.obtenerConsejosPorArea(areaDebil, areas.get(areaDebil)));
+                model.addAttribute("areaDebil", areaDebil);
+            }
         }
         model.addAttribute("tituloPagina", "Resultados de la Encuesta");
 
-        return "encuestas/graficoEncuesta";
-    }
-
-    @GetMapping("/{encuestaID}/grafico")
-    public String mostrarGraficoEncuesta(@PathVariable("encuestaID") int encuestaID, 
-                                     @AuthenticationPrincipal UsuarioDetails user, 
-                                     Model model) {
-        // Busca la última respuesta del usuario para esa encuesta
-        Optional<HacerEncuesta> heOpt = hacerEncuestaRepo.findFirstByUsuarioIDAndEncuestaIDOrderByEncuestaIDDesc(
-            user.getUsuario().getUsuarioID(), encuestaID);
-
-        if (heOpt.isEmpty()) {
-            model.addAttribute("error", "No has respondido esta encuesta.");
-            return "redirect:/encuestas";
-        }
-        model.addAttribute("tituloPagina", "Resultados de la Encuesta");
-        model.addAttribute("encuesta", heOpt.get());
         return "encuestas/graficoEncuesta";
     }
 }

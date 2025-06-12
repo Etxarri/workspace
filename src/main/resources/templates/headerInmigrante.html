@@ -43,12 +43,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center" th:href="@{/encuestas}" th:text="#{survey}">
+                        <a class="nav-link d-flex align-items-center" th:classappend="${paginaActual == 'encuestas'} ? ' active'" th:href="@{/encuestas}" th:text="#{survey}">
                             Encuestas
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center" th:href="@{/usuario/editar}" th:text="#{profile}">
+                        <a class="nav-link d-flex align-items-center" th:classappend="${paginaActual == 'perfil'} ? ' active'" tabindex="-1" th:text="#{profile}" aria-disabled="true">
                             Mi Perfil
                         </a>
                     </li>

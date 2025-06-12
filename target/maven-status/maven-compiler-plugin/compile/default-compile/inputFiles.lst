@@ -1,3 +1,4 @@
+/workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/ConsejoIntegracion.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/recurso/repository/RecursoLocalRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/UsuarioController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/RecienllegadoRepository.java
@@ -26,7 +27,6 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/repository/EncuestaRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/repository/TemaforoRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/HacerEncuesta.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/evento/model/RecienllegadoEventoId.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/Temaforo.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/DeepLRestController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/repository/ComentarioForoRepository.java
@@ -51,6 +51,7 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/model/Pais.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/recurso/model/RecursoLocal.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/chat/service/MensajeChatService.java
+/workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/service/ConsejoService.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/VoluntarioRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/LoginController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/chat/model/MensajeChatDTO.java

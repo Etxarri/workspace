@@ -123,12 +123,13 @@ create table eventolocal (
   CONSTRAINT EVENTOLOCAL_PK PRIMARY KEY (eventoID),
   CONSTRAINT EVENTOLOCAL_CIUDAD_FK FOREIGN KEY (ciudadID) REFERENCES ciudad (ciudadID),
   CONSTRAINT EVENTOLOCA_CATEGORIA_FK FOREIGN KEY (categoriaID) REFERENCES categoria (categoriaID),
-  CONSTRAINT EVENTOLOCAL_VOLUNTARIO_FK FOREIGN KEY (usuarioID) REFERENCES usuario (usuarioID)
+  CONSTRAINT EVENTOLOCAL_VOLUNTARIO_FK FOREIGN KEY (usuarioID) REFERENCES voluntario (usuarioID)
 );
 
 CREATE TABLE usuario_apuntarse_evento (
   eventoID smallint unsigned not null,
   usuarioID smallint unsigned not null,
+  fecha_inscripcion DATE,
   CONSTRAINT APUNTARSE_PK PRIMARY KEY (eventoID, usuarioID),
   CONSTRAINT APUNTARSE_EVENTOLOCAL_FK FOREIGN KEY (eventoID) REFERENCES eventolocal (eventoID),
   CONSTRAINT APUNTARSE_USUARIO_FK FOREIGN KEY (usuarioID) REFERENCES usuario (usuarioID)
@@ -150,6 +151,7 @@ create table recursolocal (
   CONSTRAINT RECURSOLOCAL_CATEGORIA_FK FOREIGN KEY (categoriaID) REFERENCES categoria (categoriaID),
   CONSTRAINT RECURSOLOCAL_CIUDAD_FK FOREIGN KEY (ciudadID) REFERENCES ciudad (ciudadID)
 );
+create table aa (encuestaID smallint);
 
 create table encuesta (
   encuestaID smallint unsigned not null AUTO_INCREMENT,
@@ -384,6 +386,34 @@ BEGIN
 END //
 DELIMITER ;
 
+DROP USER IF EXISTS 'webuser'@'%';
+CREATE USER 'webuser'@'%' IDENTIFIED BY 'password';
+
+-- Repite los GRANTs para 'webuser'@'%'
+GRANT SELECT, INSERT, DELETE ON welco.usuario TO 'webuser'@'%';
+GRANT SELECT, INSERT, DELETE ON welco.recienllegado TO 'webuser'@'%';
+GRANT SELECT, INSERT, DELETE ON welco.voluntario TO 'webuser'@'%';
+GRANT SELECT, INSERT, DELETE ON welco.eventolocal TO 'webuser'@'%';
+GRANT SELECT, INSERT ON welco.preguntafrecuente TO 'webuser'@'%';
+GRANT SELECT, INSERT ON welco.comentarioforo TO 'webuser'@'%';
+GRANT SELECT, INSERT ON welco.hiloforo TO 'webuser'@'%';
+GRANT SELECT, INSERT ON welco.mensajechat TO 'webuser'@'%';
+GRANT SELECT, INSERT, DELETE ON welco.usuario_apuntarse_evento TO 'webuser'@'%';
+GRANT SELECT, INSERT ON welco.hacer_encuesta TO 'webuser'@'%';
+
+GRANT SELECT ON welco.pais TO 'webuser'@'%';
+GRANT SELECT ON welco.comunidad_autonoma TO 'webuser'@'%';
+GRANT SELECT ON welco.ciudad TO 'webuser'@'%';
+GRANT SELECT ON welco.temaforo TO 'webuser'@'%';
+GRANT SELECT ON welco.categoria TO 'webuser'@'%';
+GRANT SELECT ON welco.recursolocal TO 'webuser'@'%';
+GRANT SELECT ON welco.encuesta TO 'webuser'@'%';
+
+GRANT EXECUTE ON PROCEDURE welco.crear_usuario TO 'webuser'@'%';
+GRANT EXECUTE ON PROCEDURE welco.crear_recienllegado TO 'webuser'@'%';
+GRANT EXECUTE ON PROCEDURE welco.crear_voluntario TO 'webuser'@'%';
+FLUSH PRIVILEGES;
+
 
 -- 2.1. Registro de usuarios (Voluntarios y recién llegados)
 	-- Voluntarios registrados
@@ -493,4 +523,3 @@ use welco;
 	FROM hacer_encuesta he
 	JOIN encuesta e ON he.encuestaID = e.encuestaID
     JOIN usuario u ON he.usuarioID = u.usuarioID;
-    

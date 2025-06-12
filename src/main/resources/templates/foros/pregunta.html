@@ -11,9 +11,9 @@
   <body>
     <header th:replace="headerInmigrante :: header"></header>
     <main class="container py-5">
-      <button class="btn btn-link text-decoration-none" onclick="history.back()" style="font-size: 1.2rem;">
+      <a class="btn btn-link text-decoration-none" th:href="@{/foro/{temaID}(temaID=${temaID})}" style="font-size: 1.2rem;">
           <i class="bi bi-arrow-left-circle-fill"></i> <span th:text="#{volver}">Volver</span>
-        </button>
+      </a>
         
       <div class="mb-4">
         <div class="list-group-item mb-3">

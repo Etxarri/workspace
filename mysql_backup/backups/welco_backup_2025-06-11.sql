@@ -16,6 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `aa`
+--
+
+DROP TABLE IF EXISTS `aa`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `aa` (
+  `encuestaID` smallint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `aa`
+--
+
+LOCK TABLES `aa` WRITE;
+/*!40000 ALTER TABLE `aa` DISABLE KEYS */;
+/*!40000 ALTER TABLE `aa` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `categoria`
 --
 
@@ -83,12 +104,13 @@ CREATE TABLE `comentarioforo` (
   `usuarioID` smallint unsigned NOT NULL,
   `contenido` varchar(50) NOT NULL,
   `fecha_hora` timestamp NOT NULL,
+  `boto_pos` int DEFAULT NULL,
   PRIMARY KEY (`comentarioID`),
   KEY `COMENTARIOFORO_HILO_FK` (`hiloID`),
   KEY `COMENTARIOFORO_USUARIO_FK` (`usuarioID`),
   CONSTRAINT `COMENTARIOFORO_HILO_FK` FOREIGN KEY (`hiloID`) REFERENCES `hiloforo` (`hiloID`),
   CONSTRAINT `COMENTARIOFORO_USUARIO_FK` FOREIGN KEY (`usuarioID`) REFERENCES `usuario` (`usuarioID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +119,7 @@ CREATE TABLE `comentarioforo` (
 
 LOCK TABLES `comentarioforo` WRITE;
 /*!40000 ALTER TABLE `comentarioforo` DISABLE KEYS */;
-INSERT INTO `comentarioforo` VALUES (1,1,1,'Puedes ver series en español','2023-04-11 11:00:00'),(2,2,2,'Hay procesiones en Semana Santa','2023-04-16 16:00:00');
+INSERT INTO `comentarioforo` VALUES (1,1,1,'Puedes ver series en español','2023-04-11 11:00:00',NULL),(2,2,2,'Hay procesiones en Semana Santa','2023-04-16 16:00:00',NULL),(3,3,3,'asdf','2025-06-11 14:16:19',3),(4,3,3,'asdfa','2025-06-11 14:16:23',1);
 /*!40000 ALTER TABLE `comentarioforo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,7 +162,7 @@ CREATE TABLE `encuesta` (
   `titulo` varchar(50) NOT NULL,
   `descripcion` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`encuestaID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,7 +171,7 @@ CREATE TABLE `encuesta` (
 
 LOCK TABLES `encuesta` WRITE;
 /*!40000 ALTER TABLE `encuesta` DISABLE KEYS */;
-INSERT INTO `encuesta` VALUES (1,'Satisfacción de eventos','Cuestionario sobre los eventos realizados'),(2,'a','a');
+INSERT INTO `encuesta` VALUES (1,'Encuesta de Integración 2025','Evaluación completa del nivel de integración de migrantes'),(2,'Satisfacción de eventos','Cuestionario sobre los eventos realizados'),(3,'Evaluación de taller cultural','Me gustó el evento cultural realizado');
 /*!40000 ALTER TABLE `encuesta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +199,7 @@ CREATE TABLE `eventolocal` (
   CONSTRAINT `EVENTOLOCA_CATEGORIA_FK` FOREIGN KEY (`categoriaID`) REFERENCES `categoria` (`categoriaID`),
   CONSTRAINT `EVENTOLOCAL_CIUDAD_FK` FOREIGN KEY (`ciudadID`) REFERENCES `ciudad` (`ciudadID`),
   CONSTRAINT `EVENTOLOCAL_VOLUNTARIO_FK` FOREIGN KEY (`usuarioID`) REFERENCES `voluntario` (`usuarioID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,7 +208,7 @@ CREATE TABLE `eventolocal` (
 
 LOCK TABLES `eventolocal` WRITE;
 /*!40000 ALTER TABLE `eventolocal` DISABLE KEYS */;
-INSERT INTO `eventolocal` VALUES (1,1,1,1,'Intercambio de idiomas','Sesión para practicar inglés y español','2023-05-20 18:00:00','Centro Cultural',NULL),(2,3,2,1,'Taller cultural','Introducción a las festividades españolas','2023-06-15 10:00:00','Sala de conferencias',NULL),(3,1,3,1,'Feria de empleo','Conecta con empleadores locales y recibe orientación laboral','2023-07-10 09:00:00','Pabellón municipal de Barcelona',NULL),(4,2,4,1,'Puertas abiertas escolares','Visita a colegios públicos para conocer opciones educativas','2023-07-15 17:30:00','Escuela Primaria Central',NULL),(5,3,5,1,'Charla sobre salud pública','Información sobre servicios sanitarios gratuitos','2023-07-22 11:00:00','Centro de Salud Lavapiés',NULL),(6,1,6,1,'Ayuda con trámites','Taller práctico para empadronamiento y NIE','2023-08-01 16:00:00','Oficina de Atención al Ciudadano',NULL),(7,2,7,1,'Asesoría legal básica','Sesión de preguntas y respuestas sobre derechos laborales','2023-08-10 18:00:00','Centro Comunitario La Merced',NULL),(8,3,2,1,'Taller cultural','Introducción a las festividades españolas','2023-06-15 10:00:00','Sala de conferencias',NULL);
+INSERT INTO `eventolocal` VALUES (1,1,1,1,'Intercambio de idiomas','Sesión para practicar inglés y español','2023-05-20 18:00:00','Centro Cultural',NULL),(2,3,2,1,'Taller cultural','Introducción a las festividades españolas','2023-06-15 10:00:00','Sala de conferencias',NULL),(3,1,3,1,'Feria de empleo','Conecta con empleadores locales y recibe orientación laboral','2023-07-10 09:00:00','Pabellón municipal de Barcelona',NULL),(4,2,4,1,'Puertas abiertas escolares','Visita a colegios públicos para conocer opciones educativas','2023-07-15 17:30:00','Escuela Primaria Central',NULL),(5,3,5,1,'Charla sobre salud pública','Información sobre servicios sanitarios gratuitos','2023-07-22 11:00:00','Centro de Salud Lavapiés',NULL),(6,1,6,1,'Ayuda con trámites','Taller práctico para empadronamiento y NIE','2023-08-01 16:00:00','Oficina de Atención al Ciudadano',NULL),(7,2,7,1,'Asesoría legal básica','Sesión de preguntas y respuestas sobre derechos laborales','2023-08-10 18:00:00','Centro Comunitario La Merced',NULL),(8,3,2,1,'Taller cultural','Introducción a las festividades españolas','2023-06-15 10:00:00','Sala de conferencias',NULL),(9,1,6,3,'asdf','asdf','2025-06-04 14:27:00','asdf',NULL),(10,1,5,3,'asd','asdf','2025-06-05 14:29:00','asdf',NULL);
 /*!40000 ALTER TABLE `eventolocal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,6 +224,13 @@ CREATE TABLE `hacer_encuesta` (
   `usuarioID` smallint unsigned NOT NULL,
   `titulo` varchar(50) NOT NULL,
   `descripcion` varchar(100) DEFAULT NULL,
+  `resultado_psicologico` double(5,4) unsigned NOT NULL,
+  `resultado_linguistico` double(5,4) unsigned NOT NULL,
+  `resultado_economico` double(5,4) unsigned NOT NULL,
+  `resultado_politico` double(5,4) unsigned NOT NULL,
+  `resultado_social` double(5,4) unsigned NOT NULL,
+  `resultado_navegacional` double(5,4) unsigned NOT NULL,
+  `resultado_total` double(5,4) unsigned NOT NULL,
   PRIMARY KEY (`encuestaID`,`usuarioID`),
   KEY `HACER_USUARIO_FK` (`usuarioID`),
   CONSTRAINT `HACER_ENCUESTA_FK` FOREIGN KEY (`encuestaID`) REFERENCES `encuesta` (`encuestaID`),
@@ -215,7 +244,7 @@ CREATE TABLE `hacer_encuesta` (
 
 LOCK TABLES `hacer_encuesta` WRITE;
 /*!40000 ALTER TABLE `hacer_encuesta` DISABLE KEYS */;
-INSERT INTO `hacer_encuesta` VALUES (1,2,'Evaluación de taller cultural','Me gustó el evento cultural realizado');
+INSERT INTO `hacer_encuesta` VALUES (1,2,'Encuesta de Integración 2025','Evaluación completa del nivel de integración de migrantes',0.2500,0.3700,0.1400,0.0990,0.6010,0.5240,0.0820),(1,3,'Encuesta de Integración 2025','Evaluación completa del nivel de integración de migrantes',0.4375,0.4375,0.5625,0.3125,0.5625,0.4375,0.4583);
 /*!40000 ALTER TABLE `hacer_encuesta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,7 +262,7 @@ CREATE TABLE `hiloforo` (
   PRIMARY KEY (`hiloID`),
   KEY `HILOFORO_PREGUNTA_FK` (`preguntaID`),
   CONSTRAINT `HILOFORO_PREGUNTA_FK` FOREIGN KEY (`preguntaID`) REFERENCES `preguntafrecuente` (`preguntaID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -242,8 +271,36 @@ CREATE TABLE `hiloforo` (
 
 LOCK TABLES `hiloforo` WRITE;
 /*!40000 ALTER TABLE `hiloforo` DISABLE KEYS */;
-INSERT INTO `hiloforo` VALUES (1,1,'2023-04-11 10:00:00'),(2,2,'2023-04-16 15:30:00');
+INSERT INTO `hiloforo` VALUES (1,1,'2023-04-11 10:00:00'),(2,2,'2023-04-16 15:30:00'),(3,4,'2025-06-11 14:16:14');
 /*!40000 ALTER TABLE `hiloforo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mensajechat`
+--
+
+DROP TABLE IF EXISTS `mensajechat`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mensajechat` (
+  `mensajeID` int unsigned NOT NULL AUTO_INCREMENT,
+  `usuarioID` smallint unsigned NOT NULL,
+  `contenido` varchar(1000) NOT NULL,
+  `fecha_hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `idioma` varchar(10) NOT NULL,
+  PRIMARY KEY (`mensajeID`),
+  KEY `usuarioID` (`usuarioID`),
+  CONSTRAINT `mensajechat_ibfk_1` FOREIGN KEY (`usuarioID`) REFERENCES `usuario` (`usuarioID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mensajechat`
+--
+
+LOCK TABLES `mensajechat` WRITE;
+/*!40000 ALTER TABLE `mensajechat` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mensajechat` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -287,7 +344,7 @@ CREATE TABLE `preguntafrecuente` (
   PRIMARY KEY (`preguntaID`),
   KEY `PREGUNTA_TEMA_FK` (`temaID`),
   CONSTRAINT `PREGUNTA_TEMA_FK` FOREIGN KEY (`temaID`) REFERENCES `temaforo` (`temaID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -296,30 +353,8 @@ CREATE TABLE `preguntafrecuente` (
 
 LOCK TABLES `preguntafrecuente` WRITE;
 /*!40000 ALTER TABLE `preguntafrecuente` DISABLE KEYS */;
-INSERT INTO `preguntafrecuente` VALUES (1,1,'¿Cómo practicar español diariamente?','2023-04-10'),(2,2,'¿Qué festividades hay en Sevilla?','2023-04-15');
+INSERT INTO `preguntafrecuente` VALUES (1,1,'¿Cómo practicar español diariamente?','2023-04-10'),(2,2,'¿Qué festividades hay en Sevilla?','2023-04-15'),(3,2,'asd','2025-06-11'),(4,5,'asd','2025-06-11');
 /*!40000 ALTER TABLE `preguntafrecuente` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `prueba`
---
-
-DROP TABLE IF EXISTS `prueba`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `prueba` (
-  `id` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `prueba`
---
-
-LOCK TABLES `prueba` WRITE;
-/*!40000 ALTER TABLE `prueba` DISABLE KEYS */;
-INSERT INTO `prueba` VALUES (1);
-/*!40000 ALTER TABLE `prueba` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -345,36 +380,8 @@ CREATE TABLE `recienllegado` (
 
 LOCK TABLES `recienllegado` WRITE;
 /*!40000 ALTER TABLE `recienllegado` DISABLE KEYS */;
-INSERT INTO `recienllegado` VALUES (2,'Necesito aprender español','Inglés','2023-05-01'),(3,'d','d','2025-06-03');
+INSERT INTO `recienllegado` VALUES (2,'Necesito aprender español','Inglés','2023-05-01'),(5,'q','es','2025-06-11');
 /*!40000 ALTER TABLE `recienllegado` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `recienllegado_apuntarse_evento`
---
-
-DROP TABLE IF EXISTS `recienllegado_apuntarse_evento`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `recienllegado_apuntarse_evento` (
-  `eventoID` smallint unsigned NOT NULL,
-  `usuarioID` smallint unsigned NOT NULL,
-  `fecha_inscripcion` date DEFAULT NULL,
-  PRIMARY KEY (`eventoID`,`usuarioID`),
-  KEY `APUNTARSE_VOLUNTARIO_FK` (`usuarioID`),
-  CONSTRAINT `APUNTARSE_EVENTOLOCAL_FK` FOREIGN KEY (`eventoID`) REFERENCES `eventolocal` (`eventoID`),
-  CONSTRAINT `APUNTARSE_VOLUNTARIO_FK` FOREIGN KEY (`usuarioID`) REFERENCES `recienllegado` (`usuarioID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `recienllegado_apuntarse_evento`
---
-
-LOCK TABLES `recienllegado_apuntarse_evento` WRITE;
-/*!40000 ALTER TABLE `recienllegado_apuntarse_evento` DISABLE KEYS */;
-INSERT INTO `recienllegado_apuntarse_evento` VALUES (1,2,NULL);
-/*!40000 ALTER TABLE `recienllegado_apuntarse_evento` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -472,8 +479,36 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,1,1,'user123','Juan','García','juan@gmail.com','pass123','voluntario'),(2,2,1,'user456','María','López','maria@hotmail.com','pass456','recienllegado'),(3,1,1,'d','d','d','d@gmail','$2a$10$/LbUsKbi9L96iqgtL2AuceyHO6s6UlMa0UBZwRh.MMCQIgGtQ850y','recienllegado'),(4,2,4,'a','a','a','a@gmail','$2a$10$0sr3OULuO1XqFGrItD2ChunbaTVF/GsZYIoGfRgeqnHfPnXeWVqOG','voluntario'),(5,2,1,'v','v','v','v@gmail','$2a$10$GBRc5UBG/xjNVGuq2LHbx.MjHKbi/31DdLGDYPxZHEQ9zet9D2h4C','voluntario');
+INSERT INTO `usuario` VALUES (1,1,1,'user123','Juan','García','juan@gmail.com','pass123','voluntario'),(2,2,1,'user456','María','López','maria@hotmail.com','pass456','recienllegado'),(3,1,1,'d','d','d','d@gmail','$2a$10$8kcvNcV0ygyJ7WlApHmAku6.rxwjdjo07yMonaWrN5A8Ms1ILH2r6','voluntario'),(4,3,3,'a','a','a','asdz@gmail','$2a$10$BlgvtTQA5cdoJANAJRcSzu31dimhmhkfgvky/lqa1LMP1EyTSwyl.','voluntario'),(5,1,4,'q','q','q','q@gmail','$2a$10$ZlpeJzJEthmFeSLdMPj6iuUUE6IIui0jy9hCVSWFSCQtdegeaoRKG','recienllegado');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuario_apuntarse_evento`
+--
+
+DROP TABLE IF EXISTS `usuario_apuntarse_evento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuario_apuntarse_evento` (
+  `eventoID` smallint unsigned NOT NULL,
+  `usuarioID` smallint unsigned NOT NULL,
+  `fecha_inscripcion` date DEFAULT NULL,
+  PRIMARY KEY (`eventoID`,`usuarioID`),
+  KEY `APUNTARSE_USUARIO_FK` (`usuarioID`),
+  CONSTRAINT `APUNTARSE_EVENTOLOCAL_FK` FOREIGN KEY (`eventoID`) REFERENCES `eventolocal` (`eventoID`),
+  CONSTRAINT `APUNTARSE_USUARIO_FK` FOREIGN KEY (`usuarioID`) REFERENCES `usuario` (`usuarioID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario_apuntarse_evento`
+--
+
+LOCK TABLES `usuario_apuntarse_evento` WRITE;
+/*!40000 ALTER TABLE `usuario_apuntarse_evento` DISABLE KEYS */;
+INSERT INTO `usuario_apuntarse_evento` VALUES (3,3,NULL);
+/*!40000 ALTER TABLE `usuario_apuntarse_evento` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -498,7 +533,7 @@ CREATE TABLE `voluntario` (
 
 LOCK TABLES `voluntario` WRITE;
 /*!40000 ALTER TABLE `voluntario` DISABLE KEYS */;
-INSERT INTO `voluntario` VALUES (1,'Traducción inglés-español','Ayudar a la integración cultural'),(4,'a','a'),(5,'v','v');
+INSERT INTO `voluntario` VALUES (1,'Traducción inglés-español','Ayudar a la integración cultural'),(3,'d','d'),(4,'a','a');
 /*!40000 ALTER TABLE `voluntario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -511,4 +546,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-04 16:36:01
+-- Dump completed on 2025-06-11 22:05:23

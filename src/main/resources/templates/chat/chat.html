@@ -17,13 +17,22 @@
             <!-- Comentarios se insertan aquí -->
         </div>
 
-        <div class="card-footer bg-white px-2">
-            <form id="comentarioForm" class="d-flex align-items-center w-100 gap-2 mt-2">
-                <input type="hidden" id="usuarioID" th:value="${usuarioLogueado.usuarioID}" />
-                <input type="hidden" id="idioma" th:value="${idioma}" />
-                <textarea class="form-control" id="contenido" rows="1" placeholder="Escribe tu mensaje..." required style="resize: none; min-height: 20px;"></textarea>
-                <button type="submit" class="btn text-white" style="background-color: rgb(140, 207, 240);"><i class="bi bi-send"></i></button>
-            </form>
+        <!-- Caja tipo chat con colores personalizados -->
+        <div class="card mx-auto" style="max-width: 800px;">
+            <div class="card-header text-white" style="background-color: rgb(140, 207, 240);"> </div>
+
+            <div class="card-body" id="comentariosLista" style="height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
+                <!-- Comentarios se insertan aquí -->
+            </div>
+
+            <div class="card-footer bg-white px-2">
+                <form id="comentarioForm" class="d-flex align-items-center w-100 gap-2 mt-2">
+                    <input type="hidden" id="usuarioID" th:value="${usuarioLogueado.usuarioID}" />
+                    <input type="hidden" id="idioma" th:value="${idioma}" />
+                    <textarea class="form-control" id="contenido" rows="1" placeholder="Escribe tu mensaje..." required style="resize: none; min-height: 20px;"></textarea>
+                    <button type="submit" class="btn text-white" style="background-color: rgb(140, 207, 240);"><i class="bi bi-send"></i></button>
+                </form>
+            </div>
         </div>
     </div>
 </main>

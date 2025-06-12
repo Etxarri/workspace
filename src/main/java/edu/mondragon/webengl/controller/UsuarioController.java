@@ -6,6 +6,9 @@ import edu.mondragon.webengl.domain.pais.repository.CiudadRepository;
 import edu.mondragon.webengl.domain.pais.repository.PaisRepository;
 import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.model.Usuario.TipoUsuario;
+import edu.mondragon.webengl.domain.user.repository.RecienllegadoRepository;
+import edu.mondragon.webengl.domain.user.repository.UsuarioRepository;
+import edu.mondragon.webengl.domain.user.repository.VoluntarioRepository;
 import edu.mondragon.webengl.domain.user.service.UsuarioService;
 import edu.mondragon.webengl.seguridad.UsuarioDetails;
 
@@ -23,17 +26,23 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
-    private final UsuarioService usuarioService;
     private final CiudadRepository ciudadRepository;
-    private final PaisRepository paisRepository;   
+    private final PaisRepository paisRepository;  
+    private final UsuarioRepository usuarioRepo; 
+    private final UsuarioService usuarioService;
+    private final VoluntarioRepository voluntarioRepo;
+    private final RecienllegadoRepository recienllegadoRepo;
 
     private static final Logger logger = LoggerFactory.getLogger(EventoLocalController.class);
 
 
-    public UsuarioController(UsuarioService usuarioService, CiudadRepository ciudadRepository, PaisRepository paisRepository) {
-        this.usuarioService = usuarioService;
+    public UsuarioController(UsuarioRepository usuarioRepo, CiudadRepository ciudadRepository, PaisRepository paisRepository, UsuarioService usuarioService, VoluntarioRepository voluntarioRepo, RecienllegadoRepository recienllegadoRepo) {
+        this.usuarioRepo = usuarioRepo;
         this.ciudadRepository = ciudadRepository;
         this.paisRepository = paisRepository;
+        this.usuarioService = usuarioService;
+        this.voluntarioRepo = voluntarioRepo;
+        this.recienllegadoRepo = recienllegadoRepo;
     }
 
     @GetMapping("/crear")
@@ -61,7 +70,7 @@ public class UsuarioController {
             HttpSession session,
             RedirectAttributes redirectAttributes
     ) {
-        if (usuarioService.existeUsuarioPorEmail(email)) {
+        if (usuarioRepo.existsByEmail(email)) {
             redirectAttributes.addFlashAttribute("error", "El email ya está registrado.");
                     logger.info("\n \naasdfasdfa\n");
 
@@ -82,7 +91,7 @@ public class UsuarioController {
 
         logger.info("\n \naasdfasdfa\n");
 
-        Usuario usuarioCreado = usuarioService.findUsuarioByEmail(email).orElse(null);
+        Usuario usuarioCreado = usuarioRepo.findByEmail(email).orElse(null);
         if (usuarioCreado != null) {
             if (tipo == TipoUsuario.recienllegado) {
                 usuarioService.crearRecienllegado(
@@ -102,7 +111,7 @@ public class UsuarioController {
         if (usuario == null) {
             return "redirect:/login";
         }
-        Usuario usuarioEdicion = usuarioService.findUsuarioByIdUsuario(usuario.getUsuario().getUsuarioID());
+        Usuario usuarioEdicion = usuarioRepo.findById(usuario.getUsuario().getUsuarioID()).orElse(null);
         model.addAttribute("usuario", usuarioEdicion);
         model.addAttribute("ciudades", ciudadRepository.findAll());
         model.addAttribute("paises", paisRepository.findAll());
@@ -110,16 +119,18 @@ public class UsuarioController {
         // Cargar datos específicos según el tipo de usuario
         if (usuarioEdicion.getTipo() == Usuario.TipoUsuario.recienllegado) {
             edu.mondragon.webengl.domain.user.model.Recienllegado recienllegado =
-                usuarioService.findRecienllegadoById(usuarioEdicion.getUsuarioID());
+                recienllegadoRepo.findById(usuarioEdicion.getUsuarioID()).orElse(null);
             model.addAttribute("lenguaje", recienllegado != null ? recienllegado.getLenguaje() : "");
             model.addAttribute("fecha_llegada", recienllegado != null ? recienllegado.getFechaLlegada() : "");
             model.addAttribute("necesidades", recienllegado != null ? recienllegado.getNecesidades() : "");
         } else if (usuarioEdicion.getTipo() == Usuario.TipoUsuario.voluntario) {
             edu.mondragon.webengl.domain.user.model.Voluntario voluntario =
-                usuarioService.findVoluntarioById(usuarioEdicion.getUsuarioID());
+                voluntarioRepo.findById(usuarioEdicion.getUsuarioID()).orElse(null);
             model.addAttribute("habilidades", voluntario != null ? voluntario.getHabilidades() : "");
             model.addAttribute("motivacion", voluntario != null ? voluntario.getMotivacion() : "");
         }
+
+        model.addAttribute("paginaActual", "perfil");
 
         return "user/editarUsuario";
     }
@@ -141,7 +152,7 @@ public class UsuarioController {
             RedirectAttributes redirectAttributes,
             HttpSession session
     ) {
-        Usuario usuario = usuarioService.findUsuarioByIdUsuario(usuarioID);
+        Usuario usuario = usuarioRepo.findById(usuarioID).orElse(null);
         if (usuario == null) {
             redirectAttributes.addFlashAttribute("error", "Usuario no encontrado.");
             return "redirect:/usuario/editar";
@@ -162,9 +173,9 @@ public class UsuarioController {
         usuarioService.actualizarUsuario(usuario, necesidades, lenguaje, habilidades, motivacion);
 
         // Recarga el usuario actualizado desde la base de datos
-        Usuario usuarioActualizado = usuarioService.findUsuarioByIdUsuario(usuarioID);
+        Usuario usuarioActualizado = usuarioRepo.findById(usuarioID).orElse(null);
         session.setAttribute("usuario", usuarioActualizado);
-
+        session.setAttribute("paginaActual", "perfil");
         redirectAttributes.addFlashAttribute("success", "Datos actualizados correctamente.");
         return "redirect:/login";
     }

@@ -9,6 +9,7 @@ edu/mondragon/webengl/domain/categoria/model/Categoria.class
 edu/mondragon/webengl/domain/pais/repository/ComunidadAutonomaRepository.class
 edu/mondragon/webengl/domain/foro/repository/ComentarioForoRepository.class
 edu/mondragon/webengl/domain/evento/repository/EventoLocalRepository.class
+edu/mondragon/webengl/domain/encuesta/service/ConsejoService.class
 edu/mondragon/webengl/domain/categoria/repository/CategoriaRepository.class
 edu/mondragon/webengl/domain/user/service/UsuarioServiceImpl.class
 edu/mondragon/webengl/domain/user/service/UsuarioService.class
@@ -23,6 +24,7 @@ edu/mondragon/webengl/domain/user/service/EmailService.class
 edu/mondragon/webengl/domain/chat/service/MensajeChatService.class
 edu/mondragon/webengl/domain/user/model/Usuario$TipoUsuario.class
 edu/mondragon/webengl/domain/user/model/Voluntario.class
+edu/mondragon/webengl/domain/encuesta/model/ConsejoIntegracion.class
 edu/mondragon/webengl/domain/pais/model/Ciudad.class
 edu/mondragon/webengl/domain/user/model/PasswordResetTokenStore.class
 edu/mondragon/webengl/seguridad/SeguridadConfig.class
@@ -45,7 +47,6 @@ edu/mondragon/webengl/StartWebApplication.class
 edu/mondragon/webengl/controller/LoginController.class
 edu/mondragon/webengl/internationalization/service/DeepLService.class
 edu/mondragon/webengl/controller/GlobalControllerIdiomas.class
-edu/mondragon/webengl/domain/evento/model/RecienllegadoEventoId.class
 edu/mondragon/webengl/domain/chat/repository/MensajeChatRepository.class
 edu/mondragon/webengl/domain/chat/model/MensajeChat.class
 edu/mondragon/webengl/domain/foro/model/PreguntaFrecuente.class

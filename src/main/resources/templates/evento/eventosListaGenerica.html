@@ -29,6 +29,11 @@
                 </form>
             </div>
         </div>
+        <div th:if="${usuario.tipo.name() == 'voluntario' and paginaActual == 'misEventos'}" class="mb-4">
+            <form th:action="@{/eventos/crearEvento}" method="get" class="mt-4">
+                <button type="submit" class="btn btn-primary mt-4" th:text="#{evento.crear}">Crear Evento</button>
+            </form>
+        </div>
         <div class="container">
             <div th:each="evento : ${eventos}">
                 <a th:href="@{/eventos/{eventoID}(eventoID=${evento.eventoID})}" style="text-decoration: none; color: inherit;">
@@ -65,3 +70,4 @@
     </div>
 </main>
 </html>
+

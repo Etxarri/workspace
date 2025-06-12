@@ -11,5 +11,6 @@ public interface EventoLocalRepository extends JpaRepository<EventoLocal, Intege
     List<EventoLocal> findByCiudad_ComunidadAutonoma_ComunidadID(int comunidadId);
     List<EventoLocal> findByCiudad_ComunidadAutonoma_ComunidadIDAndCategoria_CategoriaID(int comunidadId, int categoriaID);
     List<EventoLocal> findByCategoria_CategoriaID(int categoriaID);
+    List<EventoLocal> findByUsuario_UsuarioID(int usuarioID);
     
 }

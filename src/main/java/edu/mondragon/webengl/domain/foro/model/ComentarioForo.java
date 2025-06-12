@@ -33,7 +33,6 @@ public class ComentarioForo {
 
     @Column(name = "boto_pos")
     private int botoPos;
-
     // Getters y setters
 
     public int getComentarioID() {
