@@ -1,8 +1,12 @@
 package edu.mondragon.webengl.domain.encuesta.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +23,8 @@ public class Encuesta {
     @Column(name = "tipo_encuesta", nullable = false)
     private String tipoEncuesta;
 
+    @OneToMany(mappedBy = "encuesta", cascade = CascadeType.ALL)
+    private List<Pregunta> preguntas;
 
     // Getters y setters
     public int getEncuestaID() {
@@ -60,6 +66,14 @@ public class Encuesta {
                 ", titulo='" + titulo + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 '}';
+    }
+
+    public List<Pregunta> getPreguntas() {
+        return preguntas;
+    }
+
+    public void setPreguntas(List<Pregunta> preguntas) {
+        this.preguntas = preguntas;
     }
 }
 

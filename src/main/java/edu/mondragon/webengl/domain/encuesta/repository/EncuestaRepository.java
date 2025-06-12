@@ -9,5 +9,6 @@ import edu.mondragon.webengl.domain.encuesta.model.Encuesta;
 public interface EncuestaRepository extends JpaRepository<Encuesta, Integer>
 {
 
+    Encuesta findByEncuestaID(int encuestaID);
 
 }

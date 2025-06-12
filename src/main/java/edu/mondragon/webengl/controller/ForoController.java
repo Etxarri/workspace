@@ -174,40 +174,6 @@ public class ForoController {
 
         return "redirect:/foro/preguntaUsuario/" + preguntaID;
     }
-    /*
-    @GetMapping
-    public String listarHilos(@RequestParam(required = false) int temaId, Model model) {
-        List<Hiloforo> hilos = null;
-        if (temaId != 0) {
-            Optional<Temaforo> temaOpt = temaRepo.findById(temaId);
-            if (temaOpt.isPresent()) {
-                model.addAttribute("temaSeleccionado", temaOpt.get());
-            } else {
-                hilos = hiloRepo.findAll();
-            }
-        } else {
-            hilos = hiloRepo.findAll();
-        }
-        List<Temaforo> temas = temaRepo.findAll();
-        model.addAttribute("temas", temas);
-        //model.addAttribute("hilos", hilos);
-        return "foro/lista";
-    }
 
-    //@GetMapping("/{id}")
-    public String verHilo(@PathVariable int id, Model model) {
-        Optional<Hiloforo> hiloOpt = hiloRepo.findById(id);
-        if (hiloOpt.isPresent()) {
-            Hiloforo hilo = hiloOpt.get();
-            model.addAttribute("hilo", hilo);
-
-            List<ComentarioForo> comentarios = comentarioRepo.findByHilo(hilo);
-            model.addAttribute("comentarios", comentarios);
-
-            return "foro/hilo";
-        }
-        return "redirect:/foro";
-    }
-*/
 }
 

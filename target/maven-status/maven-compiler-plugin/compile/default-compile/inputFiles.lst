@@ -17,7 +17,6 @@
 /workspace/src/main/java/edu/mondragon/webengl/seguridad/UsuarioDetails.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/ChatRestController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/evento/repository/EventoLocalRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/config/HttpToHttpsRedirectConfig.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/ForgotPasswordController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/model/ComunidadAutonoma.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/service/EmailService.java
@@ -40,6 +39,7 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/model/Recienllegado.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/UsuarioRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/WelcomeController.java
+/workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/Pregunta.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/Encuesta.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/FAQController.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/repository/HacerEncuestaRepository.java
@@ -54,10 +54,14 @@
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/service/ConsejoService.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/VoluntarioRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/LoginController.java
+/workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/RespuestaUsuario.java
+/workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/OpcionRespuesta.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/chat/model/MensajeChatDTO.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/PreguntaFrecuente.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/ComentarioForo.java
+/workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/RespuestaUsuarioId.java
 /workspace/src/main/java/edu/mondragon/webengl/controller/ChatWebSocketController.java
+/workspace/src/main/java/edu/mondragon/webengl/seguridad/HttpToHttpsRedirectConfig.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/pais/repository/PaisRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/categoria/repository/CategoriaRepository.java
 /workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/HacerEncuestaId.java

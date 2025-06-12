@@ -78,8 +78,8 @@ public class EncuestaController
                                 RedirectAttributes redirectAttrs,
                                 @AuthenticationPrincipal UsuarioDetails user) {
         // Buscar la encuesta específica
-        Optional<Encuesta> encuestaOpt = encuestaRepo.findById(encuestaID);
-        if (encuestaOpt.isEmpty())
+        Encuesta encuesta = encuestaRepo.findByEncuestaID(encuestaID);
+        if (encuesta == null)
         {
             redirectAttrs.addFlashAttribute("error", "Encuesta no encontrada");
             return "redirect:/encuestas";
@@ -96,14 +96,11 @@ public class EncuestaController
             return "redirect:/login";
         }
 
-        // Aquí se podría añadir lógica para evitar que un usuario conteste dos veces la misma encuesta
 
-        // Añadir la encuesta y el objeto para respuestas al modelo
-        Encuesta encuesta = encuestaOpt.get();
-        // Añadir la encuesta al modelo
         model.addAttribute("encuesta", encuesta);
-        // Añadir el DTO vacío al modelo para el binding del formulario
-        model.addAttribute("encuestaRespuestas", new EncuestaRespuestas());
+        model.addAttribute("preguntas", encuesta.getPreguntas());
+        model.addAttribute("encuestaRespuestas", new HashMap<Integer, Double>()); // clave: preguntaID, valor: respuesta
+
         model.addAttribute("tituloPagina", "Responder Encuesta");
 
 
