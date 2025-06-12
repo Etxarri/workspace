@@ -1,65 +1,64 @@
-/workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/ConsejoIntegracion.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/recurso/repository/RecursoLocalRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/UsuarioController.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/RecienllegadoRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/evento/model/EventoLocal.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/pais/repository/CiudadRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/pais/repository/ComunidadAutonomaRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/ChatController.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/user/model/PasswordResetTokenStore.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/EventoLocalController.java
-/workspace/src/main/java/edu/mondragon/webengl/internationalization/InternationalizationConfig.java
-/workspace/src/main/java/edu/mondragon/webengl/internationalization/service/DeepLService.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/Hiloforo.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/foro/repository/HiloforoRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/chat/model/MensajeChat.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/user/service/UsuarioService.java
-/workspace/src/main/java/edu/mondragon/webengl/seguridad/UsuarioDetails.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/ChatRestController.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/evento/repository/EventoLocalRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/config/HttpToHttpsRedirectConfig.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/ForgotPasswordController.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/pais/model/ComunidadAutonoma.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/user/service/EmailService.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/ForoController.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/RecursoLocalController.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/pais/model/RecursoMapaDTO.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/repository/EncuestaRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/foro/repository/TemaforoRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/HacerEncuesta.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/Temaforo.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/DeepLRestController.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/foro/repository/ComentarioForoRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/categoria/model/Categoria.java
-/workspace/src/main/java/edu/mondragon/webengl/seguridad/UsuarioDetailsService.java
-/workspace/src/main/java/edu/mondragon/webengl/seguridad/SeguridadConfig.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/GlobalControllerIdiomas.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/user/model/Usuario.java
-/workspace/src/main/java/edu/mondragon/webengl/StartWebApplication.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/websocket/WebSocketConfig.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/user/model/Recienllegado.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/UsuarioRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/WelcomeController.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/Encuesta.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/FAQController.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/repository/HacerEncuestaRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/foro/repository/PreguntaFrecuenteRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/user/model/Voluntario.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/pais/model/Ciudad.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/EncuestaRespuestas.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/EncuestaController.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/pais/model/Pais.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/recurso/model/RecursoLocal.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/chat/service/MensajeChatService.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/service/ConsejoService.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/user/repository/VoluntarioRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/LoginController.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/chat/model/MensajeChatDTO.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/PreguntaFrecuente.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/foro/model/ComentarioForo.java
-/workspace/src/main/java/edu/mondragon/webengl/controller/ChatWebSocketController.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/pais/repository/PaisRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/categoria/repository/CategoriaRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/encuesta/model/HacerEncuestaId.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/chat/repository/MensajeChatRepository.java
-/workspace/src/main/java/edu/mondragon/webengl/domain/user/service/UsuarioServiceImpl.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\pais\repository\ComunidadAutonomaRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\recurso\repository\RecursoLocalRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\EventoLocalController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\UsuarioController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\chat\service\MensajeChatService.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\pais\model\Pais.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\encuesta\model\HacerEncuestaId.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\service\UsuarioService.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\foro\model\Temaforo.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\service\EmailService.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\pais\model\Ciudad.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\foro\repository\PreguntaFrecuenteRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\foro\repository\ComentarioForoRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\DeepLRestController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\model\Voluntario.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\pais\repository\PaisRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\internationalization\InternationalizationConfig.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\chat\model\MensajeChatDTO.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\foro\repository\HiloforoRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\ChatController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\pais\model\ComunidadAutonoma.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\encuesta\repository\EncuestaRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\encuesta\service\ConsejoService.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\categoria\repository\CategoriaRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\repository\RecienllegadoRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\WelcomeController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\evento\model\EventoLocal.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\recurso\model\RecursoLocal.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\encuesta\model\ConsejoIntegracion.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\LoginController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\internationalization\service\DeepLService.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\FAQController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\foro\repository\TemaforoRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\model\PasswordResetTokenStore.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\foro\model\ComentarioForo.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\foro\model\PreguntaFrecuente.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\chat\repository\MensajeChatRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\pais\repository\CiudadRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\repository\VoluntarioRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\seguridad\UsuarioDetails.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\seguridad\SeguridadConfig.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\categoria\model\Categoria.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\EncuestaController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\encuesta\repository\HacerEncuestaRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\ForgotPasswordController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\evento\repository\EventoLocalRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\model\Usuario.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\websocket\WebSocketConfig.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\encuesta\model\Encuesta.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\ForoController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\seguridad\UsuarioDetailsService.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\RecursoLocalController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\service\UsuarioServiceImpl.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\ChatWebSocketController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\controller\ChatRestController.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\encuesta\model\HacerEncuesta.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\encuesta\model\EncuestaRespuestas.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\foro\model\Hiloforo.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\StartWebApplication.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\model\Recienllegado.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\config\HttpToHttpsRedirectConfig.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\user\repository\UsuarioRepository.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\pais\model\RecursoMapaDTO.java
+C:\Users\mikel\Desktop\2. Maila\03_PBL\spring-devcontainer-kaixo-mundua\src\main\java\edu\mondragon\webengl\domain\chat\model\MensajeChat.java

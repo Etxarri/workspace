@@ -17,8 +17,8 @@ mysqldump -h 172.18.0.2 -u $USER -p$PASSWORD $DATABASE > $FILENAME
 # sudo apt install cron
 
 # 2. Arranca el servicio
-# sudo systemctl enable cron
-# sudo systemctl start cron
+# sudo service cron enable
+# sudo service cron start
 
 # 3. Editar las tareas programadas
 # crontab -e

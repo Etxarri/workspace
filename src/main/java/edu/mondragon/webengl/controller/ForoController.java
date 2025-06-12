@@ -10,7 +10,6 @@ import edu.mondragon.webengl.domain.foro.repository.HiloforoRepository;
 import edu.mondragon.webengl.domain.foro.repository.PreguntaFrecuenteRepository;
 import edu.mondragon.webengl.domain.foro.repository.TemaforoRepository;
 import edu.mondragon.webengl.domain.user.repository.UsuarioRepository;
-import edu.mondragon.webengl.domain.user.service.UsuarioService;
 import edu.mondragon.webengl.seguridad.UsuarioDetails;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;

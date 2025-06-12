@@ -1,24 +1,16 @@
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: Permission denied
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: Permission denied
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: Permission denied
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: Permission denied
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: Permission denied
 mysqldump: [Warning] Using a password on the command line interface can be insecure.
 mysqldump: [Warning] Using a password on the command line interface can be insecure.
 mysqldump: [Warning] Using a password on the command line interface can be insecure.
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: not found
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: not found
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: not found
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: not found
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: not found
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: not found
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: not found
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: not found
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: not found
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: not found
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: not found
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: not found
-/bin/sh: 1: /workspace/mysql_backup/mysql_backup.sh: not found
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
 mysqldump: [Warning] Using a password on the command line interface can be insecure.
 mysqldump: [Warning] Using a password on the command line interface can be insecure.
 mysqldump: [Warning] Using a password on the command line interface can be insecure.

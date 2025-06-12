@@ -23,315 +23,282 @@
             </section>
 
             <section class="card p-4 mb-4">
-                <h3 class="card-title mb-5"><i class="bi bi-heart-half"></i> Psicológico</h3>
+                <h3 class="card-title mb-5"><i class="bi bi-heart-half"></i> <span th:text="#{psicologico.titulo}">Psicológico</span></h3>
 
                 <div class="mb-3">
-                    <label class="form-label pregunta">
-                        1. ¿Qué tan conectado te sientes con España?
-                    </label>
+                    <label class="form-label pregunta" th:text="#{psicologico.p1}">1. ¿Qué tan conectado te sientes con España?</label>
                     <div class="form-check">
                         <input type="radio" name="PSI_1" value="5" th:field="*{psicologicoConexion}" class="form-check-input" required>
-                        <label class="form-check-label">Siento una conexión extremadamente estrecha.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p1.o5}">Siento una conexión extremadamente estrecha.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="PSI_1" value="4" th:field="*{psicologicoConexion}" class="form-check-input">
-                        <label class="form-check-label">Siento una conexión muy estrecha.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p1.o4}">Siento una conexión muy estrecha.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="PSI_1" value="3" th:field="*{psicologicoConexion}" class="form-check-input">
-                        <label class="form-check-label">Siento una conexión moderadamente cercana.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p1.o3}">Siento una conexión moderadamente cercana.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="PSI_1" value="2" th:field="*{psicologicoConexion}" class="form-check-input">
-                        <label class="form-check-label">Siento una conexión débil.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p1.o2}">Siento una conexión débil.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="PSI_1" value="1" th:field="*{psicologicoConexion}" class="form-check-input">
-                        <label class="form-check-label">No siento ninguna conexión.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p1.o1}">No siento ninguna conexión.</label>
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label pregunta">
-                        2. ¿Con qué frecuencia te sientes como un extraño en España?
-                    </label>
+                    <label class="form-label pregunta" th:text="#{psicologico.p2}">2. ¿Con qué frecuencia te sientes como un extraño en España?</label>
                     <div class="form-check">
                         <input type="radio" name="PSI_2" value="5" th:field="*{psicologicoExtranjero}" class="form-check-input" required>
-                        <label class="form-check-label"> Nunca.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p2.o5}">Nunca.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="PSI_2" value="4" th:field="*{psicologicoExtranjero}" class="form-check-input">
-                        <label class="form-check-label"> Rara vez.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p2.o4}">Rara vez.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="PSI_2" value="3" th:field="*{psicologicoExtranjero}" class="form-check-input">
-                        <label class="form-check-label"> A veces.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p2.o3}">A veces.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="PSI_2" value="2" th:field="*{psicologicoExtranjero}" class="form-check-input">
-                        <label class="form-check-label"> A menudo.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p2.o2}">A menudo.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="PSI_2" value="1" th:field="*{psicologicoExtranjero}" class="form-check-input">
-                        <label class="form-check-label"> Siempre.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p2.o1}">Siempre.</label>
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label pregunta">
-                        3. ¿Dónde quieres vivir?
-                    </label>
+                    <label class="form-label pregunta" th:text="#{psicologico.p3}">3. ¿Dónde quieres vivir?</label>
                     <div class="form-check">
                         <input type="radio" name="PSI_3" value="5" th:field="*{psicologicoDeseoVivir}" class="form-check-input" required>
-                        <label class="form-check-label"> Definitivamente quiero vivir en España por el resto de mi vida.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p3.o5}">Definitivamente quiero vivir en España por el resto de mi vida.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="PSI_3" value="4" th:field="*{psicologicoDeseoVivir}" class="form-check-input">
-                        <label class="form-check-label"> Probablemente quiera vivir en España por el resto de mi vida.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p3.o4}">Probablemente quiera vivir en España por el resto de mi vida.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="PSI_3" value="3" th:field="*{psicologicoDeseoVivir}" class="form-check-input">
-                        <label class="form-check-label"> No estoy seguro de dónde quiero vivir.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p3.o3}">No estoy seguro de dónde quiero vivir.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="PSI_3" value="2" th:field="*{psicologicoDeseoVivir}" class="form-check-input">
-                        <label class="form-check-label"> Probablemente quiero mudarme a otro país.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p3.o2}">Probablemente quiero mudarme a otro país.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="PSI_3" value="1" th:field="*{psicologicoDeseoVivir}" class="form-check-input">
-                        <label class="form-check-label"> Definitivamente quiero mudarme a otro país.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p3.o1}">Definitivamente quiero mudarme a otro país.</label>
                     </div>
                 </div>
 
                 <div class="mb-1">
-                    <label class="form-label pregunta">
-                        4. ¿Con qué frecuencia te sientes aislado?
-                    </label>
+                    <label class="form-label pregunta" th:text="#{psicologico.p4}">4. ¿Con qué frecuencia te sientes aislado?</label>
                     <div class="form-check">
                         <input type="radio" name="PSI_4" value="5" th:field="*{psicologicoAislamiento}" class="form-check-input" required>
-                        <label class="form-check-label"> Nunca.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p4.o5}">Nunca.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="PSI_4" value="4" th:field="*{psicologicoAislamiento}" class="form-check-input">
-                        <label class="form-check-label"> Rara vez.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p4.o4}">Rara vez.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="PSI_4" value="3" th:field="*{psicologicoAislamiento}" class="form-check-input">
-                        <label class="form-check-label"> A veces.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p4.o3}">A veces.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="PSI_4" value="2" th:field="*{psicologicoAislamiento}" class="form-check-input">
-                        <label class="form-check-label"> A menudo.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p4.o2}">A menudo.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="PSI_4" value="1" th:field="*{psicologicoAislamiento}" class="form-check-input">
-                        <label class="form-check-label"> Siempre.</label>
+                        <label class="form-check-label" th:text="#{psicologico.p4.o1}">Siempre.</label>
                     </div>
                 </div>
             </section>
             
             <section class="card p-4 mb-4">
-                <h3 class="card-title mb-5"><i class="bi bi-translate"></i> Lingüístico</h3>
+                <h3 class="card-title mb-5"><i class="bi bi-translate"></i> <span th:text="#{linguistico.titulo}">Lingüístico</span></h3>
                 
                 <div class="mb-3">
-                    <label class="form-label pregunta">
-                        1. Lectura
-                    </label>
-                    <div class="form-text mb-3">Puedo leer y comprender los puntos principales en artículos periodísticos sencillos sobre temas familiares.</div>
-
+                    <label class="form-label pregunta" th:text="#{linguistico.p1}">1. Lectura</label>
+                    <div class="form-text mb-3" th:text="#{linguistico.p1.desc}">Puedo leer y comprender los puntos principales en artículos periodísticos sencillos sobre temas familiares.</div>
                     <div class="form-check">
                         <input type="radio" name="LIN_1" value="5" th:field="*{linguisticoLectura}" class="form-check-input" required>
-                        <label class="form-check-label"> Muy bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o5}">Muy bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="LIN_1" value="4" th:field="*{linguisticoLectura}" class="form-check-input">
-                        <label class="form-check-label"> Bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o4}">Bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="LIN_1" value="3" th:field="*{linguisticoLectura}" class="form-check-input">
-                        <label class="form-check-label"> Moderadamente bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o3}">Moderadamente bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="LIN_1" value="2" th:field="*{linguisticoLectura}" class="form-check-input">
-                        <label class="form-check-label"> No muy bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o2}">No muy bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="LIN_1" value="1" th:field="*{linguisticoLectura}" class="form-check-input">
-                        <label class="form-check-label"> Nada bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o1}">Nada bien.</label>
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label pregunta">
-                        2. Conversación
-                    </label>
-                    <div class="form-text mb-3">En una conversación puedo hablar sobre temas familiares (trabajo, estudios, actividades, etc), y expresar opiniones personales.</div>
-                    
+                    <label class="form-label pregunta" th:text="#{linguistico.p2}">2. Conversación</label>
+                    <div class="form-text mb-3" th:text="#{linguistico.p2.desc}">En una conversación puedo hablar sobre temas familiares (trabajo, estudios, actividades, etc), y expresar opiniones personales.</div>
                     <div class="form-check">
                         <input type="radio" name="LIN_2" value="5" th:field="*{linguisticoConversacion}" class="form-check-input" required>
-                        <label class="form-check-label"> Muy bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o5}">Muy bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="LIN_2" value="4" th:field="*{linguisticoConversacion}" class="form-check-input">
-                        <label class="form-check-label"> Bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o4}">Bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="LIN_2" value="3" th:field="*{linguisticoConversacion}" class="form-check-input">
-                        <label class="form-check-label"> Moderadamente bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o3}">Moderadamente bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="LIN_2" value="2" th:field="*{linguisticoConversacion}" class="form-check-input">
-                        <label class="form-check-label"> No muy bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o2}">No muy bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="LIN_2" value="1" th:field="*{linguisticoConversacion}" class="form-check-input">
-                        <label class="form-check-label"> Nada bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o1}">Nada bien.</label>
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label pregunta">
-                        3. Escritura
-                    </label>
-                    <div class="form-text mb-3">Puedo escribir cartas sobre mis experiencias, sentimientos y eventos.</div>
-
+                    <label class="form-label pregunta" th:text="#{linguistico.p3}">3. Escritura</label>
+                    <div class="form-text mb-3" th:text="#{linguistico.p3.desc}">Puedo escribir cartas sobre mis experiencias, sentimientos y eventos.</div>
                     <div class="form-check">
                         <input type="radio" name="LIN_3" value="5" th:field="*{linguisticoEscritura}" class="form-check-input" required>
-                        <label class="form-check-label"> Muy bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o5}">Muy bien.</label>
                     </div>
                     <div class="form-check">
-                    <input type="radio" name="LIN_3" value="4" th:field="*{linguisticoEscritura}" class="form-check-input">
-                        <label class="form-check-label"> Bien.</label>
+                        <input type="radio" name="LIN_3" value="4" th:field="*{linguisticoEscritura}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{linguistico.o4}">Bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="LIN_3" value="3" th:field="*{linguisticoEscritura}" class="form-check-input">
-                        <label class="form-check-label"> Moderadamente bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o3}">Moderadamente bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="LIN_3" value="2" th:field="*{linguisticoEscritura}" class="form-check-input">
-                        <label class="form-check-label"> No muy bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o2}">No muy bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="LIN_3" value="1" th:field="*{linguisticoEscritura}" class="form-check-input">
-                        <label class="form-check-label"> Nada bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o1}">Nada bien.</label>
                     </div>
                 </div>
 
                 <div class="mb-1">
-                    <label class="form-label pregunta">
-                        4. Escucha
-                    </label>
-                    <div class="form-text mb-3">Puedo escuchar y comprender los puntos principales en programas de radio o televisión sobre temas familiares.</div>
-
+                    <label class="form-label pregunta" th:text="#{linguistico.p4}">4. Escucha</label>
+                    <div class="form-text mb-3" th:text="#{linguistico.p4.desc}">Puedo escuchar y comprender los puntos principales en programas de radio o televisión sobre temas familiares.</div>
                     <div class="form-check">
                         <input type="radio" name="LIN_4" value="5" th:field="*{linguisticoEscucha}" class="form-check-input" required>
-                        <label class="form-check-label"> Muy bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o5}">Muy bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="LIN_4" value="4" th:field="*{linguisticoEscucha}" class="form-check-input">
-                        <label class="form-check-label"> Bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o4}">Bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="LIN_4" value="3" th:field="*{linguisticoEscucha}" class="form-check-input">
-                        <label class="form-check-label"> Moderadamente bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o3}">Moderadamente bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="LIN_4" value="2" th:field="*{linguisticoEscucha}" class="form-check-input">
-                        <label class="form-check-label"> No muy bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o2}">No muy bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="LIN_4" value="1" th:field="*{linguisticoEscucha}" class="form-check-input">
-                        <label class="form-check-label"> Nada bien.</label>
+                        <label class="form-check-label" th:text="#{linguistico.o1}">Nada bien.</label>
                     </div>
                 </div>
             </section>
             
             <section class="card p-4 mb-4">
-                <h3 class="card-title mb-5"><i class="bi bi-cash-coin"></i> Económico</h3>
-
+                <h3 class="card-title mb-5"><i class="bi bi-cash-coin"></i> <span th:text="#{economico.titulo}">Económico</span></h3>
                 <div class="mb-3">
-                    <label class="form-label pregunta">
-                        1. ¿Cuál es el ingreso anual total de su hogar (antes de impuestos y deducciones) de todas las fuentes?
-                         Si no conoce la cifra exacta, por favor dé una estimación. 
-                    </label>
-                    <div class="form-text mb-3">Su hogar incluye a todas las personas con las que comparte un apartamento o casa,
-                         y con las que también esté relacionado por nacimiento, matrimonio, pareja o adopción.
-                    </div>
-
+                    <label class="form-label pregunta" th:text="#{economico.p1}">1. ¿Cuál es el ingreso anual total de su hogar (antes de impuestos y deducciones) de todas las fuentes? Si no conoce la cifra exacta, por favor dé una estimación.</label>
+                    <div class="form-text mb-3" th:text="#{economico.p1.desc}">Su hogar incluye a todas las personas con las que comparte un apartamento o casa, y con las que también esté relacionado por nacimiento, matrimonio, pareja o adopción.</div>
                     <div class="ms-3">
                         <div class="form-check">
                             <input type="radio" name="ECO_1" value="1" th:field="*{economicoIngreso}" class="form-check-input" required>
-                            <label class="form-check-label"> [0€, 12.330€]</label>
+                            <label class="form-check-label" th:text="#{economico.rango1}">[0€, 12.330€]</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="ECO_1" value="2" th:field="*{economicoIngreso}" class="form-check-input">
-                            <label class="form-check-label"> [12.331€, 18.500€]</label>
+                            <label class="form-check-label" th:text="#{economico.rango2}">[12.331€, 18.500€]</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="ECO_1" value="3" th:field="*{economicoIngreso}" class="form-check-input">
-                            <label class="form-check-label"> [18.501€, 37.000€]</label>
+                            <label class="form-check-label" th:text="#{economico.rango3}">[18.501€, 37.000€]</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="ECO_1" value="4" th:field="*{economicoIngreso}" class="form-check-input">
-                            <label class="form-check-label"> [37.001€, 49.330€]</label>
+                            <label class="form-check-label" th:text="#{economico.rango4}">[37.001€, 49.330€]</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="ECO_1" value="5" th:field="*{economicoIngreso}" class="form-check-input">
-                            <label class="form-check-label"> [ > 49.330€]</label>
+                            <label class="form-check-label" th:text="#{economico.rango5}">[ > 49.330€]</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label pregunta">
-                        2. ¿Cuál de estas descripciones se aplica mejor a lo que has estado haciendo durante las últimas cuatro semanas?
-                    </label>
-
+                    <label class="form-label pregunta" th:text="#{economico.p2}">2. ¿Cuál de estas descripciones se aplica mejor a lo que has estado haciendo durante las últimas cuatro semanas?</label>
                     <div class="ms-3">
                         <div class="form-check">
                             <input type="radio" name="ECO_2" value="5" th:field="*{economicoSituacion}" class="form-check-input" required>
-                            <label class="form-check-label"> En un trabajo remunerado, aunque sea temporalmente (por cuenta ajena, autónomo, para su empresa familiar).</label>
+                            <label class="form-check-label" th:text="#{economico.p2.o1}">En un trabajo remunerado, aunque sea temporalmente (por cuenta ajena, autónomo, para su empresa familiar).</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="ECO_2" value="3" th:field="*{economicoSituacion}" class="form-check-input">
-                            <label class="form-check-label"> En la escuela, incluso si está de vacaciones.</label>
+                            <label class="form-check-label" th:text="#{economico.p2.o2}">En la escuela, incluso si está de vacaciones.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="ECO_2" value="1" th:field="*{economicoSituacion}" class="form-check-input">
-                            <label class="form-check-label"> Desempleado y en búsqueda activa de empleo.</label>
+                            <label class="form-check-label" th:text="#{economico.p2.o3}">Desempleado y en búsqueda activa de empleo.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="ECO_2" value="1" th:field="*{economicoSituacion}" class="form-check-input">
-                            <label class="form-check-label"> Desempleado y sin buscar activamente un trabajo.</label>
+                            <label class="form-check-label" th:text="#{economico.p2.o4}">Desempleado y sin buscar activamente un trabajo.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="ECO_2" value="3" th:field="*{economicoSituacion}" class="form-check-input">
-                            <label class="form-check-label"> Enfermo o discapacitado permanente.</label>
+                            <label class="form-check-label" th:text="#{economico.p2.o5}">Enfermo o discapacitado permanente.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="ECO_2" value="3" th:field="*{economicoSituacion}" class="form-check-input">
-                            <label class="form-check-label"> Jubilados.</label>
+                            <label class="form-check-label" th:text="#{economico.p2.o6}">Jubilados.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="ECO_2" value="5" th:field="*{economicoSituacion}" class="form-check-input">
-                            <label class="form-check-label"> En el servicio militar.</label>
+                            <label class="form-check-label" th:text="#{economico.p2.o7}">En el servicio militar.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="ECO_2" value="3" th:field="*{economicoSituacion}" class="form-check-input">
-                            <label class="form-check-label"> En servicio comunitario.</label>
+                            <label class="form-check-label" th:text="#{economico.p2.o8}">En servicio comunitario.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="ECO_2" value="3" th:field="*{economicoSituacion}" class="form-check-input">
-                            <label class="form-check-label"> Realizando tareas domésticas no remuneradas, cuidar a los niños u otras personas.</label>
+                            <label class="form-check-label" th:text="#{economico.p2.o9}">Realizando tareas domésticas no remuneradas, cuidar a los niños u otras personas.</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label pregunta">
-                        3. Indique si su hogar actualmente puede o no puede permitirse pagar un gasto inesperado, pero necesario, de…
-                    </label>
-
+                    <label class="form-label pregunta" th:text="#{economico.p3}">3. Indique si su hogar actualmente puede o no puede permitirse pagar un gasto inesperado, pero necesario, de…</label>
                     <div class="ms-3">
                         <!-- 400€ -->
                         <div class="row align-items-center mb-2">
@@ -339,11 +306,11 @@
                             <div class="col">
                                 <div class="form-check form-check-inline">
                                     <input type="radio" name="ECO_3_1" value="1" th:field="*{economicoGasto400}" class="form-check-input" required>
-                                    <label class="form-check-label">Sí</label>
+                                    <label class="form-check-label" th:text="#{economico.si}">Sí</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input type="radio" name="ECO_3_1" value="0" th:field="*{economicoGasto400}" class="form-check-input">
-                                    <label class="form-check-label">No</label>
+                                    <label class="form-check-label" th:text="#{economico.no}">No</label>
                                 </div>
                             </div>
                         </div>
@@ -351,14 +318,14 @@
                         <!-- 800€ -->
                         <div class="row align-items-center mb-2">
                             <div class="col-1 pe-2" style="white-space: nowrap;">• 800€</div>
-                            <div class="col">    
+                            <div class="col">
                                 <div class="form-check form-check-inline">
                                     <input type="radio" name="ECO_3_2" value="1" th:field="*{economicoGasto800}" class="form-check-input" required>
-                                    <label class="form-check-label">Sí</label>
+                                    <label class="form-check-label" th:text="#{economico.si}">Sí</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input type="radio" name="ECO_3_2" value="0" th:field="*{economicoGasto800}" class="form-check-input">
-                                    <label class="form-check-label">No</label>
+                                    <label class="form-check-label" th:text="#{economico.no}">No</label>
                                 </div>
                             </div>
                         </div>
@@ -369,11 +336,11 @@
                             <div class="col">
                                 <div class="form-check form-check-inline">
                                     <input type="radio" name="ECO_3_3" value="1" th:field="*{economicoGasto8000}" class="form-check-input" required>
-                                    <label class="form-check-label">Sí</label>
+                                    <label class="form-check-label" th:text="#{economico.si}">Sí</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input type="radio" name="ECO_3_3" value="0" th:field="*{economicoGasto8000}" class="form-check-input">
-                                    <label class="form-check-label">No</label>
+                                    <label class="form-check-label" th:text="#{economico.no}">No</label>
                                 </div>
                             </div>
                         </div>
@@ -384,582 +351,573 @@
                             <div class="col">
                                 <div class="form-check form-check-inline">
                                     <input type="radio" name="ECO_3_4" value="1" th:field="*{economicoGasto40000}" class="form-check-input" required>
-                                    <label class="form-check-label">Sí</label>
+                                    <label class="form-check-label" th:text="#{economico.si}">Sí</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input type="radio" name="ECO_3_4" value="0" th:field="*{economicoGasto40000}" class="form-check-input">
-                                    <label class="form-check-label">No</label>
+                                    <label class="form-check-label" th:text="#{economico.no}">No</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="mb-1">
-                    <label class="form-label pregunta">
-                        4. ¿Qué tan satisfecho está con su situación laboral actual? 
-                    </label>
-                    <div class="form-text mb-3">
-                        Tu situación laboral se refiere a la respuesta que diste en una pregunta anterior
-                         (ya sea en un trabajo remunerado, en la escuela, desempleado, enfermos o discapacitados permanentes,
-                         jubilados, en el ejército, en servicio comunitario, haciendo tareas domésticas no remuneradas,
-                         cuidando niños u otras personas, u otra condición).
+                    <label class="form-label pregunta" th:text="#{economico.p4}">4. ¿Qué tan satisfecho está con su situación laboral actual?</label>
+                    <div class="form-text mb-3" th:text="#{economico.p4.desc}">
+                        Tu situación laboral se refiere a la respuesta que diste en una pregunta anterior (ya sea en un trabajo remunerado, en la escuela, desempleado, enfermos o discapacitados permanentes, jubilados, en el ejército, en servicio comunitario, haciendo tareas domésticas no remuneradas, cuidando niños u otras personas, u otra condición).
                     </div>
-                    
                     <div class="ms-3">
                         <div class="form-check">
                             <input type="radio" name="ECO_4" value="5" th:field="*{economicoSatisfaccion}" class="form-check-input" required>
-                            <label class="form-check-label"> Muy satisfecho.</label>
+                            <label class="form-check-label" th:text="#{economico.satisfaccion5}">Muy satisfecho.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="ECO_4" value="4" th:field="*{economicoSatisfaccion}" class="form-check-input">
-                            <label class="form-check-label"> Algo satisfecho.</label>
+                            <label class="form-check-label" th:text="#{economico.satisfaccion4}">Algo satisfecho.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="ECO_4" value="3" th:field="*{economicoSatisfaccion}" class="form-check-input">
-                            <label class="form-check-label"> Ni satisfecho ni insatisfecho.</label>
+                            <label class="form-check-label" th:text="#{economico.satisfaccion3}">Ni satisfecho ni insatisfecho.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="ECO_4" value="2" th:field="*{economicoSatisfaccion}" class="form-check-input">
-                            <label class="form-check-label"> Algo insatisfecho.</label>
+                            <label class="form-check-label" th:text="#{economico.satisfaccion2}">Algo insatisfecho.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="ECO_4" value="1" th:field="*{economicoSatisfaccion}" class="form-check-input">
-                            <label class="form-check-label"> Muy insatisfecho.</label>
+                            <label class="form-check-label" th:text="#{economico.satisfaccion1}">Muy insatisfecho.</label>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section class="card p-4 mb-4">
-                <h3 class="card-title mb-5"><i class="bi bi-newspaper"></i> Político</h3>
+                <h3 class="card-title mb-5"><i class="bi bi-newspaper"></i> <span th:text="#{politico.titulo}">Político</span></h3>
                 <div class="mb-3">
-                    <label class="form-label pregunta">
-                        1. ¿Qué tan bien entiende los importantes problemas políticos que enfrenta España?
-                    </label>
+                    <label class="form-label pregunta" th:text="#{politico.p1}">1. ¿Qué tan bien entiende los importantes problemas políticos que enfrenta España?</label>
                     <div class="form-check">
                         <input type="radio" name="POL_1" value="5" th:field="*{politicoComprension}" class="form-check-input" required>
-                        <label class="form-check-label"> Muy bien.</label>
+                        <label class="form-check-label" th:text="#{politico.o5}">Muy bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="POL_1" value="4" th:field="*{politicoComprension}" class="form-check-input">
-                        <label class="form-check-label"> Bien.</label>
+                        <label class="form-check-label" th:text="#{politico.o4}">Bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="POL_1" value="3" th:field="*{politicoComprension}" class="form-check-input">
-                        <label class="form-check-label"> Moderadamente bien.</label>
+                        <label class="form-check-label" th:text="#{politico.o3}">Moderadamente bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="POL_1" value="2" th:field="*{politicoComprension}" class="form-check-input">
-                        <label class="form-check-label"> No muy bien.</label>
+                        <label class="form-check-label" th:text="#{politico.o2}">No muy bien.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="POL_1" value="1" th:field="*{politicoComprension}" class="form-check-input">
-                        <label class="form-check-label"> Nada bien.</label>
+                        <label class="form-check-label" th:text="#{politico.o1}">Nada bien.</label>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label pregunta">
-                        2. En los últimos 12 meses, ¿Con qué frecuencia ha discutido con otras personas 
-                        los principales problemas políticos que enfrenta España?
-                    </label>
-
+                    <label class="form-label pregunta" th:text="#{politico.p2}">2. En los últimos 12 meses, ¿Con qué frecuencia ha discutido con otras personas los principales problemas políticos que enfrenta España?</label>
                     <div class="form-check">
                         <input type="radio" name="POL_2" value="1" th:field="*{politicoDiscusion}" class="form-check-input" required>
-                        <label class="form-check-label"> Nunca.</label>
+                        <label class="form-check-label" th:text="#{politico.p2.o1}">Nunca.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="POL_2" value="2" th:field="*{politicoDiscusion}" class="form-check-input">
-                        <label class="form-check-label"> Una vez al año.</label>
+                        <label class="form-check-label" th:text="#{politico.p2.o2}">Una vez al año.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="POL_2" value="3" th:field="*{politicoDiscusion}" class="form-check-input">
-                        <label class="form-check-label"> Una vez al mes.</label>
+                        <label class="form-check-label" th:text="#{politico.p2.o3}">Una vez al mes.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="POL_2" value="4" th:field="*{politicoDiscusion}" class="form-check-input">
-                        <label class="form-check-label"> Una vez a la semana.</label>
+                        <label class="form-check-label" th:text="#{politico.p2.o4}">Una vez a la semana.</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" name="POL_2" value="5" th:field="*{politicoDiscusion}" class="form-check-input">
-                        <label class="form-check-label"> Casi todos los días.</label>
+                        <label class="form-check-label" th:text="#{politico.p2.o5}">Casi todos los días.</label>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label pregunta">
-                        3. Ahora nos gustaría hacerle algunas preguntas sobre las políticas públicas y la actualidad. 
-                        Por favor, responda a estas preguntas de memoria, sin buscar las respuestas ni preguntar a otra persona.
-                    </label>
-                    <div class="form-text mb-3">
+                    <label class="form-label pregunta" th:text="#{politico.p3}">3. Ahora nos gustaría hacerle algunas preguntas sobre las políticas públicas y la actualidad. Por favor, responda a estas preguntas de memoria, sin buscar las respuestas ni preguntar a otra persona.</label>
+                    <div class="form-text mb-3" th:text="#{politico.p3.info}">
                         No mucha gente puede responder a cada pregunta correctamente, y estaríamos muy agradecidos si respondiera a las preguntas lo mejor que pueda.
                     </div>
-
                     <div class="mb-3">
-                        <label class="form-label">
-                            <strong>a)</strong> En política, a menudo se habla de una dimensión izquierda-derecha. ¿Podría decirnos cual de las siguientes frases es cierta? 
-                        </label>
+                        <label class="form-label"><strong>a)</strong> <span th:text="#{politico.p3.a}">En política, a menudo se habla de una dimensión izquierda-derecha. ¿Podría decirnos cual de las siguientes frases es cierta?</span></label>
                         <div class="form-check">
                             <input type="radio" name="POL_3_1" value="1" th:field="*{politicoPartidos}" class="form-check-input" required>
-                            <label class="form-check-label"> El PSOE es considerado de izquierdas comparado con el PP.</label>
+                            <label class="form-check-label" th:text="#{politico.p3.a.o1}">El PSOE es considerado de izquierdas comparado con el PP.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="POL_3_1" value="0" th:field="*{politicoPartidos}" class="form-check-input">
-                            <label class="form-check-label"> El PP es considerado de izquierdas comparado con el PSOE.</label>
+                            <label class="form-check-label" th:text="#{politico.p3.a.o2}">El PP es considerado de izquierdas comparado con el PSOE.</label>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">
-                            <strong>b)</strong> ¿A cuál de los siguientes partidos pertenece el actual presidente de España?
-                        </label>
+                        <label class="form-label"><strong>b)</strong> <span th:text="#{politico.p3.b}">¿A cuál de los siguientes partidos pertenece el actual presidente de España?</span></label>
                         <div class="form-check">
                             <input type="radio" name="POL_3_2" value="0" th:field="*{politicoPresidentePartido}" class="form-check-input" required>
-                            <label class="form-check-label"> Podemos.</label>
+                            <label class="form-check-label" th:text="#{politico.p3.b.o1}">Podemos.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="POL_3_2" value="0" th:field="*{politicoPresidentePartido}" class="form-check-input">
-                            <label class="form-check-label"> Otro.</label>
+                            <label class="form-check-label" th:text="#{politico.p3.b.o2}">Otro.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="POL_3_2" value="1" th:field="*{politicoPresidentePartido}" class="form-check-input">
-                            <label class="form-check-label"> El PSOE.</label>
+                            <label class="form-check-label" th:text="#{politico.p3.b.o3}">El PSOE.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="POL_3_2" value="0" th:field="*{politicoPresidentePartido}" class="form-check-input">
-                            <label class="form-check-label"> No sé.</label>
+                            <label class="form-check-label" th:text="#{politico.p3.b.o4}">No sé.</label>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">
-                            <strong>c)</strong> ¿Cuál de los siguientes partidos ocupa el mayor número de escaños en el Senado de España?
-                        </label>
+                        <label class="form-label"><strong>c)</strong> <span th:text="#{politico.p3.c}">¿Cuál de los siguientes partidos ocupa el mayor número de escaños en el Senado de España?</span></label>
                         <div class="form-check">
                             <input type="radio" name="POL_3_3" value="1" th:field="*{politicoSenadoPartido}" class="form-check-input" required>
-                            <label class="form-check-label"> El PSOE.</label>
+                            <label class="form-check-label" th:text="#{politico.p3.c.o1}">El PSOE.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="POL_3_3" value="0" th:field="*{politicoSenadoPartido}" class="form-check-input">
-                            <label class="form-check-label"> Podemos.</label>
+                            <label class="form-check-label" th:text="#{politico.p3.c.o2}">Podemos.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="POL_3_3" value="0" th:field="*{politicoSenadoPartido}" class="form-check-input">
-                            <label class="form-check-label"> Otro.</label>
+                            <label class="form-check-label" th:text="#{politico.p3.c.o3}">Otro.</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" name="POL_3_3" value="0" th:field="*{politicoSenadoPartido}" class="form-check-input">
-                            <label class="form-check-label"> No sé.</label>
+                            <label class="form-check-label" th:text="#{politico.p3.c.o4}">No sé.</label>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">
-                            <strong>d)</strong> ¿Cuál es la edad mínima que debe tener una persona para votar en unas elecciones generales en España?
-                        </label>
+                        <label class="form-label"><strong>d)</strong> <span th:text="#{politico.p3.d}">¿Cuál es la edad mínima que debe tener una persona para votar en unas elecciones generales en España?</span></label>
                         <select name="POL_3_4" class="form-select" th:field="*{politicoEdadVoto}" required>
-                            <option value="0">Selecciona...</option>
-                            <option value="0">15</option>
-                            <option value="0">16</option>
-                            <option value="0">17</option>
-                            <option value="1">18</option>
-                            <option value="0">19</option>
-                            <option value="0">20</option>
-                            <option value="0">21</option>
+                            <option value="0" th:text="#{politico.p3.d.o0}">Selecciona...</option>
+                            <option value="0" th:text="#{politico.p3.d.o1}">15</option>
+                            <option value="0" th:text="#{politico.p3.d.o2}">16</option>
+                            <option value="0" th:text="#{politico.p3.d.o3}">17</option>
+                            <option value="1" th:text="#{politico.p3.d.o4}">18</option>
+                            <option value="0" th:text="#{politico.p3.d.o5}">19</option>
+                            <option value="0" th:text="#{politico.p3.d.o6}">20</option>
+                            <option value="0" th:text="#{politico.p3.d.o7}">21</option>
                         </select>
                     </div>
                 </div>
                 <div class="mb-1">
-                    <label class="form-label pregunta">
-                        4. Hay diferentes maneras de tratar de mejorar las cosas en España o ayudar a evitar que las cosas salgan mal. 
-                        Durante en los últimos 12 meses, ¿Ha realizado alguna de las siguientes acciones? ¿Has...
+                    <label class="form-label pregunta" th:text="#{politico.p4}">
+                        4. Hay diferentes maneras de tratar de mejorar las cosas en España o ayudar a evitar que las cosas salgan mal. Durante en los últimos 12 meses, ¿Ha realizado alguna de las siguientes acciones? ¿Has...
                     </label><br>
-
-                    • ... intentado convencer a alguien para que cambiara su opinión política? <br>
-                    <input type="radio" name="POL_4_1" value="1" th:field="*{politicoAccionConvencer}" class="form-check-input" required> Sí.
-                    <input type="radio" name="POL_4_1" value="0" th:field="*{politicoAccionConvencer}" class="form-check-input"> No.<br>
-                    • ... tratado de influir en otros sobre cómo votar?<br>
-                    <input type="radio" name="POL_4_2" value="1" th:field="*{politicoAccionInfluirVoto}" class="form-check-input" required> Sí.
-                    <input type="radio" name="POL_4_2" value="0" th:field="*{politicoAccionInfluirVoto}" class="form-check-input"> No.<br>
-                    • ... hecho una declaración política en un entorno público o en línea con respecto a la política en España?<br>
-                    <input type="radio" name="POL_4_3" value="1" th:field="*{politicoAccionDeclaracion}" class="form-check-input" required> Sí.
-                    <input type="radio" name="POL_4_3" value="0" th:field="*{politicoAccionDeclaracion}" class="form-check-input"> No.<br>
-                    • ... participado en discusiones públicas o en línea sobre política en España?<br>
-                    <input type="radio" name="POL_4_4" value="1" th:field="*{politicoAccionDiscusionPublica}" class="form-check-input" required> Sí.
-                    <input type="radio" name="POL_4_4" value="0" th:field="*{politicoAccionDiscusionPublica}" class="form-check-input"> No.<br>
-                    • ... contactado con un político o un funcionario del gobierno?<br>
-                    <input type="radio" name="POL_4_5" value="1" th:field="*{politicoAccionContacto}" class="form-check-input" required> Sí.
-                    <input type="radio" name="POL_4_5" value="0" th:field="*{politicoAccionContacto}" class="form-check-input"> No.<br>
-                    • ... trabajado en un partido político o grupo de acción?<br>
-                    <input type="radio" name="POL_4_6" value="1" th:field="*{politicoAccionTrabajoPartido}" class="form-check-input" required> Sí.
-                    <input type="radio" name="POL_4_6" value="0" th:field="*{politicoAccionTrabajoPartido}" class="form-check-input"> No.<br>
-                    • ... llevado o mostrado una insignia, calcomanía o letrero político?<br>
-                    <input type="radio" name="POL_4_7" value="1" th:field="*{politicoAccionInsignia}" class="form-check-input" required> Sí.
-                    <input type="radio" name="POL_4_7" value="0" th:field="*{politicoAccionInsignia}" class="form-check-input"> No.<br>
-                    • ... firmado una petición?<br>
-                    <input type="radio" name="POL_4_8" value="1" th:field="*{politicoAccionFirmaPeticion}" class="form-check-input" required> Sí.
-                    <input type="radio" name="POL_4_8" value="0" th:field="*{politicoAccionFirmaPeticion}" class="form-check-input"> No.<br>
-                    • ... participado en una manifestación pública legal?<br>
-                    <input type="radio" name="POL_4_9" value="1" th:field="*{politicoAccionManifestacion}" class="form-check-input" required> Sí.
-                    <input type="radio" name="POL_4_9" value="0" th:field="*{politicoAccionManifestacion}" class="form-check-input"> No.<br>
-                    • ... boicoteado ciertos productos?<br>
-                    <input type="radio" name="POL_4_10" value="1" th:field="*{politicoAccionBoicot}" class="form-check-input" required> Sí.
-                    <input type="radio" name="POL_4_10" value="0" th:field="*{politicoAccionBoicot}" class="form-check-input"> No.<br>
-                    • ... recogido firmas para una petición?<br>
-                    <input type="radio" name="POL_4_11" value="1" th:field="*{politicoAccionRecogerFirmas}" class="form-check-input" required> Sí.
-                    <input type="radio" name="POL_4_11" value="0" th:field="*{politicoAccionRecogerFirmas}" class="form-check-input"> No.<br>
+                    <span th:text="#{politico.p4.o1}"/> <input type="radio" name="POL_4_1" value="1" th:field="*{politicoAccionConvencer}" class="form-check-input" required> <span th:text="#{politico.si}"/> <input type="radio" name="POL_4_1" value="0" th:field="*{politicoAccionConvencer}" class="form-check-input"> <span th:text="#{politico.no}"/><br>
+                    <span th:text="#{politico.p4.o2}"/> <input type="radio" name="POL_4_2" value="1" th:field="*{politicoAccionInfluirVoto}" class="form-check-input" required> <span th:text="#{politico.si}"/> <input type="radio" name="POL_4_2" value="0" th:field="*{politicoAccionInfluirVoto}" class="form-check-input"> <span th:text="#{politico.no}"/><br>
+                    <span th:text="#{politico.p4.o3}"/> <input type="radio" name="POL_4_3" value="1" th:field="*{politicoAccionDeclaracion}" class="form-check-input" required> <span th:text="#{politico.si}"/> <input type="radio" name="POL_4_3" value="0" th:field="*{politicoAccionDeclaracion}" class="form-check-input"> <span th:text="#{politico.no}"/><br>
+                    <span th:text="#{politico.p4.o4}"/> <input type="radio" name="POL_4_4" value="1" th:field="*{politicoAccionDiscusionPublica}" class="form-check-input" required> <span th:text="#{politico.si}"/> <input type="radio" name="POL_4_4" value="0" th:field="*{politicoAccionDiscusionPublica}" class="form-check-input"> <span th:text="#{politico.no}"/><br>
+                    <span th:text="#{politico.p4.o5}"/> <input type="radio" name="POL_4_5" value="1" th:field="*{politicoAccionContacto}" class="form-check-input" required> <span th:text="#{politico.si}"/> <input type="radio" name="POL_4_5" value="0" th:field="*{politicoAccionContacto}" class="form-check-input"> <span th:text="#{politico.no}"/><br>
+                    <span th:text="#{politico.p4.o6}"/> <input type="radio" name="POL_4_6" value="1" th:field="*{politicoAccionTrabajoPartido}" class="form-check-input" required> <span th:text="#{politico.si}"/> <input type="radio" name="POL_4_6" value="0" th:field="*{politicoAccionTrabajoPartido}" class="form-check-input"> <span th:text="#{politico.no}"/><br>
+                    <span th:text="#{politico.p4.o7}"/> <input type="radio" name="POL_4_7" value="1" th:field="*{politicoAccionInsignia}" class="form-check-input" required> <span th:text="#{politico.si}"/> <input type="radio" name="POL_4_7" value="0" th:field="*{politicoAccionInsignia}" class="form-check-input"> <span th:text="#{politico.no}"/><br>
+                    <span th:text="#{politico.p4.o8}"/> <input type="radio" name="POL_4_8" value="1" th:field="*{politicoAccionFirmaPeticion}" class="form-check-input" required> <span th:text="#{politico.si}"/> <input type="radio" name="POL_4_8" value="0" th:field="*{politicoAccionFirmaPeticion}" class="form-check-input"> <span th:text="#{politico.no}"/><br>
+                    <span th:text="#{politico.p4.o9}"/> <input type="radio" name="POL_4_9" value="1" th:field="*{politicoAccionManifestacion}" class="form-check-input" required> <span th:text="#{politico.si}"/> <input type="radio" name="POL_4_9" value="0" th:field="*{politicoAccionManifestacion}" class="form-check-input"> <span th:text="#{politico.no}"/><br>
+                    <span th:text="#{politico.p4.o10}"/> <input type="radio" name="POL_4_10" value="1" th:field="*{politicoAccionBoicot}" class="form-check-input" required> <span th:text="#{politico.si}"/> <input type="radio" name="POL_4_10" value="0" th:field="*{politicoAccionBoicot}" class="form-check-input"> <span th:text="#{politico.no}"/><br>
+                    <span th:text="#{politico.p4.o11}"/> <input type="radio" name="POL_4_11" value="1" th:field="*{politicoAccionRecogerFirmas}" class="form-check-input" required> <span th:text="#{politico.si}"/> <input type="radio" name="POL_4_11" value="0" th:field="*{politicoAccionRecogerFirmas}" class="form-check-input"> <span th:text="#{politico.no}"/><br>
                 </div>
             </section>
+        
+        <section class="card p-4 mb-4">
+            <h3 class="card-title mb-5"><i class="bi bi-people"></i> <span th:text="#{social.titulo}">Social</span></h3>
+            <div class="mb-3">
+                <label class="form-label pregunta" th:text="#{social.pregunta1}">1. En los últimos 12 meses, ¿Con qué frecuencia cenó con Españoles que no son parte de su familia?</label>
+                <div class="form-check">
+                    <input type="radio" name="SOC_1" value="1" th:field="*{socialCenaEspanoles}" class="form-check-input" required>
+                    <label class="form-check-label" th:text="#{social.pregunta1.o1}">Nunca.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="SOC_1" value="2" th:field="*{socialCenaEspanoles}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{social.pregunta1.o2}">Una vez al año.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="SOC_1" value="3" th:field="*{socialCenaEspanoles}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{social.pregunta1.o3}">Una vez al mes.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="SOC_1" value="4" th:field="*{socialCenaEspanoles}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{social.pregunta1.o4}">Una vez a la semana.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="SOC_1" value="5" th:field="*{socialCenaEspanoles}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{social.pregunta1.o5}">Casi todos los días.</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label pregunta" th:text="#{social.pregunta2}">
+                    2. Piense en los Españoles en su libreta de direcciones o en sus contactos telefónicos. 
+                    ¿Con cuántos de ellos tuviste una conversación, ya sea por teléfono, chat de mensajería o intercambio de mensajes de texto, en las últimas 4 semanas?
+                </label>
+                <div class="form-check">
+                    <input type="radio" name="SOC_2" value="5" th:field="*{socialContactosEspanoles}" class="form-check-input" required>
+                    <label class="form-check-label" th:text="#{social.pregunta2.o5}">0.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="SOC_2" value="4" th:field="*{socialContactosEspanoles}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{social.pregunta2.o4}">De 1 a 2.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="SOC_2" value="3" th:field="*{socialContactosEspanoles}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{social.pregunta2.o3}">De 3 a 6.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="SOC_2" value="2" th:field="*{socialContactosEspanoles}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{social.pregunta2.o2}">De 7 a 14.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="SOC_2" value="1" th:field="*{socialContactosEspanoles}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{social.pregunta2.o1}">15 o más.</label>
+                </div>
+            </div>
 
-            
-            <section class="card p-4 mb-4">
-                <h3 class="card-title mb-5"><i class="bi bi-people"></i> Social</h3>
+            <div class="mb-3">
+                <label class="form-label pregunta" th:text="#{social.pregunta3}">
+                    3. Las personas a veces participan en diferentes tipos de grupos o asociaciones. Para cada grupo que se enumera a continuación, 
+                    ¿Con qué frecuencia participa en una actividad grupal?
+                </label><br><br>
+
+                <span th:text="#{social.pregunta3.a}">• Un grupo relacionado con su trabajo, como un sindicato, una empresa o una organización profesional.</span><br>
+                <input type="radio" name="SOC_3_1A" value="5" th:field="*{socialParticipacionGrupoA}" class="form-check-input" required>
+                <span th:text="#{social.pregunta3.o5}">Participo al menos una vez por semana.</span><br>
+                <input type="radio" name="SOC_3_1A" value="4" th:field="*{socialParticipacionGrupoA}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o4}">Participo al menos una vez al mes.</span><br>
+                <input type="radio" name="SOC_3_1A" value="3" th:field="*{socialParticipacionGrupoA}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o3}">Participo al menos una vez al año.</span><br>
+                <input type="radio" name="SOC_3_1A" value="2" th:field="*{socialParticipacionGrupoA}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o2}">Pertenezco, pero no participo activamente.</span><br>
+                <input type="radio" name="SOC_3_1A" value="1" th:field="*{socialParticipacionGrupoA}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o1}">No pertenezco ni participo.</span><br><br>
+
+                <span th:text="#{social.pregunta3.b}">• Un grupo relacionado con sus creencias religiosas, como una iglesia, mezquita, sinagoga u otra organización religiosa.</span><br>
+                <input type="radio" name="SOC_3_1B" value="5" th:field="*{socialParticipacionGrupoB}" class="form-check-input" required>
+                <span th:text="#{social.pregunta3.o5}">Participo al menos una vez por semana.</span><br>
+                <input type="radio" name="SOC_3_1B" value="4" th:field="*{socialParticipacionGrupoB}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o4}">Participo al menos una vez al mes.</span><br>
+                <input type="radio" name="SOC_3_1B" value="3" th:field="*{socialParticipacionGrupoB}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o3}">Participo al menos una vez al año.</span><br>
+                <input type="radio" name="SOC_3_1B" value="2" th:field="*{socialParticipacionGrupoB}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o2}">Pertenezco, pero no participo activamente.</span><br>
+                <input type="radio" name="SOC_3_1B" value="1" th:field="*{socialParticipacionGrupoB}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o1}">No pertenezco ni participo.</span><br><br>
+
+                <span th:text="#{social.pregunta3.c}">• Un grupo relacionado con tus aficiones, como un grupo deportivo, de ocio o cultural.</span><br>
+                <input type="radio" name="SOC_3_1C" value="5" th:field="*{socialParticipacionGrupoC}" class="form-check-input" required>
+                <span th:text="#{social.pregunta3.o5}">Participo al menos una vez por semana.</span><br>
+                <input type="radio" name="SOC_3_1C" value="4" th:field="*{socialParticipacionGrupoC}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o4}">Participo al menos una vez al mes.</span><br>
+                <input type="radio" name="SOC_3_1C" value="3" th:field="*{socialParticipacionGrupoC}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o3}">Participo al menos una vez al año.</span><br>
+                <input type="radio" name="SOC_3_1C" value="2" th:field="*{socialParticipacionGrupoC}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o2}">Pertenezco, pero no participo activamente.</span><br>
+                <input type="radio" name="SOC_3_1C" value="1" th:field="*{socialParticipacionGrupoC}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o1}">No pertenezco ni participo.</span><br><br>
+
+                <span th:text="#{social.pregunta3.d}">• Un grupo relacionado con una causa social o política, como una organización voluntaria o un partido político.</span><br>
+                <input type="radio" name="SOC_3_1D" value="5" th:field="*{socialParticipacionGrupoD}" class="form-check-input" required>
+                <span th:text="#{social.pregunta3.o5}">Participo al menos una vez por semana.</span><br>
+                <input type="radio" name="SOC_3_1D" value="4" th:field="*{socialParticipacionGrupoD}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o4}">Participo al menos una vez al mes.</span><br>
+                <input type="radio" name="SOC_3_1D" value="3" th:field="*{socialParticipacionGrupoD}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o3}">Participo al menos una vez al año.</span><br>
+                <input type="radio" name="SOC_3_1D" value="2" th:field="*{socialParticipacionGrupoD}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o2}">Pertenezco, pero no participo activamente.</span><br>
+                <input type="radio" name="SOC_3_1D" value="1" th:field="*{socialParticipacionGrupoD}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o1}">No pertenezco ni participo.</span><br><br>
+
+                <span th:text="#{social.pregunta3.e}">• Otra organización voluntaria.</span><br>
+                <input type="radio" name="SOC_3_1E" value="5" th:field="*{socialParticipacionGrupoE}" class="form-check-input" required>
+                <span th:text="#{social.pregunta3.o5}">Participo al menos una vez por semana.</span><br>
+                <input type="radio" name="SOC_3_1E" value="4" th:field="*{socialParticipacionGrupoE}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o4}">Participo al menos una vez al mes.</span><br>
+                <input type="radio" name="SOC_3_1E" value="3" th:field="*{socialParticipacionGrupoE}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o3}">Participo al menos una vez al año.</span><br>
+                <input type="radio" name="SOC_3_1E" value="2" th:field="*{socialParticipacionGrupoE}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o2}">Pertenezco, pero no participo activamente.</span><br>
+                <input type="radio" name="SOC_3_1E" value="1" th:field="*{socialParticipacionGrupoE}" class="form-check-input">
+                <span th:text="#{social.pregunta3.o1}">No pertenezco ni participo.</span><br><br>
+            </div>
+            <div class="mb-3">
+                <label class="form-label pregunta" th:text="#{social.pregunta3b}">
+                    Si piensas en los miembros de los grupos en los que participas, ¿Cuántos de ellos son españoles? Las opciones de respuesta son:
+                </label><br><br>
+
+                <span th:text="#{social.pregunta3.a}">• Un grupo relacionado con su trabajo, como un sindicato, una empresa o una organización profesional.</span><br>
+                <input type="radio" name="SOC_3_2A" value="5" th:field="*{socialMiembrosEspanolesGrupoA}" class="form-check-input" required>
+                <span th:text="#{social.pregunta3b.o5}">Todos ellos.</span><br>
+                <input type="radio" name="SOC_3_2A" value="4" th:field="*{socialMiembrosEspanolesGrupoA}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o4}">La mayoría de ellos.</span><br>
+                <input type="radio" name="SOC_3_2A" value="3" th:field="*{socialMiembrosEspanolesGrupoA}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o3}">Aproximadamente la mitad de ellos.</span><br>
+                <input type="radio" name="SOC_3_2A" value="2" th:field="*{socialMiembrosEspanolesGrupoA}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o2}">Ninguno de ellos.</span><br>
+                <input type="radio" name="SOC_3_2A" value="0" th:field="*{socialMiembrosEspanolesGrupoA}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o0}">No pertenezco ni participo.</span><br><br>
+
+                <span th:text="#{social.pregunta3.b}">• Un grupo relacionado con sus creencias religiosas, como una iglesia, mezquita, sinagoga u otra organización religiosa.</span><br>
+                <input type="radio" name="SOC_3_2B" value="5" th:field="*{socialMiembrosEspanolesGrupoB}" class="form-check-input" required>
+                <span th:text="#{social.pregunta3b.o5}">Todos ellos.</span><br>
+                <input type="radio" name="SOC_3_2B" value="4" th:field="*{socialMiembrosEspanolesGrupoB}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o4}">La mayoría de ellos.</span><br>
+                <input type="radio" name="SOC_3_2B" value="3" th:field="*{socialMiembrosEspanolesGrupoB}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o3}">Aproximadamente la mitad de ellos.</span><br>
+                <input type="radio" name="SOC_3_2B" value="2" th:field="*{socialMiembrosEspanolesGrupoB}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o2}">Ninguno de ellos.</span><br>
+                <input type="radio" name="SOC_3_2B" value="0" th:field="*{socialMiembrosEspanolesGrupoB}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o0}">No pertenezco ni participo.</span><br><br>
+
+                <span th:text="#{social.pregunta3.c}">• Un grupo relacionado con tus aficiones, como un grupo deportivo, de ocio o cultural.</span><br>
+                <input type="radio" name="SOC_3_2C" value="5" th:field="*{socialMiembrosEspanolesGrupoC}" class="form-check-input" required>
+                <span th:text="#{social.pregunta3b.o5}">Todos ellos.</span><br>
+                <input type="radio" name="SOC_3_2C" value="4" th:field="*{socialMiembrosEspanolesGrupoC}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o4}">La mayoría de ellos.</span><br>
+                <input type="radio" name="SOC_3_2C" value="3" th:field="*{socialMiembrosEspanolesGrupoC}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o3}">Aproximadamente la mitad de ellos.</span><br>
+                <input type="radio" name="SOC_3_2C" value="2" th:field="*{socialMiembrosEspanolesGrupoC}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o2}">Ninguno de ellos.</span><br>
+                <input type="radio" name="SOC_3_2C" value="0" th:field="*{socialMiembrosEspanolesGrupoC}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o0}">No pertenezco ni participo.</span><br><br>
+
+                <span th:text="#{social.pregunta3.d}">• Un grupo relacionado con una causa social o política, como una organización voluntaria o un partido político.</span><br>
+                <input type="radio" name="SOC_3_2D" value="5" th:field="*{socialMiembrosEspanolesGrupoD}" class="form-check-input" required>
+                <span th:text="#{social.pregunta3b.o5}">Todos ellos.</span><br>
+                <input type="radio" name="SOC_3_2D" value="4" th:field="*{socialMiembrosEspanolesGrupoD}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o4}">La mayoría de ellos.</span><br>
+                <input type="radio" name="SOC_3_2D" value="3" th:field="*{socialMiembrosEspanolesGrupoD}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o3}">Aproximadamente la mitad de ellos.</span><br>
+                <input type="radio" name="SOC_3_2D" value="2" th:field="*{socialMiembrosEspanolesGrupoD}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o2}">Ninguno de ellos.</span><br>
+                <input type="radio" name="SOC_3_2D" value="0" th:field="*{socialMiembrosEspanolesGrupoD}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o0}">No pertenezco ni participo.</span><br><br>
+
+                <span th:text="#{social.pregunta3.e}">• Otra organización voluntaria.</span><br>
+                <input type="radio" name="SOC_3_2E" value="5" th:field="*{socialMiembrosEspanolesGrupoE}" class="form-check-input" required>
+                <span th:text="#{social.pregunta3b.o5}">Todos ellos.</span><br>
+                <input type="radio" name="SOC_3_2E" value="4" th:field="*{socialMiembrosEspanolesGrupoE}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o4}">La mayoría de ellos.</span><br>
+                <input type="radio" name="SOC_3_2E" value="3" th:field="*{socialMiembrosEspanolesGrupoE}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o3}">Aproximadamente la mitad de ellos.</span><br>
+                <input type="radio" name="SOC_3_2E" value="2" th:field="*{socialMiembrosEspanolesGrupoE}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o2}">Ninguno de ellos.</span><br>
+                <input type="radio" name="SOC_3_2E" value="0" th:field="*{socialMiembrosEspanolesGrupoE}" class="form-check-input">
+                <span th:text="#{social.pregunta3b.o0}">No pertenezco ni participo.</span><br>
+            </div>
+            <div class="mb-1">
+                <label class="form-label pregunta" th:text="#{social.pregunta4}">
+                    4. Muchas personas se ayudan mutuamente con favores cotidianos, como conseguir que los lleven, pedir prestado un poco de dinero o cuidar niños. 
+                    En los últimos 12 meses, ¿Con qué frecuencia ha proporcionado tales favores a los Españoles?
+                </label>
+                <div class="form-check">
+                    <input type="radio" name="SOC_4" value="1" th:field="*{socialFavoresEspanoles}" class="form-check-input" required>
+                    <label class="form-check-label" th:text="#{social.pregunta4.o1}">Nunca.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="SOC_4" value="2" th:field="*{socialFavoresEspanoles}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{social.pregunta4.o2}">Una vez al año.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="SOC_4" value="3" th:field="*{socialFavoresEspanoles}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{social.pregunta4.o3}">Una vez al mes.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="SOC_4" value="4" th:field="*{socialFavoresEspanoles}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{social.pregunta4.o4}">Una vez a la semana.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="SOC_4" value="5" th:field="*{socialFavoresEspanoles}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{social.pregunta4.o5}">Casi todos los días.</label>
+                </div>
+            </div>
+        </section>
+        
+        <section class="card p-4 mb-4">
+            <h3 class="card-title mb-5"><i class="bi bi-map"></i> <span th:text="#{navegacional.titulo}">Navegacional</span></h3>
+            <div class="mb-3">
+                <label class="form-label pregunta" th:text="#{navegacional.p1}">1. En este país, ¿Qué tan difícil o fácil sería para ti realizar una consulta médica?</label>
+                <div class="form-check">
+                    <input type="radio" name="NAV_1" value="1" th:field="*{navegacionalConsultaMedica}" class="form-check-input" required>
+                    <label class="form-check-label" th:text="#{navegacional.o1}">Muy difícil.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="NAV_1" value="2" th:field="*{navegacionalConsultaMedica}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{navegacional.o2}">Algo difícil.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="NAV_1" value="3" th:field="*{navegacionalConsultaMedica}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{navegacional.o3}">Ni difícil, ni fácil.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="NAV_1" value="4" th:field="*{navegacionalConsultaMedica}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{navegacional.o4}">Algo fácil.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="NAV_1" value="5" th:field="*{navegacionalConsultaMedica}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{navegacional.o5}">Muy fácil.</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label pregunta" th:text="#{navegacional.p2}">2. En este país, ¿Qué tan difícil o fácil sería para ti buscar un empleo (encontrar ofertas)?
+                </label>
+                <div class="form-check">
+                    <input type="radio" name="NAV_2" value="1" th:field="*{navegacionalBuscarEmpleo}" class="form-check-input" required>
+                    <label class="form-check-label" th:text="#{navegacional.o1}">Muy difícil.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="NAV_2" value="2" th:field="*{navegacionalBuscarEmpleo}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{navegacional.o2}">Algo difícil.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="NAV_2" value="3" th:field="*{navegacionalBuscarEmpleo}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{navegacional.o3}">Ni difícil, ni fácil.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="NAV_2" value="4" th:field="*{navegacionalBuscarEmpleo}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{navegacional.o4}">Algo fácil.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="NAV_2" value="5" th:field="*{navegacionalBuscarEmpleo}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{navegacional.o5}">Muy fácil.</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label pregunta" th:text="#{navegacional.p3}">3. En este país, ¿Qué tan difícil o fácil sería para ti obtener ayuda con problemas legales?</label>
+                <div class="form-check">
+                    <input type="radio" name="NAV_3" value="1" th:field="*{navegacionalAyudaLegal}" class="form-check-input" required>
+                    <label class="form-check-label" th:text="#{navegacional.o1}">Muy difícil.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="NAV_3" value="2" th:field="*{navegacionalAyudaLegal}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{navegacional.o2}">Algo difícil.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="NAV_3" value="3" th:field="*{navegacionalAyudaLegal}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{navegacional.o3}">Ni difícil, ni fácil.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="NAV_3" value="4" th:field="*{navegacionalAyudaLegal}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{navegacional.o4}">Algo fácil.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="NAV_3" value="5" th:field="*{navegacionalAyudaLegal}" class="form-check-input">
+                    <label class="form-check-label" th:text="#{navegacional.o5}">Muy fácil.</label>
+                </div>
+            </div>
+            <div class="mb-1">
+                <label class="form-label pregunta">
+                    4. Ahora nos gustaría hacerle algunas preguntas sobre la vida diaria en España. 
+                    Por favor, responda a estas preguntas de memoria, sin buscar las respuestas ni preguntar a otra persona.
+                </label>
+                <div class="form-text mb-3">
+                    No mucha gente puede responder a cada pregunta correctamente, y estaríamos muy agradecidos si respondiera a las preguntas lo mejor que pueda.
+                </div>
+
                 <div class="mb-3">
-                    <label class="form-label pregunta">
-                        1. En los últimos 12 meses, ¿Con qué frecuencia cenó con Españoles que no son parte de su familia?
+                    <label class="form-label">
+                        <strong>a)</strong> ¿Cuántas bebidas (una lata o vaso de cerveza, un vaso de vino o un trago de licor), en aproximadamente una hora, 
+                        puede ingerir una persona promedio antes de estar demasiado intoxicada para conducir un automóvil legalmente?
                     </label>
                     <div class="form-check">
-                        <input type="radio" name="SOC_1" value="1" th:field="*{socialCenaEspanoles}" class="form-check-input" required>
-                        <label class="form-check-label"> Nunca.</label>
+                        <input type="radio" name="NAV_4_1" value="0" th:field="*{navegacionalConduccionAlcohol}" class="form-check-input" required>
+                        <label class="form-check-label" th:text="#{navegacional.conduccionAlcohol.o0}"> Ninguna bebida alcohólica en absoluto.</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" name="SOC_1" value="2" th:field="*{socialCenaEspanoles}" class="form-check-input">
-                        <label class="form-check-label"> Una vez al año.</label>
+                        <input type="radio" name="NAV_4_1" value="1" th:field="*{navegacionalConduccionAlcohol}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{navegacional.conduccionAlcohol.o1}"> La mayoría de las personas pueden conducir legalmente después de una o dos bebidas.</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" name="SOC_1" value="3" th:field="*{socialCenaEspanoles}" class="form-check-input">
-                        <label class="form-check-label"> Una vez al mes.</label>
+                        <input type="radio" name="NAV_4_1" value="0" th:field="*{navegacionalConduccionAlcohol}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{navegacional.conduccionAlcohol.o0}"> Un máximo de cinco bebidas, siempre y cuando la persona pueda conducir con seguridad.</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" name="SOC_1" value="4" th:field="*{socialCenaEspanoles}" class="form-check-input">
-                        <label class="form-check-label"> Una vez a la semana.</label>
+                        <input type="radio" name="NAV_4_1" value="0" th:field="*{navegacionalConduccionAlcohol}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{navegacional.conduccionAlcohol.o0}"> No hay límite, siempre y cuando la persona pueda conducir con seguridad.</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" name="SOC_1" value="5" th:field="*{socialCenaEspanoles}" class="form-check-input">
-                        <label class="form-check-label"> Casi todos los días.</label>
+                        <input type="radio" name="NAV_4_1" value="0" th:field="*{navegacionalConduccionAlcohol}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{navegacional.conduccionAlcohol.o0}"> No sé.</label>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label pregunta">
-                        2. Piense en los Españoles en su libreta de direcciones o en sus contactos telefónicos. 
-                        ¿Con cuántos de ellos tuviste una conversación, ya sea por teléfono, chat de mensajería o intercambio de mensajes de texto, en las últimas 4 semanas?
+                    <label class="form-label">
+                        <strong>b)</strong> ¿Cómo suele pagar la mayoría de los habitantes de España sus impuestos sobre la renta?
                     </label>
                     <div class="form-check">
-                        <input type="radio" name="SOC_2" value="5" th:field="*{socialContactosEspanoles}" class="form-check-input" required>
-                        <label class="form-check-label"> 0.</label>
+                        <input type="radio" name="NAV_4_2" value="0" th:field="*{navegacionalPagoImpuestos}" class="form-check-input" required>
+                        <label class="form-check-label" th:text="#{navegacional.pagoImpuestos.o0}"> Solo los trabajadores autónomos deben pagar impuestos sobre la renta.</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" name="SOC_2" value="4" th:field="*{socialContactosEspanoles}" class="form-check-input">
-                        <label class="form-check-label"> De 1 a 2.</label>
+                        <input type="radio" name="NAV_4_2" value="0" th:field="*{navegacionalPagoImpuestos}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{navegacional.pagoImpuestos.o0}"> Los empleadores se encargan de presentar la declaración de la renta en nombre de sus empleados.</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" name="SOC_2" value="3" th:field="*{socialContactosEspanoles}" class="form-check-input">
-                        <label class="form-check-label"> De 3 a 6.</label>
+                        <input type="radio" name="NAV_4_2" value="0" th:field="*{navegacionalPagoImpuestos}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{navegacional.pagoImpuestos.o0}"> Los ciudadanos solo tienen que pagar sus impuestos directamente en el banco, sin presentar declaración.</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" name="SOC_2" value="2" th:field="*{socialContactosEspanoles}" class="form-check-input">
-                        <label class="form-check-label"> De 7 a 14.</label>
+                        <input type="radio" name="NAV_4_2" value="1" th:field="*{navegacionalPagoImpuestos}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{navegacional.pagoImpuestos.o1}">Los impuestos se deducen automáticamente de las nóminas, pero los contribuyentes deben presentar una declaración anual.</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" name="SOC_2" value="1" th:field="*{socialContactosEspanoles}" class="form-check-input">
-                        <label class="form-check-label"> 15 o más.</label>
+                        <input type="radio" name="NAV_4_2" value="0" th:field="*{navegacionalPagoImpuestos}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{navegacional.pagoImpuestos.o0}"> No sé.</label>
                     </div>
                 </div>
-
                 <div class="mb-3">
-                    <label class="form-label pregunta">
-                        3. Las personas a veces participan en diferentes tipos de grupos o asociaciones. Para cada grupo que se enumera a continuación, 
-                        ¿Con qué frecuencia participa en una actividad grupal?
-                    </label><br><br>
-
-                    • Un grupo relacionado con su trabajo, como un sindicato, una empresa o una organización profesional.<br>
-                    <input type="radio" name="SOC_3_1A" value="5" th:field="*{socialParticipacionGrupoA}" class="form-check-input" required> Participo al menos una vez por semana.<br>
-                    <input type="radio" name="SOC_3_1A" value="4" th:field="*{socialParticipacionGrupoA}" class="form-check-input"> Participo al menos una vez al mes.<br>
-                    <input type="radio" name="SOC_3_1A" value="3" th:field="*{socialParticipacionGrupoA}" class="form-check-input"> Participo al menos una vez al año.<br>
-                    <input type="radio" name="SOC_3_1A" value="2" th:field="*{socialParticipacionGrupoA}" class="form-check-input"> Pertenezco, pero no participo activamente.<br>
-                    <input type="radio" name="SOC_3_1A" value="1" th:field="*{socialParticipacionGrupoA}" class="form-check-input"> No pertenezco ni participo.<br><br>
-
-                    • Un grupo relacionado con sus creencias religiosas, como una iglesia, mezquita, sinagoga u otra organización religiosa.<br>
-                    <input type="radio" name="SOC_3_1B" value="5" th:field="*{socialParticipacionGrupoB}" class="form-check-input" required> Participo al menos una vez por semana.<br>
-                    <input type="radio" name="SOC_3_1B" value="4" th:field="*{socialParticipacionGrupoB}" class="form-check-input"> Participo al menos una vez al mes.<br>
-                    <input type="radio" name="SOC_3_1B" value="3" th:field="*{socialParticipacionGrupoB}" class="form-check-input"> Participo al menos una vez al año.<br>
-                    <input type="radio" name="SOC_3_1B" value="2" th:field="*{socialParticipacionGrupoB}" class="form-check-input"> Pertenezco, pero no participo activamente.<br>
-                    <input type="radio" name="SOC_3_1B" value="1" th:field="*{socialParticipacionGrupoB}" class="form-check-input"> No pertenezco ni participo.<br><br>
-
-                    • Un grupo relacionado con tus aficiones, como un grupo deportivo, de ocio o cultural.<br>
-                    <input type="radio" name="SOC_3_1C" value="5" th:field="*{socialParticipacionGrupoC}" class="form-check-input" required> Participo al menos una vez por semana.<br>
-                    <input type="radio" name="SOC_3_1C" value="4" th:field="*{socialParticipacionGrupoC}" class="form-check-input"> Participo al menos una vez al mes.<br>
-                    <input type="radio" name="SOC_3_1C" value="3" th:field="*{socialParticipacionGrupoC}" class="form-check-input"> Participo al menos una vez al año.<br>
-                    <input type="radio" name="SOC_3_1C" value="2" th:field="*{socialParticipacionGrupoC}" class="form-check-input"> Pertenezco, pero no participo activamente.<br>
-                    <input type="radio" name="SOC_3_1C" value="1" th:field="*{socialParticipacionGrupoC}" class="form-check-input"> No pertenezco ni participo.<br><br>
-
-                    • Un grupo relacionado con una causa social o política, como una organización voluntaria o un partido político.<br>
-                    <input type="radio" name="SOC_3_1D" value="5" th:field="*{socialParticipacionGrupoD}" class="form-check-input" required> Participo al menos una vez por semana.<br>
-                    <input type="radio" name="SOC_3_1D" value="4" th:field="*{socialParticipacionGrupoD}" class="form-check-input"> Participo al menos una vez al mes.<br>
-                    <input type="radio" name="SOC_3_1D" value="3" th:field="*{socialParticipacionGrupoD}" class="form-check-input"> Participo al menos una vez al año.<br>
-                    <input type="radio" name="SOC_3_1D" value="2" th:field="*{socialParticipacionGrupoD}" class="form-check-input"> Pertenezco, pero no participo activamente.<br>
-                    <input type="radio" name="SOC_3_1D" value="1" th:field="*{socialParticipacionGrupoD}" class="form-check-input"> No pertenezco ni participo.<br><br>
-
-                    • Otra organización voluntaria.<br>
-                    <input type="radio" name="SOC_3_1E" value="5" th:field="*{socialParticipacionGrupoE}" class="form-check-input" required> Participo al menos una vez por semana.<br>
-                    <input type="radio" name="SOC_3_1E" value="4" th:field="*{socialParticipacionGrupoE}" class="form-check-input"> Participo al menos una vez al mes.<br>
-                    <input type="radio" name="SOC_3_1E" value="3" th:field="*{socialParticipacionGrupoE}" class="form-check-input"> Participo al menos una vez al año.<br>
-                    <input type="radio" name="SOC_3_1E" value="2" th:field="*{socialParticipacionGrupoE}" class="form-check-input"> Pertenezco, pero no participo activamente.<br>
-                    <input type="radio" name="SOC_3_1E" value="1" th:field="*{socialParticipacionGrupoE}" class="form-check-input"> No pertenezco ni participo.<br><br>
+                    <label class="form-label">
+                        <strong>c)</strong> Si enviara una carta a España, ¿Cuál es la manera correcta de escribir la dirección en el sobre? 
+                        Seleccione un formato de la lista a continuación.
                     </label>
-                    
-                    <div class="mb-3">
-                        <label class="form-label pregunta">
-                            Si piensas en los miembros de los grupos en los que participas, ¿Cuántos de ellos son españoles? Las opciones de respuesta son:
-                        </label><br><br>
-
-                        • Un grupo relacionado con su trabajo, como un sindicato, una empresa o una organización profesional.<br>
-                        <input type="radio" name="SOC_3_2A" value="5" th:field="*{socialMiembrosEspanolesGrupoA}" class="form-check-input" required> Todos ellos.<br>
-                        <input type="radio" name="SOC_3_2A" value="4" th:field="*{socialMiembrosEspanolesGrupoA}" class="form-check-input"> La mayoría de ellos.<br>
-                        <input type="radio" name="SOC_3_2A" value="3" th:field="*{socialMiembrosEspanolesGrupoA}" class="form-check-input"> Aproximadamente la mitad de ellos.<br>
-                        <input type="radio" name="SOC_3_2A" value="2" th:field="*{socialMiembrosEspanolesGrupoA}" class="form-check-input"> Ninguno de ellos.<br>
-                        <input type="radio" name="SOC_3_2A" value="0" th:field="*{socialMiembrosEspanolesGrupoA}" class="form-check-input"> No pertenezco ni participo.<br><br>
-
-                        • Un grupo relacionado con sus creencias religiosas, como una iglesia, mezquita, sinagoga u otra organización religiosa.<br>
-                        <input type="radio" name="SOC_3_2B" value="5" th:field="*{socialMiembrosEspanolesGrupoB}" class="form-check-input" required> Todos ellos.<br>
-                        <input type="radio" name="SOC_3_2B" value="4" th:field="*{socialMiembrosEspanolesGrupoB}" class="form-check-input"> La mayoría de ellos.<br>
-                        <input type="radio" name="SOC_3_2B" value="3" th:field="*{socialMiembrosEspanolesGrupoB}" class="form-check-input"> Aproximadamente la mitad de ellos.<br>
-                        <input type="radio" name="SOC_3_2B" value="2" th:field="*{socialMiembrosEspanolesGrupoB}" class="form-check-input"> Ninguno de ellos.<br>
-                        <input type="radio" name="SOC_3_2B" value="0" th:field="*{socialMiembrosEspanolesGrupoB}" class="form-check-input"> No pertenezco ni participo.<br><br>
-
-                        • Un grupo relacionado con tus aficiones, como un grupo deportivo, de ocio o cultural.<br>
-                        <input type="radio" name="SOC_3_2C" value="5" th:field="*{socialMiembrosEspanolesGrupoC}" class="form-check-input" required> Todos ellos.<br>
-                        <input type="radio" name="SOC_3_2C" value="4" th:field="*{socialMiembrosEspanolesGrupoC}" class="form-check-input"> La mayoría de ellos.<br>
-                        <input type="radio" name="SOC_3_2C" value="3" th:field="*{socialMiembrosEspanolesGrupoC}" class="form-check-input"> Aproximadamente la mitad de ellos.<br>
-                        <input type="radio" name="SOC_3_2C" value="2" th:field="*{socialMiembrosEspanolesGrupoC}" class="form-check-input"> Ninguno de ellos.<br>
-                        <input type="radio" name="SOC_3_2C" value="0" th:field="*{socialMiembrosEspanolesGrupoC}" class="form-check-input"> No pertenezco ni participo.<br><br>
-
-                        • Un grupo relacionado con una causa social o política, como una organización voluntaria o un partido político.<br>
-                        <input type="radio" name="SOC_3_2D" value="5" th:field="*{socialMiembrosEspanolesGrupoD}" class="form-check-input" required> Todos ellos.<br>
-                        <input type="radio" name="SOC_3_2D" value="4" th:field="*{socialMiembrosEspanolesGrupoD}" class="form-check-input"> La mayoría de ellos.<br>
-                        <input type="radio" name="SOC_3_2D" value="3" th:field="*{socialMiembrosEspanolesGrupoD}" class="form-check-input"> Aproximadamente la mitad de ellos.<br>
-                        <input type="radio" name="SOC_3_2D" value="2" th:field="*{socialMiembrosEspanolesGrupoD}" class="form-check-input"> Ninguno de ellos.<br>
-                        <input type="radio" name="SOC_3_2D" value="0" th:field="*{socialMiembrosEspanolesGrupoD}" class="form-check-input"> No pertenezco ni participo.<br><br>
-
-                        • Otra organización voluntaria.<br>
-                        <input type="radio" name="SOC_3_2E" value="5" th:field="*{socialMiembrosEspanolesGrupoE}" class="form-check-input" required> Todos ellos.<br>
-                        <input type="radio" name="SOC_3_2E" value="4" th:field="*{socialMiembrosEspanolesGrupoE}" class="form-check-input"> La mayoría de ellos.<br>
-                        <input type="radio" name="SOC_3_2E" value="3" th:field="*{socialMiembrosEspanolesGrupoE}" class="form-check-input"> Aproximadamente la mitad de ellos.<br>
-                        <input type="radio" name="SOC_3_2E" value="2" th:field="*{socialMiembrosEspanolesGrupoE}" class="form-check-input"> Ninguno de ellos.<br>
-                        <input type="radio" name="SOC_3_2E" value="0" th:field="*{socialMiembrosEspanolesGrupoE}" class="form-check-input"> No pertenezco ni participo.<br>
+                    <div class="form-check">
+                        <input type="radio" name="NAV_4_3" value="0" th:field="*{navegacionalFormatoDireccion}" class="form-check-input" required>
+                        <label class="form-check-label" th:text="#{navegacional.formatoDireccion.o0}"> Calle Mayor 10, 28013 Madrid, Ana López, España.</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" name="NAV_4_3" value="0" th:field="*{navegacionalFormatoDireccion}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{navegacional.formatoDireccion.o0}"> Ana López, Madrid, Calle Mayor 10, 28013, España.</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" name="NAV_4_3" value="1" th:field="*{navegacionalFormatoDireccion}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{navegacional.formatoDireccion.o1}"> Ana López, Calle Mayor 10, 28013 Madrid, España.</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" name="NAV_4_3" value="0" th:field="*{navegacionalFormatoDireccion}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{navegacional.formatoDireccion.o0}"> Ana López, 28013 Madrid, Calle Mayor 10, España.</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" name="NAV_4_3" value="0" th:field="*{navegacionalFormatoDireccion}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{navegacional.formatoDireccion.o0}"> No sé.</label>
                     </div>
                 </div>
                 <div class="mb-1">
-                    <label class="form-label pregunta">
-                        4. Muchas personas se ayudan mutuamente con favores cotidianos, como conseguir que los lleven, pedir prestado un poco de dinero o cuidar niños. 
-                        En los últimos 12 meses, ¿Con qué frecuencia ha proporcionado tales favores a los Españoles?
+                    <label class="form-label">
+                        <strong>d)</strong> En España, ¿Cómo se debe buscar ayuda médica para una afección como el dolor de espalda crónico?
                     </label>
                     <div class="form-check">
-                        <input type="radio" name="SOC_4" value="1" th:field="*{socialFavoresEspanoles}" class="form-check-input" required>
-                        <label class="form-check-label"> Nunca.</label>
+                        <input type="radio" name="NAV_4_4" value="0" th:field="*{navegacionalAyudaMedicaCronica}" class="form-check-input" required>
+                        <label class="form-check-label" th:text="#{navegacional.ayudaMedicaCronica.o0}"> Llamar a una ambulancia.</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" name="SOC_4" value="2" th:field="*{socialFavoresEspanoles}" class="form-check-input">
-                        <label class="form-check-label"> Una vez al año.</label>
+                        <input type="radio" name="NAV_4_4" value="0" th:field="*{navegacionalAyudaMedicaCronica}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{navegacional.ayudaMedicaCronica.o0}"> Ir directamente a un hospital.</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" name="SOC_4" value="3" th:field="*{socialFavoresEspanoles}" class="form-check-input">
-                        <label class="form-check-label"> Una vez al mes.</label>
+                        <input type="radio" name="NAV_4_4" value="1" th:field="*{navegacionalAyudaMedicaCronica}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{navegacional.ayudaMedicaCronica.o1}"> Visitar a un médico de cabecera o especialista.</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" name="SOC_4" value="4" th:field="*{socialFavoresEspanoles}" class="form-check-input">
-                        <label class="form-check-label"> Una vez a la semana.</label>
+                        <input type="radio" name="NAV_4_4" value="0" th:field="*{navegacionalAyudaMedicaCronica}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{navegacional.ayudaMedicaCronica.o0}"> Buscar información en línea sobre tratamientos.</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" name="SOC_4" value="5" th:field="*{socialFavoresEspanoles}" class="form-check-input">
-                        <label class="form-check-label"> Casi todos los días.</label>
-                    </div>
-                </div>
-            </section>
-            
-            <section class="card p-4 mb-4">
-                <h3 class="card-title mb-5"><i class="bi bi-map"></i> Navegacional</h3>
-                <div class="mb-3">
-                    <label class="form-label pregunta">
-                        1. En este país, ¿Qué tan difícil o fácil sería para ti realizar una consulta médica?
-                    </label>
-                    <div class="form-check">
-                        <input type="radio" name="NAV_1" value="1" th:field="*{navegacionalConsultaMedica}" class="form-check-input" required>
-                        <label class="form-check-label"> Muy difícil.</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" name="NAV_1" value="2" th:field="*{navegacionalConsultaMedica}" class="form-check-input">
-                        <label class="form-check-label"> Algo difícil.</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" name="NAV_1" value="3" th:field="*{navegacionalConsultaMedica}" class="form-check-input">
-                        <label class="form-check-label"> Ni difícil, ni fácil.</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" name="NAV_1" value="4" th:field="*{navegacionalConsultaMedica}" class="form-check-input">
-                        <label class="form-check-label"> Algo fácil.</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" name="NAV_1" value="5" th:field="*{navegacionalConsultaMedica}" class="form-check-input">
-                        <label class="form-check-label"> Muy fácil.</label>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label pregunta">
-                        2. En este país, ¿Qué tan difícil o fácil sería para ti buscar un empleo (encontrar ofertas)?
-                    </label>
-                    <div class="form-check">
-                        <input type="radio" name="NAV_2" value="1" th:field="*{navegacionalBuscarEmpleo}" class="form-check-input" required>
-                        <label class="form-check-label"> Muy difícil.</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" name="NAV_2" value="2" th:field="*{navegacionalBuscarEmpleo}" class="form-check-input">
-                        <label class="form-check-label"> Algo difícil.</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" name="NAV_2" value="3" th:field="*{navegacionalBuscarEmpleo}" class="form-check-input">
-                        <label class="form-check-label"> Ni difícil, ni fácil.</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" name="NAV_2" value="4" th:field="*{navegacionalBuscarEmpleo}" class="form-check-input">
-                        <label class="form-check-label"> Algo fácil.</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" name="NAV_2" value="5" th:field="*{navegacionalBuscarEmpleo}" class="form-check-input">
-                        <label class="form-check-label"> Muy fácil.</label>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label pregunta">
-                        3. En este país, ¿Qué tan difícil o fácil sería para ti obtener ayuda con problemas legales?
-                    </label>
-                    <div class="form-check">
-                        <input type="radio" name="NAV_3" value="1" th:field="*{navegacionalAyudaLegal}" class="form-check-input" required>
-                        <label class="form-check-label"> Muy difícil.</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" name="NAV_3" value="2" th:field="*{navegacionalAyudaLegal}" class="form-check-input">
-                        <label class="form-check-label"> Algo difícil.</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" name="NAV_3" value="3" th:field="*{navegacionalAyudaLegal}" class="form-check-input">
-                        <label class="form-check-label"> Ni difícil, ni fácil.</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" name="NAV_3" value="4" th:field="*{navegacionalAyudaLegal}" class="form-check-input">
-                        <label class="form-check-label"> Algo fácil.</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" name="NAV_3" value="5" th:field="*{navegacionalAyudaLegal}" class="form-check-input">
-                        <label class="form-check-label"> Muy fácil.</label>
-                    </div>
-                </div>
-                <div class="mb-1">
-                    <label class="form-label pregunta">
-                        4. Ahora nos gustaría hacerle algunas preguntas sobre la vida diaria en España. 
-                        Por favor, responda a estas preguntas de memoria, sin buscar las respuestas ni preguntar a otra persona.
-                    </label>
-                    <div class="form-text mb-3">
-                        No mucha gente puede responder a cada pregunta correctamente, y estaríamos muy agradecidos si respondiera a las preguntas lo mejor que pueda.
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <strong>a)</strong> ¿Cuántas bebidas (una lata o vaso de cerveza, un vaso de vino o un trago de licor), en aproximadamente una hora, 
-                            puede ingerir una persona promedio antes de estar demasiado intoxicada para conducir un automóvil legalmente?
-                        </label>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_1" value="0" th:field="*{navegacionalConduccionAlcohol}" class="form-check-input" required>
-                            <label class="form-check-label"> Ninguna bebida alcohólica en absoluto.</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_1" value="1" th:field="*{navegacionalConduccionAlcohol}" class="form-check-input">
-                            <label class="form-check-label"> La mayoría de las personas pueden conducir legalmente después de una o dos bebidas.</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_1" value="0" th:field="*{navegacionalConduccionAlcohol}" class="form-check-input">
-                            <label class="form-check-label"> Un máximo de cinco bebidas, siempre y cuando la persona pueda conducir con seguridad.</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_1" value="0" th:field="*{navegacionalConduccionAlcohol}" class="form-check-input">
-                            <label class="form-check-label"> No hay límite, siempre y cuando la persona pueda conducir con seguridad.</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_1" value="0" th:field="*{navegacionalConduccionAlcohol}" class="form-check-input">
-                            <label class="form-check-label"> No sé.</label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <strong>b)</strong> ¿Cómo suele pagar la mayoría de los habitantes de España sus impuestos sobre la renta?
-                        </label>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_2" value="0" th:field="*{navegacionalPagoImpuestos}" class="form-check-input" required>
-                            <label class="form-check-label"> Solo los trabajadores autónomos deben pagar impuestos sobre la renta.</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_2" value="0" th:field="*{navegacionalPagoImpuestos}" class="form-check-input">
-                            <label class="form-check-label"> Los empleadores se encargan de presentar la declaración de la renta en nombre de sus empleados.</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_2" value="0" th:field="*{navegacionalPagoImpuestos}" class="form-check-input">
-                            <label class="form-check-label"> Los ciudadanos solo tienen que pagar sus impuestos directamente en el banco, sin presentar declaración.</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_2" value="1" th:field="*{navegacionalPagoImpuestos}" class="form-check-input">
-                            <label class="form-check-label">Los impuestos se deducen automáticamente de las nóminas, pero los contribuyentes deben presentar una declaración anual.</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_2" value="0" th:field="*{navegacionalPagoImpuestos}" class="form-check-input">
-                            <label class="form-check-label"> No sé.</label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <strong>c)</strong> Si enviara una carta a España, ¿Cuál es la manera correcta de escribir la dirección en el sobre? 
-                            Seleccione un formato de la lista a continuación.
-                        </label>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_3" value="0" th:field="*{navegacionalFormatoDireccion}" class="form-check-input" required>
-                            <label class="form-check-label"> Calle Mayor 10, 28013 Madrid, Ana López, España.</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_3" value="0" th:field="*{navegacionalFormatoDireccion}" class="form-check-input">
-                            <label class="form-check-label"> Ana López, Madrid, Calle Mayor 10, 28013, España.</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_3" value="1" th:field="*{navegacionalFormatoDireccion}" class="form-check-input">
-                            <label class="form-check-label"> Ana López, Calle Mayor 10, 28013 Madrid, España.</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_3" value="0" th:field="*{navegacionalFormatoDireccion}" class="form-check-input">
-                            <label class="form-check-label"> Ana López, 28013 Madrid, Calle Mayor 10, España.</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_3" value="0" th:field="*{navegacionalFormatoDireccion}" class="form-check-input">
-                            <label class="form-check-label"> No sé.</label>
-                        </div>
-                    </div>
-                    <div class="mb-1">
-                        <label class="form-label">
-                            <strong>d)</strong> En España, ¿Cómo se debe buscar ayuda médica para una afección como el dolor de espalda crónico?
-                        </label>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_4" value="0" th:field="*{navegacionalAyudaMedicaCronica}" class="form-check-input" required>
-                            <label class="form-check-label"> Llamar a una ambulancia.</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_4" value="0" th:field="*{navegacionalAyudaMedicaCronica}" class="form-check-input">
-                            <label class="form-check-label"> Ir directamente a un hospital.</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_4" value="1" th:field="*{navegacionalAyudaMedicaCronica}" class="form-check-input">
-                            <label class="form-check-label"> Visitar a un médico de cabecera o especialista.</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_4" value="0" th:field="*{navegacionalAyudaMedicaCronica}" class="form-check-input">
-                            <label class="form-check-label"> Buscar información en línea sobre tratamientos.</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" name="NAV_4_4" value="0" th:field="*{navegacionalAyudaMedicaCronica}" class="form-check-input">
-                            <label class="form-check-label"> No sé.</label>
-                        </div>
+                        <input type="radio" name="NAV_4_4" value="0" th:field="*{navegacionalAyudaMedicaCronica}" class="form-check-input">
+                        <label class="form-check-label" th:text="#{navegacional.ayudaMedicaCronica.o0}"> No sé.</label>
                     </div>
                 </div>
             </section>

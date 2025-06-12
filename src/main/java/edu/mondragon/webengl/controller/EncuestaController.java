@@ -65,6 +65,7 @@ public class EncuestaController
         }
         model.addAttribute("respondidas", respondidas);
         model.addAttribute("tituloPagina", "Encuestas Disponibles");
+        model.addAttribute("tituloPaginaKey", "encuestas.titulo");
 
         return "encuestas/lista";
     }

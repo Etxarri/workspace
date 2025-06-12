@@ -84,10 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
             item.addEventListener('click', function (e) {
                 e.preventDefault();
                 const newLang = this.textContent.trim().toLowerCase();
-                document.getElementById("idioma").value = newLang;
-                idioma = newLang;
-                conectarWebSocket(newLang);
-                cargarMensajes(newLang);
+                window.location.href = `/chat/${newLang}?lang=${newLang}`;
             });
         });
     });

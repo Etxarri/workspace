@@ -1,15 +1,10 @@
 <!doctype html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title th:text="'Pregunta: ' + ${pregunta.pregunta}">Pregunta</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <title layout:title="Pregunta"></title>
   </head>
-  <body>
-    <header th:replace="headerInmigrante :: header"></header>
+<body>
+<main layout:fragment="content">
     <main class="container py-5">
       <a class="btn btn-link text-decoration-none" th:href="@{/foro/{temaID}(temaID=${temaID})}" style="font-size: 1.2rem;">
           <i class="bi bi-arrow-left-circle-fill"></i> <span th:text="#{volver}">Volver</span>
@@ -73,7 +68,5 @@
         </form>
       </section>
     </main>
-    <script src="/js/javaScript_traducir.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
-    <title layout:title="${tituloPagina}"></title>
+    <title layout:title="#{${tituloPaginaKey}}"></title>
 </head>
 <main layout:fragment="content">
     <div class="container mt-4">
@@ -9,7 +9,7 @@
             <div class="col-12 text-center">
                 <h3>
                     <i class="bi bi-collection"></i>
-                    <span th:text="${tituloPagina}">Eventos</span>
+                    <span th:text="#{${tituloPaginaKey}}">Eventos</span>
                 </h3>
             </div>
             <div class="col-md-6 col-12 d-flex justify-content-center">
@@ -47,14 +47,13 @@
                             </div>
                             <div class="col-12 col-md-8 d-flex align-items-center">
                                 <div class="card-body">
-                                    <h5 class="card-title" th:text="${evento.titulo}" >Título del evento</h5>
-                                    <p class="card-text" th:text="${evento.descripcion}">Descripción</p>
+                                    <h5 class="evento-titulo card-title" th:text="${evento.titulo}" th:attr="data-text=${evento.titulo}">Título del evento</h5>
+                                    <p class="evento-descripcion card-text" th:text="${evento.descripcion}" th:attr="data-text=${evento.descripcion}">Descripción</p>
                                     <p class="card-text">
                                         <small class="text-muted" th:text="#{evento.ciudad} + ': ' + ${evento.ciudad.nombre}">Ciudad</small><br>
-                                        <small class="text-muted"
-                                            th:text="${#messages.msg('evento.lugar')} + ': ' + ${evento.lugar} + ' - ' + ${#messages.msg('evento.fecha')} + ': ' + ${evento.fechaHora}">
-                                            Lugar y fecha
-                                        </small>
+                                        <small class="text-muted" th:text="${#messages.msg('evento.lugar')} + ': ' + ${evento.lugar}">Lugar</small><br>
+                                        <small class="text-muted" th:text="${#messages.msg('evento.fecha')} + ': ' + ${#temporals.format(evento.fechaHora, 'yyyy-MM-dd')}">Fecha</small><br>
+                                        <small class="text-muted" th:text="${#messages.msg('evento.hora')} + ': ' + ${#temporals.format(evento.fechaHora, 'HH:mm')}">Hora</small>
                                     </p>
                                 </div>
                             </div>

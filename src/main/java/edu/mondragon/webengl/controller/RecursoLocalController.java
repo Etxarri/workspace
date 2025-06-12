@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
 public class RecursoLocalController {
 
     private final RecursoLocalRepository recursoLocalRepository;
-    private final UsuarioRepository usuarioRepository;
     private final CiudadRepository ciudadRepository;
     private final CategoriaRepository categoriaRepository;
 
@@ -37,7 +36,6 @@ public class RecursoLocalController {
                                 UsuarioRepository usuarioRepository,
                                 CategoriaRepository categoriaRepository) {
         this.recursoLocalRepository = recursoLocalRepository;
-        this.usuarioRepository = usuarioRepository;
         this.ciudadRepository = ciudadRepository;
         this.categoriaRepository = categoriaRepository;
 

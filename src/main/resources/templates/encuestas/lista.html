@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
-    <title layout:title="Lista de encuestas"></title>
+    <title layout:title="#{encuestas.titulo}"></title>
 </head>
 <body layout:fragment="content">
     <div class="container">
             <div class="col-12 text-center">
                 <h3>
                     <i class="bi bi-collection"></i>
-                    <span th:text="${tituloPagina}">Encuestas</span>
+                    <span th:text="#{encuestas.titulo}">Encuestas</span>
                 </h3>
             </div>
         
@@ -21,15 +21,15 @@
                         </div>
                         <div>
                             <h5 class="mb-1 d-flex align-items-center">
-                                <span th:text="${encuesta.titulo}">Título de la encuesta</span>
+                                <span class="encuesta-titulo" th:text="${encuesta.titulo}" th:attr="data-text=${encuesta.titulo}">Título de la encuesta</span>
                                 <span th:if="${respondidas[encuesta.encuestaID]}" class="badge bg-success ms-2">Respondida</span>
                             </h5>
-                            <p class="mb-1 text-muted" th:text="${encuesta.descripcion}">Descripción de la encuesta</p>
+                            <p class="mb-1 text-muted encuesta-descripcion" th:text="${encuesta.descripcion}" th:attr="data-text=${encuesta.descripcion}">Descripción de la encuesta</p>
                         </div>
                     </a>
                     <span th:if="${respondidas[encuesta.encuestaID]}"> 
-                        <a th:href="@{/encuestas/grafico/{id}(id=${encuesta.encuestaID})}" class="btn btn-outline-primary btn-sm ms-2" title="Ver resultado">
-                            <i class="bi bi-bar-chart-line"></i> Ver resultado
+                        <a th:href="@{/encuestas/grafico/{id}(id=${encuesta.encuestaID})}" class="btn btn-outline-primary btn-sm ms-2" title="#{encuestas.ver_resultado}">
+                            <i class="bi bi-bar-chart-line"></i> <span th:text="#{encuestas.ver_resultado}">Ver resultado</span>
                         </a>
                     </span>
                 </div>

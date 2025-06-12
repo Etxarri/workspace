@@ -74,22 +74,21 @@
                     <!-- Nivel de integración general -->
                     <div class="card shadow-sm mb-4">
                         <div class="card-body">
-                            <h5 class="card-title">Nivel de integración general</h5>
+                            <h5 class="card-title grafico-titulo" th:text="'Nivel de integración general'" th:attr="data-text='Nivel de integración general'">Nivel de integración general</h5>
                             <div th:if="${nivelGeneral}" class="mb-3">
                                 <h6 class="mb-2">
                                     Nivel: 
-                                    <span th:class="${'badge ' + 
+                                    <span class="badge grafico-nivel" th:class="${'badge ' + 
                                         (nivelGeneral.nivel == 'Excelente' ? 'bg-success' :
                                         nivelGeneral.nivel == 'Alto' ? 'bg-info' :
                                         nivelGeneral.nivel == 'Moderado' ? 'bg-warning' :
                                         nivelGeneral.nivel == 'Bajo' ? 'bg-danger' : 'bg-dark')}"
-                                        th:text="${nivelGeneral.nivel}">
+                                        th:text="${nivelGeneral.nivel}" th:attr="data-text=${nivelGeneral.nivel}">
                                     </span>
                                 </h6>
-                                <p class="card-text" th:text="${nivelGeneral.descripcion}"></p>
+                                <p class="card-text grafico-descripcion" th:text="${nivelGeneral.descripcion}" th:attr="data-text=${nivelGeneral.descripcion}"></p>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item" th:each="consejo : ${nivelGeneral.consejos}" 
-                                        th:text="${consejo}"></li>
+                                    <li class="list-group-item grafico-consejo" th:each="consejo : ${nivelGeneral.consejos}" th:text="${consejo}" th:attr="data-text=${consejo}"></li>
                                 </ul>
                             </div>
                         </div>

@@ -21,10 +21,9 @@
             <h2 class="mb-3" th:text="${evento.titulo}">Título del evento</h2>
             <p class="card-text">
               <small class="text-muted" th:text="#{evento.ciudad} + ': ' + ${evento.ciudad.nombre}">Ciudad</small><br>
-              <small class="text-muted"
-                th:text="${#messages.msg('evento.lugar')} + ': ' + ${evento.lugar} + ' - ' + ${#messages.msg('evento.fecha')} + ': ' + ${evento.fechaHora}">
-                Lugar y fecha
-              </small>
+              <small class="text-muted" th:text="${#messages.msg('evento.lugar')} + ': ' + ${evento.lugar}">Lugar</small><br>
+              <small class="text-muted" th:text="${#messages.msg('evento.fecha')} + ': ' + ${#temporals.format(evento.fechaHora, 'yyyy-MM-dd')}">Fecha</small><br>
+              <small class="text-muted" th:text="${#messages.msg('evento.hora')} + ': ' + ${#temporals.format(evento.fechaHora, 'HH:mm')}">Hora</small>
             </p>
             <p th:text="${evento.descripcion}">Descripción completa del evento</p>
             <div th:if="${!apuntado}">

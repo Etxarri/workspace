@@ -3,7 +3,7 @@
 USER="root"
 PASSWORD="pasahitza"
 DATABASE="welco"
-BACKUP_FILE="/workspace/mysql_backup/backups/welco_backup_2025-06-11.sql"
+BACKUP_FILE="/workspace/mysql_backup/backups/welco_backup_2025-06-12.sql"
 BINLOG_DIR="/workspace/mysql_backup"
 BINLOG_FILE="mysql-bin.000058"
 

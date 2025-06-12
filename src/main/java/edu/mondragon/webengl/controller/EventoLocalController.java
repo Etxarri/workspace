@@ -86,6 +86,7 @@ public class EventoLocalController {
 
         model.addAttribute("tituloPagina", "Eventos locales");
         model.addAttribute("textoNoEventos", "No hay eventos disponibles para esta categoría.");
+        model.addAttribute("tituloPaginaKey", "home"); // o "my_events" según la página
 
         return "evento/eventosListaGenerica";
     }
@@ -171,6 +172,8 @@ public class EventoLocalController {
         java.util.Set<EventoLocal> eventos = new java.util.HashSet<>(eventosApuntados);
         eventos.addAll(eventosCreados);
 
+        logger.info("\nUsuario ID: " + usuario.getEventosApuntados() + "\n");
+
         // Filtrar por categoría si corresponde
         List<EventoLocal> eventosFiltrados = new java.util.ArrayList<>(eventos);
         if (categoriaID != null && categoriaID != 0) {
@@ -186,6 +189,7 @@ public class EventoLocalController {
         model.addAttribute("usuario", usuario);
         model.addAttribute("tituloPagina", "Mis eventos");
         model.addAttribute("textoNoEventos", "No estás apuntado ni has creado ningún evento.");
+        model.addAttribute("tituloPaginaKey", "my_events"); // o "home" según la página
 
         return "evento/eventosListaGenerica";
     }
@@ -196,24 +200,19 @@ public class EventoLocalController {
             @PathVariable("eventoID") int eventoID,
             @AuthenticationPrincipal UsuarioDetails user,
             @RequestParam(value = "redirectTo", required = false) String redirectTo,
+            HttpSession session,
             RedirectAttributes redirectAttrs,
-            Model model) { 
+            Model model) {
 
-        Usuario usuario = user.getUsuario();
-        int usuarioId = usuario.getUsuarioID();
+        int usuarioId = user.getUsuario().getUsuarioID();
+        Usuario usuario = usuarioRepo.findById(usuarioId).orElseThrow();
+        EventoLocal evento = eventoRepo.findById(eventoID).orElseThrow();
 
-        model.addAttribute("paginaActual", "listaEventos");
-        if (usuarioRepo.existsByUsuarioIDAndEventosApuntados_EventoID(usuarioId, eventoID)) {
-            // Eliminar del usuario
-            usuario.getEventosApuntados().removeIf(e -> e.getEventoID() == eventoID);
-            // Eliminar del evento (importante para la relación bidireccional)
-            EventoLocal evento = eventoRepo.findById(eventoID).orElse(null);
-            if (evento != null) {
-                evento.getUsuariosApuntados().removeIf(u -> u.getUsuarioID() == usuarioId);
-                eventoRepo.save(evento);
-            }
+        if(usuarioRepo.existsByUsuarioIDAndEventosApuntados_EventoID(usuarioId, eventoID)) {
+            usuario.getEventosApuntados().remove(evento);
+            evento.getUsuariosApuntados().remove(usuario);
             usuarioRepo.save(usuario);
-            // Redirección según el parámetro
+
             if ("listaEventos".equals(redirectTo)) {
                 return "redirect:/eventos/listaEventos";
             } else if ("misEventos".equals(redirectTo)) {
@@ -221,8 +220,8 @@ public class EventoLocalController {
             } else {
                 return "redirect:/eventos/" + eventoID;
             }
-        } else {
-            redirectAttrs.addFlashAttribute("error", "No estabas apuntado a este evento.");
+        }
+        else {
             return "redirect:/eventos/misEventos";
         }
     }
