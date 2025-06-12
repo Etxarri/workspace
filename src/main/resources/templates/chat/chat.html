@@ -3,18 +3,18 @@
 <head>
     <title layout:title="Chat"></title>
 </head>
+
 <main layout:fragment="content">
+    <div class="container py-4" style="max-width: 900px;">
+        <a class="btn btn-link mb-2 p-0" th:href="@{/foro/principal}" style="text-decoration:none; font-size:1.2rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16" style="vertical-align: middle;">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 7.5H14.5A.5.5 0 0 1 15 8z"/>
+            </svg>
+            <span style="vertical-align: middle;" th:text="#{volver}">Volver</span>
+        </a>
 
-    <div class="mb-4 text-center">
-        <h2><i class="bi bi-chat-dots"></i> <span th:text="#{chat_in}">Chat</span></h2>
-    </div>
-
-    <!-- Caja tipo chat con colores personalizados -->
-    <div class="card mx-auto" style="max-width: 800px;">
-        <div class="card-header text-white" style="background-color: rgb(140, 207, 240);"> </div>
-
-        <div class="card-body" id="comentariosLista" style="height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
-            <!-- Comentarios se insertan aquí -->
+        <div class="mb-4 text-center">
+            <h2><i class="bi bi-chat-dots"></i> <span th:text="#{chat}">Chat</span></h2>
         </div>
 
         <!-- Caja tipo chat con colores personalizados -->

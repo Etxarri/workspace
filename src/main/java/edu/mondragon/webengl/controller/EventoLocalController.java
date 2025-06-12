@@ -159,7 +159,9 @@ public class EventoLocalController {
             Model model,
             @RequestParam(value = "categoria", required = false) Integer categoriaID) {
         
+        // Recarga el usuario desde la base de datos para tener los eventos apuntados actualizados
         Usuario usuario = usuarioRepo.findById(user.getUsuario().getUsuarioID()).orElseThrow();
+        usuario.getEventosApuntados().size(); // Fuerza la carga
 
         // Eventos a los que está apuntado
         List<EventoLocal> eventosApuntados = new java.util.ArrayList<>(usuario.getEventosApuntados());
