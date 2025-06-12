@@ -9,6 +9,7 @@ import edu.mondragon.webengl.domain.foro.repository.ComentarioForoRepository;
 import edu.mondragon.webengl.domain.foro.repository.HiloforoRepository;
 import edu.mondragon.webengl.domain.foro.repository.PreguntaFrecuenteRepository;
 import edu.mondragon.webengl.domain.foro.repository.TemaforoRepository;
+import edu.mondragon.webengl.domain.user.model.Usuario;
 import edu.mondragon.webengl.domain.user.repository.UsuarioRepository;
 import edu.mondragon.webengl.seguridad.UsuarioDetails;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -82,14 +83,15 @@ public class ForoController {
             Optional<Hiloforo> hiloOpt = hiloRepo.findByPreguntaID(preguntaID);
             if (hiloOpt.isPresent()) {
                 Hiloforo hilo = hiloOpt.get();
-                List<ComentarioForo> comentarios = comentarioRepo.findByHiloOrderByBotoPosDesc(hiloOpt.get());
+                List<ComentarioForo> comentarios = comentarioRepo.findByHiloOrderByNumLikesDesc(hiloOpt.get());
                 model.addAttribute("hilo", hilo);
                 model.addAttribute("comentarios", comentarios);
                 model.addAttribute("pregunta", preguntaOpt.get());
                 model.addAttribute("usuarioLogueado", usuario.getUsuario());
                 model.addAttribute("paginaActual", "foro");
-                // Añade el temaID al modelo
                 model.addAttribute("temaID", preguntaOpt.get().getTema().getTemaID());
+
+
             }
             return "foros/pregunta";
         }
@@ -143,10 +145,9 @@ public class ForoController {
         comentario.setUsuario(usuarioRepo.findById(usuario.getUsuario().getUsuarioID()).orElse(null));
         comentario.setContenido(contenido);
         comentario.setFechaHora(LocalDateTime.now());
-        comentario.setBotoPos(0); // Inicializar en 0
         comentarioRepo.save(comentario);
 
-        List<ComentarioForo> comentarios = comentarioRepo.findByHiloOrderByBotoPosDesc(hiloOpt.get());
+        List<ComentarioForo> comentarios = comentarioRepo.findByHiloOrderByNumLikesDesc(hiloOpt.get());
         model.addAttribute("comentarios", comentarios);
 
         model.addAttribute("pregunta", preguntaFrecuenteRepo.findById(preguntaID).orElse(null));
@@ -157,56 +158,27 @@ public class ForoController {
     }
 
     @PostMapping("/{hiloID}/{preguntaID}/{comentarioID}")
-    public String likeComentario(@PathVariable int hiloID, @PathVariable int preguntaID, @PathVariable int comentarioID) {
+    public String likeComentario( @AuthenticationPrincipal UsuarioDetails user, @PathVariable int hiloID, @PathVariable int preguntaID, @PathVariable int comentarioID) {
         Optional<Hiloforo> hiloOpt = hiloRepo.findById(hiloID);
         if (hiloOpt.isEmpty()) {
             return "redirect:/foro";
         }
-
+        Usuario usuario = user.getUsuario();
         Optional<ComentarioForo> comentarioOpt = comentarioRepo.findById(comentarioID);
 
         if (comentarioOpt.isPresent()) {
             ComentarioForo comentario = comentarioOpt.get();
-            comentario.setBotoPos(comentario.getBotoPos() + 1);
-            comentarioRepo.save(comentario);
+                if (!comentario.getUsuariosQueDieronLike().contains(usuario)) {
+                    comentario.getUsuariosQueDieronLike().add(usuario);
+                    comentarioRepo.save(comentario);
+                }else{
+                    comentario.getUsuariosQueDieronLike().remove(usuario);
+                    comentarioRepo.save(comentario);
+                }
         }
 
         return "redirect:/foro/preguntaUsuario/" + preguntaID;
     }
-    /*
-    @GetMapping
-    public String listarHilos(@RequestParam(required = false) int temaId, Model model) {
-        List<Hiloforo> hilos = null;
-        if (temaId != 0) {
-            Optional<Temaforo> temaOpt = temaRepo.findById(temaId);
-            if (temaOpt.isPresent()) {
-                model.addAttribute("temaSeleccionado", temaOpt.get());
-            } else {
-                hilos = hiloRepo.findAll();
-            }
-        } else {
-            hilos = hiloRepo.findAll();
-        }
-        List<Temaforo> temas = temaRepo.findAll();
-        model.addAttribute("temas", temas);
-        //model.addAttribute("hilos", hilos);
-        return "foro/lista";
-    }
 
-    //@GetMapping("/{id}")
-    public String verHilo(@PathVariable int id, Model model) {
-        Optional<Hiloforo> hiloOpt = hiloRepo.findById(id);
-        if (hiloOpt.isPresent()) {
-            Hiloforo hilo = hiloOpt.get();
-            model.addAttribute("hilo", hilo);
-
-            List<ComentarioForo> comentarios = comentarioRepo.findByHilo(hilo);
-            model.addAttribute("comentarios", comentarios);
-
-            return "foro/hilo";
-        }
-        return "redirect:/foro";
-    }
-*/
 }
 

@@ -98,12 +98,17 @@ create table comentarioforo (
   usuarioID smallint unsigned not null,
   contenido VARCHAR(50) not null,
   fecha_hora timestamp not null,
-  boto_pos integer,
   CONSTRAINT COMENTARIOFORO_PK PRIMARY KEY (comentarioID),
   CONSTRAINT COMENTARIOFORO_HILO_FK FOREIGN KEY (hiloID) REFERENCES hiloforo (hiloID),
   CONSTRAINT COMENTARIOFORO_USUARIO_FK FOREIGN KEY (usuarioID) REFERENCES usuario (usuarioID)
 );
-
+CREATE TABLE comentario_like (
+  comentarioID SMALLINT UNSIGNED NOT NULL,
+  usuarioID SMALLINT UNSIGNED NOT NULL,
+  PRIMARY KEY (comentarioID, usuarioID),
+  FOREIGN KEY (comentarioID) REFERENCES comentarioforo(comentarioID) ON DELETE CASCADE,
+  FOREIGN KEY (usuarioID) REFERENCES usuario(usuarioID) ON DELETE CASCADE
+);
 create table categoria (
   categoriaID smallint unsigned not null AUTO_INCREMENT,
   nombre VARCHAR(50) not null,
