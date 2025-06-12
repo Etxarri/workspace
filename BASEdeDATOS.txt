@@ -102,6 +102,7 @@ create table comentarioforo (
   CONSTRAINT COMENTARIOFORO_HILO_FK FOREIGN KEY (hiloID) REFERENCES hiloforo (hiloID),
   CONSTRAINT COMENTARIOFORO_USUARIO_FK FOREIGN KEY (usuarioID) REFERENCES usuario (usuarioID)
 );
+
 CREATE TABLE comentario_like (
   comentarioID SMALLINT UNSIGNED NOT NULL,
   usuarioID SMALLINT UNSIGNED NOT NULL,
@@ -158,10 +159,11 @@ create table recursolocal (
 );
 create table aa (encuestaID smallint);
 
-create table encuesta (
-  encuestaID smallint unsigned not null AUTO_INCREMENT,
-  titulo varchar(50) not null,
-  descripcion varchar(100),
+CREATE TABLE encuesta (
+  encuestaID SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  titulo VARCHAR(50) NOT NULL,
+  descripcion VARCHAR(100),
+  tipo_encuesta VARCHAR(50) NOT NULL,
   CONSTRAINT ENCUESTA_PK PRIMARY KEY (encuestaID)
 );
 
@@ -244,11 +246,6 @@ INSERT INTO preguntafrecuente (preguntaID, temaID, pregunta, fecha_creacion) VAL
 INSERT INTO hiloforo (hiloID, preguntaID, fecha_creacion) VALUES
 (1, 1, '2023-04-11 10:00:00'),
 (2, 2, '2023-04-16 15:30:00');
-
--- Poblar tabla comentarioforo
-INSERT INTO comentarioforo (comentarioID, hiloID, usuarioID, contenido, fecha_hora) VALUES
-(1, 1, 1, 'Puedes ver series en español', '2023-04-11 11:00:00'),
-(2, 2, 2, 'Hay procesiones en Semana Santa', '2023-04-16 16:00:00');
 
 -- Poblar tabla categoria
 INSERT INTO categoria (categoriaID, nombre, descripcion) VALUES
@@ -336,16 +333,9 @@ INSERT INTO recursolocal (recursoID, categoriaID, ciudadID, nombre, descripcion,
 (42, 7, 6, 'Asesoría Jurídica Bilbao', 'Orientación legal gratuita sobre inmigración y trabajo', 'Plaza Moyua 3', '944112233', '12:00:00', '19:00:00', 43.262542, -2.935483);
 
 
-
--- Poblar tabla encuesta
-INSERT INTO encuesta (encuestaID, titulo, descripcion) VALUES
-(1, 'Encuesta de Integración 2025', 'Evaluación completa del nivel de integración de migrantes'),
-(2, 'Satisfacción de eventos', 'Cuestionario sobre los eventos realizados'),
-(3, 'Evaluación de taller cultural', 'Me gustó el evento cultural realizado');
-
--- Poblar tabla hacer_encuesta
-INSERT INTO hacer_encuesta (encuestaID, usuarioID, titulo, descripcion, resultado_psicologico, resultado_linguistico, resultado_economico, resultado_politico, resultado_social, resultado_navegacional, resultado_total) VALUES
-(1, 2, 'Encuesta de Integración 2025', 'Evaluación completa del nivel de integración de migrantes', 0.25, 0.37, 0.14, 0.099, 0.601, 0.524, 0.082);
+INSERT INTO encuesta (titulo, descripcion, tipo_encuesta) VALUES
+('Encuesta de Integración 2025', 'Evaluación completa del nivel de integración de migrantes', 'integracion'),
+('Otra encuesta futura', 'Descripción...', 'proximamente');
 
 -- Procedimientos almacenados
 DELIMITER //
@@ -400,11 +390,12 @@ GRANT SELECT, INSERT, DELETE ON welco.recienllegado TO 'webuser'@'%';
 GRANT SELECT, INSERT, DELETE ON welco.voluntario TO 'webuser'@'%';
 GRANT SELECT, INSERT, DELETE ON welco.eventolocal TO 'webuser'@'%';
 GRANT SELECT, INSERT ON welco.preguntafrecuente TO 'webuser'@'%';
-GRANT SELECT, INSERT ON welco.comentarioforo TO 'webuser'@'%';
+GRANT SELECT, INSERT, UPDATE ON welco.comentarioforo TO 'webuser'@'%';
 GRANT SELECT, INSERT ON welco.hiloforo TO 'webuser'@'%';
 GRANT SELECT, INSERT ON welco.mensajechat TO 'webuser'@'%';
 GRANT SELECT, INSERT, DELETE ON welco.usuario_apuntarse_evento TO 'webuser'@'%';
-GRANT SELECT, INSERT ON welco.hacer_encuesta TO 'webuser'@'%';
+GRANT INSERT, UPDATE, DELETE ON welco.hacer_encuesta TO 'webuser'@'%';
+GRANT INSERT, UPDATE, DELETE ON welco.encuesta TO 'webuser'@'%';
 
 GRANT SELECT ON welco.pais TO 'webuser'@'%';
 GRANT SELECT ON welco.comunidad_autonoma TO 'webuser'@'%';
@@ -412,7 +403,6 @@ GRANT SELECT ON welco.ciudad TO 'webuser'@'%';
 GRANT SELECT ON welco.temaforo TO 'webuser'@'%';
 GRANT SELECT ON welco.categoria TO 'webuser'@'%';
 GRANT SELECT ON welco.recursolocal TO 'webuser'@'%';
-GRANT SELECT ON welco.encuesta TO 'webuser'@'%';
 
 GRANT EXECUTE ON PROCEDURE welco.crear_usuario TO 'webuser'@'%';
 GRANT EXECUTE ON PROCEDURE welco.crear_recienllegado TO 'webuser'@'%';
